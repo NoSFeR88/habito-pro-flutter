@@ -70,6 +70,23 @@ class _StatsOverviewState extends State<StatsOverview> {
 
   Widget _buildPageIndicator(int page, String label) {
     final isActive = _currentPage == page;
+
+    // Definir color específico para cada pestaña según su contenedor
+    Color activeColor;
+    switch (page) {
+      case 0: // Hoy - morado
+        activeColor = AppColors.primaryLight;
+        break;
+      case 1: // Semana - turquesa/cyan
+        activeColor = AppColors.secondary;
+        break;
+      case 2: // Mes - rosa
+        activeColor = AppColors.accent;
+        break;
+      default:
+        activeColor = AppColors.primary;
+    }
+
     return GestureDetector(
       onTap: () {
         _pageController.animateToPage(
@@ -82,17 +99,17 @@ class _StatsOverviewState extends State<StatsOverview> {
         margin: const EdgeInsets.symmetric(horizontal: 6),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: isActive ? AppColors.primary : Colors.transparent,
+          color: isActive ? activeColor.withOpacity(0.2) : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isActive ? AppColors.primary : AppColors.primary.withOpacity(0.3),
+            color: isActive ? activeColor : AppColors.primary.withOpacity(0.3),
             width: 1.5,
           ),
         ),
         child: Text(
           label,
           style: TextStyle(
-            color: isActive ? Colors.white : AppColors.primary,
+            color: isActive ? activeColor : AppColors.primary,
             fontSize: 13,
             fontWeight: FontWeight.w600,
           ),

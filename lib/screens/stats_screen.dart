@@ -157,7 +157,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 24),
             SizedBox(
               height: 140,
               child: total > 0 ? PieChart(
@@ -169,10 +169,11 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       color: Colors.green,
                       radius: 55,
                       titleStyle: const TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
+                      titlePositionPercentageOffset: 0.55,
                     ),
                     PieChartSectionData(
                       value: pending.toDouble(),
@@ -180,10 +181,11 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       color: Colors.grey[400]!,
                       radius: 55,
                       titleStyle: const TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
+                      titlePositionPercentageOffset: 0.55,
                     ),
                   ],
                   sectionsSpace: 2,
@@ -193,6 +195,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                 child: Text('No hay hábitos para mostrar'),
               ),
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

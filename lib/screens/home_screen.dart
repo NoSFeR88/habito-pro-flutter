@@ -150,15 +150,14 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => const AddHabitScreen()),
           );
         },
-        icon: const Icon(Icons.add),
-        label: const Text('Nuevo Hábito'),
+        child: const Icon(Icons.add),
       ),
     );
   }
