@@ -1,0 +1,48 @@
+name: habito_pro
+description: App inteligente de seguimiento de hábitos diarios
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Gestión de estado
+  provider: ^6.1.1
+
+  # UI
+  cupertino_icons: ^1.0.2
+  google_fonts: ^6.1.0
+
+  # Persistencia de datos
+  sqflite: ^2.3.0
+  path: ^1.8.0
+
+  # Firebase - Backend y autenticación
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+  cloud_firestore: ^5.4.4
+  firebase_messaging: ^15.1.3
+  google_sign_in: ^6.2.1
+
+  # Notificaciones locales - versión estable y compatible
+  flutter_local_notifications: ^17.2.3
+  timezone: ^0.9.4
+
+  # Gráficos y estadísticas
+  fl_chart: ^0.69.0
+
+  # Utilidades
+  intl: ^0.19.0
+  shared_preferences: ^2.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
