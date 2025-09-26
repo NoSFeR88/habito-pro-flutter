@@ -235,6 +235,7 @@ class SettingsScreen extends StatelessWidget {
 
   String _getLanguageNativeName(String languageCode) {
     switch (languageCode) {
+      // Phase 1: Core Global Languages
       case 'en':
         return 'English';
       case 'es':
@@ -245,6 +246,29 @@ class SettingsScreen extends StatelessWidget {
         return 'Français';
       case 'zh':
         return '中文';
+
+      // Phase 2A: European Expansion
+      case 'it':
+        return 'Italiano';
+      case 'nl':
+        return 'Nederlands';
+      case 'sv':
+        return 'Svenska';
+      case 'pl':
+        return 'Polski';
+      case 'pt':
+        return 'Português';
+      case 'ro':
+        return 'Română';
+      case 'cs':
+        return 'Čeština';
+      case 'da':
+        return 'Dansk';
+      case 'no':
+        return 'Norsk';
+      case 'fi':
+        return 'Suomi';
+
       default:
         return languageCode.toUpperCase();
     }

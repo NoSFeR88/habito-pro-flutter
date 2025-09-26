@@ -11,20 +11,46 @@ class LocaleProvider extends ChangeNotifier {
 
   /// Supported locales for the app
   static const List<Locale> supportedLocales = [
+    // Phase 1: Core Global Languages
     Locale('en', ''), // English
     Locale('es', ''), // Spanish
     Locale('de', ''), // German
     Locale('fr', ''), // French
     Locale('zh', ''), // Chinese Simplified
+
+    // Phase 2A: European Expansion
+    Locale('it', ''), // Italian
+    Locale('nl', ''), // Dutch
+    Locale('sv', ''), // Swedish
+    Locale('pl', ''), // Polish
+    Locale('pt', ''), // Portuguese
+    Locale('ro', ''), // Romanian
+    Locale('cs', ''), // Czech
+    Locale('da', ''), // Danish
+    Locale('no', ''), // Norwegian
+    Locale('fi', ''), // Finnish
   ];
 
   /// Language names for display in UI
   static const Map<String, String> languageNames = {
+    // Phase 1: Core Global Languages
     'en': 'English',
     'es': 'Español',
     'de': 'Deutsch',
     'fr': 'Français',
     'zh': '中文',
+
+    // Phase 2A: European Expansion
+    'it': 'Italiano',
+    'nl': 'Nederlands',
+    'sv': 'Svenska',
+    'pl': 'Polski',
+    'pt': 'Português',
+    'ro': 'Română',
+    'cs': 'Čeština',
+    'da': 'Dansk',
+    'no': 'Norsk',
+    'fi': 'Suomi',
   };
 
   /// Initialize locale from device or saved preference
