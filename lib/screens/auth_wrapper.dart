@@ -123,9 +123,9 @@ class _UserAuthenticatedScreenState extends State<_UserAuthenticatedScreen> {
       await widget.habitProvider.initializeHabits();
       
       // Si es usuario anónimo y no tiene hábitos, crear ejemplos
-      if (widget.authProvider.isAnonymous && widget.habitProvider.habits.isEmpty) {
-        widget.habitProvider.createSampleHabits();
-      }
+      // if (widget.authProvider.isAnonymous && widget.habitProvider.habits.isEmpty) {
+      //   widget.habitProvider.createSampleHabits();
+      // }
       
       _hasInitialized = true;
     } catch (e) {

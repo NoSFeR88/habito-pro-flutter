@@ -1,0 +1,228 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2025-09-26T00:00:00Z",
+
+  "appTitle": "Habit Pro",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+
+  "homeAppBarTitle": "Habit Pro",
+  "@homeAppBarTitle": {
+    "description": "Title in the home screen app bar"
+  },
+
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading indicator text"
+  },
+
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
+
+  "today": "Today",
+  "@today": {
+    "description": "Today label"
+  },
+
+  "todayWithDate": "Today • {date}",
+  "@todayWithDate": {
+    "description": "Today label with date",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "description": "Current date string"
+      }
+    }
+  },
+
+  "allDoneToday": "All done for today!",
+  "@allDoneToday": {
+    "description": "Empty state title when no habits for today"
+  },
+
+  "noProgrammedHabits": "You have no habits scheduled for today or you've completed them all.",
+  "@noProgrammedHabits": {
+    "description": "Empty state description"
+  },
+
+  "createFirstHabit": "Create my first habit",
+  "@createFirstHabit": {
+    "description": "Create first habit button text"
+  },
+
+  "habitUpdated": "Habit updated!",
+  "@habitUpdated": {
+    "description": "Snackbar message when habit is toggled"
+  },
+
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit button text"
+  },
+
+  "viewStatistics": "View statistics",
+  "@viewStatistics": {
+    "description": "View statistics button text"
+  },
+
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button text"
+  },
+
+  "deleteHabit": "Delete habit",
+  "@deleteHabit": {
+    "description": "Delete habit dialog title"
+  },
+
+  "confirmDeleteHabit": "Are you sure you want to delete \"{habitName}\"?",
+  "@confirmDeleteHabit": {
+    "description": "Delete habit confirmation message",
+    "placeholders": {
+      "habitName": {
+        "type": "String",
+        "description": "Name of the habit to delete"
+      }
+    }
+  },
+
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+
+  "habitDeleted": "Habit \"{habitName}\" deleted",
+  "@habitDeleted": {
+    "description": "Habit deleted confirmation message",
+    "placeholders": {
+      "habitName": {
+        "type": "String",
+        "description": "Name of the deleted habit"
+      }
+    }
+  },
+
+  "mondayShort": "Mon",
+  "tuesdayShort": "Tue",
+  "wednesdayShort": "Wed",
+  "thursdayShort": "Thu",
+  "fridayShort": "Fri",
+  "saturdayShort": "Sat",
+  "sundayShort": "Sun",
+
+  "januaryShort": "Jan",
+  "februaryShort": "Feb",
+  "marchShort": "Mar",
+  "aprilShort": "Apr",
+  "mayShort": "May",
+  "juneShort": "Jun",
+  "julyShort": "Jul",
+  "augustShort": "Aug",
+  "septemberShort": "Sep",
+  "octoberShort": "Oct",
+  "novemberShort": "Nov",
+  "decemberShort": "Dec",
+
+  "newHabit": "New Habit",
+  "@newHabit": {
+    "description": "New habit screen title"
+  },
+
+  "save": "Save",
+  "@save": {
+    "description": "Save button text"
+  },
+
+  "statsToday": "Today",
+  "@statsToday": {
+    "description": "Today tab in statistics"
+  },
+
+  "statsWeek": "Week",
+  "@statsWeek": {
+    "description": "Week tab in statistics"
+  },
+
+  "statsMonth": "Month",
+  "@statsMonth": {
+    "description": "Month tab in statistics"
+  },
+
+  "notificationTests": "Notification Tests",
+  "@notificationTests": {
+    "description": "Notification tests modal title"
+  },
+
+  "immediateNotification": "Immediate Notification",
+  "@immediateNotification": {
+    "description": "Immediate notification test title"
+  },
+
+  "showNotificationNow": "Show notification right now",
+  "@showNotificationNow": {
+    "description": "Immediate notification test description"
+  },
+
+  "scheduledNotification": "Scheduled Notification",
+  "@scheduledNotification": {
+    "description": "Scheduled notification test title"
+  },
+
+  "scheduleIn5Seconds": "Schedule notification in 5 seconds",
+  "@scheduleIn5Seconds": {
+    "description": "Scheduled notification test description"
+  },
+
+  "rescheduleAllHabits": "Reschedule All Habits",
+  "@rescheduleAllHabits": {
+    "description": "Reschedule all habits button"
+  },
+
+  "updateAllNotifications": "Update all notifications",
+  "@updateAllNotifications": {
+    "description": "Update all notifications description"
+  },
+
+  "viewPendingNotifications": "View Pending Notifications",
+  "@viewPendingNotifications": {
+    "description": "View pending notifications button"
+  },
+
+  "showScheduledNotifications": "Show scheduled notifications",
+  "@showScheduledNotifications": {
+    "description": "Show scheduled notifications description"
+  },
+
+  "notificationSent": "Notification sent! Check your notification bar",
+  "@notificationSent": {
+    "description": "Notification sent confirmation"
+  },
+
+  "notificationScheduled": "Notification scheduled for 5 seconds",
+  "@notificationScheduled": {
+    "description": "Notification scheduled confirmation"
+  },
+
+  "notificationsRescheduled": "Notifications rescheduled successfully",
+  "@notificationsRescheduled": {
+    "description": "Notifications rescheduled confirmation"
+  },
+
+  "pendingNotifications": "Pending Notifications",
+  "@pendingNotifications": {
+    "description": "Pending notifications dialog title"
+  },
+
+  "noPendingNotifications": "No pending notifications",
+  "@noPendingNotifications": {
+    "description": "No pending notifications message"
+  },
+
+  "close": "Close",
+  "@close": {
+    "description": "Close button text"
+  }
+}

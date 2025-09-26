@@ -6,9 +6,11 @@ import '../widgets/stats_overview.dart';
 import '../models/habit.dart';
 import '../core/theme.dart';
 import '../services/notification_service.dart';
+import '../generated/l10n/app_localizations.dart';
 import 'add_habit_screen.dart';
 import 'edit_habit_screen.dart';
 import 'stats_screen.dart';
+import 'settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,10 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundDark,
       appBar: AppBar(
-        title: const Text('Hábito Pro'),
+        title: Text(l10n.homeAppBarTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.analytics_outlined),
@@ -50,7 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () {
-              // TODO: Navegar a configuración
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const SettingsScreen()),
+              );
             },
           ),
         ],
@@ -58,8 +65,18 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Consumer<HabitProvider>(
         builder: (context, habitProvider, child) {
           if (habitProvider.isLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CircularProgressIndicator(),
+                  const SizedBox(height: 16),
+                  Text(
+                    l10n.loading,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ],
+              ),
             );
           }
 
@@ -85,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       habitProvider.clearError();
                       habitProvider.initializeHabits();
                     },
-                    child: const Text('Reintentar'),
+                    child: Text(l10n.retry),
                   ),
                 ],
               ),
