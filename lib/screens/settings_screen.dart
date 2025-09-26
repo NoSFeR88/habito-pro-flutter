@@ -269,6 +269,30 @@ class SettingsScreen extends StatelessWidget {
       case 'fi':
         return 'Suomi';
 
+      // Phase 2B: Asian & Strategic Markets
+      case 'ja':
+        return '日本語';
+      case 'ko':
+        return '한국어';
+      case 'hi':
+        return 'हिन्दी';
+      case 'bn':
+        return 'বাংলা';
+      case 'th':
+        return 'ไทย';
+      case 'vi':
+        return 'Tiếng Việt';
+      case 'id':
+        return 'Bahasa Indonesia';
+      case 'tl':
+        return 'Filipino';
+      case 'ar':
+        return 'العربية';
+      case 'tr':
+        return 'Türkçe';
+      case 'ru':
+        return 'Русский';
+
       default:
         return languageCode.toUpperCase();
     }

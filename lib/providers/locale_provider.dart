@@ -29,6 +29,19 @@ class LocaleProvider extends ChangeNotifier {
     Locale('da', ''), // Danish
     Locale('no', ''), // Norwegian
     Locale('fi', ''), // Finnish
+
+    // Phase 2B: Asian & Strategic Markets
+    Locale('ja', ''), // Japanese - Premium Asia-Pacific
+    Locale('ko', ''), // Korean - Tech early-adopters
+    Locale('hi', ''), // Hindi - India massive market
+    Locale('bn', ''), // Bengali - Bengal + Bangladesh
+    Locale('th', ''), // Thai - Southeast Asia gateway
+    Locale('vi', ''), // Vietnamese - Emerging economy
+    Locale('id', ''), // Indonesian - #4 world market
+    Locale('tl', ''), // Filipino/Tagalog - Philippines
+    Locale('ar', ''), // Arabic - MENA + global diaspora
+    Locale('tr', ''), // Turkish - Europe-Asia bridge
+    Locale('ru', ''), // Russian - Russia + ex-USSR
   ];
 
   /// Language names for display in UI
@@ -51,6 +64,19 @@ class LocaleProvider extends ChangeNotifier {
     'da': 'Dansk',
     'no': 'Norsk',
     'fi': 'Suomi',
+
+    // Phase 2B: Asian & Strategic Markets
+    'ja': '日本語',
+    'ko': '한국어',
+    'hi': 'हिन्दी',
+    'bn': 'বাংলা',
+    'th': 'ไทย',
+    'vi': 'Tiếng Việt',
+    'id': 'Bahasa Indonesia',
+    'tl': 'Filipino',
+    'ar': 'العربية',
+    'tr': 'Türkçe',
+    'ru': 'Русский',
   };
 
   /// Initialize locale from device or saved preference
