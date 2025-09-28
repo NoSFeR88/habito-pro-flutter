@@ -7,17 +7,23 @@ import 'firebase_options.dart';
 import 'core/theme.dart';
 import 'providers/habit_provider.dart';
 import 'providers/locale_provider.dart';
+import 'providers/onboarding_provider.dart';
+import 'providers/premium_provider.dart';
+import 'services/ads_service.dart';
 import 'screens/home_screen.dart';
+import 'screens/onboarding_screen.dart';
 import 'services/notification_service.dart';
 import 'generated/l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Configurar orientación (opcional)
+  // Configurar orientación (habilitar todas las orientaciones)
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
   ]);
 
   // Inicializar Firebase
@@ -46,13 +52,45 @@ void main() async {
   await localeProvider.initializeLocale();
   debugPrint('✅ Localización inicializada: ${localeProvider.currentLanguageCode}');
 
-  runApp(HabitApp(localeProvider: localeProvider));
+  // Inicializar OnboardingProvider
+  final onboardingProvider = OnboardingProvider();
+  await onboardingProvider.checkFirstTime();
+  debugPrint('✅ Onboarding provider inicializado: primera vez = ${onboardingProvider.isFirstTime}');
+
+  // Inicializar PremiumProvider
+  final premiumProvider = PremiumProvider();
+  await premiumProvider.initializePremiumStatus();
+  debugPrint('✅ Premium provider inicializado: premium = ${premiumProvider.isPremium}');
+
+  // Inicializar AdsService solo si no es premium - TEMPORALMENTE DESHABILITADO
+  /*if (!premiumProvider.isPremium) {
+    try {
+      await AdsService().initialize();
+      debugPrint('✅ AdsService inicializado para usuario free');
+    } catch (e) {
+      debugPrint('⚠️ Error inicializando AdsService: $e');
+    }
+  }*/
+  debugPrint('🚫 AdsService temporalmente deshabilitado para testing');
+
+  runApp(HabitApp(
+    localeProvider: localeProvider,
+    onboardingProvider: onboardingProvider,
+    premiumProvider: premiumProvider,
+  ));
 }
 
 class HabitApp extends StatelessWidget {
   final LocaleProvider localeProvider;
+  final OnboardingProvider onboardingProvider;
+  final PremiumProvider premiumProvider;
 
-  const HabitApp({Key? key, required this.localeProvider}) : super(key: key);
+  const HabitApp({
+    Key? key,
+    required this.localeProvider,
+    required this.onboardingProvider,
+    required this.premiumProvider,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +98,13 @@ class HabitApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => HabitProvider()),
         ChangeNotifierProvider.value(value: localeProvider),
+        ChangeNotifierProvider.value(value: onboardingProvider),
+        ChangeNotifierProvider.value(value: premiumProvider),
       ],
       child: Consumer<LocaleProvider>(
         builder: (context, localeProvider, child) {
           return MaterialApp(
-            title: 'Habit Pro',
+            title: 'Ritmo',
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: ThemeMode.dark,
@@ -79,7 +119,37 @@ class HabitApp extends StatelessWidget {
             supportedLocales: LocaleProvider.supportedLocales,
             locale: localeProvider.locale,
 
-            home: const HomeScreen(),
+            home: Consumer<OnboardingProvider>(
+              builder: (context, onboardingProvider, child) {
+                if (onboardingProvider.isLoading) {
+                  return const Scaffold(
+                    backgroundColor: Color(0xFF2D2B42),
+                    body: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF8B5CF6)),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Iniciando Ritmo...',
+                            style: TextStyle(
+                              color: Color(0xFFF8FAFC),
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+
+                return onboardingProvider.isFirstTime
+                  ? const OnboardingScreen()
+                  : const HomeScreen();
+              },
+            ),
             debugShowCheckedModeBanner: false,
           );
         },

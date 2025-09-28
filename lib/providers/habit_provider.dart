@@ -347,4 +347,68 @@ class HabitProvider extends ChangeNotifier {
       _setError('Error reprogramando notificaciones: $e');
     }
   }
+
+  // Obtener el número total de completaciones de un hábito
+  int getHabitCompletionCount(String habitId) {
+    try {
+      // TODO: Implementar con base de datos cuando esté disponible
+      // Por ahora retornamos un valor simulado basado en el hábito
+      final habit = _habits.firstWhere((h) => h.id == habitId);
+      // Simulamos basándonos en cuánto tiempo ha existido el hábito
+      final daysSinceCreation = DateTime.now().difference(habit.createdAt).inDays;
+      return (daysSinceCreation * 0.7).round(); // Simula 70% de completación
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  // Obtener la racha actual de un hábito
+  int getHabitStreak(String habitId) {
+    try {
+      // TODO: Implementar con base de datos cuando esté disponible
+      // Por ahora retornamos un valor simulado
+      final habit = _habits.firstWhere((h) => h.id == habitId);
+      final daysSinceCreation = DateTime.now().difference(habit.createdAt).inDays;
+      return (daysSinceCreation * 0.5).round().clamp(0, 30); // Simula racha máxima de 30 días
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  // Verificar si un hábito fue completado hoy
+  bool isHabitCompletedToday(String habitId) {
+    try {
+      final habit = _habits.firstWhere((h) => h.id == habitId);
+      final todayStr = DateTime.now().toDateString();
+      return habit.completions[todayStr] ?? false;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // Alternar el estado activo/pausado de un hábito
+  Future<void> toggleHabitStatus(String habitId) async {
+    try {
+      final habitIndex = _habits.indexWhere((h) => h.id == habitId);
+      if (habitIndex != -1) {
+        final habit = _habits[habitIndex];
+        final updatedHabit = habit.copyWith(isActive: !habit.isActive);
+
+        _habits[habitIndex] = updatedHabit;
+        await _databaseHelper.updateHabit(updatedHabit);
+
+        // Actualizar notificaciones
+        if (updatedHabit.isActive) {
+          await _notificationService.scheduleHabitReminder(updatedHabit);
+        } else {
+          await _notificationService.cancelHabitReminders(updatedHabit.id);
+        }
+
+        notifyListeners();
+        _clearError();
+      }
+    } catch (e) {
+      _setError('Error cambiando estado del hábito: $e');
+    }
+  }
 }

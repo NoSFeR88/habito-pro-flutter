@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Read(//c/Users/shill/Desktop/Capturas Movil/**)",
-      "Read(//c/Users/shill/AppData/Local/Android/Sdk/Proyectos/Aplicaciones Play Store/habito_pro_clean_bck/lib/**)"
+      "Read(//c/Users/shill/AppData/Local/Android/Sdk/Proyectos/Aplicaciones Play Store/habito_pro_clean_bck/lib/**)",
+      "WebSearch"
     ],
     "deny": [],
     "ask": []

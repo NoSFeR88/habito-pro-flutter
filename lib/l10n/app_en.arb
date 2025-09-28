@@ -2,12 +2,12 @@
   "@@locale": "en",
   "@@last_modified": "2025-09-26T00:00:00Z",
 
-  "appTitle": "Habit Pro",
+  "appTitle": "RITMO",
   "@appTitle": {
     "description": "The title of the application"
   },
 
-  "homeAppBarTitle": "Habit Pro",
+  "homeAppBarTitle": "RITMO",
   "@homeAppBarTitle": {
     "description": "Title in the home screen app bar"
   },
@@ -112,6 +112,40 @@
   "fridayShort": "Fri",
   "saturdayShort": "Sat",
   "sundayShort": "Sun",
+
+  "skip": "Skip",
+  "next": "Next",
+
+  "onboardingWelcomeTitle": "Welcome to Ritmo!",
+  "onboardingWelcomeSubtitle": "The only habit app that adapts to YOUR real life",
+  "onboardingFeatureFlexible": "Flexible habits adapted to you",
+  "onboardingFeatureMotivating": "Motivating design that inspires",
+  "onboardingFeature26Languages": "26 languages - Market leader",
+  "onboardingDiscoverDifference": "Discover the difference",
+
+  "onboardingProblemTitle": "Tired of overly rigid apps?",
+  "onboardingOtherApps": "Other apps",
+  "onboardingProblemExample": "Gym EVERY day ❌",
+  "onboardingSolutionExample": "Gym Mon-Wed-Fri ✅ (YOUR rhythm)",
+  "onboardingFlexibilityMessage": "Your life is unique. Your habits should be too.",
+  "onboardingThisSounds": "This sounds familiar",
+
+  "onboardingSetupTitle": "Create your first flexible habit",
+  "onboardingFlexibilityTip": "💡 Tip: Choose realistic days for your lifestyle",
+  "onboardingCreateFirstHabit": "Create my first habit",
+
+  "onboardingCelebrationTitle": "Perfect! You have your rhythm",
+  "onboardingCelebrationSubtitle": "Your first flexible habit is ready to begin",
+  "onboardingDefaultHabitName": "My first habit",
+  "onboardingNoDaysSelected": "No days selected",
+  "onboardingBenefitFlexibility": "Total flexibility",
+  "onboardingBenefitMotivation": "Constant motivation",
+  "onboardingBenefit26Languages": "26 languages available",
+  "onboardingStartMyRhythm": "Start my rhythm",
+
+  "habitName": "Habit name",
+  "habitNameHint": "e.g. Go to gym",
+  "selectDays": "Select days",
 
   "januaryShort": "Jan",
   "februaryShort": "Feb",
@@ -224,5 +258,20 @@
   "close": "Close",
   "@close": {
     "description": "Close button text"
+  },
+
+  "habitName": "Habit name",
+  "@habitName": {
+    "description": "Label for habit name field"
+  },
+
+  "habitNameHint": "E.g: Exercise, Read, Meditate...",
+  "@habitNameHint": {
+    "description": "Hint text for habit name field"
+  },
+
+  "selectDays": "Select days",
+  "@selectDays": {
+    "description": "Label for day selection"
   }
 }

@@ -186,7 +186,7 @@ class DatabaseHelper {
       name: map['name'],
       description: map['description'],
       icon: IconData(
-        map['icon_code_point'],
+        map['icon_code_point'] ?? Icons.circle.codePoint,
         fontFamily: 'MaterialIcons',
       ),
       color: map['color'],

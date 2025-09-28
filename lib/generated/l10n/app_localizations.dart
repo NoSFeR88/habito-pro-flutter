@@ -149,13 +149,13 @@ abstract class AppLocalizations {
   /// The title of the application
   ///
   /// In en, this message translates to:
-  /// **'Habit Pro'**
+  /// **'RITMO'**
   String get appTitle;
 
   /// Title in the home screen app bar
   ///
   /// In en, this message translates to:
-  /// **'Habit Pro'**
+  /// **'RITMO'**
   String get homeAppBarTitle;
 
   /// Loading indicator text
@@ -289,6 +289,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sun'**
   String get sundayShort;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @onboardingWelcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Ritmo!'**
+  String get onboardingWelcomeTitle;
+
+  /// No description provided for @onboardingWelcomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The only habit app that adapts to YOUR real life'**
+  String get onboardingWelcomeSubtitle;
+
+  /// No description provided for @onboardingFeatureFlexible.
+  ///
+  /// In en, this message translates to:
+  /// **'Flexible habits adapted to you'**
+  String get onboardingFeatureFlexible;
+
+  /// No description provided for @onboardingFeatureMotivating.
+  ///
+  /// In en, this message translates to:
+  /// **'Motivating design that inspires'**
+  String get onboardingFeatureMotivating;
+
+  /// No description provided for @onboardingFeature26Languages.
+  ///
+  /// In en, this message translates to:
+  /// **'26 languages - Market leader'**
+  String get onboardingFeature26Languages;
+
+  /// No description provided for @onboardingDiscoverDifference.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover the difference'**
+  String get onboardingDiscoverDifference;
+
+  /// No description provided for @onboardingProblemTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tired of overly rigid apps?'**
+  String get onboardingProblemTitle;
+
+  /// No description provided for @onboardingOtherApps.
+  ///
+  /// In en, this message translates to:
+  /// **'Other apps'**
+  String get onboardingOtherApps;
+
+  /// No description provided for @onboardingProblemExample.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym EVERY day ❌'**
+  String get onboardingProblemExample;
+
+  /// No description provided for @onboardingSolutionExample.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym Mon-Wed-Fri ✅ (YOUR rhythm)'**
+  String get onboardingSolutionExample;
+
+  /// No description provided for @onboardingFlexibilityMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your life is unique. Your habits should be too.'**
+  String get onboardingFlexibilityMessage;
+
+  /// No description provided for @onboardingThisSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'This sounds familiar'**
+  String get onboardingThisSounds;
+
+  /// No description provided for @onboardingSetupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your first flexible habit'**
+  String get onboardingSetupTitle;
+
+  /// No description provided for @onboardingFlexibilityTip.
+  ///
+  /// In en, this message translates to:
+  /// **'💡 Tip: Choose realistic days for your lifestyle'**
+  String get onboardingFlexibilityTip;
+
+  /// No description provided for @onboardingCreateFirstHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Create my first habit'**
+  String get onboardingCreateFirstHabit;
+
+  /// No description provided for @onboardingCelebrationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect! You have your rhythm'**
+  String get onboardingCelebrationTitle;
+
+  /// No description provided for @onboardingCelebrationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your first flexible habit is ready to begin'**
+  String get onboardingCelebrationSubtitle;
+
+  /// No description provided for @onboardingDefaultHabitName.
+  ///
+  /// In en, this message translates to:
+  /// **'My first habit'**
+  String get onboardingDefaultHabitName;
+
+  /// No description provided for @onboardingNoDaysSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'No days selected'**
+  String get onboardingNoDaysSelected;
+
+  /// No description provided for @onboardingBenefitFlexibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Total flexibility'**
+  String get onboardingBenefitFlexibility;
+
+  /// No description provided for @onboardingBenefitMotivation.
+  ///
+  /// In en, this message translates to:
+  /// **'Constant motivation'**
+  String get onboardingBenefitMotivation;
+
+  /// No description provided for @onboardingBenefit26Languages.
+  ///
+  /// In en, this message translates to:
+  /// **'26 languages available'**
+  String get onboardingBenefit26Languages;
+
+  /// No description provided for @onboardingStartMyRhythm.
+  ///
+  /// In en, this message translates to:
+  /// **'Start my rhythm'**
+  String get onboardingStartMyRhythm;
+
+  /// Label for habit name field
+  ///
+  /// In en, this message translates to:
+  /// **'Habit name'**
+  String get habitName;
+
+  /// Hint text for habit name field
+  ///
+  /// In en, this message translates to:
+  /// **'E.g: Exercise, Read, Meditate...'**
+  String get habitNameHint;
+
+  /// Label for day selection
+  ///
+  /// In en, this message translates to:
+  /// **'Select days'**
+  String get selectDays;
 
   /// No description provided for @januaryShort.
   ///

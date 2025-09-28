@@ -7,10 +7,12 @@ import '../models/habit.dart';
 import '../core/theme.dart';
 import '../services/notification_service.dart';
 import '../generated/l10n/app_localizations.dart';
+import '../utils/responsive_utils.dart';
 import 'add_habit_screen.dart';
 import 'edit_habit_screen.dart';
 import 'stats_screen.dart';
 import 'settings_screen.dart';
+import 'all_habits_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -38,6 +40,16 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(l10n.homeAppBarTitle),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.list_alt),
+            tooltip: 'Gestionar hábitos',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const AllHabitsScreen()),
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.analytics_outlined),
             onPressed: () {
@@ -111,117 +123,92 @@ class _HomeScreenState extends State<HomeScreen> {
 
           final habits = habitProvider.habits;
           final habitsToday = habitProvider.habitsForToday;
+          final isLandscape = ResponsiveUtils.isLandscape(context);
+          final screenPadding = ResponsiveUtils.getScreenPadding(context);
 
-          return Column(
-            children: [
-              // Resumen de estadísticas con navegación
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: StatsOverview(),
-                ),
-              ),
-
-              // Título de hábitos de hoy
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.today,
-                      color: AppColors.primary,
-                      size: 28,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Hoy • ${_getCurrentDateString()}',
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Lista de hábitos de hoy
-              Expanded(
-                child: habitsToday.isEmpty
-                    ? _buildEmptyState()
-                    : ListView.builder(
-                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 80),
-                        itemCount: habitsToday.length,
-                        itemBuilder: (context, index) {
-                          final habit = habitsToday[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: HabitCard(
-                              habit: habit,
-                              onTap: () => _toggleHabit(context, habit.id),
-                              onLongPress: () => _showHabitOptions(context, habit),
-                            ),
-                          );
-                        },
-                      ),
-              ),
-            ],
-          );
+          return isLandscape ? _buildLandscapeLayout(context, habitsToday, screenPadding) : _buildPortraitLayout(context, habitsToday, screenPadding);
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const AddHabitScreen()),
-          );
+      floatingActionButton: Consumer<HabitProvider>(
+        builder: (context, habitProvider, child) {
+          // Solo mostrar el FAB si hay hábitos activos (no solo pausados)
+          final hasActiveHabits = habitProvider.habits.any((h) => h.isActive);
+          final fabSize = ResponsiveUtils.getFabSize(context);
+
+          return hasActiveHabits
+              ? SizedBox(
+                  width: fabSize,
+                  height: fabSize,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const AddHabitScreen()),
+                      );
+                    },
+                    child: const Icon(Icons.add),
+                  ),
+                )
+              : const SizedBox.shrink(); // Ocultar el FAB cuando no hay hábitos activos
         },
-        child: const Icon(Icons.add),
       ),
     );
   }
 
   Widget _buildEmptyState() {
-    return Container(
-      margin: const EdgeInsets.all(24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.sentiment_satisfied_alt,
-            size: 80,
-            color: Colors.grey[400],
+    return Consumer<HabitProvider>(
+      builder: (context, habitProvider, child) {
+        final hasAnyHabits = habitProvider.habits.isNotEmpty;
+        final hasActiveHabits = habitProvider.habits.any((h) => h.isActive);
+
+        return Container(
+          margin: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                hasActiveHabits ? Icons.sentiment_satisfied_alt : Icons.eco,
+                size: 80,
+                color: Colors.grey[400],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                hasActiveHabits ? '¡Todo listo por hoy!' : '¡Bienvenido a Ritmo!',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                hasActiveHabits
+                    ? 'No tienes hábitos programados para hoy o ya los completaste todos.'
+                    : hasAnyHabits
+                        ? 'Todos tus hábitos están pausados. Reactiva alguno o crea uno nuevo.'
+                        : 'Comienza tu viaje hacia mejores hábitos creando tu primer hábito diario.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Colors.grey[500],
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const AddHabitScreen()),
+                  );
+                },
+                icon: const Icon(Icons.add),
+                label: Text(hasActiveHabits ? 'Crear nuevo hábito' : 'Crear mi primer hábito'),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 16),
-          Text(
-            '¡Todo listo por hoy!',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Colors.grey[600],
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'No tienes hábitos programados para hoy o ya los completaste todos.',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Colors.grey[500],
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 24),
-          ElevatedButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const AddHabitScreen()),
-              );
-            },
-            icon: const Icon(Icons.add),
-            label: const Text('Crear mi primer hábito'),
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -333,6 +320,148 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
 
     return '${weekdays[now.weekday - 1]}, ${now.day} ${months[now.month - 1]}';
+  }
+
+  Widget _buildPortraitLayout(BuildContext context, List<Habit> habitsToday, EdgeInsets screenPadding) {
+    return Column(
+      children: [
+        // Resumen de estadísticas
+        Expanded(
+          child: Padding(
+            padding: screenPadding,
+            child: StatsOverview(),
+          ),
+        ),
+
+        // Título de hábitos de hoy
+        Padding(
+          padding: EdgeInsets.fromLTRB(screenPadding.left, 8, screenPadding.right, 16),
+          child: Row(
+            children: [
+              Icon(
+                Icons.today,
+                color: AppColors.primary,
+                size: ResponsiveUtils.isTablet(context) ? 32 : 28,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'Hoy • ${_getCurrentDateString()}',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: ResponsiveUtils.isTablet(context) ? 24 : null,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        // Lista de hábitos de hoy
+        Expanded(
+          child: habitsToday.isEmpty
+              ? _buildEmptyState()
+              : ListView.builder(
+                  padding: EdgeInsets.fromLTRB(screenPadding.left, 0, screenPadding.right, 80),
+                  itemCount: habitsToday.length,
+                  itemBuilder: (context, index) {
+                    final habit = habitsToday[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: HabitCard(
+                        habit: habit,
+                        onTap: () => _toggleHabit(context, habit.id),
+                        onLongPress: () => _showHabitOptions(context, habit),
+                      ),
+                    );
+                  },
+                ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLandscapeLayout(BuildContext context, List<Habit> habitsToday, EdgeInsets screenPadding) {
+    return Row(
+      children: [
+        // Panel izquierdo: Estadísticas
+        Expanded(
+          flex: ResponsiveUtils.isTablet(context) ? 1 : 2,
+          child: Padding(
+            padding: screenPadding.copyWith(right: screenPadding.right / 2),
+            child: Column(
+              children: [
+                Expanded(child: StatsOverview()),
+                // Título más compacto para landscape
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.today,
+                        color: AppColors.primary,
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Hoy • ${_getCurrentDateString()}',
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        // Panel derecho: Lista de hábitos
+        Expanded(
+          flex: ResponsiveUtils.isTablet(context) ? 1 : 3,
+          child: Padding(
+            padding: screenPadding.copyWith(left: screenPadding.left / 2),
+            child: habitsToday.isEmpty
+                ? _buildEmptyState()
+                : ResponsiveUtils.isTablet(context)
+                    ? GridView.builder(
+                        padding: const EdgeInsets.only(bottom: 80),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          childAspectRatio: 4.5,
+                          mainAxisSpacing: 12,
+                        ),
+                        itemCount: habitsToday.length,
+                        itemBuilder: (context, index) {
+                          final habit = habitsToday[index];
+                          return HabitCard(
+                            habit: habit,
+                            onTap: () => _toggleHabit(context, habit.id),
+                            onLongPress: () => _showHabitOptions(context, habit),
+                          );
+                        },
+                      )
+                    : ListView.builder(
+                        padding: const EdgeInsets.only(bottom: 80),
+                        itemCount: habitsToday.length,
+                        itemBuilder: (context, index) {
+                          final habit = habitsToday[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: HabitCard(
+                              habit: habit,
+                              onTap: () => _toggleHabit(context, habit.id),
+                              onLongPress: () => _showHabitOptions(context, habit),
+                            ),
+                          );
+                        },
+                      ),
+          ),
+        ),
+      ],
+    );
   }
 
   void _showNotificationTests(BuildContext context) {

@@ -2,8 +2,8 @@
   "@@locale": "es",
   "@@last_modified": "2025-09-26T00:00:00Z",
 
-  "appTitle": "Hábito Pro",
-  "homeAppBarTitle": "Hábito Pro",
+  "appTitle": "RITMO",
+  "homeAppBarTitle": "RITMO",
   "loading": "Cargando...",
   "retry": "Reintentar",
   "today": "Hoy",
@@ -20,6 +20,10 @@
   "cancel": "Cancelar",
   "habitDeleted": "Hábito \"{habitName}\" eliminado",
 
+  "habitName": "Nombre del hábito",
+  "habitNameHint": "Ej: Ejercicio, Leer, Meditar...",
+  "selectDays": "Selecciona los días",
+
   "mondayShort": "Lun",
   "tuesdayShort": "Mar",
   "wednesdayShort": "Mié",
@@ -27,6 +31,40 @@
   "fridayShort": "Vie",
   "saturdayShort": "Sáb",
   "sundayShort": "Dom",
+
+  "skip": "Omitir",
+  "next": "Siguiente",
+
+  "onboardingWelcomeTitle": "¡Bienvenido a Ritmo!",
+  "onboardingWelcomeSubtitle": "La única app de hábitos que se adapta a TU vida real",
+  "onboardingFeatureFlexible": "Hábitos flexibles adaptados a ti",
+  "onboardingFeatureMotivating": "Diseño motivador que inspira",
+  "onboardingFeature26Languages": "26 idiomas - Líder del mercado",
+  "onboardingDiscoverDifference": "Descubre la diferencia",
+
+  "onboardingProblemTitle": "¿Cansado de apps demasiado rígidas?",
+  "onboardingOtherApps": "Otras apps",
+  "onboardingProblemExample": "Gym TODOS los días ❌",
+  "onboardingSolutionExample": "Gym Lun-Mié-Vie ✅ (TU ritmo)",
+  "onboardingFlexibilityMessage": "Tu vida es única. Tus hábitos también deberían serlo.",
+  "onboardingThisSounds": "Esto me suena familiar",
+
+  "onboardingSetupTitle": "Crea tu primer hábito flexible",
+  "onboardingFlexibilityTip": "💡 Consejo: Elige días realistas para tu estilo de vida",
+  "onboardingCreateFirstHabit": "Crear mi primer hábito",
+
+  "onboardingCelebrationTitle": "¡Perfecto! Ya tienes tu ritmo",
+  "onboardingCelebrationSubtitle": "Tu primer hábito flexible está listo para comenzar",
+  "onboardingDefaultHabitName": "Mi primer hábito",
+  "onboardingNoDaysSelected": "Sin días seleccionados",
+  "onboardingBenefitFlexibility": "Flexibilidad total",
+  "onboardingBenefitMotivation": "Motivación constante",
+  "onboardingBenefit26Languages": "26 idiomas disponibles",
+  "onboardingStartMyRhythm": "Comenzar mi ritmo",
+
+  "habitName": "Nombre del hábito",
+  "habitNameHint": "Ej: Ir al gimnasio",
+  "selectDays": "Selecciona días",
 
   "januaryShort": "Ene",
   "februaryShort": "Feb",

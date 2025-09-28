@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritmo App Icon - Especificaciones Exactas</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #2D2B42;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .icon-preview {
+            width: 256px;
+            height: 256px;
+            margin: 20px auto;
+            border-radius: 38px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .waves {
+            position: relative;
+        }
+        .wave {
+            border: 3px solid rgba(255,255,255,0.9);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .wave1 { width: 30px; height: 30px; }
+        .wave2 { width: 60px; height: 60px; }
+        .wave3 { width: 90px; height: 90px; }
+        .center-dot {
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .spec-table {
+            background: #3A3A5C;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .color-swatch {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            margin-right: 10px;
+            vertical-align: middle;
+            border: 2px solid #ffffff;
+        }
+        .download-section {
+            background: #8B5CF6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .btn {
+            background: #ffffff;
+            color: #8B5CF6;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .size-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .size-item {
+            background: #3A3A5C;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .size-preview {
+            margin: 10px auto;
+            border-radius: 15%;
+            background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Icono de Ritmo - Especificaciones Exactas</h1>
+
+        <div class="icon-preview">
+            <div class="waves">
+                <div class="wave wave3"></div>
+                <div class="wave wave2"></div>
+                <div class="wave wave1"></div>
+                <div class="center-dot"></div>
+            </div>
+        </div>
+
+        <h2>📐 Especificaciones Técnicas</h2>
+        <div class="spec-table">
+            <h3>Dimensiones y Formato</h3>
+            <ul>
+                <li><strong>Tamaño principal:</strong> 512x512px (Google Play Store)</li>
+                <li><strong>Formato:</strong> PNG 32-bit sin transparencias</li>
+                <li><strong>Border radius:</strong> 15% del tamaño total (77px en 512px)</li>
+                <li><strong>Tamaño máximo archivo:</strong> 1MB</li>
+            </ul>
+        </div>
+
+        <h2>🎨 Paleta de Colores</h2>
+        <div class="spec-table">
+            <div style="margin: 10px 0;">
+                <span class="color-swatch" style="background: linear-gradient(135deg, #8B5CF6, #6366F1);"></span>
+                <strong>Gradiente de fondo:</strong> #8B5CF6 → #6366F1 (135°)
+            </div>
+            <div style="margin: 10px 0;">
+                <span class="color-swatch" style="background: #FFFFFF;"></span>
+                <strong>Ondas y centro:</strong> #FFFFFF (90% opacidad para ondas)
+            </div>
+        </div>
+
+        <h2>🌊 Elementos del Diseño</h2>
+        <div class="spec-table">
+            <h3>Ondas Concéntricas (a escala 512px)</h3>
+            <ul>
+                <li><strong>Onda exterior:</strong> 180px diámetro, borde 8px</li>
+                <li><strong>Onda media:</strong> 120px diámetro, borde 8px</li>
+                <li><strong>Onda interior:</strong> 60px diámetro, borde 8px</li>
+                <li><strong>Centro sólido:</strong> 24px diámetro, relleno completo</li>
+                <li><strong>Espaciado:</strong> 30px entre bordes externos de ondas</li>
+            </ul>
+        </div>
+
+        <h2>📏 Tamaños Requeridos para Android</h2>
+        <div class="size-grid">
+            <div class="size-item">
+                <div class="size-preview" style="width: 48px; height: 48px;">
+                    <div style="font-size: 8px; color: white;">•••</div>
+                </div>
+                <strong>48x48px</strong><br>
+                <small>mdpi</small>
+            </div>
+            <div class="size-item">
+                <div class="size-preview" style="width: 72px; height: 72px;">
+                    <div style="font-size: 12px; color: white;">•••</div>
+                </div>
+                <strong>72x72px</strong><br>
+                <small>hdpi</small>
+            </div>
+            <div class="size-item">
+                <div class="size-preview" style="width: 96px; height: 96px;">
+                    <div style="font-size: 16px; color: white;">•••</div>
+                </div>
+                <strong>96x96px</strong><br>
+                <small>xhdpi</small>
+            </div>
+            <div class="size-item">
+                <div class="size-preview" style="width: 144px; height: 144px;">
+                    <div style="font-size: 24px; color: white;">•••</div>
+                </div>
+                <strong>144x144px</strong><br>
+                <small>xxhdpi</small>
+            </div>
+            <div class="size-item">
+                <div class="size-preview" style="width: 192px; height: 192px;">
+                    <div style="font-size: 32px; color: white;">•••</div>
+                </div>
+                <strong>192x192px</strong><br>
+                <small>xxxhdpi</small>
+            </div>
+            <div class="size-item">
+                <div class="size-preview" style="width: 256px; height: 256px;">
+                    <div style="font-size: 40px; color: white;">•••</div>
+                </div>
+                <strong>512x512px</strong><br>
+                <small>Play Store</small>
+            </div>
+        </div>
+
+        <h2>✅ Checklist de Validación</h2>
+        <div class="spec-table">
+            <ul>
+                <li>☐ Icono legible y reconocible a 48x48px</li>
+                <li>☐ Gradiente aplicado correctamente (135°)</li>
+                <li>☐ 3 ondas concéntricas con espaciado uniforme</li>
+                <li>☐ Centro sólido blanco perfectamente centrado</li>
+                <li>☐ Border radius 15% aplicado al container</li>
+                <li>☐ Sin transparencias en el fondo</li>
+                <li>☐ Archivo PNG bajo 1MB</li>
+                <li>☐ Todos los tamaños Android generados</li>
+            </ul>
+        </div>
+
+        <div class="download-section">
+            <h2>🛠️ Herramientas Recomendadas</h2>
+            <p><strong>Para crear este icono:</strong></p>
+            <a href="#" class="btn">Figma (Recomendado)</a>
+            <a href="#" class="btn">Adobe Illustrator</a>
+            <a href="#" class="btn">Canva Pro</a>
+
+            <h3>Instrucciones Rápidas Figma:</h3>
+            <div style="text-align: left; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px; margin-top: 15px;">
+                <ol>
+                    <li>Crear frame 512x512px</li>
+                    <li>Añadir rectángulo 512x512px con border-radius 77px</li>
+                    <li>Aplicar gradiente linear 135°: #8B5CF6 → #6366F1</li>
+                    <li>Crear 3 círculos: 180px, 120px, 60px (solo stroke 8px, #FFFFFF 90%)</li>
+                    <li>Añadir círculo sólido 24px en centro (#FFFFFF)</li>
+                    <li>Centrar todos los elementos</li>
+                    <li>Exportar como PNG 512x512px</li>
+                    <li>Usar plugin "Android Resizer" para generar todas las densidades</li>
+                </ol>
+            </div>
+        </div>
+
+        <div style="background: #10B981; color: white; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+            <h3>🎯 Objetivo del Diseño</h3>
+            <p><strong>Este icono debe:</strong> Ser instantáneamente reconocible como "Ritmo", diferenciarse de toda la competencia con el concepto único de ondas, y funcionar perfectamente desde 48px hasta 512px manteniendo legibilidad y impacto visual.</p>
+        </div>
+    </div>
+</body>
+</html>

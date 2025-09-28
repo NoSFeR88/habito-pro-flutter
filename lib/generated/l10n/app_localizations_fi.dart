@@ -88,6 +88,94 @@ class AppLocalizationsFi extends AppLocalizations {
   String get sundayShort => 'Su';
 
   @override
+  String get skip => 'Skip';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get onboardingWelcomeTitle => 'Welcome to Ritmo!';
+
+  @override
+  String get onboardingWelcomeSubtitle =>
+      'The only habit app that adapts to YOUR real life';
+
+  @override
+  String get onboardingFeatureFlexible => 'Flexible habits adapted to you';
+
+  @override
+  String get onboardingFeatureMotivating => 'Motivating design that inspires';
+
+  @override
+  String get onboardingFeature26Languages => '26 languages - Market leader';
+
+  @override
+  String get onboardingDiscoverDifference => 'Discover the difference';
+
+  @override
+  String get onboardingProblemTitle => 'Tired of overly rigid apps?';
+
+  @override
+  String get onboardingOtherApps => 'Other apps';
+
+  @override
+  String get onboardingProblemExample => 'Gym EVERY day ❌';
+
+  @override
+  String get onboardingSolutionExample => 'Gym Mon-Wed-Fri ✅ (YOUR rhythm)';
+
+  @override
+  String get onboardingFlexibilityMessage =>
+      'Your life is unique. Your habits should be too.';
+
+  @override
+  String get onboardingThisSounds => 'This sounds familiar';
+
+  @override
+  String get onboardingSetupTitle => 'Create your first flexible habit';
+
+  @override
+  String get onboardingFlexibilityTip =>
+      '💡 Tip: Choose realistic days for your lifestyle';
+
+  @override
+  String get onboardingCreateFirstHabit => 'Create my first habit';
+
+  @override
+  String get onboardingCelebrationTitle => 'Perfect! You have your rhythm';
+
+  @override
+  String get onboardingCelebrationSubtitle =>
+      'Your first flexible habit is ready to begin';
+
+  @override
+  String get onboardingDefaultHabitName => 'My first habit';
+
+  @override
+  String get onboardingNoDaysSelected => 'No days selected';
+
+  @override
+  String get onboardingBenefitFlexibility => 'Total flexibility';
+
+  @override
+  String get onboardingBenefitMotivation => 'Constant motivation';
+
+  @override
+  String get onboardingBenefit26Languages => '26 languages available';
+
+  @override
+  String get onboardingStartMyRhythm => 'Start my rhythm';
+
+  @override
+  String get habitName => 'Habit name';
+
+  @override
+  String get habitNameHint => 'E.g: Exercise, Read, Meditate...';
+
+  @override
+  String get selectDays => 'Select days';
+
+  @override
   String get januaryShort => 'Tam';
 
   @override
