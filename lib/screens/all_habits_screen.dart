@@ -41,16 +41,16 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(appBarHeight + kToolbarHeight),
         child: AppBar(
-          title: const Text('Gestionar Hábitos'),
+          title: Text(l10n.manageHabits),
           bottom: TabBar(
             controller: _tabController,
             indicatorColor: AppColors.primary,
             labelColor: AppColors.textDark,
             unselectedLabelColor: AppColors.textSecondaryDark,
-            tabs: const [
-              Tab(text: 'Activos'),
-              Tab(text: 'Pausados'),
-              Tab(text: 'Todos'),
+            tabs: [
+              Tab(text: l10n.active),
+              Tab(text: l10n.paused),
+              Tab(text: l10n.all),
             ],
           ),
           actions: [
@@ -90,8 +90,8 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
     if (activeHabits.isEmpty) {
       return _buildEmptyState(
         Icons.fitness_center,
-        'No hay hábitos activos',
-        'Crea tu primer hábito para comenzar',
+        l10n.noActiveHabits,
+        l10n.createFirstHabitToStart,
       );
     }
 
@@ -134,8 +134,8 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
     if (completedHabits.isEmpty) {
       return _buildEmptyState(
         Icons.emoji_events,
-        'No hay hábitos pausados',
-        'Los hábitos pausados aparecerán aquí',
+        l10n.noPausedHabits,
+        l10n.pausedHabitsWillAppearHere,
       );
     }
 
@@ -178,8 +178,8 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
     if (allHabits.isEmpty) {
       return _buildEmptyState(
         Icons.eco,
-        'No tienes hábitos',
-        'Comienza tu viaje creando tu primer hábito',
+        l10n.noHabits,
+        l10n.startJourneyCreatingFirstHabit,
       );
     }
 
@@ -287,7 +287,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
                 children: [
                   Icon(Icons.edit, color: AppColors.textDark, size: 20),
                   const SizedBox(width: 8),
-                  const Text('Editar'),
+                  Text(l10n.edit),
                 ],
               ),
             ),
@@ -301,7 +301,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
                     size: 20,
                   ),
                   const SizedBox(width: 8),
-                  Text(habit.isActive ? 'Pausar' : 'Reanudar'),
+                  Text(habit.isActive ? l10n.pause : l10n.resume),
                 ],
               ),
             ),
@@ -311,7 +311,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
                 children: [
                   Icon(Icons.delete, color: AppColors.error, size: 20),
                   const SizedBox(width: 8),
-                  const Text('Eliminar', style: TextStyle(color: Colors.red)),
+                  Text(l10n.delete, style: const TextStyle(color: Colors.red)),
                 ],
               ),
             ),
@@ -356,7 +356,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
           borderRadius: BorderRadius.circular(12),
         ),
         child: Text(
-          'Pausado',
+          l10n.paused,
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
@@ -375,7 +375,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
-        isCompletedToday ? 'Completado' : 'Pendiente',
+        isCompletedToday ? l10n.completed : l10n.pending,
         style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w500,
@@ -448,12 +448,12 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Eliminar hábito'),
-          content: const Text('¿Estás seguro de que quieres eliminar este hábito?'),
+          title: Text(l10n.deleteHabit),
+          content: Text(l10n.deleteHabitConfirm),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancelar'),
+              child: Text(l10n.cancel),
             ),
             TextButton(
               onPressed: () {
@@ -461,7 +461,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
                 habitProvider.deleteHabit(habit.id);
               },
               style: TextButton.styleFrom(foregroundColor: AppColors.error),
-              child: const Text('Eliminar'),
+              child: Text(l10n.delete),
             ),
           ],
         );

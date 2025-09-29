@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/habit.dart';
 import '../providers/habit_provider.dart';
+import '../generated/l10n/app_localizations.dart';
 
 class EditHabitScreen extends StatefulWidget {
   final Habit habit;
@@ -48,7 +49,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar Hábito'),
+        title: Text(AppLocalizations.of(context)!.editHabit),
         actions: [
           if (_isLoading)
             const Padding(
@@ -62,7 +63,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           else
             TextButton(
               onPressed: _saveChanges,
-              child: const Text('Guardar'),
+              child: Text(AppLocalizations.of(context)!.save),
             ),
         ],
       ),
@@ -320,7 +321,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
                       _selectedDays = {1, 2, 3, 4, 5, 6, 7};
                     });
                   },
-                  child: const Text('Todos los días'),
+                  child: Text(AppLocalizations.of(context)!.allDays),
                 ),
                 const SizedBox(width: 8),
                 TextButton(
@@ -329,7 +330,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
                       _selectedDays = {1, 2, 3, 4, 5};
                     });
                   },
-                  child: const Text('Días laborales'),
+                  child: Text(AppLocalizations.of(context)!.weekdays),
                 ),
               ],
             ),
@@ -355,7 +356,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
             const SizedBox(height: 16),
             ListTile(
               leading: Icon(Icons.schedule, color: Color(_selectedColor)),
-              title: const Text('Hora de recordatorio'),
+              title: Text(AppLocalizations.of(context)!.reminderTime),
               subtitle: Text(_formatTimeOfDay(_reminderTime)),
               trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: _selectTime,
@@ -401,7 +402,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
               child: OutlinedButton.icon(
                 onPressed: _deleteHabit,
                 icon: const Icon(Icons.delete_outline),
-                label: const Text('Eliminar hábito'),
+                label: Text(AppLocalizations.of(context)!.deleteHabitButton),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.red[700],
                   side: BorderSide(color: Colors.red.withOpacity(0.5)),
@@ -447,8 +448,8 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
     if (_selectedDays.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Selecciona al menos un día de la semana'),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.selectAtLeastOneDay),
           backgroundColor: Colors.orange,
         ),
       );
@@ -476,7 +477,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Hábito "${updatedHabit.name}" actualizado exitosamente'),
+            content: Text(AppLocalizations.of(context)!.habitUpdatedMessage),
             backgroundColor: Colors.green,
           ),
         );
@@ -485,7 +486,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error al actualizar el hábito: $e'),
+            content: Text('${AppLocalizations.of(context)!.updateError}: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -504,7 +505,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Eliminar hábito'),
+          title: Text(AppLocalizations.of(context)!.deleteHabitTitle),
           content: Text(
             '¿Estás seguro de que quieres eliminar "${widget.habit.name}"?\n\n'
             'Esta acción no se puede deshacer. Se eliminarán todos los datos '
@@ -513,14 +514,14 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: const Text('Cancelar'),
+              child: Text(AppLocalizations.of(context)!.cancel),
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(true),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.red[700],
               ),
-              child: const Text('Eliminar'),
+              child: Text(AppLocalizations.of(context)!.delete),
             ),
           ],
         );
@@ -540,7 +541,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Hábito "${widget.habit.name}" eliminado'),
+              content: Text(AppLocalizations.of(context)!.habitDeletedMessage),
               backgroundColor: Colors.red,
             ),
           );
@@ -549,7 +550,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Error al eliminar el hábito: $e'),
+              content: Text('${AppLocalizations.of(context)!.deleteError}: $e'),
               backgroundColor: Colors.red,
             ),
           );

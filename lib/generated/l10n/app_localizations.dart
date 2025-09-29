@@ -182,7 +182,7 @@ abstract class AppLocalizations {
   /// **'Today • {date}'**
   String todayWithDate(String date);
 
-  /// Empty state title when no habits for today
+  /// Empty state title when no rhythms for today
   ///
   /// In en, this message translates to:
   /// **'All done for today!'**
@@ -191,20 +191,20 @@ abstract class AppLocalizations {
   /// Empty state description
   ///
   /// In en, this message translates to:
-  /// **'You have no habits scheduled for today or you\'ve completed them all.'**
+  /// **'You have no rhythms scheduled for today or you\'ve completed them all.'**
   String get noProgrammedHabits;
 
-  /// Create first habit button text
+  /// Create first rhythm button text
   ///
   /// In en, this message translates to:
-  /// **'Create my first habit'**
+  /// **'Create my first rhythm'**
   String get createFirstHabit;
 
-  /// Snackbar message when habit is toggled
+  /// Snackbar message when rhythm is toggled
   ///
   /// In en, this message translates to:
   /// **'Habit updated!'**
-  String get habitUpdated;
+  String get rhythmUpdated;
 
   /// Edit button text
   ///
@@ -224,17 +224,17 @@ abstract class AppLocalizations {
   /// **'Delete'**
   String get delete;
 
-  /// Delete habit dialog title
+  /// Delete rhythm dialog title
   ///
   /// In en, this message translates to:
-  /// **'Delete habit'**
+  /// **'Delete rhythm'**
   String get deleteHabit;
 
-  /// Delete habit confirmation message
+  /// No description provided for @confirmDeleteHabit.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to delete \"{habitName}\"?'**
-  String confirmDeleteHabit(String habitName);
+  /// **'Are you sure you want to delete \"{rhythmName}\"?'**
+  String confirmDeleteHabit(String rhythmName, Object habitName);
 
   /// Cancel button text
   ///
@@ -245,8 +245,8 @@ abstract class AppLocalizations {
   /// Habit deleted confirmation message
   ///
   /// In en, this message translates to:
-  /// **'Habit \"{habitName}\" deleted'**
-  String habitDeleted(String habitName);
+  /// **'Habit \"{rhythmName}\" deleted'**
+  String rhythmDeleted(String rhythmName);
 
   /// No description provided for @mondayShort.
   ///
@@ -311,13 +311,13 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingWelcomeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'The only habit app that adapts to YOUR real life'**
+  /// **'The only rhythm app that adapts to YOUR real life'**
   String get onboardingWelcomeSubtitle;
 
   /// No description provided for @onboardingFeatureFlexible.
   ///
   /// In en, this message translates to:
-  /// **'Flexible habits adapted to you'**
+  /// **'Flexible rhythms adapted to you'**
   String get onboardingFeatureFlexible;
 
   /// No description provided for @onboardingFeatureMotivating.
@@ -365,7 +365,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingFlexibilityMessage.
   ///
   /// In en, this message translates to:
-  /// **'Your life is unique. Your habits should be too.'**
+  /// **'Your life is unique. Your rhythms should be too.'**
   String get onboardingFlexibilityMessage;
 
   /// No description provided for @onboardingThisSounds.
@@ -377,7 +377,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingSetupTitle.
   ///
   /// In en, this message translates to:
-  /// **'Create your first flexible habit'**
+  /// **'Create your first flexible rhythm'**
   String get onboardingSetupTitle;
 
   /// No description provided for @onboardingFlexibilityTip.
@@ -389,7 +389,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingCreateFirstHabit.
   ///
   /// In en, this message translates to:
-  /// **'Create my first habit'**
+  /// **'Create my first rhythm'**
   String get onboardingCreateFirstHabit;
 
   /// No description provided for @onboardingCelebrationTitle.
@@ -401,13 +401,13 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingCelebrationSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Your first flexible habit is ready to begin'**
+  /// **'Your first flexible rhythm is ready to begin'**
   String get onboardingCelebrationSubtitle;
 
   /// No description provided for @onboardingDefaultHabitName.
   ///
   /// In en, this message translates to:
-  /// **'My first habit'**
+  /// **'My first rhythm'**
   String get onboardingDefaultHabitName;
 
   /// No description provided for @onboardingNoDaysSelected.
@@ -440,17 +440,17 @@ abstract class AppLocalizations {
   /// **'Start my rhythm'**
   String get onboardingStartMyRhythm;
 
-  /// Label for habit name field
+  /// Label for rhythm name field
   ///
   /// In en, this message translates to:
   /// **'Habit name'**
-  String get habitName;
+  String get rhythmName;
 
-  /// Hint text for habit name field
+  /// Hint text for rhythm name field
   ///
   /// In en, this message translates to:
   /// **'E.g: Exercise, Read, Meditate...'**
-  String get habitNameHint;
+  String get rhythmNameHint;
 
   /// Label for day selection
   ///
@@ -530,7 +530,7 @@ abstract class AppLocalizations {
   /// **'Dec'**
   String get decemberShort;
 
-  /// New habit screen title
+  /// New rhythm screen title
   ///
   /// In en, this message translates to:
   /// **'New Habit'**
@@ -590,7 +590,7 @@ abstract class AppLocalizations {
   /// **'Schedule notification in 5 seconds'**
   String get scheduleIn5Seconds;
 
-  /// Reschedule all habits button
+  /// Reschedule all rhythms button
   ///
   /// In en, this message translates to:
   /// **'Reschedule All Habits'**
@@ -620,11 +620,11 @@ abstract class AppLocalizations {
   /// **'Notification sent! Check your notification bar'**
   String get notificationSent;
 
-  /// Notification scheduled confirmation
+  /// No description provided for @notificationScheduled.
   ///
   /// In en, this message translates to:
-  /// **'Notification scheduled for 5 seconds'**
-  String get notificationScheduled;
+  /// **'✅ Notification scheduled: {rhythmName} - {dateTime}'**
+  String notificationScheduled(String rhythmName, String dateTime);
 
   /// Notifications rescheduled confirmation
   ///
@@ -649,6 +649,2149 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Close'**
   String get close;
+
+  /// Monthly progress chart title
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Progress'**
+  String get monthlyProgress;
+
+  /// Habit streaks chart title
+  ///
+  /// In en, this message translates to:
+  /// **'Habit Streaks'**
+  String get rhythmStreaks;
+
+  /// Monthly calendar heatmap title
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Calendar'**
+  String get monthlyCalendar;
+
+  /// Monthly statistics section title
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Statistics'**
+  String get monthlyStats;
+
+  /// Active days stat label
+  ///
+  /// In en, this message translates to:
+  /// **'Active Days'**
+  String get activeDays;
+
+  /// Best streak stat label
+  ///
+  /// In en, this message translates to:
+  /// **'Best Streak'**
+  String get bestStreak;
+
+  /// Average completion stat label
+  ///
+  /// In en, this message translates to:
+  /// **'Average'**
+  String get averageCompletion;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @themes.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes'**
+  String get themes;
+
+  /// No description provided for @themeBasicBlue.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Blue'**
+  String get themeBasicBlue;
+
+  /// No description provided for @themeBasicGreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Green'**
+  String get themeBasicGreen;
+
+  /// No description provided for @themeBasicPurple.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Purple'**
+  String get themeBasicPurple;
+
+  /// No description provided for @themeCyberNeon.
+  ///
+  /// In en, this message translates to:
+  /// **'🌟 Cyber Neon'**
+  String get themeCyberNeon;
+
+  /// No description provided for @themeAuroraInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'🎨 Aurora Inspiration'**
+  String get themeAuroraInspiration;
+
+  /// No description provided for @themeZenGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'🧘 Zen Garden'**
+  String get themeZenGarden;
+
+  /// No description provided for @premiumThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium Themes'**
+  String get premiumThemes;
+
+  /// No description provided for @activatePremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate Premium (Testing)'**
+  String get activatePremium;
+
+  /// No description provided for @premiumPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'\$2.99/month'**
+  String get premiumPrice;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @manageHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Habits'**
+  String get manageHabits;
+
+  /// No description provided for @noActiveHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'No active rhythms'**
+  String get noActiveHabits;
+
+  /// No description provided for @createFirstHabitToStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your first rhythm to get started'**
+  String get createFirstHabitToStart;
+
+  /// No description provided for @noPausedHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'No paused rhythms'**
+  String get noPausedHabits;
+
+  /// No description provided for @pausedHabitsWillAppearHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused rhythms will appear here'**
+  String get pausedHabitsWillAppearHere;
+
+  /// No description provided for @noHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no rhythms'**
+  String get noHabits;
+
+  /// No description provided for @startJourneyCreatingFirstHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your journey by creating your first rhythm'**
+  String get startJourneyCreatingFirstHabit;
+
+  /// No description provided for @deleteHabitConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this rhythm?'**
+  String get deleteHabitConfirm;
+
+  /// No description provided for @editHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Habit'**
+  String get editHabit;
+
+  /// No description provided for @basicInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Information'**
+  String get basicInformation;
+
+  /// No description provided for @rhythmNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit name'**
+  String get rhythmNameLabel;
+
+  /// No description provided for @descriptionOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Description (optional)'**
+  String get descriptionOptional;
+
+  /// No description provided for @descriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g: 8 glasses per day, 30 minutes...'**
+  String get descriptionHint;
+
+  /// No description provided for @monday.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get monday;
+
+  /// No description provided for @tuesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get tuesday;
+
+  /// No description provided for @wednesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get wednesday;
+
+  /// No description provided for @thursday.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get thursday;
+
+  /// No description provided for @friday.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get friday;
+
+  /// No description provided for @saturday.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get saturday;
+
+  /// No description provided for @sunday.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get sunday;
+
+  /// No description provided for @allDays.
+  ///
+  /// In en, this message translates to:
+  /// **'All days'**
+  String get allDays;
+
+  /// No description provided for @weekdays.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekdays'**
+  String get weekdays;
+
+  /// No description provided for @deleteHabitButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete rhythm'**
+  String get deleteHabitButton;
+
+  /// No description provided for @deleteWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This action cannot be undone. All rhythm data including completion history will be deleted.'**
+  String get deleteWarning;
+
+  /// No description provided for @selectAtLeastOneDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Select at least one day of the week'**
+  String get selectAtLeastOneDay;
+
+  /// No description provided for @rhythmUpdatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit \"{rhythmName}\" updated successfully'**
+  String rhythmUpdatedSuccess(String rhythmName);
+
+  /// No description provided for @errorUpdatingHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Error updating rhythm: {error}'**
+  String errorUpdatingHabit(String error);
+
+  /// No description provided for @deleteHabitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete rhythm'**
+  String get deleteHabitTitle;
+
+  /// No description provided for @deleteHabitConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \"{rhythmName}\"?\\n\\nThis action cannot be undone. All rhythm data including completion history will be deleted.'**
+  String deleteHabitConfirmation(String rhythmName);
+
+  /// No description provided for @rhythmDeletedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit \"{rhythmName}\" deleted'**
+  String rhythmDeletedSuccess(String rhythmName);
+
+  /// No description provided for @errorDeletingHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Error deleting rhythm: {error}'**
+  String errorDeletingHabit(String error);
+
+  /// No description provided for @limitReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit reached: maximum {maxHabits} rhythms in free plan.'**
+  String limitReached(int maxHabits);
+
+  /// No description provided for @premiumThemesOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium themes are only available in Ritmo PRO.'**
+  String get premiumThemesOnly;
+
+  /// No description provided for @advancedStatsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced statistics available in Ritmo PRO.'**
+  String get advancedStatsOnly;
+
+  /// No description provided for @exportDataOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Export data is available in Ritmo PRO.'**
+  String get exportDataOnly;
+
+  /// No description provided for @aiInsightsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Insights are available in Ritmo PRO.'**
+  String get aiInsightsOnly;
+
+  /// No description provided for @featureOnlyInPro.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is available in Ritmo PRO.'**
+  String get featureOnlyInPro;
+
+  /// No description provided for @loadingYourHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading your rhythms...'**
+  String get loadingYourHabits;
+
+  /// No description provided for @guestMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest mode - Your data will not be saved'**
+  String get guestMode;
+
+  /// No description provided for @createAccountToSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account to save your rhythms and sync them across devices.'**
+  String get createAccountToSave;
+
+  /// No description provided for @later.
+  ///
+  /// In en, this message translates to:
+  /// **'Later'**
+  String get later;
+
+  /// No description provided for @loginError.
+  ///
+  /// In en, this message translates to:
+  /// **'Login error: {error}'**
+  String loginError(String error);
+
+  /// No description provided for @logoutError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error logging out: {error}'**
+  String logoutError(String error);
+
+  /// No description provided for @wrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong password.'**
+  String get wrongPassword;
+
+  /// No description provided for @passwordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters.'**
+  String get passwordTooShort;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is not valid.'**
+  String get invalidEmail;
+
+  /// No description provided for @tooManyAttempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts. Try again later.'**
+  String get tooManyAttempts;
+
+  /// No description provided for @connectionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection error. Check your internet.'**
+  String get connectionError;
+
+  /// No description provided for @authError.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication error: {message}'**
+  String authError(String message);
+
+  /// No description provided for @champion.
+  ///
+  /// In en, this message translates to:
+  /// **'Champion'**
+  String get champion;
+
+  /// No description provided for @hero.
+  ///
+  /// In en, this message translates to:
+  /// **'Hero'**
+  String get hero;
+
+  /// No description provided for @mythic.
+  ///
+  /// In en, this message translates to:
+  /// **'Mythic'**
+  String get mythic;
+
+  /// No description provided for @maximum.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum'**
+  String get maximum;
+
+  /// No description provided for @completeFirstHabit3Days.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your first rhythm 3 days in a row'**
+  String get completeFirstHabit3Days;
+
+  /// No description provided for @maintain7DayStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintain a 7-day streak'**
+  String get maintain7DayStreak;
+
+  /// No description provided for @maintain30DayStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintain a 30-day streak'**
+  String get maintain30DayStreak;
+
+  /// No description provided for @completeFirstHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your first rhythm'**
+  String get completeFirstHabit;
+
+  /// No description provided for @complete100Habits.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete 100 rhythms total'**
+  String get complete100Habits;
+
+  /// No description provided for @complete500Habits.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete 500 rhythms total'**
+  String get complete500Habits;
+
+  /// No description provided for @completeAllHabitsWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete all your rhythms during a week'**
+  String get completeAllHabitsWeek;
+
+  /// No description provided for @create5DifferentHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Create 5 different rhythms'**
+  String get create5DifferentHabits;
+
+  /// No description provided for @reachLevel5.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach level 5'**
+  String get reachLevel5;
+
+  /// No description provided for @noHabitsToday.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no rhythms scheduled for today or you\'ve completed them all.'**
+  String get noHabitsToday;
+
+  /// No description provided for @allHabitsPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'All your rhythms are paused. Reactivate some or create a new one.'**
+  String get allHabitsPaused;
+
+  /// No description provided for @startJourneyBetterHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your journey towards better rhythms by creating your first daily rhythm.'**
+  String get startJourneyBetterHabits;
+
+  /// No description provided for @createNewHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new rhythm'**
+  String get createNewHabit;
+
+  /// No description provided for @createMyFirstHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Create my first rhythm'**
+  String get createMyFirstHabit;
+
+  /// No description provided for @notificationSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification Settings'**
+  String get notificationSettings;
+
+  /// No description provided for @receiveRemindersForHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive reminders for your rhythms'**
+  String get receiveRemindersForHabits;
+
+  /// No description provided for @openSystemSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open system settings to manage notifications'**
+  String get openSystemSettings;
+
+  /// No description provided for @settingsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsLabel;
+
+  /// No description provided for @rhythmReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit Reminders'**
+  String get rhythmReminders;
+
+  /// No description provided for @notificationsToRemind.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications to remind you to complete your daily rhythms'**
+  String get notificationsToRemind;
+
+  /// No description provided for @reminderTicker.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit reminder'**
+  String get reminderTicker;
+
+  /// No description provided for @timeToWorkOnHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to work on your rhythm!'**
+  String get timeToWorkOnHabit;
+
+  /// No description provided for @notificationsCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'✅ Cancelled notifications for rhythm {rhythmId}'**
+  String notificationsCancelled(String rhythmId);
+
+  /// No description provided for @errorCancellingNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'❌ Error cancelling notifications for rhythm {rhythmId}: {error}'**
+  String errorCancellingNotifications(String rhythmId, String error);
+
+  /// No description provided for @instantNotificationSent.
+  ///
+  /// In en, this message translates to:
+  /// **'✅ Instant notification sent: {title}'**
+  String instantNotificationSent(String title);
+
+  /// No description provided for @errorSendingNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'❌ Error sending instant notification: {error}'**
+  String errorSendingNotification(String error);
+
+  /// No description provided for @testNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'🧪 Test Notification'**
+  String get testNotificationTitle;
+
+  /// No description provided for @scheduledNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'⏰ Scheduled Notification'**
+  String get scheduledNotificationTitle;
+
+  /// No description provided for @scheduledNotificationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This notification was scheduled 5 seconds ago'**
+  String get scheduledNotificationBody;
+
+  /// No description provided for @testNotificationScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'✅ Test notification scheduled for 5 seconds'**
+  String get testNotificationScheduled;
+
+  /// No description provided for @errorSchedulingTestNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'❌ Error scheduling test notification: {error}'**
+  String errorSchedulingTestNotification(String error);
+
+  /// No description provided for @localizationInitialized.
+  ///
+  /// In en, this message translates to:
+  /// **'✅ Localization initialized: {languageCode}'**
+  String localizationInitialized(String languageCode);
+
+  /// No description provided for @notificationReceivediOS.
+  ///
+  /// In en, this message translates to:
+  /// **'📱 Notification received on iOS: {title}'**
+  String notificationReceivediOS(String title);
+
+  /// No description provided for @userTappedNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'📱 User tapped notification: {payload}'**
+  String userTappedNotification(String payload);
+
+  /// No description provided for @rhythmUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit \"{rhythmName}\" updated successfully'**
+  String rhythmUpdatedSuccessfully(String rhythmName);
+
+  /// No description provided for @confirmDeleteHabitMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \"{rhythmName}\"?\\n\\nThis action cannot be undone. All rhythm data including completion history will be deleted.'**
+  String confirmDeleteHabitMessage(String rhythmName);
+
+  /// No description provided for @rhythmDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit \"{rhythmName}\" deleted'**
+  String rhythmDeletedSuccessfully(String rhythmName);
+
+  /// No description provided for @rhythmCreatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit \"{rhythmName}\" created successfully'**
+  String rhythmCreatedSuccessfully(String rhythmName);
+
+  /// No description provided for @confirmDeleteHabitShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \"{rhythmName}\"?'**
+  String confirmDeleteHabitShort(String rhythmName);
+
+  /// No description provided for @ensureAppNotInDoNotDisturb.
+  ///
+  /// In en, this message translates to:
+  /// **'• Make sure the app is not in \"Do Not Disturb\" mode\\n'**
+  String get ensureAppNotInDoNotDisturb;
+
+  /// No description provided for @firstStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'First Streak'**
+  String get firstStreak;
+
+  /// No description provided for @firstStreakDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your first rhythm 3 days in a row'**
+  String get firstStreakDescription;
+
+  /// No description provided for @weekWarrior.
+  ///
+  /// In en, this message translates to:
+  /// **'Week Warrior'**
+  String get weekWarrior;
+
+  /// No description provided for @weekWarriorDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintain a 7-day streak'**
+  String get weekWarriorDescription;
+
+  /// No description provided for @monthMaster.
+  ///
+  /// In en, this message translates to:
+  /// **'Month Master'**
+  String get monthMaster;
+
+  /// No description provided for @monthMasterDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintain a 30-day streak'**
+  String get monthMasterDescription;
+
+  /// No description provided for @firstStep.
+  ///
+  /// In en, this message translates to:
+  /// **'First Step'**
+  String get firstStep;
+
+  /// No description provided for @firstStepDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your first rhythm'**
+  String get firstStepDescription;
+
+  /// No description provided for @centuryClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Century Club'**
+  String get centuryClub;
+
+  /// No description provided for @centuryClubDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete 100 rhythms total'**
+  String get centuryClubDescription;
+
+  /// No description provided for @marathonRunner.
+  ///
+  /// In en, this message translates to:
+  /// **'Marathon Runner'**
+  String get marathonRunner;
+
+  /// No description provided for @marathonRunnerDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete 500 rhythms total'**
+  String get marathonRunnerDescription;
+
+  /// No description provided for @perfectWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect Week'**
+  String get perfectWeek;
+
+  /// No description provided for @perfectWeekDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete all your rhythms during a week'**
+  String get perfectWeekDescription;
+
+  /// No description provided for @rhythmCreator.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit Creator'**
+  String get rhythmCreator;
+
+  /// No description provided for @rhythmCreatorDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Create 5 different rhythms'**
+  String get rhythmCreatorDescription;
+
+  /// No description provided for @achievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievements;
+
+  /// No description provided for @yourProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Progress'**
+  String get yourProgress;
+
+  /// No description provided for @level.
+  ///
+  /// In en, this message translates to:
+  /// **'Level'**
+  String get level;
+
+  /// No description provided for @points.
+  ///
+  /// In en, this message translates to:
+  /// **'Points'**
+  String get points;
+
+  /// No description provided for @totalAccumulated.
+  ///
+  /// In en, this message translates to:
+  /// **'Total accumulated'**
+  String get totalAccumulated;
+
+  /// No description provided for @achievementsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievementsLabel;
+
+  /// No description provided for @unlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked'**
+  String get unlocked;
+
+  /// No description provided for @streak.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak'**
+  String get streak;
+
+  /// No description provided for @maxDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Max days'**
+  String get maxDays;
+
+  /// No description provided for @currentLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Level'**
+  String get currentLevel;
+
+  /// No description provided for @nextLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Level'**
+  String get nextLevel;
+
+  /// No description provided for @pointsToNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Points to next'**
+  String get pointsToNext;
+
+  /// No description provided for @allAchievements.
+  ///
+  /// In en, this message translates to:
+  /// **'All Achievements'**
+  String get allAchievements;
+
+  /// No description provided for @progressToNextLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress to Next Level'**
+  String get progressToNextLevel;
+
+  /// No description provided for @pointsToLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'{points} points to level {level}'**
+  String pointsToLevel(int points, int level);
+
+  /// No description provided for @unlockedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked ({count})'**
+  String unlockedCount(int count);
+
+  /// No description provided for @lockedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked ({count})'**
+  String lockedCount(int count);
+
+  /// No description provided for @active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// No description provided for @paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get paused;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @premiumTestingActivated.
+  ///
+  /// In en, this message translates to:
+  /// **'🎉 Premium activated for testing'**
+  String get premiumTestingActivated;
+
+  /// No description provided for @removeAds.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove ads'**
+  String get removeAds;
+
+  /// No description provided for @removePermanentAds.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove advertising'**
+  String get removePermanentAds;
+
+  /// No description provided for @noAdvertising.
+  ///
+  /// In en, this message translates to:
+  /// **'No advertising'**
+  String get noAdvertising;
+
+  /// No description provided for @premiumThemesFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium themes'**
+  String get premiumThemesFeature;
+
+  /// No description provided for @startPro.
+  ///
+  /// In en, this message translates to:
+  /// **'Start PRO'**
+  String get startPro;
+
+  /// No description provided for @drinkWater.
+  ///
+  /// In en, this message translates to:
+  /// **'Drink water'**
+  String get drinkWater;
+
+  /// No description provided for @exercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise'**
+  String get exercise;
+
+  /// No description provided for @read.
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get read;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @currentStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Streak'**
+  String get currentStreak;
+
+  /// No description provided for @scheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduled'**
+  String get scheduled;
+
+  /// No description provided for @goodAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Good afternoon'**
+  String get goodAfternoon;
+
+  /// No description provided for @goodEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Good evening'**
+  String get goodEvening;
+
+  /// No description provided for @january.
+  ///
+  /// In en, this message translates to:
+  /// **'January'**
+  String get january;
+
+  /// No description provided for @february.
+  ///
+  /// In en, this message translates to:
+  /// **'February'**
+  String get february;
+
+  /// No description provided for @march.
+  ///
+  /// In en, this message translates to:
+  /// **'March'**
+  String get march;
+
+  /// No description provided for @april.
+  ///
+  /// In en, this message translates to:
+  /// **'April'**
+  String get april;
+
+  /// No description provided for @may.
+  ///
+  /// In en, this message translates to:
+  /// **'May'**
+  String get may;
+
+  /// No description provided for @june.
+  ///
+  /// In en, this message translates to:
+  /// **'June'**
+  String get june;
+
+  /// No description provided for @july.
+  ///
+  /// In en, this message translates to:
+  /// **'July'**
+  String get july;
+
+  /// No description provided for @august.
+  ///
+  /// In en, this message translates to:
+  /// **'August'**
+  String get august;
+
+  /// No description provided for @september.
+  ///
+  /// In en, this message translates to:
+  /// **'September'**
+  String get september;
+
+  /// No description provided for @october.
+  ///
+  /// In en, this message translates to:
+  /// **'October'**
+  String get october;
+
+  /// No description provided for @november.
+  ///
+  /// In en, this message translates to:
+  /// **'November'**
+  String get november;
+
+  /// No description provided for @december.
+  ///
+  /// In en, this message translates to:
+  /// **'December'**
+  String get december;
+
+  /// No description provided for @mondayFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get mondayFull;
+
+  /// No description provided for @tuesdayFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get tuesdayFull;
+
+  /// No description provided for @wednesdayFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get wednesdayFull;
+
+  /// No description provided for @thursdayFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get thursdayFull;
+
+  /// No description provided for @fridayFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get fridayFull;
+
+  /// No description provided for @saturdayFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get saturdayFull;
+
+  /// No description provided for @sundayFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get sundayFull;
+
+  /// No description provided for @themeMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme mode'**
+  String get themeMode;
+
+  /// No description provided for @light.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get light;
+
+  /// No description provided for @dark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get dark;
+
+  /// No description provided for @system.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get system;
+
+  /// No description provided for @pro.
+  ///
+  /// In en, this message translates to:
+  /// **'PRO'**
+  String get pro;
+
+  /// No description provided for @appInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'App Information'**
+  String get appInformation;
+
+  /// No description provided for @appName.
+  ///
+  /// In en, this message translates to:
+  /// **'App Name'**
+  String get appName;
+
+  /// No description provided for @version.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get version;
+
+  /// No description provided for @currentLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Language'**
+  String get currentLanguage;
+
+  /// No description provided for @supportedLanguages.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported Languages'**
+  String get supportedLanguages;
+
+  /// No description provided for @pause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pause;
+
+  /// No description provided for @resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get resume;
+
+  /// No description provided for @pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get pending;
+
+  /// No description provided for @monthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get monthly;
+
+  /// No description provided for @annual.
+  ///
+  /// In en, this message translates to:
+  /// **'Annual'**
+  String get annual;
+
+  /// No description provided for @lifetime.
+  ///
+  /// In en, this message translates to:
+  /// **'Lifetime'**
+  String get lifetime;
+
+  /// No description provided for @limitedOffer.
+  ///
+  /// In en, this message translates to:
+  /// **'LIMITED OFFER'**
+  String get limitedOffer;
+
+  /// No description provided for @unlockFullPotential.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock the full potential of Ritmo'**
+  String get unlockFullPotential;
+
+  /// No description provided for @startWithRitmoPro.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with Ritmo PRO'**
+  String get startWithRitmoPro;
+
+  /// No description provided for @noAdvertisingFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'No advertising'**
+  String get noAdvertisingFeature;
+
+  /// No description provided for @completelyCleanExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Completely clean experience'**
+  String get completelyCleanExperience;
+
+  /// No description provided for @cloudBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud backup'**
+  String get cloudBackup;
+
+  /// No description provided for @yourDataSafeInCloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data safe in the cloud'**
+  String get yourDataSafeInCloud;
+
+  /// No description provided for @aiInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Insights'**
+  String get aiInsights;
+
+  /// No description provided for @intelligentRecommendations.
+  ///
+  /// In en, this message translates to:
+  /// **'Intelligent recommendations'**
+  String get intelligentRecommendations;
+
+  /// No description provided for @chooseYourPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your plan'**
+  String get chooseYourPlan;
+
+  /// No description provided for @beginnerlevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get beginnerlevel;
+
+  /// No description provided for @apprenticeLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Apprentice'**
+  String get apprenticeLevel;
+
+  /// No description provided for @dedicatedLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Dedicated'**
+  String get dedicatedLevel;
+
+  /// No description provided for @consistentLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Consistent'**
+  String get consistentLevel;
+
+  /// No description provided for @expertLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Expert'**
+  String get expertLevel;
+
+  /// No description provided for @masterLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Master'**
+  String get masterLevel;
+
+  /// No description provided for @legendLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend'**
+  String get legendLevel;
+
+  /// No description provided for @championLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Champion'**
+  String get championLevel;
+
+  /// No description provided for @heroLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hero'**
+  String get heroLevel;
+
+  /// No description provided for @mythicLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Mythic'**
+  String get mythicLevel;
+
+  /// No description provided for @maximumLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum'**
+  String get maximumLevel;
+
+  /// No description provided for @defaultUser.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get defaultUser;
+
+  /// No description provided for @activateNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate Notifications'**
+  String get activateNotifications;
+
+  /// No description provided for @updateAllNotificationsText.
+  ///
+  /// In en, this message translates to:
+  /// **'Update all notifications'**
+  String get updateAllNotificationsText;
+
+  /// No description provided for @notificationsRescheduledSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications rescheduled successfully'**
+  String get notificationsRescheduledSuccessfully;
+
+  /// No description provided for @notificationHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification Help'**
+  String get notificationHelp;
+
+  /// No description provided for @helpWithNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Help with Notifications'**
+  String get helpWithNotifications;
+
+  /// No description provided for @understood.
+  ///
+  /// In en, this message translates to:
+  /// **'Understood'**
+  String get understood;
+
+  /// No description provided for @languagesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} languages'**
+  String languagesCount(int count);
+
+  /// No description provided for @icon.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get icon;
+
+  /// No description provided for @color.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get color;
+
+  /// No description provided for @frequency.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency'**
+  String get frequency;
+
+  /// No description provided for @reminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder'**
+  String get reminder;
+
+  /// No description provided for @reminderTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder time'**
+  String get reminderTime;
+
+  /// No description provided for @pleaseEnterName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a name'**
+  String get pleaseEnterName;
+
+  /// No description provided for @nameMinTwoCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be at least 2 characters'**
+  String get nameMinTwoCharacters;
+
+  /// No description provided for @totalPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'total points'**
+  String get totalPoints;
+
+  /// No description provided for @progressToLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress to level {level}'**
+  String progressToLevel(int level);
+
+  /// No description provided for @maxLevelReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Max level reached!'**
+  String get maxLevelReached;
+
+  /// No description provided for @maxStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Streak'**
+  String get maxStreak;
+
+  /// No description provided for @tapToViewMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to view more'**
+  String get tapToViewMore;
+
+  /// No description provided for @achievementUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievement Unlocked!'**
+  String get achievementUnlocked;
+
+  /// No description provided for @excellent.
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent!'**
+  String get excellent;
+
+  /// No description provided for @pointsWithCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} points'**
+  String pointsWithCount(int count);
+
+  /// No description provided for @unlockedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked'**
+  String get unlockedLabel;
+
+  /// No description provided for @percentCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% Completed'**
+  String percentCompleted(int percent);
+
+  /// No description provided for @totalHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Habits'**
+  String get totalHabits;
+
+  /// No description provided for @percentThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% This week'**
+  String percentThisWeek(int percent);
+
+  /// No description provided for @percentThisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% This month'**
+  String percentThisMonth(int percent);
+
+  /// No description provided for @days.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get days;
+
+  /// No description provided for @twoWeeks.
+  ///
+  /// In en, this message translates to:
+  /// **'2 wks'**
+  String get twoWeeks;
+
+  /// No description provided for @oneMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'1 month'**
+  String get oneMonth;
+
+  /// No description provided for @weekNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Week {number} of {year}'**
+  String weekNumber(int number, int year);
+
+  /// No description provided for @dayOfMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {day} of {total}'**
+  String dayOfMonth(int day, int total);
+
+  /// No description provided for @dateFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'{day} {month}'**
+  String dateFormat(int day, String month);
+
+  /// No description provided for @dateRangeFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'{startDay} {startMonth} - {endDay} {endMonth}'**
+  String dateRangeFormat(
+      int startDay, String startMonth, int endDay, String endMonth);
+
+  /// No description provided for @monthYear.
+  ///
+  /// In en, this message translates to:
+  /// **'{month} {year}'**
+  String monthYear(String month, int year);
+
+  /// No description provided for @goodMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good morning'**
+  String get goodMorning;
+
+  /// No description provided for @motivationPerfectDay.
+  ///
+  /// In en, this message translates to:
+  /// **'PERFECT! 🎆\\nYou completed EVERYTHING today.\\nYou\'re unstoppable!'**
+  String get motivationPerfectDay;
+
+  /// No description provided for @motivationAlmostPerfect.
+  ///
+  /// In en, this message translates to:
+  /// **'Almost perfect! 🌟\\nJust a little bit left.\\nYou can do it!'**
+  String get motivationAlmostPerfect;
+
+  /// No description provided for @motivationExcellentDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent day! 💪\\nYou\'re doing great.\\nKeep it up!'**
+  String get motivationExcellentDay;
+
+  /// No description provided for @motivationGoodProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Good progress! 🚀\\nYou\'re on the right track.\\nDon\'t stop!'**
+  String get motivationGoodProgress;
+
+  /// No description provided for @motivationStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'You started! 🌱\\nEvery step counts.\\nContinue!'**
+  String get motivationStarted;
+
+  /// No description provided for @motivationFirstStep.
+  ///
+  /// In en, this message translates to:
+  /// **'First step! ⭐\\nThe hardest part is over.\\nKeep going!'**
+  String get motivationFirstStep;
+
+  /// No description provided for @motivationYourMoment.
+  ///
+  /// In en, this message translates to:
+  /// **'Your moment! 🌅\\nStart now.\\nMake it happen!'**
+  String get motivationYourMoment;
+
+  /// No description provided for @motivationPerfectWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'PERFECT WEEK! 🏆\\nYou mastered all your rhythms.\\nYou\'re incredible!'**
+  String get motivationPerfectWeek;
+
+  /// No description provided for @motivationBrutalWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Brutal week! 🔥\\nAlmost perfect.\\nYou\'re a champion!'**
+  String get motivationBrutalWeek;
+
+  /// No description provided for @motivationGreatWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Great week! 💪\\nYour discipline pays off.\\nWell done!'**
+  String get motivationGreatWeek;
+
+  /// No description provided for @motivationGoodRhythm.
+  ///
+  /// In en, this message translates to:
+  /// **'Good rhythm! 📈\\nYou\'re building.\\nKeep it up!'**
+  String get motivationGoodRhythm;
+
+  /// No description provided for @motivationProgressing.
+  ///
+  /// In en, this message translates to:
+  /// **'Progressing! 🌱\\nEvery week counts.\\nDon\'t stop!'**
+  String get motivationProgressing;
+
+  /// No description provided for @motivationStartedWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Started! ✨\\nYou took the first step.\\nLet\'s improve!'**
+  String get motivationStartedWeek;
+
+  /// No description provided for @motivationNewWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'New week! 🌟\\nFresh start.\\nMake it epic!'**
+  String get motivationNewWeek;
+
+  /// No description provided for @motivationLegendaryMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'LEGENDARY MONTH! 👑\\nTotal perfection.\\nYou\'re inspiration!'**
+  String get motivationLegendaryMonth;
+
+  /// No description provided for @motivationEpicMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Epic month! 🎆\\nIncredible results.\\nUnstoppable!'**
+  String get motivationEpicMonth;
+
+  /// No description provided for @motivationSolidMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Solid month! 💪\\nYour consistency pays off.\\nGreat work!'**
+  String get motivationSolidMonth;
+
+  /// No description provided for @motivationGoodMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Good month! 📊\\nYou\'re progressing.\\nKeep improving!'**
+  String get motivationGoodMonth;
+
+  /// No description provided for @motivationBuilding.
+  ///
+  /// In en, this message translates to:
+  /// **'Building! 🏗️\\nEvery month counts.\\nKeep going!'**
+  String get motivationBuilding;
+
+  /// No description provided for @motivationSeedsPlanted.
+  ///
+  /// In en, this message translates to:
+  /// **'Seeds planted! 🌱\\nYou\'ve started.\\nYou\'ll grow!'**
+  String get motivationSeedsPlanted;
+
+  /// No description provided for @motivationNewMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'New month! 🚀\\nInfinite possibilities.\\nMake it yours!'**
+  String get motivationNewMonth;
+
+  /// No description provided for @motivationPerfectShort.
+  ///
+  /// In en, this message translates to:
+  /// **'PERFECT! You completed everything today'**
+  String get motivationPerfectShort;
+
+  /// No description provided for @motivationAlmostPerfectShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Almost perfect! Just a little bit left'**
+  String get motivationAlmostPerfectShort;
+
+  /// No description provided for @motivationExcellentShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent day! You\'re doing great'**
+  String get motivationExcellentShort;
+
+  /// No description provided for @motivationGoodProgressShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Good progress! You\'re on the right track'**
+  String get motivationGoodProgressShort;
+
+  /// No description provided for @motivationStartedShort.
+  ///
+  /// In en, this message translates to:
+  /// **'You started! Every step counts'**
+  String get motivationStartedShort;
+
+  /// No description provided for @motivationFirstStepShort.
+  ///
+  /// In en, this message translates to:
+  /// **'First step! The hardest part is over'**
+  String get motivationFirstStepShort;
+
+  /// No description provided for @motivationYourMomentShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Your moment! Start now'**
+  String get motivationYourMomentShort;
+
+  /// No description provided for @statistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statistics;
+
+  /// No description provided for @week.
+  ///
+  /// In en, this message translates to:
+  /// **'Week'**
+  String get week;
+
+  /// No description provided for @trends.
+  ///
+  /// In en, this message translates to:
+  /// **'Trends'**
+  String get trends;
+
+  /// No description provided for @completedHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completedHabits;
+
+  /// No description provided for @percentage.
+  ///
+  /// In en, this message translates to:
+  /// **'Percentage'**
+  String get percentage;
+
+  /// No description provided for @progressToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Progress'**
+  String get progressToday;
+
+  /// No description provided for @completedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completedCount;
+
+  /// No description provided for @pendingCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get pendingCount;
+
+  /// No description provided for @noHabitsToShow.
+  ///
+  /// In en, this message translates to:
+  /// **'No rhythms to show'**
+  String get noHabitsToShow;
+
+  /// No description provided for @todaysHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Habits'**
+  String get todaysHabits;
+
+  /// No description provided for @noHabitsScheduledToday.
+  ///
+  /// In en, this message translates to:
+  /// **'No rhythms scheduled for today'**
+  String get noHabitsScheduledToday;
+
+  /// No description provided for @weeklyProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Progress'**
+  String get weeklyProgress;
+
+  /// No description provided for @dayShortMon.
+  ///
+  /// In en, this message translates to:
+  /// **'M'**
+  String get dayShortMon;
+
+  /// No description provided for @dayShortTue.
+  ///
+  /// In en, this message translates to:
+  /// **'T'**
+  String get dayShortTue;
+
+  /// No description provided for @dayShortWed.
+  ///
+  /// In en, this message translates to:
+  /// **'W'**
+  String get dayShortWed;
+
+  /// No description provided for @dayShortThu.
+  ///
+  /// In en, this message translates to:
+  /// **'T'**
+  String get dayShortThu;
+
+  /// No description provided for @dayShortFri.
+  ///
+  /// In en, this message translates to:
+  /// **'F'**
+  String get dayShortFri;
+
+  /// No description provided for @dayShortSat.
+  ///
+  /// In en, this message translates to:
+  /// **'S'**
+  String get dayShortSat;
+
+  /// No description provided for @dayShortSun.
+  ///
+  /// In en, this message translates to:
+  /// **'S'**
+  String get dayShortSun;
+
+  /// No description provided for @weeklyHeatMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Heat Map'**
+  String get weeklyHeatMap;
+
+  /// No description provided for @legend.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend'**
+  String get legend;
+
+  /// No description provided for @notScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Not scheduled'**
+  String get notScheduled;
+
+  /// No description provided for @week1.
+  ///
+  /// In en, this message translates to:
+  /// **'W1'**
+  String get week1;
+
+  /// No description provided for @week2.
+  ///
+  /// In en, this message translates to:
+  /// **'W2'**
+  String get week2;
+
+  /// No description provided for @week3.
+  ///
+  /// In en, this message translates to:
+  /// **'W3'**
+  String get week3;
+
+  /// No description provided for @week4.
+  ///
+  /// In en, this message translates to:
+  /// **'W4'**
+  String get week4;
+
+  /// No description provided for @loadingHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading your rhythms...'**
+  String get loadingHabits;
+
+  /// No description provided for @guestModeWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest mode - Your data will not be saved'**
+  String get guestModeWarning;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get createAccount;
+
+  /// No description provided for @saveYourProgressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Save your progress'**
+  String get saveYourProgressTitle;
+
+  /// No description provided for @createAccountDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account to save your rhythms and sync them across devices.'**
+  String get createAccountDescription;
+
+  /// No description provided for @accountCreatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created successfully!'**
+  String get accountCreatedSuccess;
+
+  /// No description provided for @rhythmoPro.
+  ///
+  /// In en, this message translates to:
+  /// **'HábitoPro'**
+  String get rhythmoPro;
+
+  /// No description provided for @productivityCoach.
+  ///
+  /// In en, this message translates to:
+  /// **'Your productivity coach'**
+  String get productivityCoach;
+
+  /// No description provided for @enjoyRitmoInterruptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Enjoy Ritmo without interruptions with Ritmo PRO:'**
+  String get enjoyRitmoInterruptions;
+
+  /// No description provided for @unlimitedHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited rhythms'**
+  String get unlimitedHabits;
+
+  /// No description provided for @advancedStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced statistics'**
+  String get advancedStats;
+
+  /// No description provided for @pricingText.
+  ///
+  /// In en, this message translates to:
+  /// **'Only \$3.99/month - 20% less than competition'**
+  String get pricingText;
+
+  /// No description provided for @paywallComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Paywall coming soon'**
+  String get paywallComingSoon;
+
+  /// No description provided for @firstStreakAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'First Streak'**
+  String get firstStreakAchievement;
+
+  /// No description provided for @weekWarriorAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Week Warrior'**
+  String get weekWarriorAchievement;
+
+  /// No description provided for @monthMasterAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Month Master'**
+  String get monthMasterAchievement;
+
+  /// No description provided for @firstStepAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'First Step'**
+  String get firstStepAchievement;
+
+  /// No description provided for @centuryClubAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Century Club'**
+  String get centuryClubAchievement;
+
+  /// No description provided for @marathonRunnerAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Marathon Runner'**
+  String get marathonRunnerAchievement;
+
+  /// No description provided for @perfectWeekAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect Week'**
+  String get perfectWeekAchievement;
+
+  /// No description provided for @rhythmCollectorAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Collector'**
+  String get rhythmCollectorAchievement;
+
+  /// No description provided for @rhythmMasterAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Rhythm Master'**
+  String get rhythmMasterAchievement;
+
+  /// No description provided for @streakFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'{streak} days'**
+  String streakFormat(int streak);
+
+  /// No description provided for @notificationsToRemindHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications to remind you to complete your daily rhythms'**
+  String get notificationsToRemindHabits;
+
+  /// No description provided for @rhythmReminderTicker.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit reminder'**
+  String get rhythmReminderTicker;
+
+  /// No description provided for @defaultHabitReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to work on your rhythm!'**
+  String get defaultHabitReminder;
+
+  /// No description provided for @testNotificationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification system working correctly!'**
+  String get testNotificationBody;
+
+  /// No description provided for @rhythmUpdatedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit updated!'**
+  String get rhythmUpdatedMessage;
+
+  /// No description provided for @openSystemSettingsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Open system settings to manage notifications'**
+  String get openSystemSettingsMessage;
+
+  /// No description provided for @notReceivingReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Not receiving reminders?'**
+  String get notReceivingReminders;
+
+  /// No description provided for @rhythmDeletedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit deleted'**
+  String get rhythmDeletedMessage;
+
+  /// No description provided for @updateError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error updating rhythm'**
+  String get updateError;
+
+  /// No description provided for @deleteError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error deleting rhythm'**
+  String get deleteError;
+
+  /// No description provided for @habitUpdatedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Rhythm updated!'**
+  String get habitUpdatedMessage;
+
+  /// No description provided for @habitDeletedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Rhythm deleted'**
+  String get habitDeletedMessage;
+
+  /// No description provided for @habitNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Rhythm Name'**
+  String get habitNameLabel;
+
+  /// No description provided for @habitReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Rhythm Reminders'**
+  String get habitReminders;
+
+  /// No description provided for @habitReminderTicker.
+  ///
+  /// In en, this message translates to:
+  /// **'Rhythm reminder'**
+  String get habitReminderTicker;
+
+  /// No description provided for @habitStreaks.
+  ///
+  /// In en, this message translates to:
+  /// **'Rhythm Streaks'**
+  String get habitStreaks;
+
+  /// No description provided for @habitCollectorAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Rhythm Collector'**
+  String get habitCollectorAchievement;
+
+  /// No description provided for @habitCreatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Rhythm created successfully'**
+  String get habitCreatedSuccessfully;
+
+  /// No description provided for @habitNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g: Exercise, Read, Meditate...'**
+  String get habitNameHint;
+
+  /// No description provided for @welcomeToRitmoPro.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Ritmo PRO! 🎉'**
+  String get welcomeToRitmoPro;
+
+  /// No description provided for @purchaseError.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase error'**
+  String get purchaseError;
+
+  /// No description provided for @googleLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Google'**
+  String get googleLogin;
+
+  /// No description provided for @send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get send;
+
+  /// No description provided for @passwordResetMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email and we\'ll send you a link to reset your password.'**
+  String get passwordResetMessage;
 }
 
 class _AppLocalizationsDelegate

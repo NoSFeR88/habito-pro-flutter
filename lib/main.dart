@@ -9,6 +9,8 @@ import 'providers/habit_provider.dart';
 import 'providers/locale_provider.dart';
 import 'providers/onboarding_provider.dart';
 import 'providers/premium_provider.dart';
+import 'providers/theme_provider.dart';
+import 'providers/gamification_provider.dart';
 import 'services/ads_service.dart';
 import 'screens/home_screen.dart';
 import 'screens/onboarding_screen.dart';
@@ -18,12 +20,10 @@ import 'generated/l10n/app_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Configurar orientación (habilitar todas las orientaciones)
+  // Configurar orientación (solo vertical para una mejor experiencia)
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-    DeviceOrientation.landscapeLeft,
-    DeviceOrientation.landscapeRight,
   ]);
 
   // Inicializar Firebase
@@ -62,6 +62,14 @@ void main() async {
   await premiumProvider.initializePremiumStatus();
   debugPrint('✅ Premium provider inicializado: premium = ${premiumProvider.isPremium}');
 
+  // Inicializar ThemeProvider
+  final themeProvider = ThemeProvider();
+  debugPrint('✅ Theme provider inicializado');
+
+  // Inicializar GamificationProvider
+  final gamificationProvider = GamificationProvider();
+  debugPrint('✅ Gamification provider inicializado');
+
   // Inicializar AdsService solo si no es premium - TEMPORALMENTE DESHABILITADO
   /*if (!premiumProvider.isPremium) {
     try {
@@ -77,6 +85,8 @@ void main() async {
     localeProvider: localeProvider,
     onboardingProvider: onboardingProvider,
     premiumProvider: premiumProvider,
+    themeProvider: themeProvider,
+    gamificationProvider: gamificationProvider,
   ));
 }
 
@@ -84,12 +94,16 @@ class HabitApp extends StatelessWidget {
   final LocaleProvider localeProvider;
   final OnboardingProvider onboardingProvider;
   final PremiumProvider premiumProvider;
+  final ThemeProvider themeProvider;
+  final GamificationProvider gamificationProvider;
 
   const HabitApp({
     Key? key,
     required this.localeProvider,
     required this.onboardingProvider,
     required this.premiumProvider,
+    required this.themeProvider,
+    required this.gamificationProvider,
   }) : super(key: key);
 
   @override
@@ -100,14 +114,16 @@ class HabitApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: localeProvider),
         ChangeNotifierProvider.value(value: onboardingProvider),
         ChangeNotifierProvider.value(value: premiumProvider),
+        ChangeNotifierProvider.value(value: themeProvider),
+        ChangeNotifierProvider.value(value: gamificationProvider),
       ],
-      child: Consumer<LocaleProvider>(
-        builder: (context, localeProvider, child) {
+      child: Consumer2<LocaleProvider, ThemeProvider>(
+        builder: (context, localeProvider, themeProvider, child) {
           return MaterialApp(
             title: 'Ritmo',
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: ThemeMode.dark,
+            theme: themeProvider.getLightTheme(),
+            darkTheme: themeProvider.getDarkTheme(),
+            themeMode: themeProvider.materialThemeMode,
 
             // Internationalization setup
             localizationsDelegates: const [

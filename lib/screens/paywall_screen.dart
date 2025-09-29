@@ -113,7 +113,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
               children: [
                 Icon(Icons.check_circle, color: AppColors.success),
                 const SizedBox(width: 8),
-                Text('¡Bienvenido a Ritmo PRO! 🎉'),
+                Text(AppLocalizations.of(context)!.welcomeToRitmoPro),
               ],
             ),
             backgroundColor: AppColors.surfaceDark,
@@ -131,7 +131,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error en la compra: $e'),
+            content: Text('${AppLocalizations.of(context)!.purchaseError}: $e'),
             backgroundColor: AppColors.error,
           ),
         );

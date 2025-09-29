@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../generated/l10n/app_localizations.dart';
+import '../widgets/dynamic_ritmo_logo.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -115,18 +117,15 @@ class _SplashScreenState extends State<SplashScreen>
                   opacity: _fadeAnimation,
                   child: Column(
                     children: [
-                      const Text(
-                        'HábitoPro',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: -1,
-                        ),
+                      DynamicRitmoLogo(
+                        fontSize: 38,
+                        color: Colors.white,
+                        animated: true,
+                        changeInterval: Duration(seconds: 3),
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Tu coach de productividad',
+                        AppLocalizations.of(context)!.productivityCoach,
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.8),
                           fontSize: 16,

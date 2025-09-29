@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../providers/habit_provider.dart';
 import '../models/habit.dart';
+import '../generated/l10n/app_localizations.dart';
 
 class StatsScreen extends StatefulWidget {
   const StatsScreen({super.key});
@@ -31,13 +32,13 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Estadísticas'),
+        title: Text(AppLocalizations.of(context)!.statistics),
         bottom: TabBar(
           controller: _tabController,
-          tabs: const [
-            Tab(icon: Icon(Icons.today), text: 'Hoy'),
-            Tab(icon: Icon(Icons.show_chart), text: 'Semana'),
-            Tab(icon: Icon(Icons.trending_up), text: 'Tendencias'),
+          tabs: [
+            Tab(icon: Icon(Icons.today), text: AppLocalizations.of(context)!.today),
+            Tab(icon: Icon(Icons.show_chart), text: AppLocalizations.of(context)!.week),
+            Tab(icon: Icon(Icons.trending_up), text: AppLocalizations.of(context)!.trends),
           ],
         ),
       ),
@@ -82,7 +83,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
       children: [
         Expanded(
           child: _buildStatCard(
-            'Completados',
+            AppLocalizations.of(context)!.completedHabits,
             '$completedToday/$totalToday',
             Icons.check_circle,
             Colors.green,
@@ -91,7 +92,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
         const SizedBox(width: 12),
         Expanded(
           child: _buildStatCard(
-            'Racha Máxima',
+            AppLocalizations.of(context)!.maxStreak,
             '${stats['currentStreak']} días',
             Icons.local_fire_department,
             Colors.orange,
@@ -100,7 +101,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
         const SizedBox(width: 12),
         Expanded(
           child: _buildStatCard(
-            'Porcentaje',
+            AppLocalizations.of(context)!.percentage,
             '${(stats['completionRate'] * 100).toInt()}%',
             Icons.percent,
             Colors.blue,
@@ -152,7 +153,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Progreso de Hoy',
+              AppLocalizations.of(context)!.progressToday,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -165,7 +166,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                   sections: [
                     PieChartSectionData(
                       value: completed.toDouble(),
-                      title: '$completed\nCompletados',
+                      title: '$completed\n${AppLocalizations.of(context)!.completedCount}',
                       color: Colors.green,
                       radius: 55,
                       titleStyle: const TextStyle(
@@ -177,7 +178,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                     ),
                     PieChartSectionData(
                       value: pending.toDouble(),
-                      title: '$pending\nPendientes',
+                      title: '$pending\n${AppLocalizations.of(context)!.pendingCount}',
                       color: Colors.grey[400]!,
                       radius: 55,
                       titleStyle: const TextStyle(
@@ -191,8 +192,8 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                   sectionsSpace: 2,
                   centerSpaceRadius: 30,
                 ),
-              ) : const Center(
-                child: Text('No hay hábitos para mostrar'),
+              ) : Center(
+                child: Text(AppLocalizations.of(context)!.noHabitsToShow),
               ),
             ),
             const SizedBox(height: 20),
@@ -210,14 +211,14 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Hábitos de Hoy',
+              AppLocalizations.of(context)!.todaysHabits,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 16),
             if (habits.isEmpty)
-              const Text('No hay hábitos programados para hoy')
+              Text(AppLocalizations.of(context)!.noHabitsScheduledToday)
             else
               ...habits.map((habit) => _buildHabitListItem(habit)),
           ],
@@ -304,7 +305,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Progreso Semanal',
+              AppLocalizations.of(context)!.weeklyProgress,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -418,7 +419,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Mapa de Calor Semanal',
+              AppLocalizations.of(context)!.weeklyHeatMap,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -606,12 +607,486 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   }
 
   Widget _buildTrendsTab() {
-    return const Center(
-      child: Text(
-        'Tendencias mensuales\n(Próximamente)',
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 18),
+    return Consumer<HabitProvider>(
+      builder: (context, habitProvider, child) {
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              _buildMonthlyProgressChart(habitProvider.habits),
+              const SizedBox(height: 24),
+              _buildHabitStreaksChart(habitProvider.habits),
+              const SizedBox(height: 24),
+              _buildMonthlyHeatmap(habitProvider.habits),
+              const SizedBox(height: 24),
+              _buildMonthlyStats(habitProvider.habits),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildMonthlyProgressChart(List<Habit> habits) {
+    final monthlyData = _getMonthlyData(habits);
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.monthlyProgress,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              height: 200,
+              padding: const EdgeInsets.only(bottom: 16, right: 8),
+              child: LineChart(
+                LineChartData(
+                  gridData: const FlGridData(show: true),
+                  titlesData: FlTitlesData(
+                    leftTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 40,
+                        getTitlesWidget: (value, meta) {
+                          return Text(
+                            '${value.toInt()}%',
+                            style: const TextStyle(fontSize: 12),
+                          );
+                        },
+                      ),
+                    ),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 30,
+                        getTitlesWidget: (value, meta) {
+                          final weeks = ['S1', 'S2', 'S3', 'S4'];
+                          final index = value.toInt();
+                          return index < weeks.length ? Text(weeks[index]) : const Text('');
+                        },
+                      ),
+                    ),
+                    rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    topTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                  ),
+                  borderData: FlBorderData(show: true),
+                  minY: 0,
+                  maxY: 100,
+                  lineBarsData: [
+                    LineChartBarData(
+                      spots: monthlyData,
+                      isCurved: true,
+                      color: Theme.of(context).primaryColor,
+                      barWidth: 3,
+                      isStrokeCapRound: true,
+                      belowBarData: BarAreaData(
+                        show: true,
+                        color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                      ),
+                      dotData: FlDotData(
+                        show: true,
+                        getDotPainter: (spot, percent, barData, index) {
+                          return FlDotCirclePainter(
+                            radius: 4,
+                            color: Theme.of(context).primaryColor,
+                            strokeWidth: 2,
+                            strokeColor: Colors.white,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  Widget _buildHabitStreaksChart(List<Habit> habits) {
+    final streakData = _getStreakData(habits);
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.habitStreaks,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              height: 200,
+              padding: const EdgeInsets.only(bottom: 16, right: 8),
+              child: BarChart(
+                BarChartData(
+                  alignment: BarChartAlignment.spaceAround,
+                  maxY: streakData.map((e) => e.toDouble()).reduce((a, b) => a > b ? a : b) + 2,
+                  barTouchData: BarTouchData(
+                    touchTooltipData: BarTouchTooltipData(
+                      getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                        return BarTooltipItem(
+                          '${habits[groupIndex].name}\n${rod.toY.round()} días',
+                          const TextStyle(color: Colors.white),
+                        );
+                      },
+                    ),
+                  ),
+                  titlesData: FlTitlesData(
+                    show: true,
+                    rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    topTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        getTitlesWidget: (double value, TitleMeta meta) {
+                          final index = value.toInt();
+                          if (index < habits.length) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 8),
+                              child: Text(
+                                habits[index].name.length > 8
+                                  ? '${habits[index].name.substring(0, 8)}...'
+                                  : habits[index].name,
+                                style: const TextStyle(
+                                  color: Color(0xff7589a2),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            );
+                          }
+                          return const Text('');
+                        },
+                        reservedSize: 38,
+                      ),
+                    ),
+                    leftTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 40,
+                        getTitlesWidget: (value, meta) {
+                          return Text(
+                            value.toInt().toString(),
+                            style: const TextStyle(fontSize: 12),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  borderData: FlBorderData(show: false),
+                  barGroups: List.generate(
+                    habits.length,
+                    (index) => BarChartGroupData(
+                      x: index,
+                      barRods: [
+                        BarChartRodData(
+                          toY: streakData[index],
+                          color: Color(habits[index].color),
+                          width: 16,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMonthlyHeatmap(List<Habit> habits) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.monthlyCalendar,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            _buildCalendarHeatmap(habits),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMonthlyStats(List<Habit> habits) {
+    final stats = _getMonthlyStatistics(habits);
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.monthlyStats,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildStatCard(
+                    AppLocalizations.of(context)!.activeDays,
+                    '${stats['activeDays']}',
+                    Icons.calendar_today,
+                    Colors.blue,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildStatCard(
+                    AppLocalizations.of(context)!.bestStreak,
+                    '${stats['bestStreak']} días',
+                    Icons.whatshot,
+                    Colors.orange,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildStatCard(
+                    AppLocalizations.of(context)!.averageCompletion,
+                    '${stats['averageCompletion']}%',
+                    Icons.trending_up,
+                    Colors.green,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<FlSpot> _getMonthlyData(List<Habit> habits) {
+    final now = DateTime.now();
+    final monthStart = DateTime(now.year, now.month, 1);
+    final spots = <FlSpot>[];
+
+    for (int week = 0; week < 4; week++) {
+      final weekStart = monthStart.add(Duration(days: week * 7));
+      final weekEnd = weekStart.add(const Duration(days: 6));
+
+      int completed = 0;
+      int total = 0;
+
+      for (int day = 0; day < 7; day++) {
+        final currentDay = weekStart.add(Duration(days: day));
+        if (currentDay.month != now.month || currentDay.isAfter(weekEnd)) continue;
+
+        final dayStr = currentDay.toDateString();
+
+        for (final habit in habits) {
+          if (habit.frequency.contains(currentDay.weekday)) {
+            total++;
+            if (habit.completions[dayStr] ?? false) {
+              completed++;
+            }
+          }
+        }
+      }
+
+      final percentage = total > 0 ? (completed / total) * 100 : 0.0;
+      spots.add(FlSpot(week.toDouble(), percentage.toDouble()));
+    }
+
+    return spots;
+  }
+
+  List<double> _getStreakData(List<Habit> habits) {
+    return habits.map((habit) {
+      return _calculateCurrentStreak(habit).toDouble();
+    }).toList();
+  }
+
+  int _calculateCurrentStreak(Habit habit) {
+    final now = DateTime.now();
+    int streak = 0;
+
+    for (int i = 0; i < 30; i++) {
+      final day = now.subtract(Duration(days: i));
+      final dayStr = day.toDateString();
+
+      if (habit.frequency.contains(day.weekday)) {
+        if (habit.completions[dayStr] ?? false) {
+          streak++;
+        } else {
+          break;
+        }
+      }
+    }
+
+    return streak;
+  }
+
+  Widget _buildCalendarHeatmap(List<Habit> habits) {
+    final now = DateTime.now();
+    final monthStart = DateTime(now.year, now.month, 1);
+    final monthEnd = DateTime(now.year, now.month + 1, 0);
+    final daysInMonth = monthEnd.day;
+
+    return Column(
+      children: [
+        // Header con días de la semana
+        Row(
+          children: ['L', 'M', 'X', 'J', 'V', 'S', 'D'].map((day) =>
+            Expanded(
+              child: Center(
+                child: Text(
+                  day,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                ),
+              ),
+            ),
+          ).toList(),
+        ),
+        const SizedBox(height: 8),
+        // Grid del calendario
+        ...List.generate((daysInMonth / 7).ceil(), (weekIndex) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: Row(
+              children: List.generate(7, (dayIndex) {
+                final dayNumber = weekIndex * 7 + dayIndex + 1 - (monthStart.weekday - 1);
+
+                if (dayNumber < 1 || dayNumber > daysInMonth) {
+                  return const Expanded(child: SizedBox(height: 32));
+                }
+
+                final day = DateTime(now.year, now.month, dayNumber);
+                final dayStr = day.toDateString();
+                final intensity = _getDayIntensity(habits, day, dayStr);
+
+                return Expanded(
+                  child: Container(
+                    height: 32,
+                    margin: const EdgeInsets.all(1),
+                    decoration: BoxDecoration(
+                      color: _getIntensityColor(intensity),
+                      borderRadius: BorderRadius.circular(4),
+                      border: day.day == now.day ? Border.all(color: Colors.black, width: 2) : null,
+                    ),
+                    child: Center(
+                      child: Text(
+                        dayNumber.toString(),
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: intensity > 0.5 ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+            ),
+          );
+        }),
+      ],
+    );
+  }
+
+  double _getDayIntensity(List<Habit> habits, DateTime day, String dayStr) {
+    int completed = 0;
+    int total = 0;
+
+    for (final habit in habits) {
+      if (habit.frequency.contains(day.weekday)) {
+        total++;
+        if (habit.completions[dayStr] ?? false) {
+          completed++;
+        }
+      }
+    }
+
+    return total > 0 ? completed / total : 0.0;
+  }
+
+  Color _getIntensityColor(double intensity) {
+    if (intensity == 0) return Colors.grey[200]!;
+    if (intensity <= 0.25) return Colors.green[100]!;
+    if (intensity <= 0.5) return Colors.green[300]!;
+    if (intensity <= 0.75) return Colors.green[500]!;
+    return Colors.green[700]!;
+  }
+
+  Map<String, dynamic> _getMonthlyStatistics(List<Habit> habits) {
+    final now = DateTime.now();
+    final monthStart = DateTime(now.year, now.month, 1);
+
+    int activeDays = 0;
+    int bestStreak = 0;
+    int totalCompleted = 0;
+    int totalExpected = 0;
+
+    // Calcular días activos y total de completados
+    for (int i = 0; i < now.day; i++) {
+      final day = monthStart.add(Duration(days: i));
+      final dayStr = day.toDateString();
+
+      int dayCompleted = 0;
+      int dayTotal = 0;
+
+      for (final habit in habits) {
+        if (habit.frequency.contains(day.weekday)) {
+          dayTotal++;
+          if (habit.completions[dayStr] ?? false) {
+            dayCompleted++;
+          }
+        }
+      }
+
+      if (dayCompleted > 0) activeDays++;
+      totalCompleted += dayCompleted;
+      totalExpected += dayTotal;
+    }
+
+    // Calcular mejor racha
+    for (final habit in habits) {
+      final streak = _calculateCurrentStreak(habit);
+      if (streak > bestStreak) bestStreak = streak;
+    }
+
+    final averageCompletion = totalExpected > 0 ? ((totalCompleted / totalExpected) * 100).round() : 0;
+
+    return {
+      'activeDays': activeDays,
+      'bestStreak': bestStreak,
+      'averageCompletion': averageCompletion,
+    };
   }
 }

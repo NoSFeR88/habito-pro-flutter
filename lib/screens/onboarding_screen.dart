@@ -466,7 +466,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  l10n.habitName,
+                  l10n.habitNameHint,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

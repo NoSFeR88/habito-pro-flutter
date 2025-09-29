@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../models/habit.dart';
 import '../services/database_helper.dart';
 import '../services/notification_service.dart';
+import '../widgets/gamification_card.dart';
+import 'gamification_provider.dart';
 
 class HabitProvider extends ChangeNotifier {
   final DatabaseHelper _databaseHelper = DatabaseHelper();
@@ -10,11 +12,17 @@ class HabitProvider extends ChangeNotifier {
   bool _isLoading = false;
   String _errorMessage = '';
   bool _isInitialized = false;
+  GamificationProvider? _gamificationProvider;
 
   List<Habit> get habits => _habits;
   bool get isLoading => _isLoading;
   String get errorMessage => _errorMessage;
   bool get isInitialized => _isInitialized;
+
+  // Método para conectar con GamificationProvider
+  void setGamificationProvider(GamificationProvider provider) {
+    _gamificationProvider = provider;
+  }
 
   // Inicializar hábitos desde la base de datos
   Future<void> initializeHabits() async {
@@ -72,19 +80,28 @@ class HabitProvider extends ChangeNotifier {
     }
   }
 
-  // Actualizar hábito
+  // Actualizar hábito (solo datos, sin reprogramar notificaciones)
+  Future<void> _updateHabitData(Habit habit) async {
+    await _databaseHelper.updateHabit(habit);
+    final index = _habits.indexWhere((h) => h.id == habit.id);
+    if (index != -1) {
+      _habits[index] = habit;
+      notifyListeners();
+    }
+  }
+
+  // Actualizar hábito completo (con reprogramación de notificaciones)
   Future<void> updateHabit(Habit habit) async {
     try {
-      await _databaseHelper.updateHabit(habit);
-      final index = _habits.indexWhere((h) => h.id == habit.id);
-      if (index != -1) {
-        _habits[index] = habit;
+      await _updateHabitData(habit);
 
-        // Actualizar notificaciones para el hábito modificado
+      // Solo reprogramar notificaciones si el hábito está activo
+      if (habit.isActive) {
         await _notificationService.scheduleHabitReminder(habit);
-
-        notifyListeners();
+      } else {
+        await _notificationService.cancelHabitReminders(habit.id);
       }
+
       _clearError();
     } catch (e) {
       _setError('Error actualizando hábito: $e');
@@ -119,16 +136,48 @@ class HabitProvider extends ChangeNotifier {
       final habit = _habits[habitIndex];
       final newCompletions = Map<String, bool>.from(habit.completions);
 
-      // Toggle completion
-      newCompletions[dateStr] = !(newCompletions[dateStr] ?? false);
+      // Verificar si se está completando o descompletando
+      final wasCompleted = habit.completions[dateStr] ?? false;
+      final willBeCompleted = !wasCompleted;
 
-      // Recalcular racha
+      // Toggle completion
+      newCompletions[dateStr] = willBeCompleted;
+
+      // Crear hábito temporal para recalcular racha con las nuevas completaciones
+      final tempHabit = habit.copyWith(completions: newCompletions);
+      final newStreak = tempHabit.calculateStreak();
+
+      // Crear hábito final con racha actualizada
       final updatedHabit = habit.copyWith(
         completions: newCompletions,
-        streak: habit.calculateStreak(),
+        streak: newStreak,
       );
 
-      await updateHabit(updatedHabit);
+      // Solo actualizar datos, sin reprogramar notificaciones
+      await _updateHabitData(updatedHabit);
+
+      // Manejar puntos de gamificación
+      if (_gamificationProvider != null) {
+        if (willBeCompleted) {
+          // Completando hábito: agregar puntos base (5 puntos por completar)
+          _gamificationProvider!.addPoints(5);
+          debugPrint('✅ +5 puntos por completar hábito: ${habit.name}');
+        } else {
+          // Descompletando hábito: quitar puntos base
+          _gamificationProvider!.removePoints(5);
+          debugPrint('❌ -5 puntos por descompletar hábito: ${habit.name}');
+        }
+
+        // Verificar logros
+        final newAchievements = _gamificationProvider!.checkForNewAchievements(_habits);
+
+        // Mostrar diálogos de logros desbloqueados
+        for (final achievement in newAchievements) {
+          // El diálogo se mostrará desde el widget cuando reciba la notificación
+          debugPrint('🏆 Nuevo logro desbloqueado: ${achievement.name}');
+        }
+      }
+
       _clearError();
     } catch (e) {
       _setError('Error actualizando completado: $e');

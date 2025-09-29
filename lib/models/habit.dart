@@ -51,16 +51,22 @@ class Habit {
   int calculateStreak() {
     final today = DateTime.now();
     int streak = 0;
-    
+
+    // Contar días consecutivos completados hacia atrás desde hoy
     for (int i = 0; i < 365; i++) {
       final day = today.subtract(Duration(days: i));
       final dayStr = day.toDateString();
-      
-      if (completions[dayStr] ?? false) {
-        streak++;
-      } else {
-        break;
+
+      // Solo contar días que corresponden a la frecuencia del hábito
+      if (frequency.contains(day.weekday)) {
+        if (completions[dayStr] ?? false) {
+          streak++;
+        } else {
+          // Si encontramos un día obligatorio no completado, romper la racha
+          break;
+        }
       }
+      // Si no es un día de frecuencia, continuar sin romper la racha
     }
     return streak;
   }

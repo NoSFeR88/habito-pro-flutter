@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/habit.dart';
 import '../providers/habit_provider.dart';
+import '../generated/l10n/app_localizations.dart';
 
 class AddHabitScreen extends StatefulWidget {
   const AddHabitScreen({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nuevo Hábito'),
+        title: Text(AppLocalizations.of(context)!.newHabit),
         actions: [
           if (_isLoading)
             const Padding(
@@ -46,7 +47,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
           else
             TextButton(
               onPressed: _saveHabit,
-              child: const Text('Guardar'),
+              child: Text(AppLocalizations.of(context)!.save),
             ),
         ],
       ),
@@ -79,7 +80,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Información básica',
+              AppLocalizations.of(context)!.basicInformation,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -87,17 +88,17 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
             const SizedBox(height: 16),
             TextFormField(
               controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Nombre del hábito',
-                hintText: 'Ej: Beber agua, Ejercicio, Leer...',
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.habitNameLabel,
+                hintText: AppLocalizations.of(context)!.habitNameHint,
                 border: OutlineInputBorder(),
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Por favor ingresa un nombre';
+                  return AppLocalizations.of(context)!.pleaseEnterName;
                 }
                 if (value.trim().length < 2) {
-                  return 'El nombre debe tener al menos 2 caracteres';
+                  return AppLocalizations.of(context)!.nameMinTwoCharacters;
                 }
                 return null;
               },
@@ -106,9 +107,9 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
             const SizedBox(height: 16),
             TextFormField(
               controller: _descriptionController,
-              decoration: const InputDecoration(
-                labelText: 'Descripción (opcional)',
-                hintText: 'Ej: 8 vasos al día, 30 minutos...',
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.descriptionOptional,
+                hintText: AppLocalizations.of(context)!.descriptionHint,
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,
@@ -128,7 +129,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Icono',
+              AppLocalizations.of(context)!.icon,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -181,7 +182,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Color',
+              AppLocalizations.of(context)!.color,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -232,7 +233,15 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
 
   Widget _buildFrequencySelection() {
     const days = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
-    const dayNames = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+    final dayNames = [
+      AppLocalizations.of(context)!.mondayFull,
+      AppLocalizations.of(context)!.tuesdayFull,
+      AppLocalizations.of(context)!.wednesdayFull,
+      AppLocalizations.of(context)!.thursdayFull,
+      AppLocalizations.of(context)!.fridayFull,
+      AppLocalizations.of(context)!.saturdayFull,
+      AppLocalizations.of(context)!.sundayFull,
+    ];
 
     return Card(
       child: Padding(
@@ -241,7 +250,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Frecuencia',
+              AppLocalizations.of(context)!.frequency,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -302,7 +311,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
                       _selectedDays = {1, 2, 3, 4, 5, 6, 7};
                     });
                   },
-                  child: const Text('Todos los días'),
+                  child: Text(AppLocalizations.of(context)!.allDays),
                 ),
                 const SizedBox(width: 8),
                 TextButton(
@@ -311,7 +320,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
                       _selectedDays = {1, 2, 3, 4, 5};
                     });
                   },
-                  child: const Text('Días laborales'),
+                  child: Text(AppLocalizations.of(context)!.weekdays),
                 ),
               ],
             ),
@@ -329,7 +338,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Recordatorio',
+              AppLocalizations.of(context)!.reminder,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -337,7 +346,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
             const SizedBox(height: 16),
             ListTile(
               leading: Icon(Icons.schedule, color: Color(_selectedColor)),
-              title: const Text('Hora de recordatorio'),
+              title: Text(AppLocalizations.of(context)!.reminderTime),
               subtitle: Text(_formatTimeOfDay(_reminderTime)),
               trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: _selectTime,
@@ -377,8 +386,8 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
 
     if (_selectedDays.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Selecciona al menos un día de la semana'),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.selectAtLeastOneDay),
           backgroundColor: Colors.orange,
         ),
       );
@@ -411,7 +420,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Hábito "${habit.name}" creado exitosamente'),
+            content: Text(AppLocalizations.of(context)!.habitCreatedSuccessfully),
             backgroundColor: Colors.green,
           ),
         );
@@ -420,7 +429,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error al crear el hábito: $e'),
+            content: Text('Error: $e'),
             backgroundColor: Colors.red,
           ),
         );

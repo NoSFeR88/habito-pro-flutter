@@ -340,7 +340,7 @@ class _LoginScreenState extends State<LoginScreen> {
           size: 20,
         ),
       ),
-      label: const Text('Google'),
+      label: Text(AppLocalizations.of(context)!.googleLogin),
       style: OutlinedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 16),
         shape: RoundedRectangleBorder(
@@ -354,7 +354,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return TextButton.icon(
       onPressed: authProvider.isLoading ? null : () => _handleAnonymousSignIn(authProvider),
       icon: const Icon(Icons.person_outline, size: 20),
-      label: const Text('Continuar como invitado'),
+      label: Text(AppLocalizations.of(context)!.guestMode),
       style: TextButton.styleFrom(
         foregroundColor: Colors.grey[600],
         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -426,7 +426,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (success && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('¡Iniciaste sesión con Google!'),
+          content: Text(AppLocalizations.of(context)!.loginSuccess),
           backgroundColor: AppColors.success,
         ),
       );
@@ -440,7 +440,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (success && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Continuando como invitado'),
+          content: Text(AppLocalizations.of(context)!.continuingAsGuest),
           backgroundColor: AppColors.primary,
         ),
       );
@@ -454,11 +454,11 @@ class _LoginScreenState extends State<LoginScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Restablecer contraseña'),
+          title: Text(AppLocalizations.of(context)!.resetPassword),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Ingresa tu email y te enviaremos un enlace para restablecer tu contraseña.'),
+              Text(AppLocalizations.of(context)!.passwordResetMessage),
               const SizedBox(height: 16),
               TextFormField(
                 controller: emailController,
@@ -475,7 +475,7 @@ class _LoginScreenState extends State<LoginScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancelar'),
+              child: Text(AppLocalizations.of(context)!.cancel),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -497,7 +497,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 }
               },
-              child: const Text('Enviar'),
+              child: Text(AppLocalizations.of(context)!.send),
             ),
           ],
         );

@@ -3,6 +3,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../services/ads_service.dart';
 import '../providers/premium_provider.dart';
+import '../generated/l10n/app_localizations.dart';
 import '../core/theme.dart';
 
 class AdBannerWidget extends StatefulWidget {
@@ -86,8 +87,8 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
                           color: AppColors.primary.withOpacity(0.9),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Text(
-                          'Quitar ads',
+                        child: Text(
+                          AppLocalizations.of(context)!.removeAds,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 10,
@@ -119,7 +120,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
               Icon(Icons.ads_click_off, color: AppColors.primary),
               const SizedBox(width: 8),
               Text(
-                'Quitar publicidad',
+                AppLocalizations.of(context)!.removePermanentAds,
                 style: TextStyle(color: AppColors.textDark),
               ),
             ],
@@ -129,14 +130,14 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Disfruta de Ritmo sin interrupciones con Ritmo PRO:',
+                AppLocalizations.of(context)!.enjoyRitmoInterruptions,
                 style: TextStyle(color: AppColors.textSecondaryDark),
               ),
               const SizedBox(height: 16),
-              _buildFeatureRow(Icons.ads_click_off, 'Sin publicidad'),
-              _buildFeatureRow(Icons.all_inclusive, 'Hábitos ilimitados'),
-              _buildFeatureRow(Icons.palette, 'Temas premium'),
-              _buildFeatureRow(Icons.bar_chart, 'Estadísticas avanzadas'),
+              _buildFeatureRow(Icons.ads_click_off, AppLocalizations.of(context)!.noAdvertising),
+              _buildFeatureRow(Icons.all_inclusive, AppLocalizations.of(context)!.unlimitedHabits),
+              _buildFeatureRow(Icons.palette, AppLocalizations.of(context)!.premiumThemesFeature),
+              _buildFeatureRow(Icons.bar_chart, AppLocalizations.of(context)!.advancedStats),
               const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.all(12),
@@ -153,7 +154,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'Solo \$3.99/mes - 20% menos que la competencia',
+                        AppLocalizations.of(context)!.pricingText,
                         style: TextStyle(
                           color: AppColors.primary,
                           fontWeight: FontWeight.w600,
@@ -170,7 +171,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(
-                'Después',
+                AppLocalizations.of(context)!.later,
                 style: TextStyle(color: AppColors.textSecondaryDark),
               ),
             ),
@@ -186,7 +187,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              child: const Text('Comenzar PRO'),
+              child: Text(AppLocalizations.of(context)!.startPro),
             ),
           ],
         );
@@ -227,7 +228,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
     // Por ahora, solo mostrar snackbar
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Paywall próximamente disponible'),
+        content: Text(AppLocalizations.of(context)!.paywallComingSoon),
         backgroundColor: AppColors.primary,
       ),
     );

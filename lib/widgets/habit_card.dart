@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/habit.dart';
+import '../generated/l10n/app_localizations.dart';
+import '../core/ritmo_typography.dart';
 
 class HabitCard extends StatelessWidget {
   final Habit habit;
@@ -17,12 +19,12 @@ class HabitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isCompleted = habit.isCompletedToday;
     final habitColor = Color(habit.color);
-    
+
     return GestureDetector(
       onTap: onTap,
       onLongPress: onLongPress,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 200), // Reducida para mejor rendimiento
         child: Card(
           elevation: isCompleted ? 1 : 3,
           child: Container(
@@ -64,9 +66,8 @@ class HabitCard extends StatelessWidget {
                       children: [
                         Text(
                           habit.name,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            decoration: isCompleted 
+                          style: RitmoTypography.ritmoCardTitle.copyWith(
+                            decoration: isCompleted
                                 ? TextDecoration.lineThrough
                                 : null,
                             color: isCompleted
@@ -97,10 +98,10 @@ class HabitCard extends StatelessWidget {
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                '${habit.streak} días',
-                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                AppLocalizations.of(context)!.streakFormat(habit.streak),
+                                style: RitmoTypography.statistics.copyWith(
                                   color: Colors.orange[600],
-                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
                                 ),
                               ),
                               const SizedBox(width: 12),

@@ -40,22 +40,22 @@
 
   "allDoneToday": "All done for today!",
   "@allDoneToday": {
-    "description": "Empty state title when no habits for today"
+    "description": "Empty state title when no rhythms for today"
   },
 
-  "noProgrammedHabits": "You have no habits scheduled for today or you've completed them all.",
+  "noProgrammedHabits": "You have no rhythms scheduled for today or you've completed them all.",
   "@noProgrammedHabits": {
     "description": "Empty state description"
   },
 
-  "createFirstHabit": "Create my first habit",
+  "createFirstHabit": "Create my first rhythm",
   "@createFirstHabit": {
-    "description": "Create first habit button text"
+    "description": "Create first rhythm button text"
   },
 
-  "habitUpdated": "Habit updated!",
-  "@habitUpdated": {
-    "description": "Snackbar message when habit is toggled"
+  "rhythmUpdated": "Habit updated!",
+  "@rhythmUpdated": {
+    "description": "Snackbar message when rhythm is toggled"
   },
 
   "edit": "Edit",
@@ -73,18 +73,18 @@
     "description": "Delete button text"
   },
 
-  "deleteHabit": "Delete habit",
+  "deleteHabit": "Delete rhythm",
   "@deleteHabit": {
-    "description": "Delete habit dialog title"
+    "description": "Delete rhythm dialog title"
   },
 
-  "confirmDeleteHabit": "Are you sure you want to delete \"{habitName}\"?",
+  "confirmDeleteHabit": "Are you sure you want to delete \"{rhythmName}\"?",
   "@confirmDeleteHabit": {
-    "description": "Delete habit confirmation message",
+    "description": "Delete rhythm confirmation message",
     "placeholders": {
-      "habitName": {
+      "rhythmName": {
         "type": "String",
-        "description": "Name of the habit to delete"
+        "description": "Name of the rhythm to delete"
       }
     }
   },
@@ -94,13 +94,13 @@
     "description": "Cancel button text"
   },
 
-  "habitDeleted": "Habit \"{habitName}\" deleted",
-  "@habitDeleted": {
+  "rhythmDeleted": "Habit \"{rhythmName}\" deleted",
+  "@rhythmDeleted": {
     "description": "Habit deleted confirmation message",
     "placeholders": {
-      "habitName": {
+      "rhythmName": {
         "type": "String",
-        "description": "Name of the deleted habit"
+        "description": "Name of the deleted rhythm"
       }
     }
   },
@@ -117,8 +117,8 @@
   "next": "Next",
 
   "onboardingWelcomeTitle": "Welcome to Ritmo!",
-  "onboardingWelcomeSubtitle": "The only habit app that adapts to YOUR real life",
-  "onboardingFeatureFlexible": "Flexible habits adapted to you",
+  "onboardingWelcomeSubtitle": "The only rhythm app that adapts to YOUR real life",
+  "onboardingFeatureFlexible": "Flexible rhythms adapted to you",
   "onboardingFeatureMotivating": "Motivating design that inspires",
   "onboardingFeature26Languages": "26 languages - Market leader",
   "onboardingDiscoverDifference": "Discover the difference",
@@ -127,24 +127,24 @@
   "onboardingOtherApps": "Other apps",
   "onboardingProblemExample": "Gym EVERY day ❌",
   "onboardingSolutionExample": "Gym Mon-Wed-Fri ✅ (YOUR rhythm)",
-  "onboardingFlexibilityMessage": "Your life is unique. Your habits should be too.",
+  "onboardingFlexibilityMessage": "Your life is unique. Your rhythms should be too.",
   "onboardingThisSounds": "This sounds familiar",
 
-  "onboardingSetupTitle": "Create your first flexible habit",
+  "onboardingSetupTitle": "Create your first flexible rhythm",
   "onboardingFlexibilityTip": "💡 Tip: Choose realistic days for your lifestyle",
-  "onboardingCreateFirstHabit": "Create my first habit",
+  "onboardingCreateFirstHabit": "Create my first rhythm",
 
   "onboardingCelebrationTitle": "Perfect! You have your rhythm",
-  "onboardingCelebrationSubtitle": "Your first flexible habit is ready to begin",
-  "onboardingDefaultHabitName": "My first habit",
+  "onboardingCelebrationSubtitle": "Your first flexible rhythm is ready to begin",
+  "onboardingDefaultHabitName": "My first rhythm",
   "onboardingNoDaysSelected": "No days selected",
   "onboardingBenefitFlexibility": "Total flexibility",
   "onboardingBenefitMotivation": "Constant motivation",
   "onboardingBenefit26Languages": "26 languages available",
   "onboardingStartMyRhythm": "Start my rhythm",
 
-  "habitName": "Habit name",
-  "habitNameHint": "e.g. Go to gym",
+  "rhythmName": "Habit name",
+  "rhythmNameHint": "e.g. Go to gym",
   "selectDays": "Select days",
 
   "januaryShort": "Jan",
@@ -162,7 +162,7 @@
 
   "newHabit": "New Habit",
   "@newHabit": {
-    "description": "New habit screen title"
+    "description": "New rhythm screen title"
   },
 
   "save": "Save",
@@ -212,7 +212,7 @@
 
   "rescheduleAllHabits": "Reschedule All Habits",
   "@rescheduleAllHabits": {
-    "description": "Reschedule all habits button"
+    "description": "Reschedule all rhythms button"
   },
 
   "updateAllNotifications": "Update all notifications",
@@ -260,18 +260,650 @@
     "description": "Close button text"
   },
 
-  "habitName": "Habit name",
-  "@habitName": {
-    "description": "Label for habit name field"
+  "rhythmName": "Habit name",
+  "@rhythmName": {
+    "description": "Label for rhythm name field"
   },
 
-  "habitNameHint": "E.g: Exercise, Read, Meditate...",
-  "@habitNameHint": {
-    "description": "Hint text for habit name field"
+  "rhythmNameHint": "E.g: Exercise, Read, Meditate...",
+  "@rhythmNameHint": {
+    "description": "Hint text for rhythm name field"
   },
 
   "selectDays": "Select days",
   "@selectDays": {
     "description": "Label for day selection"
-  }
+  },
+
+  "monthlyProgress": "Monthly Progress",
+  "@monthlyProgress": {
+    "description": "Monthly progress chart title"
+  },
+
+  "rhythmStreaks": "Habit Streaks",
+  "@rhythmStreaks": {
+    "description": "Habit streaks chart title"
+  },
+
+  "monthlyCalendar": "Monthly Calendar",
+  "@monthlyCalendar": {
+    "description": "Monthly calendar heatmap title"
+  },
+
+  "monthlyStats": "Monthly Statistics",
+  "@monthlyStats": {
+    "description": "Monthly statistics section title"
+  },
+
+  "activeDays": "Active Days",
+  "@activeDays": {
+    "description": "Active days stat label"
+  },
+
+  "bestStreak": "Best Streak",
+  "@bestStreak": {
+    "description": "Best streak stat label"
+  },
+
+  "averageCompletion": "Average",
+  "@averageCompletion": {
+    "description": "Average completion stat label"
+  },
+
+  "settings": "Settings",
+  "language": "Language",
+  "themes": "Themes",
+  "themeBasicBlue": "Basic Blue",
+  "themeBasicGreen": "Basic Green",
+  "themeBasicPurple": "Basic Purple",
+  "themeCyberNeon": "🌟 Cyber Neon",
+  "themeAuroraInspiration": "🎨 Aurora Inspiration",
+  "themeZenGarden": "🧘 Zen Garden",
+  "premiumThemes": "Premium Themes",
+  "activatePremium": "Activate Premium (Testing)",
+  "premiumPrice": "$2.99/month",
+  "notifications": "Notifications",
+  "manageHabits": "Manage Habits",
+  "noActiveHabits": "No active rhythms",
+  "createFirstHabitToStart": "Create your first rhythm to get started",
+  "noPausedHabits": "No paused rhythms",
+  "pausedHabitsWillAppearHere": "Paused rhythms will appear here",
+  "noHabits": "You have no rhythms",
+  "startJourneyCreatingFirstHabit": "Start your journey by creating your first rhythm",
+  "deleteHabitConfirm": "Are you sure you want to delete this rhythm?",
+  "editHabit": "Edit Habit",
+  "basicInformation": "Basic Information",
+  "rhythmNameLabel": "Habit name",
+  "descriptionOptional": "Description (optional)",
+  "descriptionHint": "E.g: 8 glasses per day, 30 minutes...",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+  "allDays": "All days",
+  "weekdays": "Weekdays",
+  "deleteHabitButton": "Delete rhythm",
+  "deleteWarning": "This action cannot be undone. All rhythm data including completion history will be deleted.",
+  "selectAtLeastOneDay": "Select at least one day of the week",
+  "rhythmUpdatedSuccess": "Habit \"{rhythmName}\" updated successfully",
+  "@rhythmUpdatedSuccess": {
+    "placeholders": {
+      "rhythmName": {"type": "String"}
+    }
+  },
+  "errorUpdatingHabit": "Error updating rhythm: {error}",
+  "@errorUpdatingHabit": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "deleteHabitTitle": "Delete rhythm",
+  "deleteHabitConfirmation": "Are you sure you want to delete \"{rhythmName}\"?\\n\\nThis action cannot be undone. All rhythm data including completion history will be deleted.",
+  "@deleteHabitConfirmation": {
+    "placeholders": {
+      "rhythmName": {"type": "String"}
+    }
+  },
+  "rhythmDeletedSuccess": "Habit \"{rhythmName}\" deleted",
+  "@rhythmDeletedSuccess": {
+    "placeholders": {
+      "rhythmName": {"type": "String"}
+    }
+  },
+  "errorDeletingHabit": "Error deleting rhythm: {error}",
+  "@errorDeletingHabit": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "limitReached": "Limit reached: maximum {maxHabits} rhythms in free plan.",
+  "@limitReached": {
+    "placeholders": {
+      "maxHabits": {"type": "int"}
+    }
+  },
+  "premiumThemesOnly": "Premium themes are only available in Ritmo PRO.",
+  "advancedStatsOnly": "Advanced statistics available in Ritmo PRO.",
+  "exportDataOnly": "Export data is available in Ritmo PRO.",
+  "aiInsightsOnly": "AI Insights are available in Ritmo PRO.",
+  "featureOnlyInPro": "This feature is available in Ritmo PRO.",
+  "loadingYourHabits": "Loading your rhythms...",
+  "guestMode": "Guest mode - Your data will not be saved",
+  "createAccountToSave": "Create an account to save your rhythms and sync them across devices.",
+  "later": "Later",
+  "loginError": "Login error: {error}",
+  "@loginError": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "logoutError": "Error logging out: {error}",
+  "@logoutError": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "wrongPassword": "Wrong password.",
+  "passwordTooShort": "Password must be at least 6 characters.",
+  "invalidEmail": "Email is not valid.",
+  "tooManyAttempts": "Too many attempts. Try again later.",
+  "connectionError": "Connection error. Check your internet.",
+  "authError": "Authentication error: {message}",
+  "@authError": {
+    "placeholders": {
+      "message": {"type": "String"}
+    }
+  },
+  "champion": "Champion",
+  "hero": "Hero",
+  "mythic": "Mythic",
+  "maximum": "Maximum",
+  "completeFirstHabit3Days": "Complete your first rhythm 3 days in a row",
+  "maintain7DayStreak": "Maintain a 7-day streak",
+  "maintain30DayStreak": "Maintain a 30-day streak",
+  "completeFirstHabit": "Complete your first rhythm",
+  "complete100Habits": "Complete 100 rhythms total",
+  "complete500Habits": "Complete 500 rhythms total",
+  "completeAllHabitsWeek": "Complete all your rhythms during a week",
+  "create5DifferentHabits": "Create 5 different rhythms",
+  "reachLevel5": "Reach level 5",
+  "noHabitsToday": "You have no rhythms scheduled for today or you've completed them all.",
+  "allHabitsPaused": "All your rhythms are paused. Reactivate some or create a new one.",
+  "startJourneyBetterHabits": "Start your journey towards better rhythms by creating your first daily rhythm.",
+  "createNewHabit": "Create new rhythm",
+  "createMyFirstHabit": "Create my first rhythm",
+  "notificationSettings": "Notification Settings",
+  "receiveRemindersForHabits": "Receive reminders for your rhythms",
+  "openSystemSettings": "Open system settings to manage notifications",
+  "settingsLabel": "Settings",
+  "rhythmReminders": "Habit Reminders",
+  "notificationsToRemind": "Notifications to remind you to complete your daily rhythms",
+  "reminderTicker": "Habit reminder",
+  "timeToWorkOnHabit": "Time to work on your rhythm!",
+  "notificationScheduled": "✅ Notification scheduled: {rhythmName} - {dateTime}",
+  "@notificationScheduled": {
+    "placeholders": {
+      "rhythmName": {"type": "String"},
+      "dateTime": {"type": "String"}
+    }
+  },
+  "notificationsCancelled": "✅ Cancelled notifications for rhythm {rhythmId}",
+  "@notificationsCancelled": {
+    "placeholders": {
+      "rhythmId": {"type": "String"}
+    }
+  },
+  "errorCancellingNotifications": "❌ Error cancelling notifications for rhythm {rhythmId}: {error}",
+  "@errorCancellingNotifications": {
+    "placeholders": {
+      "rhythmId": {"type": "String"},
+      "error": {"type": "String"}
+    }
+  },
+  "instantNotificationSent": "✅ Instant notification sent: {title}",
+  "@instantNotificationSent": {
+    "placeholders": {
+      "title": {"type": "String"}
+    }
+  },
+  "errorSendingNotification": "❌ Error sending instant notification: {error}",
+  "@errorSendingNotification": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "testNotificationTitle": "🧪 Test Notification",
+  "scheduledNotificationTitle": "⏰ Scheduled Notification",
+  "scheduledNotificationBody": "This notification was scheduled 5 seconds ago",
+  "testNotificationScheduled": "✅ Test notification scheduled for 5 seconds",
+  "errorSchedulingTestNotification": "❌ Error scheduling test notification: {error}",
+  "@errorSchedulingTestNotification": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "localizationInitialized": "✅ Localization initialized: {languageCode}",
+  "@localizationInitialized": {
+    "placeholders": {
+      "languageCode": {"type": "String"}
+    }
+  },
+  "notificationReceivediOS": "📱 Notification received on iOS: {title}",
+  "@notificationReceivediOS": {
+    "placeholders": {
+      "title": {"type": "String"}
+    }
+  },
+  "userTappedNotification": "📱 User tapped notification: {payload}",
+  "@userTappedNotification": {
+    "placeholders": {
+      "payload": {"type": "String"}
+    }
+  },
+
+  "rhythmUpdatedSuccessfully": "Habit \"{rhythmName}\" updated successfully",
+  "@rhythmUpdatedSuccessfully": {
+    "placeholders": {
+      "rhythmName": {"type": "String"}
+    }
+  },
+  "confirmDeleteHabitMessage": "Are you sure you want to delete \"{rhythmName}\"?\\n\\nThis action cannot be undone. All rhythm data including completion history will be deleted.",
+  "@confirmDeleteHabitMessage": {
+    "placeholders": {
+      "rhythmName": {"type": "String"}
+    }
+  },
+  "rhythmDeletedSuccessfully": "Habit \"{rhythmName}\" deleted",
+  "@rhythmDeletedSuccessfully": {
+    "placeholders": {
+      "rhythmName": {"type": "String"}
+    }
+  },
+  "rhythmCreatedSuccessfully": "Habit \"{rhythmName}\" created successfully",
+  "@rhythmCreatedSuccessfully": {
+    "placeholders": {
+      "rhythmName": {"type": "String"}
+    }
+  },
+  "confirmDeleteHabitShort": "Are you sure you want to delete \"{rhythmName}\"?",
+  "@confirmDeleteHabitShort": {
+    "placeholders": {
+      "rhythmName": {"type": "String"}
+    }
+  },
+  "ensureAppNotInDoNotDisturb": "• Make sure the app is not in \"Do Not Disturb\" mode\\n",
+
+  "firstStreak": "First Streak",
+  "firstStreakDescription": "Complete your first rhythm 3 days in a row",
+  "weekWarrior": "Week Warrior",
+  "weekWarriorDescription": "Maintain a 7-day streak",
+  "monthMaster": "Month Master",
+  "monthMasterDescription": "Maintain a 30-day streak",
+  "firstStep": "First Step",
+  "firstStepDescription": "Complete your first rhythm",
+  "centuryClub": "Century Club",
+  "centuryClubDescription": "Complete 100 rhythms total",
+  "marathonRunner": "Marathon Runner",
+  "marathonRunnerDescription": "Complete 500 rhythms total",
+  "perfectWeek": "Perfect Week",
+  "perfectWeekDescription": "Complete all your rhythms during a week",
+  "rhythmCreator": "Habit Creator",
+  "rhythmCreatorDescription": "Create 5 different rhythms",
+
+  "achievements": "Achievements",
+  "yourProgress": "Your Progress",
+  "level": "Level",
+  "points": "Points",
+  "totalAccumulated": "Total accumulated",
+  "achievementsLabel": "Achievements",
+  "unlocked": "Unlocked",
+  "streak": "Streak",
+  "maxDays": "Max days",
+  "currentLevel": "Current Level",
+  "nextLevel": "Next Level",
+  "pointsToNext": "Points to next",
+  "allAchievements": "All Achievements",
+  "progressToNextLevel": "Progress to Next Level",
+  "pointsToLevel": "{points} points to level {level}",
+  "@pointsToLevel": {
+    "placeholders": {
+      "points": {"type": "int"},
+      "level": {"type": "int"}
+    }
+  },
+  "unlockedCount": "Unlocked ({count})",
+  "@unlockedCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "lockedCount": "Locked ({count})",
+  "@lockedCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+
+  "active": "Active",
+  "paused": "Paused",
+  "all": "All",
+  "premiumTestingActivated": "🎉 Premium activated for testing",
+
+  "removeAds": "Remove ads",
+  "removePermanentAds": "Remove advertising",
+  "noAdvertising": "No advertising",
+  "premiumThemesFeature": "Premium themes",
+  "startPro": "Start PRO",
+  "drinkWater": "Drink water",
+  "exercise": "Exercise",
+  "read": "Read",
+  "completed": "Completed",
+  "currentStreak": "Current Streak",
+  "scheduled": "Scheduled",
+  "goodAfternoon": "Good afternoon",
+  "goodEvening": "Good evening",
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December",
+  "mondayFull": "Monday",
+  "tuesdayFull": "Tuesday",
+  "wednesdayFull": "Wednesday",
+  "thursdayFull": "Thursday",
+  "fridayFull": "Friday",
+  "saturdayFull": "Saturday",
+  "sundayFull": "Sunday",
+  "themeMode": "Theme mode",
+  "light": "Light",
+  "dark": "Dark",
+  "system": "System",
+  "pro": "PRO",
+  "appInformation": "App Information",
+  "appName": "App Name",
+  "version": "Version",
+  "currentLanguage": "Current Language",
+  "supportedLanguages": "Supported Languages",
+  "pause": "Pause",
+  "resume": "Resume",
+  "pending": "Pending",
+  "monthly": "Monthly",
+  "annual": "Annual",
+  "lifetime": "Lifetime",
+  "limitedOffer": "LIMITED OFFER",
+  "unlockFullPotential": "Unlock the full potential of Ritmo",
+  "startWithRitmoPro": "Start with Ritmo PRO",
+  "noAdvertisingFeature": "No advertising",
+  "completelyCleanExperience": "Completely clean experience",
+  "cloudBackup": "Cloud backup",
+  "yourDataSafeInCloud": "Your data safe in the cloud",
+  "aiInsights": "AI Insights",
+  "intelligentRecommendations": "Intelligent recommendations",
+  "chooseYourPlan": "Choose your plan",
+  "beginnerlevel": "Beginner",
+  "apprenticeLevel": "Apprentice",
+  "dedicatedLevel": "Dedicated",
+  "consistentLevel": "Consistent",
+  "expertLevel": "Expert",
+  "masterLevel": "Master",
+  "legendLevel": "Legend",
+  "championLevel": "Champion",
+  "heroLevel": "Hero",
+  "mythicLevel": "Mythic",
+  "maximumLevel": "Maximum",
+  "defaultUser": "User",
+  "activateNotifications": "Activate Notifications",
+  "updateAllNotificationsText": "Update all notifications",
+  "notificationsRescheduledSuccessfully": "Notifications rescheduled successfully",
+  "notificationHelp": "Notification Help",
+  "helpWithNotifications": "Help with Notifications",
+  "understood": "Understood",
+  "languagesCount": "{count} languages",
+  "@languagesCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "unlocked": "Unlocked",
+  "achievements": "Achievements",
+  "icon": "Icon",
+  "color": "Color",
+  "frequency": "Frequency",
+  "reminder": "Reminder",
+  "reminderTime": "Reminder time",
+  "save": "Save",
+  "pleaseEnterName": "Please enter a name",
+  "nameMinTwoCharacters": "Name must be at least 2 characters",
+  "totalPoints": "total points",
+  "progressToLevel": "Progress to level {level}",
+  "@progressToLevel": {
+    "placeholders": {
+      "level": {"type": "int"}
+    }
+  },
+  "maxLevelReached": "Max level reached!",
+  "maxStreak": "Max streak",
+  "tapToViewMore": "Tap to view more",
+  "achievementUnlocked": "Achievement Unlocked!",
+  "excellent": "Excellent!",
+  "pointsWithCount": "{count} points",
+  "@pointsWithCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "unlockedLabel": "Unlocked",
+
+  "percentCompleted": "{percent}% Completed",
+  "@percentCompleted": {
+    "placeholders": {
+      "percent": {"type": "int"}
+    }
+  },
+  "totalHabits": "Total Habits",
+  "percentThisWeek": "{percent}% This week",
+  "@percentThisWeek": {
+    "placeholders": {
+      "percent": {"type": "int"}
+    }
+  },
+  "percentThisMonth": "{percent}% This month",
+  "@percentThisMonth": {
+    "placeholders": {
+      "percent": {"type": "int"}
+    }
+  },
+  "days": "days",
+  "twoWeeks": "2 wks",
+  "oneMonth": "1 month",
+  "weekNumber": "Week {number} of {year}",
+  "@weekNumber": {
+    "placeholders": {
+      "number": {"type": "int"},
+      "year": {"type": "int"}
+    }
+  },
+  "dayOfMonth": "Day {day} of {total}",
+  "@dayOfMonth": {
+    "placeholders": {
+      "day": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "dateFormat": "{day} {month}",
+  "@dateFormat": {
+    "placeholders": {
+      "day": {"type": "int"},
+      "month": {"type": "String"}
+    }
+  },
+  "dateRangeFormat": "{startDay} {startMonth} - {endDay} {endMonth}",
+  "@dateRangeFormat": {
+    "placeholders": {
+      "startDay": {"type": "int"},
+      "startMonth": {"type": "String"},
+      "endDay": {"type": "int"},
+      "endMonth": {"type": "String"}
+    }
+  },
+  "monthYear": "{month} {year}",
+  "@monthYear": {
+    "placeholders": {
+      "month": {"type": "String"},
+      "year": {"type": "int"}
+    }
+  },
+
+  "goodMorning": "Good morning",
+
+  "motivationPerfectDay": "PERFECT! 🎆\\nYou completed EVERYTHING today.\\nYou're unstoppable!",
+  "motivationAlmostPerfect": "Almost perfect! 🌟\\nJust a little bit left.\\nYou can do it!",
+  "motivationExcellentDay": "Excellent day! 💪\\nYou're doing great.\\nKeep it up!",
+  "motivationGoodProgress": "Good progress! 🚀\\nYou're on the right track.\\nDon't stop!",
+  "motivationStarted": "You started! 🌱\\nEvery step counts.\\nContinue!",
+  "motivationFirstStep": "First step! ⭐\\nThe hardest part is over.\\nKeep going!",
+  "motivationYourMoment": "Your moment! 🌅\\nStart now.\\nMake it happen!",
+
+  "motivationPerfectWeek": "PERFECT WEEK! 🏆\\nYou mastered all your rhythms.\\nYou're incredible!",
+  "motivationBrutalWeek": "Brutal week! 🔥\\nAlmost perfect.\\nYou're a champion!",
+  "motivationGreatWeek": "Great week! 💪\\nYour discipline pays off.\\nWell done!",
+  "motivationGoodRhythm": "Good rhythm! 📈\\nYou're building.\\nKeep it up!",
+  "motivationProgressing": "Progressing! 🌱\\nEvery week counts.\\nDon't stop!",
+  "motivationStartedWeek": "Started! ✨\\nYou took the first step.\\nLet's improve!",
+  "motivationNewWeek": "New week! 🌟\\nFresh start.\\nMake it epic!",
+
+  "motivationLegendaryMonth": "LEGENDARY MONTH! 👑\\nTotal perfection.\\nYou're inspiration!",
+  "motivationEpicMonth": "Epic month! 🎆\\nIncredible results.\\nUnstoppable!",
+  "motivationSolidMonth": "Solid month! 💪\\nYour consistency pays off.\\nGreat work!",
+  "motivationGoodMonth": "Good month! 📊\\nYou're progressing.\\nKeep improving!",
+  "motivationBuilding": "Building! 🏗️\\nEvery month counts.\\nKeep going!",
+  "motivationSeedsPlanted": "Seeds planted! 🌱\\nYou've started.\\nYou'll grow!",
+  "motivationNewMonth": "New month! 🚀\\nInfinite possibilities.\\nMake it yours!",
+
+  "motivationPerfectShort": "PERFECT! You completed everything today",
+  "motivationAlmostPerfectShort": "Almost perfect! Just a little bit left",
+  "motivationExcellentShort": "Excellent day! You're doing great",
+  "motivationGoodProgressShort": "Good progress! You're on the right track",
+  "motivationStartedShort": "You started! Every step counts",
+  "motivationFirstStepShort": "First step! The hardest part is over",
+  "motivationYourMomentShort": "Your moment! Start now",
+
+  "statistics": "Statistics",
+  "week": "Week",
+  "trends": "Trends",
+  "completedHabits": "Completed",
+  "maxStreak": "Max Streak",
+  "percentage": "Percentage",
+  "progressToday": "Today's Progress",
+  "completedCount": "Completed",
+  "pendingCount": "Pending",
+  "noHabitsToShow": "No rhythms to show",
+  "todaysHabits": "Today's Habits",
+  "noHabitsScheduledToday": "No rhythms scheduled for today",
+  "weeklyProgress": "Weekly Progress",
+  "dayShortMon": "M",
+  "dayShortTue": "T",
+  "dayShortWed": "W",
+  "dayShortThu": "T",
+  "dayShortFri": "F",
+  "dayShortSat": "S",
+  "dayShortSun": "S",
+  "weeklyHeatMap": "Weekly Heat Map",
+  "legend": "Legend",
+  "notScheduled": "Not scheduled",
+  "week1": "W1",
+  "week2": "W2",
+  "week3": "W3",
+  "week4": "W4",
+
+  "loadingHabits": "Loading your rhythms...",
+  "guestModeWarning": "Guest mode - Your data will not be saved",
+  "createAccount": "Create account",
+  "saveYourProgressTitle": "Save your progress",
+  "createAccountDescription": "Create an account to save your rhythms and sync them across devices.",
+  "accountCreatedSuccess": "Account created successfully!",
+
+  "rhythmoPro": "HábitoPro",
+  "productivityCoach": "Your productivity coach",
+
+  "enjoyRitmoInterruptions": "Enjoy Ritmo without interruptions with Ritmo PRO:",
+  "unlimitedHabits": "Unlimited rhythms",
+  "advancedStats": "Advanced statistics",
+  "pricingText": "Only $3.99/month - 20% less than competition",
+  "paywallComingSoon": "Paywall coming soon",
+
+  "firstStreakAchievement": "First Streak",
+  "weekWarriorAchievement": "Week Warrior",
+  "monthMasterAchievement": "Month Master",
+  "firstStepAchievement": "First Step",
+  "centuryClubAchievement": "Century Club",
+  "marathonRunnerAchievement": "Marathon Runner",
+  "perfectWeekAchievement": "Perfect Week",
+  "rhythmCollectorAchievement": "Collector",
+  "rhythmMasterAchievement": "Rhythm Master",
+
+  "streakFormat": "{streak} days",
+  "@streakFormat": {
+    "placeholders": {
+      "streak": {"type": "int"}
+    }
+  },
+
+  "januaryShort": "Jan",
+  "februaryShort": "Feb",
+  "marchShort": "Mar",
+  "aprilShort": "Apr",
+  "mayShort": "May",
+  "juneShort": "Jun",
+  "julyShort": "Jul",
+  "augustShort": "Aug",
+  "septemberShort": "Sep",
+  "octoberShort": "Oct",
+  "novemberShort": "Nov",
+  "decemberShort": "Dec",
+
+  "rhythmReminders": "Habit Reminders",
+  "notificationsToRemindHabits": "Notifications to remind you to complete your daily rhythms",
+  "rhythmReminderTicker": "Habit reminder",
+  "defaultHabitReminder": "Time to work on your rhythm!",
+  "testNotificationBody": "Notification system working correctly!",
+  "scheduledNotificationBody": "This notification was scheduled 5 seconds ago",
+
+  "rhythmUpdatedMessage": "Habit updated!",
+  "openSystemSettingsMessage": "Open system settings to manage notifications",
+  "notReceivingReminders": "Not receiving reminders?",
+  "rhythmDeletedMessage": "Habit deleted",
+  "updateError": "Error updating rhythm",
+  "deleteError": "Error deleting rhythm",
+  "confirmDeleteHabit": "Are you sure you want to delete \"{rhythmName}\"?",
+  "@confirmDeleteHabit": {
+    "placeholders": {
+      "rhythmName": {"type": "String"}
+    }
+  },
+  "habitUpdatedMessage": "Rhythm updated!",
+  "habitDeletedMessage": "Rhythm deleted",
+  "habitNameLabel": "Rhythm Name",
+  "habitReminders": "Rhythm Reminders",
+  "habitReminderTicker": "Rhythm reminder",
+  "habitStreaks": "Rhythm Streaks",
+  "habitCollectorAchievement": "Rhythm Collector",
+  "habitCreatedSuccessfully": "Rhythm created successfully",
+  "habitNameHint": "E.g: Exercise, Read, Meditate...",
+  "welcomeToRitmoPro": "Welcome to Ritmo PRO! \ud83c\udf89",
+  "purchaseError": "Purchase error",
+  "googleLogin": "Google",
+  "cancel": "Cancel",
+  "send": "Send",
+  "passwordResetMessage": "Enter your email and we'll send you a link to reset your password."
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/locale_provider.dart';
+import '../providers/theme_provider.dart';
 import '../generated/l10n/app_localizations.dart';
 import '../core/theme.dart';
 
@@ -12,19 +13,273 @@ class SettingsScreen extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundDark,
       appBar: AppBar(
-        title: Text('Settings'), // Will be localized later
-        elevation: 0,
+        title: Text(l10n.settings),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Theme Section
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.palette,
+                          color: Theme.of(context).primaryColor,
+                          size: 24,
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          l10n.themes,
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Consumer<ThemeProvider>(
+                      builder: (context, themeProvider, child) {
+                        return Column(
+                          children: [
+                            // Modo de tema
+                            ListTile(
+                              leading: Icon(
+                                Icons.brightness_6,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              title: Text(AppLocalizations.of(context)!.themeMode),
+                              subtitle: Text(themeProvider.getThemeModeName(themeProvider.themeMode, context)),
+                              trailing: DropdownButton<AppThemeMode>(
+                                value: themeProvider.themeMode,
+                                onChanged: (AppThemeMode? newMode) {
+                                  if (newMode != null) {
+                                    themeProvider.setThemeMode(newMode);
+                                  }
+                                },
+                                items: AppThemeMode.values.map((AppThemeMode mode) {
+                                  return DropdownMenuItem<AppThemeMode>(
+                                    value: mode,
+                                    child: Text(themeProvider.getThemeModeName(mode, context)),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                            const Divider(),
+                            // Esquema de colores
+                            ListTile(
+                              leading: Icon(
+                                Icons.color_lens,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              title: Text(l10n.themes),
+                              subtitle: Text(themeProvider.getColorSchemeName(themeProvider.colorScheme)),
+                            ),
+                            const SizedBox(height: 8),
+                            // Temas Gratuitos
+                            Text(
+                              l10n.themes,
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.green,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            GridView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 6,
+                                childAspectRatio: 1,
+                                crossAxisSpacing: 8,
+                                mainAxisSpacing: 8,
+                              ),
+                              itemCount: 3, // Only free themes
+                              itemBuilder: (context, index) {
+                                final scheme = [AppColorScheme.blue, AppColorScheme.green, AppColorScheme.purple][index];
+                                final isSelected = themeProvider.colorScheme == scheme;
+                                return GestureDetector(
+                                  onTap: () => themeProvider.setColorScheme(scheme),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: _getSchemeColor(scheme),
+                                      shape: BoxShape.circle,
+                                      border: isSelected
+                                          ? Border.all(
+                                              color: Theme.of(context).primaryColor,
+                                              width: 3,
+                                            )
+                                          : null,
+                                    ),
+                                    child: isSelected
+                                        ? const Icon(
+                                            Icons.check,
+                                            color: Colors.white,
+                                            size: 20,
+                                          )
+                                        : null,
+                                  ),
+                                );
+                              },
+                            ),
+
+                            const SizedBox(height: 16),
+
+                            // Botón Premium Temporal (para testing)
+                            if (!themeProvider.isPremiumUser)
+                              ElevatedButton.icon(
+                                onPressed: () {
+                                  themeProvider.enablePremiumForTesting();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(l10n.premiumTestingActivated),
+                                      backgroundColor: Colors.green,
+                                    ),
+                                  );
+                                },
+                                icon: const Icon(Icons.star),
+                                label: Text(l10n.activatePremium),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.amber,
+                                  foregroundColor: Colors.black,
+                                ),
+                              ),
+
+                            // Temas Premium
+                            Row(
+                              children: [
+                                Text(
+                                  l10n.premiumThemes,
+                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.amber[700],
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Text(
+                                    l10n.premiumPrice,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+
+                            // Premium Themes Grid
+                            Column(
+                              children: [
+                                AppColorScheme.executiveMinimalist,
+                                AppColorScheme.neonCyber,
+                                AppColorScheme.auroraInspiration,
+                                AppColorScheme.zenGarden,
+                                AppColorScheme.glassmorphism,
+                                AppColorScheme.neumorphism,
+                              ].map((scheme) {
+                                final isSelected = themeProvider.colorScheme == scheme;
+                                final isPremium = themeProvider.isThemePremium(scheme);
+                                final canSelect = themeProvider.isPremiumUser || !isPremium;
+
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: Card(
+                                    elevation: isSelected ? 4 : 1,
+                                    color: isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
+                                    child: ListTile(
+                                      leading: Container(
+                                        width: 40,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          color: _getSchemeColor(scheme),
+                                          shape: BoxShape.circle,
+                                          border: isSelected
+                                              ? Border.all(
+                                                  color: Theme.of(context).primaryColor,
+                                                  width: 2,
+                                                )
+                                              : null,
+                                        ),
+                                        child: isSelected
+                                            ? const Icon(Icons.check, color: Colors.white, size: 20)
+                                            : (isPremium && !themeProvider.isPremiumUser)
+                                                ? const Icon(Icons.lock, color: Colors.white, size: 20)
+                                                : null,
+                                      ),
+                                      title: Text(
+                                        themeProvider.getColorSchemeName(scheme),
+                                        style: TextStyle(
+                                          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                          color: canSelect ? null : Colors.grey,
+                                        ),
+                                      ),
+                                      trailing: isPremium
+                                          ? Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: Colors.amber,
+                                                borderRadius: BorderRadius.circular(8),
+                                              ),
+                                              child: const Text(
+                                                'PRO',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            )
+                                          : null,
+                                      onTap: canSelect
+                                          ? () => themeProvider.setColorScheme(scheme)
+                                          : () {
+                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackBar(
+                                                  content: Text('🔒 ${l10n.premiumThemesOnly}'),
+                                                  backgroundColor: Colors.amber[700],
+                                                  action: SnackBarAction(
+                                                    label: l10n.activatePremium,
+                                                    textColor: Colors.black,
+                                                    onPressed: () {
+                                                      themeProvider.enablePremiumForTesting();
+                                                    },
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
             // Language Section
             Card(
-              color: AppColors.surfaceDark,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -34,15 +289,14 @@ class SettingsScreen extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.language,
-                          color: AppColors.primary,
+                          color: Theme.of(context).primaryColor,
                           size: 24,
                         ),
                         const SizedBox(width: 12),
                         Text(
-                          'Language / Idioma / Sprache',
+                          l10n.language,
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
-                            color: AppColors.textDark,
                           ),
                         ),
                       ],
@@ -56,31 +310,31 @@ class SettingsScreen extends StatelessWidget {
                             final languageName = LocaleProvider.getLanguageName(locale.languageCode);
 
                             return Card(
-                              color: isSelected ? AppColors.primary.withOpacity(0.1) : Colors.transparent,
-                              elevation: isSelected ? 2 : 0,
+                              color: isSelected ? Theme.of(context).primaryColor : Colors.transparent,
+                              elevation: isSelected ? 4 : 0,
                               child: ListTile(
                                 leading: Icon(
                                   Icons.check_circle,
-                                  color: isSelected ? AppColors.primary : Colors.transparent,
+                                  color: isSelected ? Colors.white : Colors.transparent,
                                 ),
                                 title: Text(
                                   languageName,
                                   style: TextStyle(
-                                    color: isSelected ? AppColors.primary : AppColors.textDark,
+                                    color: isSelected ? Colors.white : Theme.of(context).textTheme.titleMedium?.color,
                                     fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                                   ),
                                 ),
                                 subtitle: Text(
                                   _getLanguageNativeName(locale.languageCode),
                                   style: TextStyle(
-                                    color: isSelected ? AppColors.primary.withOpacity(0.8) : AppColors.textSecondaryDark,
+                                    color: isSelected ? Colors.white.withOpacity(0.9) : Theme.of(context).textTheme.bodySmall?.color,
                                     fontSize: 12,
                                   ),
                                 ),
                                 trailing: isSelected
                                     ? Icon(
                                         Icons.star,
-                                        color: AppColors.primary,
+                                        color: Colors.white,
                                         size: 20,
                                       )
                                     : null,
@@ -90,7 +344,7 @@ class SettingsScreen extends StatelessWidget {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text('Language changed to $languageName'),
-                                        backgroundColor: AppColors.primary,
+                                        backgroundColor: Theme.of(context).primaryColor,
                                         duration: const Duration(seconds: 2),
                                       ),
                                     );
@@ -111,7 +365,6 @@ class SettingsScreen extends StatelessWidget {
 
             // App Info Section
             Card(
-              color: AppColors.surfaceDark,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -121,7 +374,7 @@ class SettingsScreen extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.info_outline,
-                          color: AppColors.primary,
+                          color: Theme.of(context).primaryColor,
                           size: 24,
                         ),
                         const SizedBox(width: 12),
@@ -129,7 +382,6 @@ class SettingsScreen extends StatelessWidget {
                           'App Information',
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
-                            color: AppColors.textDark,
                           ),
                         ),
                       ],
@@ -144,58 +396,6 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 20),
-
-            // Test Section
-            Card(
-              color: AppColors.surfaceDark,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.science,
-                          color: AppColors.primary,
-                          size: 24,
-                        ),
-                        const SizedBox(width: 12),
-                        Text(
-                          'Localization Test',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textDark,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: AppColors.primary.withOpacity(0.3)),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Localized strings test:', style: TextStyle(color: AppColors.textDark, fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 8),
-                          Text('• ${l10n.appTitle}', style: TextStyle(color: AppColors.textDark)),
-                          Text('• ${l10n.today}', style: TextStyle(color: AppColors.textDark)),
-                          Text('• ${l10n.save}', style: TextStyle(color: AppColors.textDark)),
-                          Text('• ${l10n.cancel}', style: TextStyle(color: AppColors.textDark)),
-                          Text('• ${l10n.loading}', style: TextStyle(color: AppColors.textDark)),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
           ],
         ),
       ),
@@ -213,7 +413,6 @@ class SettingsScreen extends StatelessWidget {
             child: Text(
               label,
               style: TextStyle(
-                color: AppColors.textSecondaryDark,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
@@ -223,7 +422,6 @@ class SettingsScreen extends StatelessWidget {
             child: Text(
               value,
               style: TextStyle(
-                color: AppColors.textDark,
                 fontSize: 14,
               ),
             ),
@@ -295,6 +493,32 @@ class SettingsScreen extends StatelessWidget {
 
       default:
         return languageCode.toUpperCase();
+    }
+  }
+
+  Color _getSchemeColor(AppColorScheme scheme) {
+    switch (scheme) {
+      // Free themes
+      case AppColorScheme.blue:
+        return Colors.blue;
+      case AppColorScheme.green:
+        return Colors.green;
+      case AppColorScheme.purple:
+        return Colors.purple;
+
+      // Premium themes
+      case AppColorScheme.executiveMinimalist:
+        return const Color(0xFF3498db); // Professional Blue
+      case AppColorScheme.neonCyber:
+        return const Color(0xFF00ffff); // Electric Cyan
+      case AppColorScheme.auroraInspiration:
+        return const Color(0xFFff69b4); // Aurora Pink
+      case AppColorScheme.zenGarden:
+        return const Color(0xFF87ceeb); // Sage Green
+      case AppColorScheme.glassmorphism:
+        return const Color(0xFF4c83ff); // Vivid Blue
+      case AppColorScheme.neumorphism:
+        return const Color(0xFF667eea); // Soft Blue
     }
   }
 }

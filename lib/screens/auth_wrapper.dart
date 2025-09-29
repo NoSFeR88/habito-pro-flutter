@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../providers/habit_provider.dart';
+import '../generated/l10n/app_localizations.dart';
 import 'splash_screen.dart';
 import 'login_screen.dart';
 import 'home_screen.dart';
@@ -144,7 +145,7 @@ class _UserAuthenticatedScreenState extends State<_UserAuthenticatedScreen> {
             children: [
               CircularProgressIndicator(),
               SizedBox(height: 16),
-              Text('Cargando tus hábitos...'),
+              Text(AppLocalizations.of(context)!.loadingHabits),
             ],
           ),
         ),
@@ -193,7 +194,7 @@ class _AnonymousUserWrapper extends StatelessWidget {
                     const SizedBox(width: 8),
                     const Expanded(
                       child: Text(
-                        'Modo invitado - Tus datos no se guardarán',
+                        AppLocalizations.of(context)!.guestModeWarning,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -204,7 +205,7 @@ class _AnonymousUserWrapper extends StatelessWidget {
                     TextButton(
                       onPressed: () => _showCreateAccountDialog(context),
                       child: const Text(
-                        'Crear cuenta',
+                        AppLocalizations.of(context)!.createAccount,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -227,14 +228,14 @@ class _AnonymousUserWrapper extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Guardar tu progreso'),
+          title: Text(AppLocalizations.of(context)!.saveYourProgressTitle),
           content: const Text(
-            'Crea una cuenta para guardar tus hábitos y sincronizarlos entre dispositivos.',
+            AppLocalizations.of(context)!.createAccountDescription,
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Más tarde'),
+              child: Text(AppLocalizations.of(context)!.later),
             ),
             Consumer<AuthProvider>(
               builder: (context, authProvider, child) {
@@ -245,12 +246,12 @@ class _AnonymousUserWrapper extends StatelessWidget {
                     if (context.mounted && success) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('¡Cuenta creada exitosamente!'),
+                          content: Text(AppLocalizations.of(context)!.accountCreatedSuccess),
                         ),
                       );
                     }
                   },
-                  child: const Text('Crear cuenta'),
+                  child: Text(AppLocalizations.of(context)!.createAccount),
                 );
               },
             ),

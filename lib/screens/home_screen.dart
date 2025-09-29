@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/habit_provider.dart';
+import '../providers/gamification_provider.dart';
 import '../widgets/habit_card.dart';
 import '../widgets/stats_overview.dart';
+import '../widgets/gamification_card.dart';
+import '../widgets/dynamic_ritmo_logo.dart';
 import '../models/habit.dart';
 import '../core/theme.dart';
 import '../services/notification_service.dart';
@@ -22,13 +25,36 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // Cache responsive values to avoid recalculating on every build
+  late bool _isLandscape;
+  late bool _isTablet;
+  late EdgeInsets _screenPadding;
+  late double _fabSize;
+  late String _currentDateString;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final provider = Provider.of<HabitProvider>(context, listen: false);
-      provider.initializeHabits();
+      final habitProvider = Provider.of<HabitProvider>(context, listen: false);
+      final gamificationProvider = Provider.of<GamificationProvider>(context, listen: false);
+
+      // Conectar providers
+      habitProvider.setGamificationProvider(gamificationProvider);
+
+      habitProvider.initializeHabits();
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Cache responsive values
+    _isLandscape = ResponsiveUtils.isLandscape(context);
+    _isTablet = ResponsiveUtils.isTablet(context);
+    _screenPadding = ResponsiveUtils.getScreenPadding(context);
+    _fabSize = ResponsiveUtils.getFabSize(context);
+    _currentDateString = _getCurrentDateString();
   }
 
   @override
@@ -38,7 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundDark,
       appBar: AppBar(
-        title: Text(l10n.homeAppBarTitle),
+        title: DynamicRitmoLogo(
+          fontSize: 28,
+          animated: true,
+          changeInterval: Duration(seconds: 8),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.list_alt),
@@ -61,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
-            onPressed: () => _showNotificationTests(context),
+            onPressed: () => _showNotificationSettings(context),
           ),
           IconButton(
             icon: const Icon(Icons.settings_outlined),
@@ -121,24 +151,22 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }
 
-          final habits = habitProvider.habits;
           final habitsToday = habitProvider.habitsForToday;
-          final isLandscape = ResponsiveUtils.isLandscape(context);
-          final screenPadding = ResponsiveUtils.getScreenPadding(context);
 
-          return isLandscape ? _buildLandscapeLayout(context, habitsToday, screenPadding) : _buildPortraitLayout(context, habitsToday, screenPadding);
+          return _isLandscape
+            ? _buildLandscapeLayout(context, habitsToday, _screenPadding)
+            : _buildPortraitLayout(context, habitsToday, _screenPadding);
         },
       ),
       floatingActionButton: Consumer<HabitProvider>(
         builder: (context, habitProvider, child) {
           // Solo mostrar el FAB si hay hábitos activos (no solo pausados)
           final hasActiveHabits = habitProvider.habits.any((h) => h.isActive);
-          final fabSize = ResponsiveUtils.getFabSize(context);
 
           return hasActiveHabits
               ? SizedBox(
-                  width: fabSize,
-                  height: fabSize,
+                  width: _fabSize,
+                  height: _fabSize,
                   child: FloatingActionButton(
                     onPressed: () {
                       Navigator.push(
@@ -213,13 +241,29 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _toggleHabit(BuildContext context, String habitId) {
-    final provider = Provider.of<HabitProvider>(context, listen: false);
-    provider.toggleHabitCompletion(habitId);
-    
+    final habitProvider = Provider.of<HabitProvider>(context, listen: false);
+    final gamificationProvider = Provider.of<GamificationProvider>(context, listen: false);
+
+    // Guardar logros actuales antes de la completación
+    final previousAchievements = Set.from(gamificationProvider.unlockedAchievements.map((a) => a.id));
+
+    habitProvider.toggleHabitCompletion(habitId);
+
+    // Verificar si se desbloquearon nuevos logros después de la acción
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final currentAchievements = Set.from(gamificationProvider.unlockedAchievements.map((a) => a.id));
+      final newAchievementIds = currentAchievements.difference(previousAchievements);
+
+      for (final achievementId in newAchievementIds) {
+        final achievement = gamificationProvider.achievements.firstWhere((a) => a.id == achievementId);
+        AchievementUnlockedDialog.show(context, achievement);
+      }
+    });
+
     // Mostrar feedback
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('¡Hábito actualizado!'),
+      SnackBar(
+        content: Text(AppLocalizations.of(context)!.habitUpdatedMessage),
         duration: Duration(seconds: 1),
       ),
     );
@@ -242,7 +286,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const Divider(),
               ListTile(
                 leading: const Icon(Icons.edit),
-                title: const Text('Editar'),
+                title: Text(AppLocalizations.of(context)!.edit),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -255,7 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               ListTile(
                 leading: const Icon(Icons.analytics),
-                title: const Text('Ver estadísticas'),
+                title: Text(AppLocalizations.of(context)!.viewStatistics),
                 onTap: () {
                   Navigator.pop(context);
                   // TODO: Navegar a estadísticas del hábito
@@ -264,7 +308,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ListTile(
                 leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error),
                 title: Text(
-                  'Eliminar',
+                  AppLocalizations.of(context)!.delete,
                   style: TextStyle(color: Theme.of(context).colorScheme.error),
                 ),
                 onTap: () {
@@ -284,12 +328,12 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Eliminar hábito'),
-          content: Text('¿Estás seguro de que quieres eliminar "${habit.name}"?'),
+          title: Text(AppLocalizations.of(context)!.deleteHabit),
+          content: Text(AppLocalizations.of(context)!.confirmDeleteHabitShort(habit.name)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancelar'),
+              child: Text(AppLocalizations.of(context)!.cancel),
             ),
             TextButton(
               onPressed: () {
@@ -297,13 +341,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 final provider = Provider.of<HabitProvider>(context, listen: false);
                 provider.deleteHabit(habit.id);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Hábito "${habit.name}" eliminado')),
+                  SnackBar(content: Text(AppLocalizations.of(context)!.habitDeletedMessage)),
                 );
               },
               style: TextButton.styleFrom(
                 foregroundColor: Theme.of(context).colorScheme.error,
               ),
-              child: const Text('Eliminar'),
+              child: Text(AppLocalizations.of(context)!.delete),
             ),
           ],
         );
@@ -325,13 +369,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildPortraitLayout(BuildContext context, List<Habit> habitsToday, EdgeInsets screenPadding) {
     return Column(
       children: [
-        // Resumen de estadísticas
+        // Resumen de estadísticas - expandido para más espacio
         Expanded(
+          flex: 3, // Más espacio para stats
           child: Padding(
             padding: screenPadding,
             child: StatsOverview(),
           ),
         ),
+
+        // Tarjeta de gamificación
+        const GamificationCard(),
 
         // Título de hábitos de hoy
         Padding(
@@ -341,22 +389,23 @@ class _HomeScreenState extends State<HomeScreen> {
               Icon(
                 Icons.today,
                 color: AppColors.primary,
-                size: ResponsiveUtils.isTablet(context) ? 32 : 28,
+                size: _isTablet ? 32 : 28,
               ),
               const SizedBox(width: 8),
               Text(
-                'Hoy • ${_getCurrentDateString()}',
+                'Hoy • $_currentDateString',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
-                  fontSize: ResponsiveUtils.isTablet(context) ? 24 : null,
+                  fontSize: _isTablet ? 24 : null,
                 ),
               ),
             ],
           ),
         ),
 
-        // Lista de hábitos de hoy
+        // Lista de hábitos de hoy - menos espacio
         Expanded(
+          flex: 2, // Menos espacio para lista
           child: habitsToday.isEmpty
               ? _buildEmptyState()
               : ListView.builder(
@@ -464,7 +513,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _showNotificationTests(BuildContext context) {
+  void _showNotificationSettings(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
@@ -476,13 +525,13 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 children: [
                   Icon(
-                    Icons.science_outlined,
-                    color: AppColors.primary,
+                    Icons.notifications_outlined,
+                    color: Theme.of(context).primaryColor,
                     size: 28,
                   ),
                   const SizedBox(width: 12),
                   Text(
-                    'Pruebas de Notificaciones',
+                    AppLocalizations.of(context)!.notificationSettings,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -491,51 +540,39 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 20),
               ListTile(
-                leading: const Icon(Icons.notification_add, color: Colors.blue),
-                title: const Text('Notificación Inmediata'),
-                subtitle: const Text('Mostrar notificación ahora mismo'),
-                onTap: () async {
+                leading: Icon(Icons.notification_important, color: Theme.of(context).primaryColor),
+                title: Text(AppLocalizations.of(context)!.activateNotifications),
+                subtitle: Text(AppLocalizations.of(context)!.receiveRemindersForHabits),
+                trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[600]),
+                onTap: () {
                   Navigator.pop(context);
-                  await NotificationService().testNotification();
-                  if (mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('¡Notificación enviada! Revisa la barra de notificaciones'),
-                        backgroundColor: Colors.blue,
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(AppLocalizations.of(context)!.openSystemSettingsMessage),
+                      backgroundColor: Theme.of(context).primaryColor,
+                      action: SnackBarAction(
+                        label: AppLocalizations.of(context)!.settings,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          // En una app real, esto abriría la configuración del sistema
+                        },
                       ),
-                    );
-                  }
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.schedule, color: Colors.orange),
-                title: const Text('Notificación Programada'),
-                subtitle: const Text('Programar notificación en 5 segundos'),
-                onTap: () async {
-                  Navigator.pop(context);
-                  await NotificationService().testScheduledNotification();
-                  if (mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Notificación programada para 5 segundos'),
-                        backgroundColor: Colors.orange,
-                      ),
-                    );
-                  }
+                    ),
+                  );
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.refresh, color: Colors.green),
-                title: const Text('Reprogramar Todos los Hábitos'),
-                subtitle: const Text('Actualizar todas las notificaciones'),
+                title: Text(AppLocalizations.of(context)!.rescheduleAllHabits),
+                subtitle: Text(AppLocalizations.of(context)!.updateAllNotificationsText),
                 onTap: () async {
                   Navigator.pop(context);
                   final habitProvider = Provider.of<HabitProvider>(context, listen: false);
                   await habitProvider.rescheduleAllNotifications();
                   if (mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Notificaciones reprogramadas exitosamente'),
+                      SnackBar(
+                        content: Text(AppLocalizations.of(context)!.notificationsRescheduledSuccessfully),
                         backgroundColor: Colors.green,
                       ),
                     );
@@ -543,45 +580,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.list, color: Colors.purple),
-                title: const Text('Ver Notificaciones Pendientes'),
-                subtitle: const Text('Mostrar notificaciones programadas'),
-                onTap: () async {
+                leading: const Icon(Icons.help_outline, color: Colors.orange),
+                title: Text(AppLocalizations.of(context)!.notificationHelp),
+                subtitle: Text(AppLocalizations.of(context)!.notReceivingReminders),
+                onTap: () {
                   Navigator.pop(context);
-                  final pending = await NotificationService().getPendingNotifications();
-                  if (mounted) {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: const Text('Notificaciones Pendientes'),
-                        content: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: pending.isEmpty
-                                ? [const Text('No hay notificaciones pendientes')]
-                                : pending.map((notification) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 4),
-                                      child: Text(
-                                        'ID: ${notification.id}\n'
-                                        'Título: ${notification.title ?? 'Sin título'}\n'
-                                        'Cuerpo: ${notification.body ?? 'Sin descripción'}',
-                                        style: Theme.of(context).textTheme.bodySmall,
-                                      ),
-                                    );
-                                  }).toList(),
-                          ),
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: const Text('Cerrar'),
-                          ),
-                        ],
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text(AppLocalizations.of(context)!.notificationHelp),
+                      content: const Text(
+                        'Si no recibes notificaciones:\n\n'
+                        '• Verifica que las notificaciones estén activadas en la configuración del sistema\n'
+                        '• Asegúrate de que la app no esté en modo "No molestar"\n'
+                        '• Comprueba que los hábitos tengan horarios de recordatorio configurados'
                       ),
-                    );
-                  }
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Text(AppLocalizations.of(context)!.understood),
+                        ),
+                      ],
+                    ),
+                  );
                 },
               ),
               const SizedBox(height: 10),

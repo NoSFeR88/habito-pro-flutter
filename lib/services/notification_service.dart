@@ -4,6 +4,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import '../models/habit.dart';
+import '../generated/l10n/app_localizations.dart';
 
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
@@ -13,9 +14,38 @@ class NotificationService {
   final FlutterLocalNotificationsPlugin _notificationsPlugin =
       FlutterLocalNotificationsPlugin();
   bool _initialized = false;
+  BuildContext? _context;
 
-  Future<void> initialize() async {
+  String _getLocalizedString(String key, [String fallback = '']) {
+    if (_context == null) return fallback;
+    final l10n = AppLocalizations.of(_context!);
+    if (l10n == null) return fallback;
+
+    switch (key) {
+      case 'habitReminders':
+        return l10n.habitReminders;
+      case 'notificationsToRemindHabits':
+        return l10n.notificationsToRemindHabits;
+      case 'habitReminderTicker':
+        return l10n.habitReminderTicker;
+      case 'defaultHabitReminder':
+        return l10n.defaultHabitReminder;
+      case 'testNotificationTitle':
+        return l10n.testNotificationTitle;
+      case 'testNotificationBody':
+        return l10n.testNotificationBody;
+      case 'scheduledNotificationTitle':
+        return l10n.scheduledNotificationTitle;
+      case 'scheduledNotificationBody':
+        return l10n.scheduledNotificationBody;
+      default:
+        return fallback;
+    }
+  }
+
+  Future<void> initialize([BuildContext? context]) async {
     if (_initialized) return;
+    _context = context;
 
     try {
       // Inicializar timezone
@@ -88,10 +118,10 @@ class NotificationService {
   }
 
   Future<void> _createNotificationChannel() async {
-    const androidChannel = AndroidNotificationChannel(
+    final androidChannel = AndroidNotificationChannel(
       'habit_reminders',
-      'Recordatorios de Hábitos',
-      description: 'Notificaciones para recordar completar tus hábitos diarios',
+      _getLocalizedString('habitReminders', 'Habit Reminders'),
+      description: _getLocalizedString('notificationsToRemindHabits', 'Notifications to remind you to complete your daily habits'),
       importance: Importance.high,
       enableVibration: true,
       playSound: true,
@@ -114,10 +144,11 @@ class NotificationService {
     // Aquí puedes navegar a una pantalla específica
   }
 
-  Future<void> scheduleHabitReminder(Habit habit) async {
+  Future<void> scheduleHabitReminder(Habit habit, [BuildContext? context]) async {
     if (!_initialized) {
-      await initialize();
+      await initialize(context);
     }
+    if (context != null) _context = context;
 
     try {
       // Cancelar notificaciones previas para este hábito
@@ -129,13 +160,13 @@ class NotificationService {
         final nextDate = _getNextDateForDay(dayOfWeek, habit.reminderTime);
 
         // Configurar detalles de notificación Android
-        const androidDetails = AndroidNotificationDetails(
+        final androidDetails = AndroidNotificationDetails(
           'habit_reminders',
-          'Recordatorios de Hábitos',
-          channelDescription: 'Notificaciones para recordar completar tus hábitos diarios',
+          _getLocalizedString('habitReminders', 'Habit Reminders'),
+          channelDescription: _getLocalizedString('notificationsToRemindHabits', 'Notifications to remind you to complete your daily habits'),
           importance: Importance.high,
           priority: Priority.high,
-          ticker: 'Recordatorio de hábito',
+          ticker: _getLocalizedString('habitReminderTicker', 'Habit reminder'),
           icon: '@mipmap/ic_launcher',
           enableVibration: true,
           autoCancel: true,
@@ -148,7 +179,7 @@ class NotificationService {
           presentSound: true,
         );
 
-        const notificationDetails = NotificationDetails(
+        final notificationDetails = NotificationDetails(
           android: androidDetails,
           iOS: iosDetails,
           macOS: iosDetails,
@@ -160,7 +191,7 @@ class NotificationService {
           '🎯 ${habit.name}',
           habit.description.isNotEmpty
               ? habit.description
-              : '¡Es hora de trabajar en tu hábito!',
+              : _getLocalizedString('defaultHabitReminder', 'Time to work on your habit!'),
           tz.TZDateTime.from(nextDate, tz.local),
           notificationDetails,
           androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
@@ -241,16 +272,18 @@ class NotificationService {
     required String title,
     required String body,
     String? payload,
+    BuildContext? context,
   }) async {
     if (!_initialized) {
-      await initialize();
+      await initialize(context);
     }
+    if (context != null) _context = context;
 
     try {
-      const androidDetails = AndroidNotificationDetails(
+      final androidDetails = AndroidNotificationDetails(
         'habit_reminders',
-        'Recordatorios de Hábitos',
-        channelDescription: 'Notificaciones para recordar completar tus hábitos diarios',
+        _getLocalizedString('habitReminders', 'Habit Reminders'),
+        channelDescription: _getLocalizedString('notificationsToRemindHabits', 'Notifications to remind you to complete your daily habits'),
         importance: Importance.high,
         priority: Priority.high,
         icon: '@mipmap/ic_launcher',
@@ -264,7 +297,7 @@ class NotificationService {
         presentSound: true,
       );
 
-      const notificationDetails = NotificationDetails(
+      final notificationDetails = NotificationDetails(
         android: androidDetails,
         iOS: iosDetails,
         macOS: iosDetails,
@@ -294,27 +327,29 @@ class NotificationService {
   }
 
   // Método para probar notificaciones inmediatas
-  Future<void> testNotification() async {
+  Future<void> testNotification([BuildContext? context]) async {
     await showInstantNotification(
-      title: '🧪 Prueba de Notificación',
-      body: '¡Sistema de notificaciones funcionando correctamente!',
+      title: _getLocalizedString('testNotificationTitle', '🧪 Test Notification'),
+      body: _getLocalizedString('testNotificationBody', 'Notification system working correctly!'),
       payload: 'test',
+      context: context,
     );
   }
 
   // Método para programar una notificación de prueba en 5 segundos
-  Future<void> testScheduledNotification() async {
+  Future<void> testScheduledNotification([BuildContext? context]) async {
     if (!_initialized) {
-      await initialize();
+      await initialize(context);
     }
+    if (context != null) _context = context;
 
     try {
       final scheduledDate = DateTime.now().add(const Duration(seconds: 5));
 
-      const androidDetails = AndroidNotificationDetails(
+      final androidDetails = AndroidNotificationDetails(
         'habit_reminders',
-        'Recordatorios de Hábitos',
-        channelDescription: 'Notificaciones para recordar completar tus hábitos diarios',
+        _getLocalizedString('habitReminders', 'Habit Reminders'),
+        channelDescription: _getLocalizedString('notificationsToRemindHabits', 'Notifications to remind you to complete your daily habits'),
         importance: Importance.high,
         priority: Priority.high,
         icon: '@mipmap/ic_launcher',
@@ -328,7 +363,7 @@ class NotificationService {
         presentSound: true,
       );
 
-      const notificationDetails = NotificationDetails(
+      final notificationDetails = NotificationDetails(
         android: androidDetails,
         iOS: iosDetails,
         macOS: iosDetails,
@@ -336,8 +371,8 @@ class NotificationService {
 
       await _notificationsPlugin.zonedSchedule(
         99999,
-        '⏰ Notificación Programada',
-        'Esta notificación se programó hace 5 segundos',
+        _getLocalizedString('scheduledNotificationTitle', '⏰ Scheduled Notification'),
+        _getLocalizedString('scheduledNotificationBody', 'This notification was scheduled 5 seconds ago'),
         tz.TZDateTime.from(scheduledDate, tz.local),
         notificationDetails,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
