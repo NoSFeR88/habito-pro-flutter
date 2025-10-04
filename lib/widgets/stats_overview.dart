@@ -119,19 +119,26 @@ class _StatsOverviewState extends State<StatsOverview> {
     );
   }
 
-  Widget _buildTodayPage(HabitProvider habitProvider) {
-    final stats = habitProvider.getStats();
-    final habitsToday = habitProvider.habitsForToday;
-    final completedToday = habitsToday.where((h) => h.isCompletedToday).length;
-    final totalToday = habitsToday.length;
-    final completionRate = totalToday > 0 ? (completedToday / totalToday) : 0.0;
-    final percentage = (completionRate * 100).round();
+  // Método común reutilizable para construir cualquier página de estadísticas
+  Widget _buildStatPage({
+    required Color gradientColor,
+    required Color shadowColor,
+    required IconData headerIcon,
+    required Color headerIconColor,
+    required String title,
+    required String subtitle,
+    required int percentage,
+    required int completed,
+    required int total,
+    required List<Map<String, dynamic>> statCards,
+  }) {
+    final completionRate = total > 0 ? (completed / total) : 0.0;
 
     return Card(
       margin: const EdgeInsets.all(0),
       color: AppColors.surfaceDark,
       elevation: 6,
-      shadowColor: AppColors.primaryLight.withOpacity(0.2),
+      shadowColor: shadowColor.withOpacity(0.2),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
@@ -140,29 +147,28 @@ class _StatsOverviewState extends State<StatsOverview> {
             end: Alignment.bottomRight,
             colors: [
               AppColors.surfaceDark,
-              AppColors.primaryLight.withOpacity(0.1),
+              gradientColor.withOpacity(0.1),
             ],
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(6),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header con fecha y saludo
+        padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+                // Header
                 Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(6),
+                      padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.1),
+                        color: headerIconColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
-                        Icons.today_rounded,
-                        color: AppColors.primary,
-                        size: 18,
+                        headerIcon,
+                        color: headerIconColor,
+                        size: 20,
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -171,7 +177,7 @@ class _StatsOverviewState extends State<StatsOverview> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            _getTodayDateString(),
+                            title,
                             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: AppColors.textDark,
@@ -180,7 +186,7 @@ class _StatsOverviewState extends State<StatsOverview> {
                             ),
                           ),
                           Text(
-                            _getTimeGreeting(),
+                            subtitle,
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: AppColors.textSecondaryDark,
                               fontWeight: FontWeight.w500,
@@ -192,22 +198,22 @@ class _StatsOverviewState extends State<StatsOverview> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
 
-                // MENSAJE MOTIVACIONAL COMPACTO
+                // MENSAJE MOTIVACIONAL
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                   decoration: BoxDecoration(
                     color: _getProgressColor(percentage).withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
                     children: [
                       Icon(
                         _getMotivationalIcon(percentage),
                         color: _getProgressColor(percentage),
-                        size: 16,
+                        size: 18,
                       ),
                       const SizedBox(width: 6),
                       Expanded(
@@ -225,9 +231,9 @@ class _StatsOverviewState extends State<StatsOverview> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
 
-                // Barra de progreso compacta
+                // Barra de progreso
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -243,7 +249,7 @@ class _StatsOverviewState extends State<StatsOverview> {
                           ),
                         ),
                         Text(
-                          '$completedToday/$totalToday',
+                          '$completed/$total',
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textSecondaryDark,
                             fontSize: 12,
@@ -251,7 +257,7 @@ class _StatsOverviewState extends State<StatsOverview> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 1),
                     Container(
                       height: 6,
                       decoration: BoxDecoration(
@@ -272,430 +278,139 @@ class _StatsOverviewState extends State<StatsOverview> {
                   ],
                 ),
 
-                const SizedBox(height: 16),
-                // Estadísticas mejoradas
+                const SizedBox(height: 1),
+                // Estadísticas (usando lista dinámica)
                 Row(
-                  children: [
-                    Expanded(
+                  children: statCards.map((card) => Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: card == statCards.last ? 0 : 8),
                       child: _buildEnhancedStatCard(
                         context,
-                        AppLocalizations.of(context)!.totalHabits,
-                        '${stats['totalHabits']}',
-                        Icons.assignment_outlined,
-                        AppColors.primary,
+                        card['label'] as String,
+                        card['value'] as String,
+                        card['icon'] as IconData,
+                        card['color'] as Color,
                       ),
                     ),
-                    const SizedBox(width: 6),
-                    Expanded(
-                      child: _buildEnhancedStatCard(
-                        context,
-                        AppLocalizations.of(context)!.completed,
-                        '$completedToday',
-                        Icons.check_circle_outline,
-                        AppColors.success,
-                      ),
-                    ),
-                    const SizedBox(width: 6),
-                    Expanded(
-                      child: _buildEnhancedStatCard(
-                        context,
-                        AppLocalizations.of(context)!.currentStreak,
-                        AppLocalizations.of(context)!.streakFormat(stats['currentStreak']),
-                        Icons.local_fire_department_outlined,
-                        AppColors.warning,
-                      ),
-                    ),
-                  ],
+                  )).toList(),
                 ),
               ],
-            ),
-          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTodayPage(HabitProvider habitProvider) {
+    final stats = habitProvider.getStats();
+    final habitsToday = habitProvider.habitsForToday;
+    final completedToday = habitsToday.where((h) => h.isCompletedToday).length;
+    final totalToday = habitsToday.length;
+    final percentage = totalToday > 0 ? ((completedToday / totalToday) * 100).round() : 0;
+
+    return _buildStatPage(
+      gradientColor: AppColors.primaryLight,
+      shadowColor: AppColors.primaryLight,
+      headerIcon: Icons.today_rounded,
+      headerIconColor: AppColors.primary,
+      title: _getTodayDateString(),
+      subtitle: _getTimeGreeting(),
+      percentage: percentage,
+      completed: completedToday,
+      total: totalToday,
+      statCards: [
+        {
+          'label': AppLocalizations.of(context)!.totalHabits,
+          'value': '${stats['totalHabits']}',
+          'icon': Icons.assignment_outlined,
+          'color': AppColors.primary,
+        },
+        {
+          'label': AppLocalizations.of(context)!.completed,
+          'value': '$completedToday',
+          'icon': Icons.check_circle_outline,
+          'color': AppColors.success,
+        },
+        {
+          'label': AppLocalizations.of(context)!.currentStreak,
+          'value': AppLocalizations.of(context)!.streakFormat(stats['currentStreak']),
+          'icon': Icons.local_fire_department_outlined,
+          'color': AppColors.warning,
+        },
+      ],
     );
   }
 
   Widget _buildWeeklyPage(HabitProvider habitProvider) {
     final weeklyProgress = _getWeeklyProgress(habitProvider.habits);
-    final completionRate = weeklyProgress['total'] > 0 ? (weeklyProgress['completed'] / weeklyProgress['total']) : 0.0;
     final percentage = (weeklyProgress['percentage'] as double).round();
 
-    return Card(
-      margin: const EdgeInsets.all(0),
-      color: AppColors.surfaceDark,
-      elevation: 6,
-      shadowColor: AppColors.secondary.withOpacity(0.2),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppColors.surfaceDark,
-              AppColors.secondary.withOpacity(0.1),
-            ],
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header semanal
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: AppColors.success.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Icon(
-                      Icons.calendar_view_week_rounded,
-                      color: AppColors.success,
-                      size: 20,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.weekNumber(_getWeekNumber(), DateTime.now().year),
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textDark,
-                            letterSpacing: -0.5,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 1),
-                        Text(
-                          _getWeekRange(),
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.textSecondaryDark,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-
-              // Mensaje motivacional semanal compacto
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                decoration: BoxDecoration(
-                  color: _getProgressColor(percentage).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      _getMotivationalIcon(percentage),
-                      color: _getProgressColor(percentage),
-                      size: 20,
-                    ),
-                    const SizedBox(width: 6),
-                    Expanded(
-                      child: Text(
-                        _getShortMotivationalMessage(context, percentage),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: _getProgressColor(percentage),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 13,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-
-              // Barra de progreso semanal
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)!.percentThisWeek(percentage),
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: _getProgressColor(percentage),
-                        ),
-                      ),
-                      Text(
-                        '${weeklyProgress['completed']}/${weeklyProgress['total']}',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textSecondaryDark,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Container(
-                    height: 8,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: AppColors.backgroundDark.withOpacity(0.3),
-                    ),
-                    child: FractionallySizedBox(
-                      alignment: Alignment.centerLeft,
-                      widthFactor: completionRate,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3),
-                          color: _getProgressColor(percentage),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 20),
-              // Estadísticas semanales
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildEnhancedStatCard(
-                      context,
-                      AppLocalizations.of(context)!.scheduled,
-                      '${weeklyProgress['total']}',
-                      Icons.event_available_outlined,
-                      AppColors.primary,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildEnhancedStatCard(
-                      context,
-                      AppLocalizations.of(context)!.completed,
-                      '${weeklyProgress['completed']}',
-                      Icons.check_circle_outline,
-                      AppColors.success,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildEnhancedStatCard(
-                      context,
-                      AppLocalizations.of(context)!.streak,
-                      AppLocalizations.of(context)!.twoWeeks,
-                      Icons.local_fire_department_outlined,
-                      AppColors.warning,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-            ),
-          ),
-        ),
-      ),
+    return _buildStatPage(
+      gradientColor: AppColors.secondary,
+      shadowColor: AppColors.secondary,
+      headerIcon: Icons.calendar_view_week_rounded,
+      headerIconColor: AppColors.success,
+      title: AppLocalizations.of(context)!.weekNumber(_getWeekNumber(), DateTime.now().year),
+      subtitle: _getWeekRange(),
+      percentage: percentage,
+      completed: weeklyProgress['completed'] as int,
+      total: weeklyProgress['total'] as int,
+      statCards: [
+        {
+          'label': AppLocalizations.of(context)!.scheduled,
+          'value': '${weeklyProgress['total']}',
+          'icon': Icons.event_available_outlined,
+          'color': AppColors.primary,
+        },
+        {
+          'label': AppLocalizations.of(context)!.completed,
+          'value': '${weeklyProgress['completed']}',
+          'icon': Icons.check_circle_outline,
+          'color': AppColors.success,
+        },
+        {
+          'label': AppLocalizations.of(context)!.streak,
+          'value': AppLocalizations.of(context)!.twoWeeks,
+          'icon': Icons.local_fire_department_outlined,
+          'color': AppColors.warning,
+        },
+      ],
     );
   }
 
   Widget _buildMonthlyPage(HabitProvider habitProvider) {
     final monthlyProgress = _getMonthlyProgress(habitProvider.habits);
-    final completionRate = monthlyProgress['total'] > 0 ? (monthlyProgress['completed'] / monthlyProgress['total']) : 0.0;
     final percentage = (monthlyProgress['percentage'] as double).round();
 
-    return Card(
-      margin: const EdgeInsets.all(0),
-      color: AppColors.surfaceDark,
-      elevation: 6,
-      shadowColor: AppColors.accent.withOpacity(0.2),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppColors.surfaceDark,
-              AppColors.accent.withOpacity(0.1),
-            ],
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header mensual
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: AppColors.secondary.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Icon(
-                      Icons.calendar_month_rounded,
-                      color: AppColors.secondary,
-                      size: 20,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _getMonthName(),
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textDark,
-                            letterSpacing: -0.5,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 1),
-                        Text(
-                          AppLocalizations.of(context)!.dayOfMonth(DateTime.now().day, _getDaysInCurrentMonth()),
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.textSecondaryDark,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-
-              // Mensaje motivacional mensual compacto
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                decoration: BoxDecoration(
-                  color: _getProgressColor(percentage).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      _getMotivationalIcon(percentage),
-                      color: _getProgressColor(percentage),
-                      size: 20,
-                    ),
-                    const SizedBox(width: 6),
-                    Expanded(
-                      child: Text(
-                        _getShortMotivationalMessage(context, percentage),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: _getProgressColor(percentage),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 13,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-
-              // Barra de progreso mensual
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)!.percentThisMonth(percentage),
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: _getProgressColor(percentage),
-                        ),
-                      ),
-                      Text(
-                        '${monthlyProgress['completed']}/${monthlyProgress['total']}',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textSecondaryDark,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Container(
-                    height: 8,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: AppColors.backgroundDark.withOpacity(0.3),
-                    ),
-                    child: FractionallySizedBox(
-                      alignment: Alignment.centerLeft,
-                      widthFactor: completionRate,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3),
-                          color: _getProgressColor(percentage),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 20),
-              // Estadísticas mensuales
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildEnhancedStatCard(
-                      context,
-                      AppLocalizations.of(context)!.scheduled,
-                      '${monthlyProgress['total']}',
-                      Icons.event_available_outlined,
-                      AppColors.primary,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildEnhancedStatCard(
-                      context,
-                      AppLocalizations.of(context)!.completed,
-                      '${monthlyProgress['completed']}',
-                      Icons.check_circle_outline,
-                      AppColors.success,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildEnhancedStatCard(
-                      context,
-                      AppLocalizations.of(context)!.streak,
-                      AppLocalizations.of(context)!.oneMonth,
-                      Icons.local_fire_department_outlined,
-                      AppColors.warning,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-            ),
-          ),
-        ),
-      ),
+    return _buildStatPage(
+      gradientColor: AppColors.accent,
+      shadowColor: AppColors.accent,
+      headerIcon: Icons.calendar_month_rounded,
+      headerIconColor: AppColors.secondary,
+      title: _getMonthName(),
+      subtitle: AppLocalizations.of(context)!.dayOfMonth(DateTime.now().day, _getDaysInCurrentMonth()),
+      percentage: percentage,
+      completed: monthlyProgress['completed'] as int,
+      total: monthlyProgress['total'] as int,
+      statCards: [
+        {
+          'label': AppLocalizations.of(context)!.scheduled,
+          'value': '${monthlyProgress['total']}',
+          'icon': Icons.event_available_outlined,
+          'color': AppColors.primary,
+        },
+        {
+          'label': AppLocalizations.of(context)!.completed,
+          'value': '${monthlyProgress['completed']}',
+          'icon': Icons.check_circle_outline,
+          'color': AppColors.success,
+        },
+        {
+          'label': AppLocalizations.of(context)!.streak,
+          'value': AppLocalizations.of(context)!.oneMonth,
+          'icon': Icons.local_fire_department_outlined,
+          'color': AppColors.warning,
+        },
+      ],
     );
   }
 
