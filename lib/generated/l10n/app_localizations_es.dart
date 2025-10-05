@@ -39,7 +39,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'No tienes ritmos programados para hoy o ya los completaste todos.';
 
   @override
-  String get createFirstHabit => 'Create my first rhythm';
+  String get createFirstHabit => 'Crear mi primer ritmo';
 
   @override
   String get rhythmUpdated => '¡Ritmo actualizado!';
@@ -54,11 +54,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get delete => 'Eliminar';
 
   @override
-  String get deleteHabit => 'Delete rhythm';
+  String get deleteHabit => 'Eliminar ritmo';
 
   @override
   String confirmDeleteHabit(Object habitName, Object rhythmName) {
-    return 'Are you sure you want to delete \"$rhythmName\"?';
+    return '¿Estás seguro de que quieres eliminar \"$rhythmName\"?';
   }
 
   @override
@@ -285,7 +285,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get monthlyProgress => 'Progreso Mensual';
 
   @override
-  String get rhythmStreaks => 'Habit Streaks';
+  String get rhythmStreaks => 'Rachas de Hábitos';
 
   @override
   String get monthlyCalendar => 'Calendario del Mes';
@@ -421,7 +421,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String rhythmUpdatedSuccess(Object rhythmName) {
-    return 'Habit \"$rhythmName\" updated successfully';
+    return 'Hábito \"$rhythmName\" actualizado exitosamente';
   }
 
   @override
@@ -439,7 +439,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String rhythmDeletedSuccess(Object rhythmName) {
-    return 'Habit \"$rhythmName\" deleted';
+    return 'Hábito \"$rhythmName\" eliminado';
   }
 
   @override
@@ -581,7 +581,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsLabel => 'Configuración';
 
   @override
-  String get rhythmReminders => 'Habit Reminders';
+  String get rhythmReminders => 'Recordatorios de Hábitos';
 
   @override
   String get notificationsToRemind => 'Notificaciones para recordar';
@@ -647,7 +647,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String rhythmUpdatedSuccessfully(Object rhythmName) {
-    return 'Habit \"$rhythmName\" updated successfully';
+    return 'Hábito \"$rhythmName\" actualizado exitosamente';
   }
 
   @override
@@ -657,12 +657,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String rhythmDeletedSuccessfully(Object rhythmName) {
-    return 'Habit \"$rhythmName\" deleted';
+    return 'Hábito \"$rhythmName\" eliminado';
   }
 
   @override
   String rhythmCreatedSuccessfully(Object rhythmName) {
-    return 'Habit \"$rhythmName\" created successfully';
+    return 'Hábito \"$rhythmName\" creado exitosamente';
   }
 
   @override
@@ -718,10 +718,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get perfectWeekDescription => 'Descripción de semana perfecta';
 
   @override
-  String get rhythmCreator => 'Habit Creator';
+  String get rhythmCreator => 'Creador de Hábitos';
 
   @override
-  String get rhythmCreatorDescription => 'Create 5 different rhythms';
+  String get rhythmCreatorDescription => 'Crea 5 ritmos diferentes';
 
   @override
   String get achievements => 'Logros';
@@ -820,7 +820,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get paywallAutoBackupDesc => 'Tus datos seguros en la nube';
 
   @override
-  String get paywallAiInsights => 'AI Insights';
+  String get paywallAiInsights => 'Insights con IA';
 
   @override
   String get paywallAiInsightsDesc => 'Recomendaciones inteligentes';
@@ -1529,7 +1529,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get accountCreatedSuccess => '¡Cuenta creada exitosamente!';
 
   @override
-  String get rhythmoPro => 'HábitoPro';
+  String get rhythmoPro => 'RitmoPro';
 
   @override
   String get productivityCoach => 'Tu coach de productividad';
@@ -1667,7 +1667,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get perfectWeekAchievement => 'Semana Perfecta';
 
   @override
-  String get rhythmCollectorAchievement => 'Collector';
+  String get rhythmCollectorAchievement => 'Coleccionista';
 
   @override
   String get rhythmMasterAchievement => 'Maestro del Ritmo';
@@ -1682,7 +1682,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Notificaciones para recordar completar tus hábitos diarios';
 
   @override
-  String get rhythmReminderTicker => 'Habit reminder';
+  String get rhythmReminderTicker => 'Recordatorio de hábito';
 
   @override
   String get defaultHabitReminder => '¡Es hora de trabajar en tu hábito!';
@@ -1692,7 +1692,7 @@ class AppLocalizationsEs extends AppLocalizations {
       '¡Sistema de notificaciones funcionando correctamente!';
 
   @override
-  String get rhythmUpdatedMessage => 'Habit updated!';
+  String get rhythmUpdatedMessage => '¡Hábito actualizado!';
 
   @override
   String get openSystemSettingsMessage =>
@@ -1702,7 +1702,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get notReceivingReminders => '¿No recibes recordatorios?';
 
   @override
-  String get rhythmDeletedMessage => 'Habit deleted';
+  String get rhythmDeletedMessage => 'Hábito eliminado';
 
   @override
   String get updateError => 'Error al actualizar el hábito';
