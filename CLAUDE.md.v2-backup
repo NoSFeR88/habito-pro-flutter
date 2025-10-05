@@ -1,0 +1,158 @@
+# RITMO - Habit Tracker App
+
+## Proyecto: habito_pro_clean
+**Estado**: ✅ PRODUCTION-READY CON CARACTERÍSTICAS PREMIUM
+
+### Descripción
+RITMO es una aplicación Flutter para seguimiento de hábitos con características premium, gamificación y soporte completo de internacionalización (26 idiomas).
+
+### Comandos Útiles
+
+```bash
+# Ejecutar en dispositivo Android
+flutter run -d 2311DRK48G
+
+# Ejecutar en servidor web
+flutter run -d web-server --web-hostname 0.0.0.0 --web-port 8080
+
+# Generar traducciones
+flutter gen-l10n
+```
+
+### Archivos Clave
+- `lib/models/habit.dart` - Lógica de rachas corregida
+- `lib/providers/theme_provider.dart` - 6 temas premium ($2.99/mes)
+- `lib/screens/settings_screen.dart` - UI premium y configuración
+- `docs/CONTEXT_LAST_SESSION.md` - Contexto completo de sesiones
+
+### Características Implementadas
+- ✅ Sistema de rachas corregido e intuitivo
+- ✅ 6 temas premium dramáticos
+- ✅ Gamificación funcional (puntos por completar hábitos)
+- ✅ 26 idiomas soportados
+- ✅ UI/UX profesional sin elementos de desarrollo
+- ✅ Orientación bloqueada a vertical
+
+### 🎯 PRINCIPIOS DE DESARROLLO
+
+#### 📚 **Principios Globales (Todos los Proyectos)**
+Ver documento completo: [CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md](../../CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md)
+
+**Ubicación global**: `C:\Users\shill\AppData\Local\Android\Sdk\Proyectos\CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md`
+
+**Resumen ejecutivo de principios que aplican a RITMO:**
+
+**🚨 MOBILE-FIRST + ACCESSIBILITY (A11Y) - SIEMPRE APLICAR**
+
+1. **📱 MOBILE-FIRST**:
+   - Diseño optimizado primero para móvil (Android/iOS)
+   - Web/Desktop son expansión futura (no prioritario ahora)
+   - Layouts responsive y adaptativos
+   - Touch-friendly (tamaños mínimos 44x44 dp)
+   - Orientación vertical prioritaria
+
+2. **♿ ACCESSIBILITY (A11Y)**:
+   - Semantic widgets (usar nombres descriptivos)
+   - Contraste suficiente (WCAG AA mínimo)
+   - Tamaños de texto escalables
+   - Screen reader compatible (Semantics widgets)
+   - Navegación con teclado/switch access
+   - Evitar dependencia solo de color
+
+3. **🌍 INTERNACIONALIZACIÓN**:
+   - NUNCA hardcodear strings
+   - SIEMPRE usar AppLocalizations
+   - Layouts flexibles para textos largos
+   - Soporte RTL para árabe (futuro)
+   - Ver protocolo completo: `docs/BILINGUAL_GUIDE.md`
+
+**✅ CHECKLIST DE REVISIÓN** (mental en cada cambio):
+- ❓ ¿Funciona bien en pantallas pequeñas?
+- ❓ ¿Los botones son suficientemente grandes para touch?
+- ❓ ¿Los textos están internacionalizados?
+- ❓ ¿Hay contraste suficiente?
+- ❓ ¿Es navegable sin ver la pantalla?
+
+#### 🎨 **Principios Específicos de RITMO**
+
+**Design System:**
+- Usar constantes de `lib/core/design_constants.dart` para espaciados
+- Material 3 con temas oscuros/claros
+- Tipografía custom en `lib/core/ritmo_typography.dart`
+- 6 temas premium + 1 free (protección con candados 🔒)
+
+**Estado y Lógica:**
+- Provider pattern para state management
+- DatabaseHelper (SQLite) para persistencia local
+- Firebase para autenticación y cloud sync (premium)
+- Gamificación: 5 puntos por hábito completado
+
+### Gestión de Contexto Automática
+- ⚠️ SIEMPRE avisar antes de tareas que puedan consumir >50% del contexto estimado
+- 💾 Para tareas complejas (>5 archivos, búsquedas extensas): sugerir `/save` primero
+- 📦 Dividir tareas grandes en pasos de máximo 3-5 archivos por vez (solo si hay riesgo de agotamiento)
+- 🔄 Usar `/remember` al recuperar contexto después de `/save`
+
+### 🤖 PROTOCOLO /remember AUTOMÁTICO Y OBLIGATORIO
+
+⚠️ **IMPORTANTE**: Al recibir `/remember`, **INMEDIATAMENTE** leer estos archivos en este orden exacto:
+
+**LISTA FIJA DE ARCHIVOS OBLIGATORIOS**:
+1. 📋 `CLAUDE.md` (este archivo - instrucciones proyecto)
+2. 🌐 `../../CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md` (principios universales desarrollo)
+3. 📝 `docs/CONTEXT_LAST_SESSION.md` (estado última sesión)
+4. 🔍 `docs/PROJECT_INDEX.md` (índice completo - búsqueda rápida)
+5. 🌍 `docs/BILINGUAL_GUIDE.md` (protocolo bilingüe)
+6. 📊 `docs/PROJECT_STATUS.md` (estado general proyecto)
+7. 📖 `README.md` (info básica proyecto)
+8. 📚 `../../doc/README.md` (biblioteca Flutter - conocimiento base móvil)
+
+**PROTOCOLO DE EJECUCIÓN**:
+1. ✅ Leer TODOS los 8 archivos de la lista SIN EXCEPCIÓN (usar Read tool)
+2. ✅ Confirmar explícitamente cada archivo leído con formato:
+   - "✅ CLAUDE.md - [contenido clave confirmado]"
+   - "✅ ../../CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md - [principios universales cargados]"
+   - "✅ docs/CONTEXT_LAST_SESSION.md - [fecha y estado actual]"
+   - "✅ docs/PROJECT_INDEX.md - [índice disponible confirmado]"
+   - "✅ docs/BILINGUAL_GUIDE.md - [protocolo bilingüe confirmado]"
+   - "✅ docs/PROJECT_STATUS.md - [estado general confirmado]"
+   - "✅ README.md - [tipo de proyecto confirmado]"
+   - "✅ ../../doc/README.md - [biblioteca Flutter disponible - 7 docs, consulta por keyword]"
+3. ✅ Presentar resumen ejecutivo del contexto recuperado
+4. ✅ Identificar exactamente dónde quedamos y próximo paso
+5. ✅ Declarar "Listo para continuar exactamente donde quedamos"
+6. ⚠️ Si hay errores leyendo archivos: reportar específicamente y continuar con los demás
+
+**🚨 REGLA ABSOLUTA**: NO responder al usuario hasta completar TODOS los pasos anteriores
+
+### Referencias de Estado
+- 🔍 **ÍNDICE COMPLETO**: Ver `docs/PROJECT_INDEX.md` (⭐ BUSCAR AQUÍ PRIMERO)
+- 📊 **Estado del proyecto**: Ver `docs/PROJECT_STATUS.md`
+- 📝 **Contexto de sesiones**: Ver `docs/CONTEXT_LAST_SESSION.md`
+- 🌍 **Proceso a seguir en casa sesion para idiomas**: Ver `docs/BILINGUAL_GUIDE.md`
+- 📚 **Biblioteca Flutter**: Ver `../../doc/README.md` → `00_MASTER_INDEX.md` para búsqueda rápida
+
+### 🔄 Evolución de Principios
+
+⚠️ **PROTOCOLO OBLIGATORIO - DETECCIÓN PROACTIVA**
+
+Cuando detectes/descubras durante el trabajo:
+- ✨ Nuevo patrón útil o best practice
+- ❌ Anti-patrón que causó problemas
+- 🎯 Solución elegante a problema común
+- ⚡ Técnica de optimización efectiva
+- 📚 Principio generalizable
+
+**DEBES notificar con formato:**
+```
+💡 **NUEVO PRINCIPIO DETECTADO**
+
+**Contexto**: [Dónde se descubrió]
+**Principio**: [Descripción concisa]
+**Beneficio**: [Por qué es útil]
+**Aplicabilidad**: [RITMO / Universal / Flutter-específico]
+
+**Propuesta**: ¿Agregarlo a CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md?
+```
+
+**Frecuencia**: Máximo 3 por sesión, al final de tareas (no interrumpir flujo)

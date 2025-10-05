@@ -14,3 +14,7 @@ Actualiza el documento con todo el contexto necesario para que lo recuerdes en l
 ## Output
 
 Un resumen de lo que se guardó en el documento de contexto y la confirmación de que está listo para la compresión, indicando que recordarás lo que sucedió en esta sesión.
+
+## 📅 Fecha: YYYY-MM-DD
+
+## 🎯 Estado: [ESTADO_ACTUAL]    
