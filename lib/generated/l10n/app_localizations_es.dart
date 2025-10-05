@@ -18,13 +18,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get loading => 'Cargando...';
 
   @override
+  String get loadingApp => 'Iniciando Ritmo...';
+
+  @override
   String get retry => 'Reintentar';
 
   @override
   String get today => 'Hoy';
 
   @override
-  String todayWithDate(String date) {
+  String todayWithDate(Object date) {
     return 'Hoy • $date';
   }
 
@@ -36,10 +39,10 @@ class AppLocalizationsEs extends AppLocalizations {
       'No tienes ritmos programados para hoy o ya los completaste todos.';
 
   @override
-  String get createFirstHabit => 'Crear mi primer ritmo';
+  String get createFirstHabit => 'Create my first rhythm';
 
   @override
-  String get rhythmUpdated => 'Habit updated!';
+  String get rhythmUpdated => '¡Ritmo actualizado!';
 
   @override
   String get edit => 'Editar';
@@ -51,19 +54,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get delete => 'Eliminar';
 
   @override
-  String get deleteHabit => 'Eliminar ritmo';
+  String get deleteHabit => 'Delete rhythm';
 
   @override
-  String confirmDeleteHabit(String rhythmName, Object habitName) {
-    return '¿Estás seguro de que quieres eliminar \"$rhythmName\"?';
+  String confirmDeleteHabit(Object habitName, Object rhythmName) {
+    return 'Are you sure you want to delete \"$rhythmName\"?';
   }
 
   @override
   String get cancel => 'Cancelar';
 
   @override
-  String rhythmDeleted(String rhythmName) {
-    return 'Habit \"$rhythmName\" deleted';
+  String rhythmDeleted(Object rhythmName) {
+    return 'Ritmo \"$rhythmName\" eliminado';
   }
 
   @override
@@ -142,6 +145,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get onboardingCreateFirstHabit => 'Crear mi primer hábito';
 
   @override
+  String get onboardingExampleHabitName => 'Ir al gimnasio';
+
+  @override
   String get onboardingCelebrationTitle => '¡Perfecto! Ya tienes tu ritmo';
 
   @override
@@ -167,10 +173,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get onboardingStartMyRhythm => 'Comenzar mi ritmo';
 
   @override
-  String get rhythmName => 'Habit name';
+  String get rhythmName => 'Nombre del ritmo';
 
   @override
-  String get rhythmNameHint => 'E.g: Exercise, Read, Meditate...';
+  String get rhythmNameHint => 'Ej: Ejercicio, Leer, Meditar...';
 
   @override
   String get selectDays => 'Selecciona días';
@@ -258,7 +264,7 @@ class AppLocalizationsEs extends AppLocalizations {
       '¡Notificación enviada! Revisa la barra de notificaciones';
 
   @override
-  String notificationScheduled(String rhythmName, String dateTime) {
+  String notificationScheduled(Object dateTime, Object rhythmName) {
     return 'Notificación programada para 5 segundos';
   }
 
@@ -312,7 +318,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get themeBasicGreen => 'Verde Básico';
 
   @override
-  String get themeBasicPurple => 'Púrpura Básico';
+  String get themeBasicPurple => 'Morado Básico';
 
   @override
   String get themeCyberNeon => 'Neón Cibernético';
@@ -321,7 +327,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get themeAuroraInspiration => 'Inspiración Aurora';
 
   @override
-  String get themeZenGarden => 'Jardín Zen';
+  String get themeZenGarden => '🧘 Jardín Zen';
 
   @override
   String get premiumThemes => 'Temas Premium';
@@ -362,13 +368,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deleteHabitConfirm => 'Confirmar eliminación de hábito';
 
   @override
-  String get editHabit => 'Editar Hábito';
+  String get editHabit => 'Editar Ritmo';
 
   @override
   String get basicInformation => 'Información Básica';
 
   @override
-  String get rhythmNameLabel => 'Habit name';
+  String get rhythmNameLabel => 'Nombre del Ritmo';
 
   @override
   String get descriptionOptional => 'Descripción (Opcional)';
@@ -414,12 +420,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get selectAtLeastOneDay => 'Selecciona al menos un día de la semana';
 
   @override
-  String rhythmUpdatedSuccess(String rhythmName) {
+  String rhythmUpdatedSuccess(Object rhythmName) {
     return 'Habit \"$rhythmName\" updated successfully';
   }
 
   @override
-  String errorUpdatingHabit(String error) {
+  String errorUpdatingHabit(Object error) {
     return 'Error actualizando hábito';
   }
 
@@ -427,22 +433,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deleteHabitTitle => 'Eliminar Hábito';
 
   @override
-  String deleteHabitConfirmation(String rhythmName) {
+  String deleteHabitConfirmation(Object rhythmName) {
     return 'Confirmación de eliminación de hábito';
   }
 
   @override
-  String rhythmDeletedSuccess(String rhythmName) {
+  String rhythmDeletedSuccess(Object rhythmName) {
     return 'Habit \"$rhythmName\" deleted';
   }
 
   @override
-  String errorDeletingHabit(String error) {
+  String errorDeletingHabit(Object error) {
     return 'Error eliminando hábito';
   }
 
   @override
-  String limitReached(int maxHabits) {
+  String limitReached(Object maxHabits) {
     return 'Límite alcanzado';
   }
 
@@ -474,12 +480,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get later => 'Más tarde';
 
   @override
-  String loginError(String error) {
+  String loginError(Object error) {
     return 'Error de inicio de sesión';
   }
 
   @override
-  String logoutError(String error) {
+  String logoutError(Object error) {
     return 'Error al cerrar sesión';
   }
 
@@ -499,7 +505,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get connectionError => 'Error de conexión';
 
   @override
-  String authError(String message) {
+  String authError(Object message) {
     return 'Error de autenticación';
   }
 
@@ -548,17 +554,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noHabitsToday => 'No tienes hábitos para hoy';
 
   @override
-  String get allHabitsPaused => 'Todos los hábitos están pausados';
+  String get allHabitsPaused =>
+      'Todos tus hábitos están pausados. Reactiva alguno o crea uno nuevo.';
 
   @override
   String get startJourneyBetterHabits =>
       'Comienza tu viaje hacia mejores hábitos';
 
   @override
-  String get createNewHabit => 'Crear Nuevo Hábito';
+  String get createNewHabit => 'Crear nuevo hábito';
 
   @override
-  String get createMyFirstHabit => 'Crear Mi Primer Hábito';
+  String get createMyFirstHabit => 'Crear mi primer hábito';
 
   @override
   String get notificationSettings => 'Configuración de Notificaciones';
@@ -586,22 +593,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get timeToWorkOnHabit => '¡Es hora de trabajar en tu hábito!';
 
   @override
-  String notificationsCancelled(String rhythmId) {
+  String notificationsCancelled(Object rhythmId) {
     return 'Notificaciones canceladas';
   }
 
   @override
-  String errorCancellingNotifications(String rhythmId, String error) {
+  String errorCancellingNotifications(Object error, Object rhythmId) {
     return 'Error cancelando notificaciones';
   }
 
   @override
-  String instantNotificationSent(String title) {
+  String instantNotificationSent(Object title) {
     return 'Notificación instantánea enviada';
   }
 
   @override
-  String errorSendingNotification(String error) {
+  String errorSendingNotification(Object error) {
     return 'Error enviando notificación';
   }
 
@@ -619,48 +626,48 @@ class AppLocalizationsEs extends AppLocalizations {
   String get testNotificationScheduled => 'Notificación de prueba programada';
 
   @override
-  String errorSchedulingTestNotification(String error) {
+  String errorSchedulingTestNotification(Object error) {
     return 'Error programando notificación de prueba';
   }
 
   @override
-  String localizationInitialized(String languageCode) {
+  String localizationInitialized(Object languageCode) {
     return 'Localización inicializada';
   }
 
   @override
-  String notificationReceivediOS(String title) {
+  String notificationReceivediOS(Object title) {
     return 'Notificación recibida en iOS';
   }
 
   @override
-  String userTappedNotification(String payload) {
+  String userTappedNotification(Object payload) {
     return 'Usuario tocó notificación';
   }
 
   @override
-  String rhythmUpdatedSuccessfully(String rhythmName) {
+  String rhythmUpdatedSuccessfully(Object rhythmName) {
     return 'Habit \"$rhythmName\" updated successfully';
   }
 
   @override
-  String confirmDeleteHabitMessage(String rhythmName) {
-    return 'Confirmar mensaje de eliminación de hábito';
+  String confirmDeleteHabitMessage(Object rhythmName) {
+    return '¿Estás seguro de que quieres eliminar \"$rhythmName\"?\\n\\nEsta acción no se puede deshacer. Todos los datos del ritmo incluyendo el historial de completado serán eliminados.';
   }
 
   @override
-  String rhythmDeletedSuccessfully(String rhythmName) {
+  String rhythmDeletedSuccessfully(Object rhythmName) {
     return 'Habit \"$rhythmName\" deleted';
   }
 
   @override
-  String rhythmCreatedSuccessfully(String rhythmName) {
+  String rhythmCreatedSuccessfully(Object rhythmName) {
     return 'Habit \"$rhythmName\" created successfully';
   }
 
   @override
-  String confirmDeleteHabitShort(String rhythmName) {
-    return 'Confirmar eliminación de hábito (corto)';
+  String confirmDeleteHabitShort(Object rhythmName) {
+    return '¿Estás seguro de que quieres eliminar \"$rhythmName\"?';
   }
 
   @override
@@ -759,17 +766,147 @@ class AppLocalizationsEs extends AppLocalizations {
   String get progressToNextLevel => 'Progreso al Siguiente Nivel';
 
   @override
-  String pointsToLevel(int points, int level) {
+  String get paywallMonthly => 'Mensual';
+
+  @override
+  String get paywallAnnual => 'Anual';
+
+  @override
+  String get paywallLifetime => 'De por vida';
+
+  @override
+  String get paywallPerMonth => '/mes';
+
+  @override
+  String get paywallPerYear => '/año';
+
+  @override
+  String get paywallOneTimePayment => 'pago único';
+
+  @override
+  String get paywallDiscount => '37% DESCUENTO';
+
+  @override
+  String get paywallLimitedOffer => 'OFERTA LIMITADA';
+
+  @override
+  String get paywallUnlimitedHabits => 'Hábitos ilimitados';
+
+  @override
+  String get paywallUnlimitedHabitsDesc => 'Crea todos los hábitos que quieras';
+
+  @override
+  String get paywallAdvancedStats => 'Estadísticas avanzadas';
+
+  @override
+  String get paywallAdvancedStatsDesc => 'Análisis profundo y tendencias';
+
+  @override
+  String get paywallPremiumThemes => '5 temas premium';
+
+  @override
+  String get paywallPremiumThemesDesc => 'Ocean, Sunset, Forest y más';
+
+  @override
+  String get paywallNoAds => 'Sin publicidad';
+
+  @override
+  String get paywallNoAdsDesc => 'Experiencia completamente limpia';
+
+  @override
+  String get paywallAutoBackup => 'Backup automático';
+
+  @override
+  String get paywallAutoBackupDesc => 'Tus datos seguros en la nube';
+
+  @override
+  String get paywallAiInsights => 'AI Insights';
+
+  @override
+  String get paywallAiInsightsDesc => 'Recomendaciones inteligentes';
+
+  @override
+  String get paywallErrorCreatingHabit => 'Error creando hábito';
+
+  @override
+  String get paywallErrorLogin => 'Error en login anónimo';
+
+  @override
+  String get paywallErrorGoogleLogin => 'Error en login con Google';
+
+  @override
+  String get paywallErrorEmailLogin => 'Error en login con email';
+
+  @override
+  String get paywallErrorRegistration => 'Error en registro';
+
+  @override
+  String get paywallErrorLogout => 'Error cerrando sesión';
+
+  @override
+  String get paywallErrorPasswordReset =>
+      'Error enviando email de restablecimiento';
+
+  @override
+  String get paywallErrorDeleteAccount => 'Error eliminando cuenta';
+
+  @override
+  String get paywallErrorUpdateProfile => 'Error actualizando perfil';
+
+  @override
+  String get paywallErrorGetUserData => 'Error obteniendo datos de usuario';
+
+  @override
+  String get paywallErrorUpdatePreferences => 'Error actualizando preferencias';
+
+  @override
+  String get paywallErrorUpdatePremium => 'Error actualizando estado premium';
+
+  @override
+  String get paywallErrorLinkAccount => 'Error vinculando cuenta';
+
+  @override
+  String get paywallErrorGetHabits => 'Error obteniendo hábitos';
+
+  @override
+  String get paywallErrorUpdateHabit => 'Error actualizando hábito';
+
+  @override
+  String get paywallErrorDeleteHabit => 'Error eliminando hábito';
+
+  @override
+  String get paywallErrorHabitNotFound => 'Hábito no encontrado';
+
+  @override
+  String get paywallErrorUpdateCompletion => 'Error actualizando completación';
+
+  @override
+  String get paywallErrorGetStats => 'Error obteniendo estadísticas';
+
+  @override
+  String get paywallErrorBackup => 'Error realizando backup';
+
+  @override
+  String get paywallErrorGetPeriodData => 'Error obteniendo datos del período';
+
+  @override
+  String get paywallErrorCleanOldData => 'Error limpiando datos antiguos';
+
+  @override
+  String get paywallErrorLoadingHabits => 'Error cargando hábitos';
+
+  @override
+  String pointsToLevel(Object level, Object points) {
     return 'Puntos para Nivel';
   }
 
   @override
-  String unlockedCount(int count) {
+  String unlockedCount(Object count) {
     return 'Conteo Desbloqueado';
   }
 
   @override
-  String lockedCount(int count) {
+  String lockedCount(Object count) {
     return 'Conteo Bloqueado';
   }
 
@@ -1016,7 +1153,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get understood => 'Entendido';
 
   @override
-  String languagesCount(int count) {
+  String languagesCount(Object count) {
     return '$count idiomas';
   }
 
@@ -1036,6 +1173,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get reminderTime => 'Hora de Recordatorio';
 
   @override
+  String get dangerZone => 'Zona de peligro';
+
+  @override
   String get pleaseEnterName => 'Por favor ingresa un nombre';
 
   @override
@@ -1043,10 +1183,17 @@ class AppLocalizationsEs extends AppLocalizations {
       'El nombre debe tener al menos 2 caracteres';
 
   @override
+  String get basicInformationLabel => 'Información Básica';
+
+  @override
+  String get deleteWarningMessage =>
+      'Esta acción no se puede deshacer. Se eliminarán todos los datos del hábito incluyendo el historial de completados.';
+
+  @override
   String get totalPoints => 'puntos totales';
 
   @override
-  String progressToLevel(int level) {
+  String progressToLevel(Object level) {
     return 'Progreso al nivel $level';
   }
 
@@ -1066,7 +1213,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get excellent => '¡Genial!';
 
   @override
-  String pointsWithCount(int count) {
+  String pointsWithCount(Object count) {
     return '$count puntos';
   }
 
@@ -1074,7 +1221,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get unlockedLabel => 'Desbloqueado';
 
   @override
-  String percentCompleted(int percent) {
+  String percentCompleted(Object percent) {
     return '$percent% Completado';
   }
 
@@ -1082,12 +1229,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get totalHabits => 'Total Ritmos';
 
   @override
-  String percentThisWeek(int percent) {
+  String percentThisWeek(Object percent) {
     return '$percent% Esta semana';
   }
 
   @override
-  String percentThisMonth(int percent) {
+  String percentThisMonth(Object percent) {
     return '$percent% Este mes';
   }
 
@@ -1101,28 +1248,28 @@ class AppLocalizationsEs extends AppLocalizations {
   String get oneMonth => '1 mes';
 
   @override
-  String weekNumber(int number, int year) {
+  String weekNumber(Object number, Object year) {
     return 'Semana $number del $year';
   }
 
   @override
-  String dayOfMonth(int day, int total) {
+  String dayOfMonth(Object day, Object total) {
     return 'Día $day de $total';
   }
 
   @override
-  String dateFormat(int day, String month) {
+  String dateFormat(Object day, Object month) {
     return '$day de $month';
   }
 
   @override
   String dateRangeFormat(
-      int startDay, String startMonth, int endDay, String endMonth) {
+      Object endDay, Object endMonth, Object startDay, Object startMonth) {
     return '$startDay $startMonth - $endDay $endMonth';
   }
 
   @override
-  String monthYear(String month, int year) {
+  String monthYear(Object month, Object year) {
     return '$month $year';
   }
 
@@ -1267,7 +1414,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get todaysHabits => 'Ritmos de Hoy';
 
   @override
-  String get noHabitsScheduledToday => 'No hay ritmos programados para hoy';
+  String get noHabitsScheduledToday =>
+      'No tienes hábitos programados para hoy o ya los completaste todos.';
 
   @override
   String get weeklyProgress => 'Progreso Semanal';
@@ -1315,13 +1463,60 @@ class AppLocalizationsEs extends AppLocalizations {
   String get week4 => 'S4';
 
   @override
+  String get weekHabits => 'Hábitos de la Semana';
+
+  @override
+  String weekProgress(Object completed, Object total) {
+    return '$completed de $total días';
+  }
+
+  @override
+  String get habitLimitReached => 'Límite de Hábitos Alcanzado';
+
+  @override
+  String habitLimitMessage(Object limit) {
+    return 'Has alcanzado el límite de $limit hábitos en el plan gratuito.\n\n¡Actualiza a Ritmo PRO para hábitos ilimitados y funciones premium!';
+  }
+
+  @override
+  String get upgradeToPro => 'Actualizar a PRO';
+
+  @override
+  String get enableNotifications => 'Habilitar Notificaciones';
+
+  @override
+  String get notificationsDescription =>
+      'Recibe recordatorios para tus hábitos';
+
+  @override
+  String get defaultReminderTime => 'Hora de Recordatorio Predeterminada';
+
+  @override
+  String get reminderSound => 'Sonido de Recordatorio';
+
+  @override
+  String get vibration => 'Vibración';
+
+  @override
+  String get soundDefault => 'Predeterminado';
+
+  @override
+  String get soundNone => 'Ninguno (Silencioso)';
+
+  @override
+  String get soundChime => 'Campana';
+
+  @override
+  String get soundBell => 'Timbre';
+
+  @override
   String get loadingHabits => 'Cargando tus ritmos...';
 
   @override
   String get guestModeWarning => 'Modo invitado - Tus datos no se guardarán';
 
   @override
-  String get createAccount => 'Crear cuenta';
+  String get createAccount => 'Crear Cuenta';
 
   @override
   String get saveYourProgressTitle => 'Guardar tu progreso';
@@ -1356,6 +1551,101 @@ class AppLocalizationsEs extends AppLocalizations {
   String get paywallComingSoon => 'Paywall próximamente disponible';
 
   @override
+  String get paywallNotImplementedTitle => 'Próximamente';
+
+  @override
+  String get paywallNotImplementedMessage =>
+      'El sistema de pagos está en desarrollo. Por ahora, puedes activar Ritmo PRO desde Ajustes > \"Activar Premium (Testing)\".';
+
+  @override
+  String get paywallMainTitle => 'Desbloquea todo el potencial de Ritmo';
+
+  @override
+  String get paywallChoosePlan => 'Elige tu plan';
+
+  @override
+  String get paywallStartButton => 'Comenzar con Ritmo PRO';
+
+  @override
+  String get paywallTermsAndConditions =>
+      'Al continuar, aceptas nuestros Términos de Servicio y Política de Privacidad';
+
+  @override
+  String get manageHabitsTooltip => 'Gestionar hábitos';
+
+  @override
+  String get notificationTroubleshootingTips =>
+      '• Verifica que las notificaciones estén activadas en la configuración del sistema\n• Asegúrate de que la app no esté en modo \"No molestar\"\n• Comprueba que los hábitos tengan horarios de recordatorio configurados';
+
+  @override
+  String get loginTitle => 'HábitoPro';
+
+  @override
+  String get loginSubtitle => 'Construye mejores hábitos, día a día';
+
+  @override
+  String get signInButton => 'Iniciar Sesión';
+
+  @override
+  String get emailLabel => 'Correo electrónico';
+
+  @override
+  String get emailValidationError => 'Por favor ingresa un email válido';
+
+  @override
+  String get passwordLabel => 'Contraseña';
+
+  @override
+  String get passwordRequiredError => 'Por favor ingresa tu contraseña';
+
+  @override
+  String get passwordLengthError =>
+      'La contraseña debe tener al menos 6 caracteres';
+
+  @override
+  String get forgotPassword => '¿Olvidaste tu contraseña?';
+
+  @override
+  String get signInOrCreateAccount => 'Iniciar Sesión';
+
+  @override
+  String get orContinueWith => 'o continúa con';
+
+  @override
+  String get welcomeBack => '¡Bienvenido de nuevo!';
+
+  @override
+  String get accountCreatedSuccessfully => '¡Cuenta creada exitosamente!';
+
+  @override
+  String get statsGoodMonth =>
+      '¡Buen mes! 📊\nVas progresando.\n¡Sigue mejorando!';
+
+  @override
+  String get statsBuilding =>
+      '¡Construyendo! 🏗️\nCada mes cuenta.\n¡Pa\'lante!';
+
+  @override
+  String get statsSeedsPlanted =>
+      '¡Semillas plantadas! 🌱\nYa comenzaste.\n¡Crecerás!';
+
+  @override
+  String get statsNewMonth =>
+      '¡Nuevo mes! 🚀\nInfinitas posibilidades.\n¡Hazlo tuyo!';
+
+  @override
+  String get signUp => 'Registrarse';
+
+  @override
+  String get fullNameLabel => 'Nombre completo';
+
+  @override
+  String get nameRequiredError => 'Por favor ingresa tu nombre';
+
+  @override
+  String get emailRequiredError => 'Por favor ingresa tu email';
+
+  @override
   String get firstStreakAchievement => 'Primera Racha';
 
   @override
@@ -1383,7 +1673,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get rhythmMasterAchievement => 'Maestro del Ritmo';
 
   @override
-  String streakFormat(int streak) {
+  String streakFormat(Object streak) {
     return '$streak días';
   }
 
@@ -1406,7 +1696,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get openSystemSettingsMessage =>
-      'Abre la configuración del sistema para gestionar las notificaciones';
+      'Abrir configuración del sistema para gestionar notificaciones';
 
   @override
   String get notReceivingReminders => '¿No recibes recordatorios?';
@@ -1462,4 +1752,34 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get passwordResetMessage =>
       'Ingresa tu email y te enviaremos un enlace para restablecer tu contraseña.';
+
+  @override
+  String get errorCreatingHabit => 'Error creando ritmo';
+
+  @override
+  String languageChangedTo(Object languageName) {
+    return 'Idioma cambiado a $languageName';
+  }
+
+  @override
+  String get genericError => 'Error';
+
+  @override
+  String get themeExecutiveMinimalist => '💼 Ejecutivo Minimalista';
+
+  @override
+  String get themeGlassmorphism => '✨ Glasmorfismo';
+
+  @override
+  String get themeNeumorphism => '🎭 Neumorfismo';
+
+  @override
+  String get allDoneForToday => '¡Todo listo por hoy!';
+
+  @override
+  String get welcomeToRitmo => '¡Bienvenido a Ritmo!';
+
+  @override
+  String get startYourJourney =>
+      'Comienza tu viaje hacia mejores hábitos creando tu primer hábito diario.';
 }
