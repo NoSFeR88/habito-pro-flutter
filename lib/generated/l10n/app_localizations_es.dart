@@ -697,25 +697,26 @@ class AppLocalizationsEs extends AppLocalizations {
   String get firstStep => 'Primer Paso';
 
   @override
-  String get firstStepDescription => 'Descripción del primer paso';
+  String get firstStepDescription => 'Completa tu primer hábito';
 
   @override
   String get centuryClub => 'Club del Centenar';
 
   @override
-  String get centuryClubDescription => 'Descripción del club del centenar';
+  String get centuryClubDescription => 'Completa 100 hábitos en total';
 
   @override
   String get marathonRunner => 'Corredor de Maratón';
 
   @override
-  String get marathonRunnerDescription => 'Descripción del corredor de maratón';
+  String get marathonRunnerDescription => 'Completa 500 hábitos en total';
 
   @override
   String get perfectWeek => 'Semana Perfecta';
 
   @override
-  String get perfectWeekDescription => 'Descripción de semana perfecta';
+  String get perfectWeekDescription =>
+      'Completa todos tus hábitos durante una semana';
 
   @override
   String get rhythmCreator => 'Creador de Hábitos';
@@ -736,10 +737,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get points => 'Puntos';
 
   @override
-  String get totalAccumulated => 'Total Acumulado';
+  String get totalAccumulated => 'Total acumulado';
 
   @override
-  String get achievementsLabel => 'Etiqueta de Logros';
+  String get achievementsLabel => 'Logros';
 
   @override
   String get unlocked => 'Desbloqueado';
@@ -748,7 +749,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get streak => 'Racha';
 
   @override
-  String get maxDays => 'Días Máximos';
+  String get maxDays => 'Máximo de días';
 
   @override
   String get currentLevel => 'Nivel Actual';
@@ -757,7 +758,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get nextLevel => 'Siguiente Nivel';
 
   @override
-  String get pointsToNext => 'Puntos para Siguiente';
+  String get pointsToNext => 'Puntos para el siguiente nivel';
 
   @override
   String get allAchievements => 'Todos los Logros';
@@ -897,17 +898,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String pointsToLevel(Object level, Object points) {
-    return 'Puntos para Nivel';
+    return '$points puntos para nivel $level';
   }
 
   @override
   String unlockedCount(Object count) {
-    return 'Conteo Desbloqueado';
+    return 'Desbloqueados ($count)';
   }
 
   @override
   String lockedCount(Object count) {
-    return 'Conteo Bloqueado';
+    return 'Bloqueados ($count)';
   }
 
   @override
@@ -920,28 +921,28 @@ class AppLocalizationsEs extends AppLocalizations {
   String get all => 'Todos';
 
   @override
-  String get premiumTestingActivated => 'Testing Premium Activado';
+  String get premiumTestingActivated => '🎉 Premium activado para pruebas';
 
   @override
-  String get removeAds => 'Remover Anuncios';
+  String get removeAds => 'Quitar anuncios';
 
   @override
-  String get removePermanentAds => 'Remover Anuncios Permanentes';
+  String get removePermanentAds => 'Eliminar publicidad permanentemente';
 
   @override
-  String get noAdvertising => 'Sin Publicidad';
+  String get noAdvertising => 'Sin publicidad';
 
   @override
-  String get premiumThemesFeature => 'Función de Temas Premium';
+  String get premiumThemesFeature => 'Temas premium';
 
   @override
   String get startPro => 'Iniciar PRO';
 
   @override
-  String get drinkWater => 'Beber Agua';
+  String get drinkWater => 'Beber agua';
 
   @override
-  String get exercise => 'Ejercicio';
+  String get exercise => 'Hacer ejercicio';
 
   @override
   String get read => 'Leer';
@@ -950,16 +951,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get completed => 'Completado';
 
   @override
-  String get currentStreak => 'Racha Actual';
+  String get currentStreak => 'Racha actual';
 
   @override
   String get scheduled => 'Programado';
 
   @override
-  String get goodAfternoon => 'Buenas Tardes';
+  String get goodAfternoon => 'Buenas tardes';
 
   @override
-  String get goodEvening => 'Buenas Noches';
+  String get goodEvening => 'Buenas noches';
 
   @override
   String get january => 'Enero';
@@ -1076,25 +1077,25 @@ class AppLocalizationsEs extends AppLocalizations {
   String get startWithRitmoPro => 'Comenzar con Ritmo PRO';
 
   @override
-  String get noAdvertisingFeature => 'Sin Publicidad';
+  String get noAdvertisingFeature => 'Sin publicidad';
 
   @override
-  String get completelyCleanExperience => 'Experiencia Completamente Limpia';
+  String get completelyCleanExperience => 'Experiencia completamente limpia';
 
   @override
-  String get cloudBackup => 'Respaldo en la Nube';
+  String get cloudBackup => 'Respaldo en la nube';
 
   @override
-  String get yourDataSafeInCloud => 'Tus Datos Seguros en la Nube';
+  String get yourDataSafeInCloud => 'Tus datos seguros en la nube';
 
   @override
-  String get aiInsights => 'Insights de IA';
+  String get aiInsights => 'Análisis con IA';
 
   @override
-  String get intelligentRecommendations => 'Recomendaciones Inteligentes';
+  String get intelligentRecommendations => 'Recomendaciones inteligentes';
 
   @override
-  String get chooseYourPlan => 'Elige tu Plan';
+  String get chooseYourPlan => 'Elige tu plan';
 
   @override
   String get beginnerlevel => 'Principiante';
@@ -1127,7 +1128,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get mythicLevel => 'Mítico';
 
   @override
-  String get maximumLevel => 'Máximo';
+  String get maximumLevel => 'Nivel Máximo';
 
   @override
   String get defaultUser => 'Usuario';
@@ -1144,10 +1145,10 @@ class AppLocalizationsEs extends AppLocalizations {
       'Notificaciones reprogramadas exitosamente';
 
   @override
-  String get notificationHelp => 'Ayuda con Notificaciones';
+  String get notificationHelp => 'Ayuda con notificaciones';
 
   @override
-  String get helpWithNotifications => 'Ayuda con Notificaciones';
+  String get helpWithNotifications => 'Ayuda con notificaciones';
 
   @override
   String get understood => 'Entendido';
@@ -1201,16 +1202,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get maxLevelReached => '¡Nivel máximo alcanzado!';
 
   @override
-  String get maxStreak => 'Racha Máxima';
+  String get maxStreak => 'Racha máxima';
 
   @override
   String get tapToViewMore => 'Toca para ver más';
 
   @override
-  String get achievementUnlocked => '¡Logro Desbloqueado!';
+  String get achievementUnlocked => '¡Logro desbloqueado!';
 
   @override
-  String get excellent => '¡Genial!';
+  String get excellent => '¡Excelente!';
 
   @override
   String pointsWithCount(Object count) {
@@ -1226,16 +1227,16 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get totalHabits => 'Total Ritmos';
+  String get totalHabits => 'Total de ritmos';
 
   @override
   String percentThisWeek(Object percent) {
-    return '$percent% Esta semana';
+    return '$percent% esta semana';
   }
 
   @override
   String percentThisMonth(Object percent) {
-    return '$percent% Este mes';
+    return '$percent% este mes';
   }
 
   @override
