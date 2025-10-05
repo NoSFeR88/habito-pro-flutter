@@ -215,7 +215,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get novemberShort => 'Nov';
 
   @override
-  String get decemberShort => 'Dec';
+  String get decemberShort => 'Dic';
 
   @override
   String get newHabit => 'Nuevo Ritmo';
