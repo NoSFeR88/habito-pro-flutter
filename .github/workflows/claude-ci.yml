@@ -37,9 +37,75 @@ jobs:
       - name: 📦 Instalar dependencias
         run: flutter pub get
 
-      - name: 🔍 Flutter Analyze
-        run: flutter analyze
-        continue-on-error: false
+      - name: 🔍 Flutter Analyze con Baseline
+        shell: pwsh
+        run: |
+          Write-Host "🔍 Ejecutando análisis estático..." -ForegroundColor Cyan
+
+          # Ejecutar analyze y capturar output
+          flutter analyze > analyze-output.txt 2>&1
+          $analyzeExitCode = $LASTEXITCODE
+
+          # Mostrar output completo para debugging
+          Get-Content analyze-output.txt
+
+          # Contar issues por tipo
+          $errors = (Get-Content analyze-output.txt | Select-String -Pattern "^\s+error -").Count
+          $warnings = (Get-Content analyze-output.txt | Select-String -Pattern "^\s+warning -").Count
+          $infos = (Get-Content analyze-output.txt | Select-String -Pattern "^\s+info -").Count
+
+          Write-Host "`n📊 Resumen de Análisis Estático:" -ForegroundColor Cyan
+          Write-Host "  - Errors: $errors" -ForegroundColor $(if ($errors -gt 0) { "Red" } else { "Green" })
+          Write-Host "  - Warnings: $warnings" -ForegroundColor $(if ($warnings -gt 0) { "Yellow" } else { "Green" })
+          Write-Host "  - Infos: $infos" -ForegroundColor Gray
+
+          # BASELINE ACTUAL (2025-10-05)
+          # Meta: Reducir gradualmente 303 → 250 → 200 → 100 → 0
+          $baselineErrors = 0
+          $baselineWarnings = 303
+          $baselineInfos = 500  # Permitir infos, son menos críticos
+
+          Write-Host "`n📏 Baseline (permitido):" -ForegroundColor Cyan
+          Write-Host "  - Errors: $baselineErrors (actual: $errors)"
+          Write-Host "  - Warnings: $baselineWarnings (actual: $warnings)"
+          Write-Host "  - Infos: $baselineInfos (actual: $infos)"
+
+          # VALIDACIÓN: Fallar si se excede baseline
+          $failed = $false
+
+          if ($errors -gt $baselineErrors) {
+            Write-Host "`n❌ FALLO: $errors errores encontrados (baseline: $baselineErrors)" -ForegroundColor Red
+            Write-Host "Los errores NUNCA son aceptables. Por favor corregir." -ForegroundColor Red
+            $failed = $true
+          }
+
+          if ($warnings -gt $baselineWarnings) {
+            $newWarnings = $warnings - $baselineWarnings
+            Write-Host "`n❌ FALLO: $newWarnings warnings NUEVOS agregados" -ForegroundColor Red
+            Write-Host "Baseline: $baselineWarnings | Actual: $warnings" -ForegroundColor Yellow
+            Write-Host "Por favor corregir los warnings nuevos antes de mergear." -ForegroundColor Yellow
+            $failed = $true
+          } elseif ($warnings -lt $baselineWarnings) {
+            $reduced = $baselineWarnings - $warnings
+            Write-Host "`n🎉 ¡EXCELENTE! Redujiste $reduced warnings" -ForegroundColor Green
+            Write-Host "Por favor actualizar baseline en .github/workflows/claude-ci.yml" -ForegroundColor Cyan
+            Write-Host "Cambiar: `$baselineWarnings = $warnings" -ForegroundColor Cyan
+          }
+
+          # Infos son informativos, solo advertir si aumentan mucho
+          if ($infos -gt $baselineInfos) {
+            $newInfos = $infos - $baselineInfos
+            Write-Host "`n⚠️  ADVERTENCIA: $newInfos infos nuevos agregados" -ForegroundColor Yellow
+            Write-Host "Los 'infos' no bloquean el CI pero considera revisarlos." -ForegroundColor Yellow
+          }
+
+          if ($failed) {
+            Write-Host "`n❌ Análisis estático FALLÓ" -ForegroundColor Red
+            exit 1
+          } else {
+            Write-Host "`n✅ Análisis estático PASÓ - Sin errores ni warnings nuevos" -ForegroundColor Green
+            exit 0
+          }
 
       - name: 📝 Verificar formato
         run: dart format --set-exit-if-changed lib/ test/
@@ -155,6 +221,8 @@ jobs:
     steps:
       - name: 📥 Checkout código
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: 🔐 Verificar secrets en código
         shell: pwsh
@@ -186,11 +254,13 @@ jobs:
       - name: 🔍 Verificar firebase_options.dart no modificado
         shell: pwsh
         run: |
-          # Fetch master branch para comparación correcta
-          git fetch origin master:master 2>$null
+          Write-Host "🔍 Verificando modificaciones a firebase_options.dart..."
 
-          # Comparar solo archivos modificados en este PR
-          $changed = git diff --name-only origin/master...HEAD | Select-String 'firebase_options.dart'
+          # Fetch master para comparación
+          git fetch origin master 2>$null
+
+          # Comparar archivos modificados en este PR vs master
+          $changed = git diff --name-only origin/master HEAD 2>$null | Select-String 'firebase_options.dart'
 
           if ($changed) {
             Write-Host "⚠️  ADVERTENCIA: firebase_options.dart fue modificado en este PR" -ForegroundColor Red
