@@ -72,22 +72,37 @@ function New-BuildResultJson {
         [string]$Mode = "",
         [int]$DurationMs = 0,
         [string]$OutputPath = "",
+        [long]$OutputSizeBytes = 0,
         [string]$Error = ""
     )
 
     $result = @{
-        timestamp = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+        task = "build-validation"
         status = $Status
-        target = $Target
-        mode = $Mode
+        timestamp = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
         duration_ms = $DurationMs
-        output_path = $OutputPath
-        error = $Error
+        tokens_consumed = 0  # Estimado por CI si aplica
+        build = @{
+            target = $Target
+            mode = $Mode
+            output_path = $OutputPath
+            output_size_bytes = $OutputSizeBytes
+            output_size_mb = [math]::Round($OutputSizeBytes / 1MB, 2)
+        }
+        validation = @{
+            dry_run = $DryRun.IsPresent
+            build_succeeded = ($Status -eq "success")
+        }
+        error_message = $Error
         log_file = $LogFile
-        dry_run = $DryRun.IsPresent
+        metadata = @{
+            platform = "flutter"
+            target_platform = $Target
+            build_mode = $Mode
+        }
     }
 
-    return $result | ConvertTo-Json -Depth 3
+    return $result | ConvertTo-Json -Depth 5 -Compress
 }
 
 Write-Log "=== SAFE-BUILD INICIADO ==="
@@ -152,7 +167,8 @@ try {
             -Target $Target `
             -Mode $Mode `
             -DurationMs $durationMs `
-            -OutputPath "N/A (dry-run)"
+            -OutputPath "N/A (dry-run)" `
+            -OutputSizeBytes 0
 
         Write-Output $resultJson
         Pop-Location
@@ -180,16 +196,30 @@ try {
         default { "unknown" }
     }
 
+    # Obtener tamaño del output si existe
+    $outputSizeBytes = 0
+    $fullOutputPath = Join-Path $ProjectRoot $outputPath
+    if (Test-Path $fullOutputPath) {
+        if (Test-Path $fullOutputPath -PathType Container) {
+            # Es directorio (web), sumar archivos
+            $outputSizeBytes = (Get-ChildItem $fullOutputPath -Recurse | Measure-Object -Property Length -Sum).Sum
+        } else {
+            # Es archivo (apk, aab)
+            $outputSizeBytes = (Get-Item $fullOutputPath).Length
+        }
+    }
+
     if ($buildExit -eq 0) {
         Write-Log "✅ Build exitoso en $durationMs ms"
-        Write-Log "Output: $outputPath"
+        Write-Log "Output: $outputPath ($([math]::Round($outputSizeBytes / 1MB, 2)) MB)"
 
         $resultJson = New-BuildResultJson `
             -Status "success" `
             -Target $Target `
             -Mode $Mode `
             -DurationMs $durationMs `
-            -OutputPath $outputPath
+            -OutputPath $outputPath `
+            -OutputSizeBytes $outputSizeBytes
     } else {
         Write-Log "❌ Build falló"
 
@@ -198,6 +228,8 @@ try {
             -Target $Target `
             -Mode $Mode `
             -DurationMs $durationMs `
+            -OutputPath "" `
+            -OutputSizeBytes 0 `
             -Error "Build failed with exit code $buildExit"
     }
 
@@ -209,10 +241,16 @@ try {
     $errorMsg = $_.Exception.Message
     Write-Log "ERROR: $errorMsg"
 
+    $duration = (Get-Date) - $StartTime
+    $durationMs = [int]$duration.TotalMilliseconds
+
     $resultJson = New-BuildResultJson `
         -Status "error" `
         -Target $Target `
         -Mode $Mode `
+        -DurationMs $durationMs `
+        -OutputPath "" `
+        -OutputSizeBytes 0 `
         -Error $errorMsg
 
     Write-Output $resultJson
