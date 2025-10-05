@@ -15,7 +15,10 @@
       "Bash(findstr:*)",
       "Bash(gh pr view:*)",
       "Bash(gh pr checks:*)",
-      "Bash(gh run view:*)"
+      "Bash(gh run view:*)",
+      "Bash(ConvertFrom-Json)",
+      "Bash(Format-Table -AutoSize)",
+      "Bash(Select-String -Pattern \"(FAILED|ERROR|✓|✗)\" -Context 2)"
     ],
     "deny": [],
     "ask": []
