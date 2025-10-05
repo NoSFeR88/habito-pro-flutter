@@ -273,6 +273,23 @@ Ver documento completo: [CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md](../../CLAUDE_G
 - 📦 **Dividir tareas grandes** en pasos de máximo 3-5 archivos por vez (solo si hay riesgo de agotamiento)
 - 🔄 **Usar `/remember`** al recuperar contexto después de `/save`
 
+### 🔄 Flujo Correcto: /save → /clear → /remember
+
+**PROTOCOLO OBLIGATORIO** para limpiar contexto sin pérdida:
+
+```
+1. /save          ← Guarda contexto actual en CONTEXT_LAST_SESSION.md
+2. /clear         ← Limpia chat (opcional - solo si necesitas liberar contexto)
+3. /remember      ← Recupera contexto actualizado
+```
+
+⚠️ **CRÍTICO**: NUNCA ejecutar `/clear` sin `/save` previo → **pérdida total de trabajo**
+
+**Frecuencia típica** en sesiones largas:
+- Cada 40-50k tokens consumidos → `/save` + `/clear` + `/remember`
+- Permite múltiples ciclos de trabajo en sesión única
+- Budget efectivo: ~200k × N ciclos
+
 ### Control de Tokens y Budget
 
 **Estrategia de Optimización:**
