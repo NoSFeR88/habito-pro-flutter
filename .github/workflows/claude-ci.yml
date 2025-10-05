@@ -186,14 +186,18 @@ jobs:
       - name: 🔍 Verificar firebase_options.dart no modificado
         shell: pwsh
         run: |
-          $changed = git diff --name-only origin/master... | Select-String 'firebase_options.dart'
+          # Fetch master branch para comparación correcta
+          git fetch origin master:master 2>$null
+
+          # Comparar solo archivos modificados en este PR
+          $changed = git diff --name-only origin/master...HEAD | Select-String 'firebase_options.dart'
 
           if ($changed) {
-            Write-Host "⚠️  ADVERTENCIA: firebase_options.dart fue modificado" -ForegroundColor Red
+            Write-Host "⚠️  ADVERTENCIA: firebase_options.dart fue modificado en este PR" -ForegroundColor Red
             Write-Host "Este archivo contiene configuración sensible" -ForegroundColor Red
             exit 1
           } else {
-            Write-Host "✅ firebase_options.dart no modificado" -ForegroundColor Green
+            Write-Host "✅ firebase_options.dart no modificado en este PR" -ForegroundColor Green
           }
         continue-on-error: false
 
