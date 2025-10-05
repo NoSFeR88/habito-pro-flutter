@@ -604,22 +604,22 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String notificationsCancelled(Object rhythmId) {
-    return 'Notificaciones canceladas';
+    return '✅ Notificaciones canceladas para el ritmo $rhythmId';
   }
 
   @override
   String errorCancellingNotifications(Object error, Object rhythmId) {
-    return 'Error cancelando notificaciones';
+    return '❌ Error al cancelar notificaciones para el ritmo $rhythmId: $error';
   }
 
   @override
   String instantNotificationSent(Object title) {
-    return 'Notificación instantánea enviada';
+    return '✅ Notificación instantánea enviada: $title';
   }
 
   @override
   String errorSendingNotification(Object error) {
-    return 'Error enviando notificación';
+    return '❌ Error al enviar notificación instantánea: $error';
   }
 
   @override
@@ -630,29 +630,30 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get scheduledNotificationBody =>
-      'Esta notificación se programó hace 5 segundos';
+      'Esta notificación fue programada hace 5 segundos';
 
   @override
-  String get testNotificationScheduled => 'Notificación de prueba programada';
+  String get testNotificationScheduled =>
+      '✅ Notificación de prueba programada para 5 segundos';
 
   @override
   String errorSchedulingTestNotification(Object error) {
-    return 'Error programando notificación de prueba';
+    return '❌ Error al programar notificación de prueba: $error';
   }
 
   @override
   String localizationInitialized(Object languageCode) {
-    return 'Localización inicializada';
+    return '✅ Localización inicializada: $languageCode';
   }
 
   @override
   String notificationReceivediOS(Object title) {
-    return 'Notificación recibida en iOS';
+    return '📱 Notificación recibida en iOS: $title';
   }
 
   @override
   String userTappedNotification(Object payload) {
-    return 'Usuario tocó notificación';
+    return '📱 Usuario tocó la notificación: $payload';
   }
 
   @override
@@ -837,74 +838,79 @@ class AppLocalizationsEs extends AppLocalizations {
   String get paywallAiInsightsDesc => 'Recomendaciones inteligentes';
 
   @override
-  String get paywallErrorCreatingHabit => 'Error creando hábito';
+  String get paywallErrorCreatingHabit => 'Error al crear el hábito';
 
   @override
-  String get paywallErrorLogin => 'Error en login anónimo';
+  String get paywallErrorLogin => 'Error en el inicio de sesión anónimo';
 
   @override
-  String get paywallErrorGoogleLogin => 'Error en login con Google';
+  String get paywallErrorGoogleLogin => 'Error al iniciar sesión con Google';
 
   @override
-  String get paywallErrorEmailLogin => 'Error en login con email';
+  String get paywallErrorEmailLogin =>
+      'Error al iniciar sesión con correo electrónico';
 
   @override
-  String get paywallErrorRegistration => 'Error en registro';
+  String get paywallErrorRegistration => 'Error en el registro';
 
   @override
-  String get paywallErrorLogout => 'Error cerrando sesión';
+  String get paywallErrorLogout => 'Error al cerrar sesión';
 
   @override
   String get paywallErrorPasswordReset =>
-      'Error enviando email de restablecimiento';
+      'Error al enviar el correo de restablecimiento de contraseña';
 
   @override
-  String get paywallErrorDeleteAccount => 'Error eliminando cuenta';
+  String get paywallErrorDeleteAccount => 'Error al eliminar la cuenta';
 
   @override
-  String get paywallErrorUpdateProfile => 'Error actualizando perfil';
+  String get paywallErrorUpdateProfile => 'Error al actualizar el perfil';
 
   @override
-  String get paywallErrorGetUserData => 'Error obteniendo datos de usuario';
+  String get paywallErrorGetUserData =>
+      'Error al obtener los datos del usuario';
 
   @override
-  String get paywallErrorUpdatePreferences => 'Error actualizando preferencias';
+  String get paywallErrorUpdatePreferences =>
+      'Error al actualizar las preferencias';
 
   @override
-  String get paywallErrorUpdatePremium => 'Error actualizando estado premium';
+  String get paywallErrorUpdatePremium =>
+      'Error al actualizar el estado premium';
 
   @override
-  String get paywallErrorLinkAccount => 'Error vinculando cuenta';
+  String get paywallErrorLinkAccount => 'Error al vincular la cuenta';
 
   @override
-  String get paywallErrorGetHabits => 'Error obteniendo hábitos';
+  String get paywallErrorGetHabits => 'Error al obtener los hábitos';
 
   @override
-  String get paywallErrorUpdateHabit => 'Error actualizando hábito';
+  String get paywallErrorUpdateHabit => 'Error al actualizar el hábito';
 
   @override
-  String get paywallErrorDeleteHabit => 'Error eliminando hábito';
+  String get paywallErrorDeleteHabit => 'Error al eliminar el hábito';
 
   @override
-  String get paywallErrorHabitNotFound => 'Hábito no encontrado';
+  String get paywallErrorHabitNotFound => 'No se encontró el hábito';
 
   @override
-  String get paywallErrorUpdateCompletion => 'Error actualizando completación';
+  String get paywallErrorUpdateCompletion => 'Error al actualizar el progreso';
 
   @override
-  String get paywallErrorGetStats => 'Error obteniendo estadísticas';
+  String get paywallErrorGetStats => 'Error al obtener las estadísticas';
 
   @override
-  String get paywallErrorBackup => 'Error realizando backup';
+  String get paywallErrorBackup => 'Error al realizar la copia de seguridad';
 
   @override
-  String get paywallErrorGetPeriodData => 'Error obteniendo datos del período';
+  String get paywallErrorGetPeriodData =>
+      'Error al obtener los datos del período';
 
   @override
-  String get paywallErrorCleanOldData => 'Error limpiando datos antiguos';
+  String get paywallErrorCleanOldData => 'Error al limpiar los datos antiguos';
 
   @override
-  String get paywallErrorLoadingHabits => 'Error cargando hábitos';
+  String get paywallErrorLoadingHabits => 'Error al cargar los hábitos';
 
   @override
   String pointsToLevel(Object level, Object points) {
