@@ -1778,4 +1778,13 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get startYourJourney =>
       'Start your journey to better habits by creating your first daily habit.';
+
+  @override
+  String get loginSuccess => 'Login successful!';
+
+  @override
+  String get continuingAsGuest => 'Continuing as guest';
+
+  @override
+  String get resetPassword => 'Reset password';
 }

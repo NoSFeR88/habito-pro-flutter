@@ -117,7 +117,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
           ),
           title: Row(
             children: [
-              Icon(Icons.ads_click_off, color: AppColors.primary),
+              Icon(Icons.block, color: AppColors.primary),
               const SizedBox(width: 8),
               Text(
                 AppLocalizations.of(context)!.removePermanentAds,
@@ -134,7 +134,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
                 style: TextStyle(color: AppColors.textSecondaryDark),
               ),
               const SizedBox(height: 16),
-              _buildFeatureRow(Icons.ads_click_off, AppLocalizations.of(context)!.noAdvertising),
+              _buildFeatureRow(Icons.block, AppLocalizations.of(context)!.noAdvertising),
               _buildFeatureRow(Icons.all_inclusive, AppLocalizations.of(context)!.unlimitedHabits),
               _buildFeatureRow(Icons.palette, AppLocalizations.of(context)!.premiumThemesFeature),
               _buildFeatureRow(Icons.bar_chart, AppLocalizations.of(context)!.advancedStats),

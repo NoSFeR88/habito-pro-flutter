@@ -1782,4 +1782,13 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get startYourJourney =>
       'Comienza tu viaje hacia mejores hábitos creando tu primer hábito diario.';
+
+  @override
+  String get loginSuccess => '¡Inicio de sesión exitoso!';
+
+  @override
+  String get continuingAsGuest => 'Continuando como invitado';
+
+  @override
+  String get resetPassword => 'Restablecer contraseña';
 }

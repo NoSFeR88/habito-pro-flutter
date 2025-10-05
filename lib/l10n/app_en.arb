@@ -542,5 +542,8 @@
   "themeNeumorphism": "🎭 Neumorphism",
   "allDoneForToday": "All done for today!",
   "welcomeToRitmo": "Welcome to Ritmo!",
-  "startYourJourney": "Start your journey to better habits by creating your first daily habit."
+  "startYourJourney": "Start your journey to better habits by creating your first daily habit.",
+  "loginSuccess": "Login successful!",
+  "continuingAsGuest": "Continuing as guest",
+  "resetPassword": "Reset password"
 }

@@ -10,7 +10,12 @@
       "Read(//c/Users/shill/AppData/Local/Android/Sdk/Proyectos/**)",
       "Bash(flutter analyze:*)",
       "Bash(flutter test:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(flutter gen-l10n:*)",
+      "Bash(findstr:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh run view:*)"
     ],
     "deny": [],
     "ask": []

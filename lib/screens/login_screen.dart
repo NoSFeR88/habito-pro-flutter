@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../core/theme.dart';
+import '../generated/l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -425,7 +426,7 @@ class _LoginScreenState extends State<LoginScreen> {
     
     if (success && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(AppLocalizations.of(context)!.loginSuccess),
           backgroundColor: AppColors.success,
         ),
@@ -436,10 +437,10 @@ class _LoginScreenState extends State<LoginScreen> {
   void _handleAnonymousSignIn(AuthProvider authProvider) async {
     authProvider.clearError();
     final success = await authProvider.signInAnonymously();
-    
+
     if (success && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(AppLocalizations.of(context)!.continuingAsGuest),
           backgroundColor: AppColors.primary,
         ),
@@ -504,3 +505,4 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
+}

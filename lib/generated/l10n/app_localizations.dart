@@ -3392,6 +3392,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start your journey to better habits by creating your first daily habit.'**
   String get startYourJourney;
+
+  /// No description provided for @loginSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Login successful!'**
+  String get loginSuccess;
+
+  /// No description provided for @continuingAsGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Continuing as guest'**
+  String get continuingAsGuest;
+
+  /// No description provided for @resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get resetPassword;
 }
 
 class _AppLocalizationsDelegate

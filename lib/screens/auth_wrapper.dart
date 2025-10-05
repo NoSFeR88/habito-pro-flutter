@@ -138,13 +138,13 @@ class _UserAuthenticatedScreenState extends State<_UserAuthenticatedScreen> {
   Widget build(BuildContext context) {
     // Mostrar indicador de carga si los hábitos aún no se han cargado
     if (!_hasInitialized || widget.habitProvider.isLoading) {
-      return const Scaffold(
+      return Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircularProgressIndicator(),
-              SizedBox(height: 16),
+              const CircularProgressIndicator(),
+              const SizedBox(height: 16),
               Text(AppLocalizations.of(context)!.loadingHabits),
             ],
           ),
@@ -192,10 +192,10 @@ class _AnonymousUserWrapper extends StatelessWidget {
                       size: 20,
                     ),
                     const SizedBox(width: 8),
-                    const Expanded(
+                    Expanded(
                       child: Text(
                         AppLocalizations.of(context)!.guestModeWarning,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -204,9 +204,9 @@ class _AnonymousUserWrapper extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () => _showCreateAccountDialog(context),
-                      child: const Text(
+                      child: Text(
                         AppLocalizations.of(context)!.createAccount,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -229,7 +229,7 @@ class _AnonymousUserWrapper extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(AppLocalizations.of(context)!.saveYourProgressTitle),
-          content: const Text(
+          content: Text(
             AppLocalizations.of(context)!.createAccountDescription,
           ),
           actions: [
@@ -245,7 +245,7 @@ class _AnonymousUserWrapper extends StatelessWidget {
                     final success = await authProvider.linkAnonymousWithGoogle();
                     if (context.mounted && success) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
+                        SnackBar(
                           content: Text(AppLocalizations.of(context)!.accountCreatedSuccess),
                         ),
                       );
