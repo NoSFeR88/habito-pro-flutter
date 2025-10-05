@@ -98,7 +98,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Información básica',
+              AppLocalizations.of(context)!.basicInformationLabel,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -106,17 +106,17 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
             const SizedBox(height: 16),
             TextFormField(
               controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Nombre del hábito',
-                hintText: 'Ej: Beber agua, Ejercicio, Leer...',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.habitNameLabel,
+                hintText: AppLocalizations.of(context)!.habitNameHint,
+                border: const OutlineInputBorder(),
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Por favor ingresa un nombre';
+                  return AppLocalizations.of(context)!.pleaseEnterName;
                 }
                 if (value.trim().length < 2) {
-                  return 'El nombre debe tener al menos 2 caracteres';
+                  return AppLocalizations.of(context)!.nameMinTwoCharacters;
                 }
                 return null;
               },
@@ -125,10 +125,10 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
             const SizedBox(height: 16),
             TextFormField(
               controller: _descriptionController,
-              decoration: const InputDecoration(
-                labelText: 'Descripción (opcional)',
-                hintText: 'Ej: 8 vasos al día, 30 minutos...',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.descriptionOptional,
+                hintText: AppLocalizations.of(context)!.descriptionHint,
+                border: const OutlineInputBorder(),
               ),
               maxLines: 3,
               textCapitalization: TextCapitalization.sentences,
@@ -147,7 +147,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Icono',
+              AppLocalizations.of(context)!.icon,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -200,7 +200,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Color',
+              AppLocalizations.of(context)!.color,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -250,8 +250,25 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
   }
 
   Widget _buildFrequencySelection() {
-    const days = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
-    const dayNames = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+    final l10n = AppLocalizations.of(context)!;
+    final days = [
+      l10n.dayShortMon,
+      l10n.dayShortTue,
+      l10n.dayShortWed,
+      l10n.dayShortThu,
+      l10n.dayShortFri,
+      l10n.dayShortSat,
+      l10n.dayShortSun,
+    ];
+    final dayNames = [
+      l10n.mondayFull,
+      l10n.tuesdayFull,
+      l10n.wednesdayFull,
+      l10n.thursdayFull,
+      l10n.fridayFull,
+      l10n.saturdayFull,
+      l10n.sundayFull,
+    ];
 
     return Card(
       child: Padding(
@@ -260,7 +277,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Frecuencia',
+              AppLocalizations.of(context)!.frequency,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -348,7 +365,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Recordatorio',
+              AppLocalizations.of(context)!.reminder,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -388,7 +405,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  'Zona de peligro',
+                  AppLocalizations.of(context)!.dangerZone,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: Colors.red[700],
@@ -412,7 +429,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Esta acción no se puede deshacer. Se eliminarán todos los datos del hábito incluyendo el historial de completados.',
+              AppLocalizations.of(context)!.deleteWarningMessage,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: Colors.red[600],
               ),
@@ -507,9 +524,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
         return AlertDialog(
           title: Text(AppLocalizations.of(context)!.deleteHabitTitle),
           content: Text(
-            '¿Estás seguro de que quieres eliminar "${widget.habit.name}"?\n\n'
-            'Esta acción no se puede deshacer. Se eliminarán todos los datos '
-            'del hábito incluyendo el historial de completados.',
+            AppLocalizations.of(context)!.confirmDeleteHabitMessage(widget.habit.name),
           ),
           actions: [
             TextButton(

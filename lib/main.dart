@@ -11,6 +11,7 @@ import 'providers/onboarding_provider.dart';
 import 'providers/premium_provider.dart';
 import 'providers/theme_provider.dart';
 import 'providers/gamification_provider.dart';
+import 'providers/notification_settings_provider.dart';
 import 'services/ads_service.dart';
 import 'screens/home_screen.dart';
 import 'screens/onboarding_screen.dart';
@@ -25,6 +26,21 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  // Configurar modo immersive (ocultar botones de navegación Android)
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.immersiveSticky,
+  );
+
+  // Configurar estilo de la barra de estado (transparente)
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.light,
+    ),
+  );
 
   // Inicializar Firebase
   try {
@@ -64,11 +80,17 @@ void main() async {
 
   // Inicializar ThemeProvider
   final themeProvider = ThemeProvider();
-  debugPrint('✅ Theme provider inicializado');
+  themeProvider.setPremiumProvider(premiumProvider); // Conectar premium provider
+  debugPrint('✅ Theme provider inicializado con premium provider');
 
   // Inicializar GamificationProvider
   final gamificationProvider = GamificationProvider();
   debugPrint('✅ Gamification provider inicializado');
+
+  // Inicializar NotificationSettingsProvider
+  final notificationSettingsProvider = NotificationSettingsProvider();
+  await notificationSettingsProvider.loadSettings();
+  debugPrint('✅ Notification settings provider inicializado');
 
   // Inicializar AdsService solo si no es premium - TEMPORALMENTE DESHABILITADO
   /*if (!premiumProvider.isPremium) {
@@ -87,15 +109,17 @@ void main() async {
     premiumProvider: premiumProvider,
     themeProvider: themeProvider,
     gamificationProvider: gamificationProvider,
+    notificationSettingsProvider: notificationSettingsProvider,
   ));
 }
 
-class HabitApp extends StatelessWidget {
+class HabitApp extends StatefulWidget {
   final LocaleProvider localeProvider;
   final OnboardingProvider onboardingProvider;
   final PremiumProvider premiumProvider;
   final ThemeProvider themeProvider;
   final GamificationProvider gamificationProvider;
+  final NotificationSettingsProvider notificationSettingsProvider;
 
   const HabitApp({
     Key? key,
@@ -104,18 +128,45 @@ class HabitApp extends StatelessWidget {
     required this.premiumProvider,
     required this.themeProvider,
     required this.gamificationProvider,
+    required this.notificationSettingsProvider,
   }) : super(key: key);
+
+  @override
+  State<HabitApp> createState() => _HabitAppState();
+}
+
+class _HabitAppState extends State<HabitApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // Re-apply immersive mode when app resumes
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => HabitProvider()),
-        ChangeNotifierProvider.value(value: localeProvider),
-        ChangeNotifierProvider.value(value: onboardingProvider),
-        ChangeNotifierProvider.value(value: premiumProvider),
-        ChangeNotifierProvider.value(value: themeProvider),
-        ChangeNotifierProvider.value(value: gamificationProvider),
+        ChangeNotifierProvider.value(value: widget.localeProvider),
+        ChangeNotifierProvider.value(value: widget.onboardingProvider),
+        ChangeNotifierProvider.value(value: widget.premiumProvider),
+        ChangeNotifierProvider.value(value: widget.themeProvider),
+        ChangeNotifierProvider.value(value: widget.gamificationProvider),
+        ChangeNotifierProvider.value(value: widget.notificationSettingsProvider),
       ],
       child: Consumer2<LocaleProvider, ThemeProvider>(
         builder: (context, localeProvider, themeProvider, child) {
@@ -138,19 +189,19 @@ class HabitApp extends StatelessWidget {
             home: Consumer<OnboardingProvider>(
               builder: (context, onboardingProvider, child) {
                 if (onboardingProvider.isLoading) {
-                  return const Scaffold(
-                    backgroundColor: Color(0xFF2D2B42),
+                  return Scaffold(
+                    backgroundColor: const Color(0xFF2D2B42),
                     body: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircularProgressIndicator(
+                          const CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF8B5CF6)),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Text(
-                            'Iniciando Ritmo...',
-                            style: TextStyle(
+                            AppLocalizations.of(context)!.loadingApp,
+                            style: const TextStyle(
                               color: Color(0xFFF8FAFC),
                               fontSize: 16,
                             ),

@@ -3,7 +3,19 @@
     "allow": [
       "Read(//c/Users/shill/Desktop/Capturas Movil/**)",
       "Read(//c/Users/shill/AppData/Local/Android/Sdk/Proyectos/Aplicaciones Play Store/habito_pro_clean_bck/lib/**)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(mkdir:*)",
+      "Bash(powershell:*)",
+      "SlashCommand(/save)",
+      "Read(//c/Users/shill/AppData/Local/Android/Sdk/Proyectos/**)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter test:*)",
+      "Bash(git checkout:*)",
+      "Bash(flutter gen-l10n:*)",
+      "Bash(findstr:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh run view:*)"
     ],
     "deny": [],
     "ask": []

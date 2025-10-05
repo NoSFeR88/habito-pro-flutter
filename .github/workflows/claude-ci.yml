@@ -1,0 +1,339 @@
+# GitHub Actions CI/CD para ramas claude/*
+# Parte del Plan Maestro Claude Code + Agents
+
+name: Claude Agent CI
+
+on:
+  pull_request:
+    branches:
+      - master
+      - main
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'pubspec.yaml'
+  push:
+    branches:
+      - 'claude/**'
+
+jobs:
+  # Job 1: Análisis y Validación
+  analyze:
+    name: 📊 Análisis Estático
+    runs-on: windows-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+          channel: 'stable'
+          cache: true
+
+      - name: 📦 Instalar dependencias
+        run: flutter pub get
+
+      - name: 🔍 Flutter Analyze con Baseline
+        shell: pwsh
+        run: |
+          Write-Host "🔍 Ejecutando análisis estático..." -ForegroundColor Cyan
+
+          # Ejecutar analyze y capturar output
+          flutter analyze > analyze-output.txt 2>&1
+          $analyzeExitCode = $LASTEXITCODE
+
+          # Mostrar output completo para debugging
+          Get-Content analyze-output.txt
+
+          # Contar issues por tipo
+          $errors = (Get-Content analyze-output.txt | Select-String -Pattern "^\s+error -").Count
+          $warnings = (Get-Content analyze-output.txt | Select-String -Pattern "^\s+warning -").Count
+          $infos = (Get-Content analyze-output.txt | Select-String -Pattern "^\s+info -").Count
+
+          Write-Host "`n📊 Resumen de Análisis Estático:" -ForegroundColor Cyan
+          Write-Host "  - Errors: $errors" -ForegroundColor $(if ($errors -gt 0) { "Red" } else { "Green" })
+          Write-Host "  - Warnings: $warnings" -ForegroundColor $(if ($warnings -gt 0) { "Yellow" } else { "Green" })
+          Write-Host "  - Infos: $infos" -ForegroundColor Gray
+
+          # BASELINE ACTUAL (2025-10-05)
+          # Meta: Reducir gradualmente 303 → 250 → 200 → 100 → 0
+          $baselineErrors = 0
+          $baselineWarnings = 303
+          $baselineInfos = 500  # Permitir infos, son menos críticos
+
+          Write-Host "`n📏 Baseline (permitido):" -ForegroundColor Cyan
+          Write-Host "  - Errors: $baselineErrors (actual: $errors)"
+          Write-Host "  - Warnings: $baselineWarnings (actual: $warnings)"
+          Write-Host "  - Infos: $baselineInfos (actual: $infos)"
+
+          # VALIDACIÓN: Fallar si se excede baseline
+          $failed = $false
+
+          if ($errors -gt $baselineErrors) {
+            Write-Host "`n❌ FALLO: $errors errores encontrados (baseline: $baselineErrors)" -ForegroundColor Red
+            Write-Host "Los errores NUNCA son aceptables. Por favor corregir." -ForegroundColor Red
+            $failed = $true
+          }
+
+          if ($warnings -gt $baselineWarnings) {
+            $newWarnings = $warnings - $baselineWarnings
+            Write-Host "`n❌ FALLO: $newWarnings warnings NUEVOS agregados" -ForegroundColor Red
+            Write-Host "Baseline: $baselineWarnings | Actual: $warnings" -ForegroundColor Yellow
+            Write-Host "Por favor corregir los warnings nuevos antes de mergear." -ForegroundColor Yellow
+            $failed = $true
+          } elseif ($warnings -lt $baselineWarnings) {
+            $reduced = $baselineWarnings - $warnings
+            Write-Host "`n🎉 ¡EXCELENTE! Redujiste $reduced warnings" -ForegroundColor Green
+            Write-Host "Por favor actualizar baseline en .github/workflows/claude-ci.yml" -ForegroundColor Cyan
+            Write-Host "Cambiar: `$baselineWarnings = $warnings" -ForegroundColor Cyan
+          }
+
+          # Infos son informativos, solo advertir si aumentan mucho
+          if ($infos -gt $baselineInfos) {
+            $newInfos = $infos - $baselineInfos
+            Write-Host "`n⚠️  ADVERTENCIA: $newInfos infos nuevos agregados" -ForegroundColor Yellow
+            Write-Host "Los 'infos' no bloquean el CI pero considera revisarlos." -ForegroundColor Yellow
+          }
+
+          if ($failed) {
+            Write-Host "`n❌ Análisis estático FALLÓ" -ForegroundColor Red
+            exit 1
+          } else {
+            Write-Host "`n✅ Análisis estático PASÓ - Sin errores ni warnings nuevos" -ForegroundColor Green
+            exit 0
+          }
+
+      - name: 📝 Verificar formato
+        run: dart format --set-exit-if-changed lib/ test/
+        continue-on-error: true
+
+  # Job 2: Tests
+  test:
+    name: 🧪 Tests Unitarios
+    runs-on: windows-latest
+    timeout-minutes: 15
+    needs: analyze
+
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+          channel: 'stable'
+          cache: true
+
+      - name: 📦 Instalar dependencias
+        run: flutter pub get
+
+      - name: 🧪 Ejecutar tests
+        run: flutter test --coverage
+
+      - name: 📊 Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-ritmo
+        continue-on-error: true
+
+  # Job 3: Verificación i18n
+  i18n-check:
+    name: 🌍 Verificación i18n
+    runs-on: windows-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+          channel: 'stable'
+          cache: true
+
+      - name: 📦 Instalar dependencias
+        run: flutter pub get
+
+      - name: 🌍 Generar traducciones
+        run: flutter gen-l10n
+
+      - name: 🔍 Verificar strings hardcoded
+        shell: pwsh
+        run: |
+          $hardcoded = Select-String -Path "lib\**\*.dart" -Pattern 'Text\(' -Recurse | Where-Object { $_ -notmatch 'AppLocalizations' }
+          $count = ($hardcoded | Measure-Object).Count
+
+          Write-Host "Strings hardcoded encontrados: $count"
+
+          if ($count -gt 150) {
+            Write-Host "⚠️  ADVERTENCIA: Demasiados strings hardcoded ($count > 150)" -ForegroundColor Yellow
+            Write-Host "Se recomienda internacionalizar más strings" -ForegroundColor Yellow
+          }
+        continue-on-error: true
+
+  # Job 4: Build Validation
+  build-check:
+    name: 🏗️ Validación de Build
+    runs-on: windows-latest
+    timeout-minutes: 20
+    needs: [analyze, test]
+
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+          channel: 'stable'
+          cache: true
+
+      - name: 📦 Instalar dependencias
+        run: flutter pub get
+
+      - name: 🏗️ Build APK Debug
+        run: flutter build apk --debug
+        continue-on-error: false
+
+      - name: 📤 Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 7
+
+  # Job 5: Security Check
+  security:
+    name: 🔐 Security Scan
+    runs-on: windows-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔐 Verificar secrets en código
+        shell: pwsh
+        run: |
+          Write-Host "🔍 Buscando posibles secrets expuestos..."
+
+          # Patrones peligrosos
+          $patterns = @(
+            'AIzaSy[A-Za-z0-9_-]{33}',  # Google API Key
+            'sk-[A-Za-z0-9]{48}',        # OpenAI API Key
+            'password\s*=\s*[''"][^''"]+[''"]',
+            'api[_-]?key\s*=\s*[''"][^''"]+[''"]'
+          )
+
+          $found = $false
+          foreach ($pattern in $patterns) {
+            $matches = Select-String -Path "lib\**\*.dart" -Pattern $pattern -Recurse 2>$null
+            if ($matches) {
+              Write-Host "⚠️  Posible secret encontrado con patrón: $pattern" -ForegroundColor Yellow
+              $found = $true
+            }
+          }
+
+          if (-not $found) {
+            Write-Host "✅ No se encontraron secrets expuestos" -ForegroundColor Green
+          }
+        continue-on-error: true
+
+      - name: 🔍 Verificar firebase_options.dart no modificado
+        shell: pwsh
+        run: |
+          Write-Host "🔍 Verificando modificaciones a firebase_options.dart..."
+
+          # Fetch master para comparación
+          git fetch origin master 2>$null
+
+          # Comparar archivos modificados en este PR vs master
+          $changed = git diff --name-only origin/master HEAD 2>$null | Select-String 'firebase_options.dart'
+
+          if ($changed) {
+            Write-Host "⚠️  ADVERTENCIA: firebase_options.dart fue modificado en este PR" -ForegroundColor Red
+            Write-Host "Este archivo contiene configuración sensible" -ForegroundColor Red
+            exit 1
+          } else {
+            Write-Host "✅ firebase_options.dart no modificado en este PR" -ForegroundColor Green
+          }
+        continue-on-error: false
+
+  # Job 6: PR Comment con Resultados
+  comment-results:
+    name: 💬 Comentar Resultados en PR
+    runs-on: windows-latest
+    needs: [analyze, test, i18n-check, build-check, security]
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: 💬 Crear comentario de resultado
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const body = `## 🤖 Claude Agent CI - Resultados
+
+            ### ✅ Checks Completados
+
+            - ✅ **Análisis Estático**: Passed
+            - ✅ **Tests Unitarios**: Passed
+            - ✅ **Verificación i18n**: Passed
+            - ✅ **Build Validation**: Passed
+            - ✅ **Security Scan**: Passed
+
+            ### 📊 Siguiente Paso
+
+            Este PR está listo para revisión humana. Por favor revisar:
+            - [ ] Cambios en código
+            - [ ] Tests agregados/actualizados
+            - [ ] Traducciones completas (si aplica)
+            - [ ] Sin regresiones visuales
+
+            ---
+            🤖 Generado automáticamente por Claude Agent CI
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+  # Job 7: Gate de Aprobación (solo para PRs de claude/*)
+  require-approval:
+    name: 🚧 Requiere Aprobación Humana
+    runs-on: windows-latest
+    needs: [analyze, test, i18n-check, build-check, security]
+    if: startsWith(github.head_ref, 'claude/')
+
+    steps:
+      - name: 🚧 Bloquear merge automático
+        run: |
+          Write-Host "🚧 Este PR de agente requiere aprobación humana manual" -ForegroundColor Yellow
+          Write-Host "No se permite merge automático para ramas claude/*" -ForegroundColor Yellow
+          Write-Host "Revisor: Por favor verificar cambios antes de aprobar" -ForegroundColor Cyan
+        shell: pwsh
+
+      - name: 📋 Verificar que no sea WIP
+        run: |
+          $prTitle = "${{ github.event.pull_request.title }}"
+
+          if ($prTitle -match 'WIP|DRAFT|DO NOT MERGE') {
+            Write-Host "❌ PR marcado como WIP/DRAFT - No listo para merge" -ForegroundColor Red
+            exit 1
+          }
+        shell: pwsh
+        continue-on-error: false

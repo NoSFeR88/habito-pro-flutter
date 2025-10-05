@@ -28,7 +28,7 @@ class AuthService {
       
       return credential;
     } catch (e) {
-      throw Exception('Error en login anónimo: $e');
+      throw Exception('Anonymous login error: $e');
     }
   }
 
@@ -61,7 +61,7 @@ class AuthService {
 
       return userCredential;
     } catch (e) {
-      throw Exception('Error en login con Google: $e');
+      throw Exception('Google login error: $e');
     }
   }
 
@@ -82,7 +82,7 @@ class AuthService {
       
       return credential;
     } catch (e) {
-      throw Exception('Error en login con email: $e');
+      throw Exception('Email login error: $e');
     }
   }
 
@@ -110,7 +110,7 @@ class AuthService {
       
       return credential;
     } catch (e) {
-      throw Exception('Error en registro: $e');
+      throw Exception('Registration error: $e');
     }
   }
 
@@ -122,7 +122,7 @@ class AuthService {
         _googleSignIn.signOut(),
       ]);
     } catch (e) {
-      throw Exception('Error cerrando sesión: $e');
+      throw Exception('Logout error: $e');
     }
   }
 
@@ -131,7 +131,7 @@ class AuthService {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } catch (e) {
-      throw Exception('Error enviando email de restablecimiento: $e');
+      throw Exception('Password reset error: $e');
     }
   }
 
@@ -147,7 +147,7 @@ class AuthService {
         await user.delete();
       }
     } catch (e) {
-      throw Exception('Error eliminando cuenta: $e');
+      throw Exception('Delete account error: $e');
     }
   }
 
@@ -170,7 +170,7 @@ class AuthService {
         });
       }
     } catch (e) {
-      throw Exception('Error actualizando perfil: $e');
+      throw Exception('Profile update error: $e');
     }
   }
 
@@ -210,7 +210,7 @@ class AuthService {
         });
       }
     } catch (e) {
-      print('Error creando documento de usuario: $e');
+      print('User document creation error: $e');
       // No lanzar excepción aquí para no interferir con el login
     }
   }
@@ -225,7 +225,7 @@ class AuthService {
       }
       return null;
     } catch (e) {
-      throw Exception('Error obteniendo datos de usuario: $e');
+      throw Exception('User data error: $e');
     }
   }
 
@@ -240,7 +240,7 @@ class AuthService {
         });
       }
     } catch (e) {
-      throw Exception('Error actualizando preferencias: $e');
+      throw Exception('Preferences update error: $e');
     }
   }
 
@@ -265,7 +265,7 @@ class AuthService {
         });
       }
     } catch (e) {
-      throw Exception('Error actualizando estado premium: $e');
+      throw Exception('Premium status error: $e');
     }
   }
 
@@ -303,7 +303,7 @@ class AuthService {
 
       return userCredential;
     } catch (e) {
-      throw Exception('Error vinculando cuenta: $e');
+      throw Exception('Account linking error: $e');
     }
   }
 

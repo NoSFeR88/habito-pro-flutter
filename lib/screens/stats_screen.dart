@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import '../providers/habit_provider.dart';
 import '../models/habit.dart';
 import '../generated/l10n/app_localizations.dart';
+import '../core/design_constants.dart';
 
 class StatsScreen extends StatefulWidget {
   const StatsScreen({super.key});
@@ -62,14 +63,14 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
         final totalToday = habitsToday.length;
 
         return SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(DesignConstants.paddingScreen),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildStatsCards(stats, completedToday, totalToday),
-              const SizedBox(height: 24),
+              const SizedBox(height: DesignConstants.spacingBetweenSections),
               _buildCompletionChart(completedToday, totalToday),
-              const SizedBox(height: 24),
+              const SizedBox(height: DesignConstants.spacingBetweenSections),
               _buildHabitsListToday(habitsToday),
             ],
           ),
@@ -93,7 +94,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
         Expanded(
           child: _buildStatCard(
             AppLocalizations.of(context)!.maxStreak,
-            '${stats['currentStreak']} días',
+            AppLocalizations.of(context)!.streakFormat(stats['currentStreak']),
             Icons.local_fire_department,
             Colors.orange,
           ),
@@ -113,20 +114,20 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
 
   Widget _buildStatCard(String title, String value, IconData icon, Color color) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(DesignConstants.cardPadding),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(DesignConstants.cardBorderRadius),
         border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
-          Icon(icon, color: color, size: 32),
+          Icon(icon, color: color, size: DesignConstants.statCardIconSize),
           const SizedBox(height: 8),
           Text(
             value,
             style: TextStyle(
-              fontSize: 20,
+              fontSize: DesignConstants.statValueFontSize,
               fontWeight: FontWeight.bold,
               color: color,
             ),
@@ -134,9 +135,10 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
           Text(
             title,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: DesignConstants.statLabelFontSize,
               color: Colors.grey[600],
             ),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
@@ -148,7 +150,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
 
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(DesignConstants.cardPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -206,7 +208,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget _buildHabitsListToday(List<Habit> habits) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(DesignConstants.cardPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -282,12 +284,14 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
     return Consumer<HabitProvider>(
       builder: (context, habitProvider, child) {
         return SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(DesignConstants.paddingScreen),
           child: Column(
             children: [
               _buildWeeklyChart(habitProvider.habits),
-              const SizedBox(height: 24),
+              const SizedBox(height: DesignConstants.spacingBetweenSections),
               _buildWeeklyHeatmap(habitProvider.habits),
+              const SizedBox(height: DesignConstants.spacingBetweenSections),
+              _buildWeeklyHabitsList(habitProvider.habitsForWeek),
             ],
           ),
         );
@@ -300,7 +304,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
 
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(DesignConstants.cardPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -312,7 +316,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
             ),
             const SizedBox(height: 16),
             Container(
-              height: 200,
+              height: DesignConstants.chartHeight,
               padding: const EdgeInsets.only(bottom: 16, right: 8),
               child: LineChart(
                 LineChartData(
@@ -322,10 +326,12 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 40,
+                        interval: 20,
                         getTitlesWidget: (value, meta) {
+                          if (value != value.toInt()) return const Text('');
                           return Text(
                             '${value.toInt()}%',
-                            style: const TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: DesignConstants.chartLabelFontSize),
                           );
                         },
                       ),
@@ -334,8 +340,18 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 30,
+                        interval: 1,
                         getTitlesWidget: (value, meta) {
-                          const days = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+                          if (value != value.toInt()) return const Text('');
+                          final days = [
+                            AppLocalizations.of(context)!.dayShortMon,
+                            AppLocalizations.of(context)!.dayShortTue,
+                            AppLocalizations.of(context)!.dayShortWed,
+                            AppLocalizations.of(context)!.dayShortThu,
+                            AppLocalizations.of(context)!.dayShortFri,
+                            AppLocalizations.of(context)!.dayShortSat,
+                            AppLocalizations.of(context)!.dayShortSun,
+                          ];
                           return Text(days[value.toInt() % 7]);
                         },
                       ),
@@ -414,7 +430,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget _buildWeeklyHeatmap(List<Habit> habits) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(DesignConstants.cardPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -457,7 +473,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
               child: Row(
                 children: [
                   Text(
-                    'Leyenda',
+                    AppLocalizations.of(context)!.legend,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
@@ -481,11 +497,11 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
               padding: const EdgeInsets.all(12),
               child: Row(
                 children: [
-                  _buildLegendItem(Colors.green, '✓', 'Completado'),
+                  _buildLegendItem(Colors.green, '✓', AppLocalizations.of(context)!.completed),
                   const SizedBox(width: 16),
-                  _buildLegendItem(Colors.red[200]!, '', 'Pendiente'),
+                  _buildLegendItem(Colors.red[200]!, '', AppLocalizations.of(context)!.pending),
                   const SizedBox(width: 16),
-                  _buildLegendItem(Colors.grey[400]!, '', 'No programado'),
+                  _buildLegendItem(Colors.grey[400]!, '', AppLocalizations.of(context)!.notScheduled),
                 ],
               ),
             ),
@@ -534,7 +550,15 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget _buildHeatmapGrid(List<Habit> habits) {
     final now = DateTime.now();
     final weekStart = now.subtract(Duration(days: now.weekday - 1));
-    const days = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+    final days = [
+      AppLocalizations.of(context)!.dayShortMon,
+      AppLocalizations.of(context)!.dayShortTue,
+      AppLocalizations.of(context)!.dayShortWed,
+      AppLocalizations.of(context)!.dayShortThu,
+      AppLocalizations.of(context)!.dayShortFri,
+      AppLocalizations.of(context)!.dayShortSat,
+      AppLocalizations.of(context)!.dayShortSun,
+    ];
 
     return Column(
       children: [
@@ -610,15 +634,15 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
     return Consumer<HabitProvider>(
       builder: (context, habitProvider, child) {
         return SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(DesignConstants.paddingScreen),
           child: Column(
             children: [
               _buildMonthlyProgressChart(habitProvider.habits),
-              const SizedBox(height: 24),
+              const SizedBox(height: DesignConstants.spacingBetweenSections),
               _buildHabitStreaksChart(habitProvider.habits),
-              const SizedBox(height: 24),
+              const SizedBox(height: DesignConstants.spacingBetweenSections),
               _buildMonthlyHeatmap(habitProvider.habits),
-              const SizedBox(height: 24),
+              const SizedBox(height: DesignConstants.spacingBetweenSections),
               _buildMonthlyStats(habitProvider.habits),
             ],
           ),
@@ -630,9 +654,40 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget _buildMonthlyProgressChart(List<Habit> habits) {
     final monthlyData = _getMonthlyData(habits);
 
+    // Si no hay datos, mostrar mensaje vacío
+    if (habits.isEmpty || monthlyData.isEmpty) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(DesignConstants.cardPadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.monthlyProgress,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                height: DesignConstants.chartHeight,
+                alignment: Alignment.center,
+                child: Text(
+                  AppLocalizations.of(context)!.noActiveHabits,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(DesignConstants.cardPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -644,7 +699,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
             ),
             const SizedBox(height: 16),
             Container(
-              height: 200,
+              height: DesignConstants.chartHeight,
               padding: const EdgeInsets.only(bottom: 16, right: 8),
               child: LineChart(
                 LineChartData(
@@ -654,10 +709,12 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 40,
+                        interval: 20,
                         getTitlesWidget: (value, meta) {
+                          if (value != value.toInt()) return const Text('');
                           return Text(
                             '${value.toInt()}%',
-                            style: const TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: DesignConstants.chartLabelFontSize),
                           );
                         },
                       ),
@@ -666,10 +723,13 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 30,
+                        interval: 1,
                         getTitlesWidget: (value, meta) {
-                          final weeks = ['S1', 'S2', 'S3', 'S4'];
+                          final l10n = AppLocalizations.of(context)!;
+                          final weeks = [l10n.week1, l10n.week2, l10n.week3, l10n.week4];
                           final index = value.toInt();
-                          return index < weeks.length ? Text(weeks[index]) : const Text('');
+                          if (value != value.toInt()) return const Text('');
+                          return index < weeks.length ? Text(weeks[index], style: const TextStyle(fontSize: 12)) : const Text('');
                         },
                       ),
                     ),
@@ -719,9 +779,40 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget _buildHabitStreaksChart(List<Habit> habits) {
     final streakData = _getStreakData(habits);
 
+    // Si no hay hábitos, mostrar mensaje vacío
+    if (habits.isEmpty || streakData.isEmpty) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(DesignConstants.cardPadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.habitStreaks,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                height: DesignConstants.chartHeight,
+                alignment: Alignment.center,
+                child: Text(
+                  AppLocalizations.of(context)!.noActiveHabits,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(DesignConstants.cardPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -733,7 +824,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
             ),
             const SizedBox(height: 16),
             Container(
-              height: 200,
+              height: DesignConstants.chartHeight,
               padding: const EdgeInsets.only(bottom: 16, right: 8),
               child: BarChart(
                 BarChartData(
@@ -743,7 +834,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                     touchTooltipData: BarTouchTooltipData(
                       getTooltipItem: (group, groupIndex, rod, rodIndex) {
                         return BarTooltipItem(
-                          '${habits[groupIndex].name}\n${rod.toY.round()} días',
+                          '${habits[groupIndex].name}\n${AppLocalizations.of(context)!.streakFormat(rod.toY.round())}',
                           const TextStyle(color: Colors.white),
                         );
                       },
@@ -786,10 +877,12 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 40,
+                        interval: 1,
                         getTitlesWidget: (value, meta) {
+                          if (value != value.toInt()) return const Text('');
                           return Text(
                             value.toInt().toString(),
-                            style: const TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: DesignConstants.chartLabelFontSize),
                           );
                         },
                       ),
@@ -822,7 +915,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget _buildMonthlyHeatmap(List<Habit> habits) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(DesignConstants.cardPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -845,7 +938,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
 
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(DesignConstants.cardPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -870,7 +963,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                 Expanded(
                   child: _buildStatCard(
                     AppLocalizations.of(context)!.bestStreak,
-                    '${stats['bestStreak']} días',
+                    AppLocalizations.of(context)!.streakFormat(stats['bestStreak']),
                     Icons.whatshot,
                     Colors.orange,
                   ),
@@ -959,11 +1052,21 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
     final monthEnd = DateTime(now.year, now.month + 1, 0);
     final daysInMonth = monthEnd.day;
 
+    final dayLabels = [
+      AppLocalizations.of(context)!.dayShortMon,
+      AppLocalizations.of(context)!.dayShortTue,
+      AppLocalizations.of(context)!.dayShortWed,
+      AppLocalizations.of(context)!.dayShortThu,
+      AppLocalizations.of(context)!.dayShortFri,
+      AppLocalizations.of(context)!.dayShortSat,
+      AppLocalizations.of(context)!.dayShortSun,
+    ];
+
     return Column(
       children: [
         // Header con días de la semana
         Row(
-          children: ['L', 'M', 'X', 'J', 'V', 'S', 'D'].map((day) =>
+          children: dayLabels.map((day) =>
             Expanded(
               child: Center(
                 child: Text(
@@ -990,25 +1093,54 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                 final day = DateTime(now.year, now.month, dayNumber);
                 final dayStr = day.toDateString();
                 final intensity = _getDayIntensity(habits, day, dayStr);
+                final isToday = day.day == now.day && day.month == now.month && day.year == now.year;
 
                 return Expanded(
                   child: Container(
                     height: 32,
                     margin: const EdgeInsets.all(1),
                     decoration: BoxDecoration(
-                      color: _getIntensityColor(intensity),
+                      color: isToday ? Colors.amber : _getIntensityColor(intensity),
                       borderRadius: BorderRadius.circular(4),
-                      border: day.day == now.day ? Border.all(color: Colors.black, width: 2) : null,
+                      border: isToday
+                        ? Border.all(color: Colors.orange.shade700, width: 2)
+                        : null,
+                      boxShadow: isToday
+                        ? [
+                            BoxShadow(
+                              color: Colors.amber.withOpacity(0.6),
+                              blurRadius: 6,
+                              spreadRadius: 1,
+                            ),
+                          ]
+                        : null,
                     ),
-                    child: Center(
-                      child: Text(
-                        dayNumber.toString(),
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: intensity > 0.5 ? Colors.white : Colors.black,
+                    child: Stack(
+                      children: [
+                        Center(
+                          child: Text(
+                            dayNumber.toString(),
+                            style: TextStyle(
+                              fontSize: isToday ? 14 : 12,
+                              fontWeight: FontWeight.bold,
+                              color: isToday ? Colors.black : (intensity > 0.5 ? Colors.white : Colors.black),
+                            ),
+                          ),
                         ),
-                      ),
+                        if (isToday)
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Container(
+                              width: 6,
+                              height: 6,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                 );
@@ -1088,5 +1220,108 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
       'bestStreak': bestStreak,
       'averageCompletion': averageCompletion,
     };
+  }
+
+  Widget _buildWeeklyHabitsList(List<Map<String, dynamic>> weekHabits) {
+    if (weekHabits.isEmpty) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(DesignConstants.cardPadding),
+          child: Center(
+            child: Text(AppLocalizations.of(context)!.noHabitsToShow),
+          ),
+        ),
+      );
+    }
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(DesignConstants.cardPadding),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.weekHabits,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            ...weekHabits.map((habitData) {
+              final habit = habitData['habit'] as Habit;
+              final completedDays = habitData['completedDays'] as int;
+              final scheduledDays = habitData['scheduledDays'] as int;
+              final percentage = habitData['percentage'] as int;
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Color(habit.color).withValues(alpha: 0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        habit.icon,
+                        color: Color(habit.color),
+                        size: DesignConstants.habitIconSize,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            habit.name,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            AppLocalizations.of(context)!.weekProgress(completedDays, scheduledDays),
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: _getPercentageColor(percentage).withValues(alpha: 0.2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        '$percentage%',
+                        style: TextStyle(
+                          color: _getPercentageColor(percentage),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Color _getPercentageColor(int percentage) {
+    if (percentage == 100) return Colors.green;
+    if (percentage >= 70) return Colors.lightGreen;
+    if (percentage >= 40) return Colors.orange;
+    return Colors.red;
   }
 }

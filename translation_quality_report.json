@@ -1,0 +1,78 @@
+﻿{
+    "same_as_english":  3,
+    "quality_percent":  97.6,
+    "total_keys":  541,
+    "empty_translations":  0,
+    "suspicious_short":  10,
+    "issues":  {
+                   "same":  [
+                                {
+                                    "Key":  "dateRangeFormat",
+                                    "Value":  "{startDay} {startMonth} - {endDay} {endMonth}"
+                                },
+                                {
+                                    "Key":  "monthYear",
+                                    "Value":  "{month} {year}"
+                                },
+                                {
+                                    "Key":  "googleLogin",
+                                    "Value":  "Google"
+                                }
+                            ],
+                   "short":  [
+                                 {
+                                     "Key":  "deleteWarning",
+                                     "EnValue":  "This action cannot be undone. All rhythm data including completion history will be deleted.",
+                                     "EsValue":  "Advertencia de EliminaciÃ³n"
+                                 },
+                                 {
+                                     "Key":  "deleteHabitConfirmation",
+                                     "EnValue":  "Are you sure you want to delete \"{rhythmName}\"?\\n\\nThis action cannot be undone. All rhythm data including completion history will be deleted.",
+                                     "EsValue":  "ConfirmaciÃ³n de eliminaciÃ³n de hÃ¡bito"
+                                 },
+                                 {
+                                     "Key":  "limitReached",
+                                     "EnValue":  "Limit reached: maximum {maxHabits} rhythms in free plan.",
+                                     "EsValue":  "LÃ­mite alcanzado"
+                                 },
+                                 {
+                                     "Key":  "premiumThemesOnly",
+                                     "EnValue":  "Premium themes are only available in Ritmo PRO.",
+                                     "EsValue":  "Solo en Temas Premium"
+                                 },
+                                 {
+                                     "Key":  "guestMode",
+                                     "EnValue":  "Guest mode - Your data will not be saved",
+                                     "EsValue":  "Modo invitado"
+                                 },
+                                 {
+                                     "Key":  "createAccountToSave",
+                                     "EnValue":  "Create an account to save your rhythms and sync them across devices.",
+                                     "EsValue":  "Crear cuenta para guardar"
+                                 },
+                                 {
+                                     "Key":  "connectionError",
+                                     "EnValue":  "Connection error. Check your internet.",
+                                     "EsValue":  "Error de conexiÃ³n"
+                                 },
+                                 {
+                                     "Key":  "noHabitsToday",
+                                     "EnValue":  "You have no rhythms scheduled for today or you\u0027ve completed them all.",
+                                     "EsValue":  "No tienes hÃ¡bitos para hoy"
+                                 },
+                                 {
+                                     "Key":  "notificationsToRemind",
+                                     "EnValue":  "Notifications to remind you to complete your daily rhythms",
+                                     "EsValue":  "Notificaciones para recordar"
+                                 },
+                                 {
+                                     "Key":  "errorCancellingNotifications",
+                                     "EnValue":  "âŒ Error cancelling notifications for rhythm {rhythmId}: {error}",
+                                     "EsValue":  "Error cancelando notificaciones"
+                                 }
+                             ],
+                   "empty":  [
+
+                             ]
+               }
+}

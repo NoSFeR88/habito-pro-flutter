@@ -146,85 +146,91 @@ abstract class AppLocalizations {
     Locale('zh')
   ];
 
-  /// The title of the application
+  /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
   /// **'RITMO'**
   String get appTitle;
 
-  /// Title in the home screen app bar
+  /// No description provided for @homeAppBarTitle.
   ///
   /// In en, this message translates to:
   /// **'RITMO'**
   String get homeAppBarTitle;
 
-  /// Loading indicator text
+  /// No description provided for @loading.
   ///
   /// In en, this message translates to:
   /// **'Loading...'**
   String get loading;
 
-  /// Retry button text
+  /// No description provided for @loadingApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting Ritmo...'**
+  String get loadingApp;
+
+  /// No description provided for @retry.
   ///
   /// In en, this message translates to:
   /// **'Retry'**
   String get retry;
 
-  /// Today label
+  /// No description provided for @today.
   ///
   /// In en, this message translates to:
   /// **'Today'**
   String get today;
 
-  /// Today label with date
+  /// No description provided for @todayWithDate.
   ///
   /// In en, this message translates to:
   /// **'Today • {date}'**
-  String todayWithDate(String date);
+  String todayWithDate(Object date);
 
-  /// Empty state title when no rhythms for today
+  /// No description provided for @allDoneToday.
   ///
   /// In en, this message translates to:
   /// **'All done for today!'**
   String get allDoneToday;
 
-  /// Empty state description
+  /// No description provided for @noProgrammedHabits.
   ///
   /// In en, this message translates to:
   /// **'You have no rhythms scheduled for today or you\'ve completed them all.'**
   String get noProgrammedHabits;
 
-  /// Create first rhythm button text
+  /// No description provided for @createFirstHabit.
   ///
   /// In en, this message translates to:
   /// **'Create my first rhythm'**
   String get createFirstHabit;
 
-  /// Snackbar message when rhythm is toggled
+  /// No description provided for @rhythmUpdated.
   ///
   /// In en, this message translates to:
   /// **'Habit updated!'**
   String get rhythmUpdated;
 
-  /// Edit button text
+  /// No description provided for @edit.
   ///
   /// In en, this message translates to:
   /// **'Edit'**
   String get edit;
 
-  /// View statistics button text
+  /// No description provided for @viewStatistics.
   ///
   /// In en, this message translates to:
   /// **'View statistics'**
   String get viewStatistics;
 
-  /// Delete button text
+  /// No description provided for @delete.
   ///
   /// In en, this message translates to:
   /// **'Delete'**
   String get delete;
 
-  /// Delete rhythm dialog title
+  /// No description provided for @deleteHabit.
   ///
   /// In en, this message translates to:
   /// **'Delete rhythm'**
@@ -234,19 +240,19 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Are you sure you want to delete \"{rhythmName}\"?'**
-  String confirmDeleteHabit(String rhythmName, Object habitName);
+  String confirmDeleteHabit(Object habitName, Object rhythmName);
 
-  /// Cancel button text
+  /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
 
-  /// Habit deleted confirmation message
+  /// No description provided for @rhythmDeleted.
   ///
   /// In en, this message translates to:
   /// **'Habit \"{rhythmName}\" deleted'**
-  String rhythmDeleted(String rhythmName);
+  String rhythmDeleted(Object rhythmName);
 
   /// No description provided for @mondayShort.
   ///
@@ -392,6 +398,12 @@ abstract class AppLocalizations {
   /// **'Create my first rhythm'**
   String get onboardingCreateFirstHabit;
 
+  /// No description provided for @onboardingExampleHabitName.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to the gym'**
+  String get onboardingExampleHabitName;
+
   /// No description provided for @onboardingCelebrationTitle.
   ///
   /// In en, this message translates to:
@@ -440,19 +452,19 @@ abstract class AppLocalizations {
   /// **'Start my rhythm'**
   String get onboardingStartMyRhythm;
 
-  /// Label for rhythm name field
+  /// No description provided for @rhythmName.
   ///
   /// In en, this message translates to:
   /// **'Habit name'**
   String get rhythmName;
 
-  /// Hint text for rhythm name field
+  /// No description provided for @rhythmNameHint.
   ///
   /// In en, this message translates to:
   /// **'E.g: Exercise, Read, Meditate...'**
   String get rhythmNameHint;
 
-  /// Label for day selection
+  /// No description provided for @selectDays.
   ///
   /// In en, this message translates to:
   /// **'Select days'**
@@ -530,91 +542,91 @@ abstract class AppLocalizations {
   /// **'Dec'**
   String get decemberShort;
 
-  /// New rhythm screen title
+  /// No description provided for @newHabit.
   ///
   /// In en, this message translates to:
-  /// **'New Habit'**
+  /// **'New Rhythm'**
   String get newHabit;
 
-  /// Save button text
+  /// No description provided for @save.
   ///
   /// In en, this message translates to:
   /// **'Save'**
   String get save;
 
-  /// Today tab in statistics
+  /// No description provided for @statsToday.
   ///
   /// In en, this message translates to:
   /// **'Today'**
   String get statsToday;
 
-  /// Week tab in statistics
+  /// No description provided for @statsWeek.
   ///
   /// In en, this message translates to:
   /// **'Week'**
   String get statsWeek;
 
-  /// Month tab in statistics
+  /// No description provided for @statsMonth.
   ///
   /// In en, this message translates to:
   /// **'Month'**
   String get statsMonth;
 
-  /// Notification tests modal title
+  /// No description provided for @notificationTests.
   ///
   /// In en, this message translates to:
   /// **'Notification Tests'**
   String get notificationTests;
 
-  /// Immediate notification test title
+  /// No description provided for @immediateNotification.
   ///
   /// In en, this message translates to:
   /// **'Immediate Notification'**
   String get immediateNotification;
 
-  /// Immediate notification test description
+  /// No description provided for @showNotificationNow.
   ///
   /// In en, this message translates to:
   /// **'Show notification right now'**
   String get showNotificationNow;
 
-  /// Scheduled notification test title
+  /// No description provided for @scheduledNotification.
   ///
   /// In en, this message translates to:
   /// **'Scheduled Notification'**
   String get scheduledNotification;
 
-  /// Scheduled notification test description
+  /// No description provided for @scheduleIn5Seconds.
   ///
   /// In en, this message translates to:
   /// **'Schedule notification in 5 seconds'**
   String get scheduleIn5Seconds;
 
-  /// Reschedule all rhythms button
+  /// No description provided for @rescheduleAllHabits.
   ///
   /// In en, this message translates to:
   /// **'Reschedule All Habits'**
   String get rescheduleAllHabits;
 
-  /// Update all notifications description
+  /// No description provided for @updateAllNotifications.
   ///
   /// In en, this message translates to:
   /// **'Update all notifications'**
   String get updateAllNotifications;
 
-  /// View pending notifications button
+  /// No description provided for @viewPendingNotifications.
   ///
   /// In en, this message translates to:
   /// **'View Pending Notifications'**
   String get viewPendingNotifications;
 
-  /// Show scheduled notifications description
+  /// No description provided for @showScheduledNotifications.
   ///
   /// In en, this message translates to:
   /// **'Show scheduled notifications'**
   String get showScheduledNotifications;
 
-  /// Notification sent confirmation
+  /// No description provided for @notificationSent.
   ///
   /// In en, this message translates to:
   /// **'Notification sent! Check your notification bar'**
@@ -624,69 +636,69 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'✅ Notification scheduled: {rhythmName} - {dateTime}'**
-  String notificationScheduled(String rhythmName, String dateTime);
+  String notificationScheduled(Object dateTime, Object rhythmName);
 
-  /// Notifications rescheduled confirmation
+  /// No description provided for @notificationsRescheduled.
   ///
   /// In en, this message translates to:
   /// **'Notifications rescheduled successfully'**
   String get notificationsRescheduled;
 
-  /// Pending notifications dialog title
+  /// No description provided for @pendingNotifications.
   ///
   /// In en, this message translates to:
   /// **'Pending Notifications'**
   String get pendingNotifications;
 
-  /// No pending notifications message
+  /// No description provided for @noPendingNotifications.
   ///
   /// In en, this message translates to:
   /// **'No pending notifications'**
   String get noPendingNotifications;
 
-  /// Close button text
+  /// No description provided for @close.
   ///
   /// In en, this message translates to:
   /// **'Close'**
   String get close;
 
-  /// Monthly progress chart title
+  /// No description provided for @monthlyProgress.
   ///
   /// In en, this message translates to:
   /// **'Monthly Progress'**
   String get monthlyProgress;
 
-  /// Habit streaks chart title
+  /// No description provided for @rhythmStreaks.
   ///
   /// In en, this message translates to:
   /// **'Habit Streaks'**
   String get rhythmStreaks;
 
-  /// Monthly calendar heatmap title
+  /// No description provided for @monthlyCalendar.
   ///
   /// In en, this message translates to:
   /// **'Monthly Calendar'**
   String get monthlyCalendar;
 
-  /// Monthly statistics section title
+  /// No description provided for @monthlyStats.
   ///
   /// In en, this message translates to:
   /// **'Monthly Statistics'**
   String get monthlyStats;
 
-  /// Active days stat label
+  /// No description provided for @activeDays.
   ///
   /// In en, this message translates to:
   /// **'Active Days'**
   String get activeDays;
 
-  /// Best streak stat label
+  /// No description provided for @bestStreak.
   ///
   /// In en, this message translates to:
   /// **'Best Streak'**
   String get bestStreak;
 
-  /// Average completion stat label
+  /// No description provided for @averageCompletion.
   ///
   /// In en, this message translates to:
   /// **'Average'**
@@ -773,7 +785,7 @@ abstract class AppLocalizations {
   /// No description provided for @manageHabits.
   ///
   /// In en, this message translates to:
-  /// **'Manage Habits'**
+  /// **'Manage Rhythms'**
   String get manageHabits;
 
   /// No description provided for @noActiveHabits.
@@ -821,7 +833,7 @@ abstract class AppLocalizations {
   /// No description provided for @editHabit.
   ///
   /// In en, this message translates to:
-  /// **'Edit Habit'**
+  /// **'Edit Rhythm'**
   String get editHabit;
 
   /// No description provided for @basicInformation.
@@ -924,13 +936,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Habit \"{rhythmName}\" updated successfully'**
-  String rhythmUpdatedSuccess(String rhythmName);
+  String rhythmUpdatedSuccess(Object rhythmName);
 
   /// No description provided for @errorUpdatingHabit.
   ///
   /// In en, this message translates to:
   /// **'Error updating rhythm: {error}'**
-  String errorUpdatingHabit(String error);
+  String errorUpdatingHabit(Object error);
 
   /// No description provided for @deleteHabitTitle.
   ///
@@ -942,25 +954,25 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Are you sure you want to delete \"{rhythmName}\"?\\n\\nThis action cannot be undone. All rhythm data including completion history will be deleted.'**
-  String deleteHabitConfirmation(String rhythmName);
+  String deleteHabitConfirmation(Object rhythmName);
 
   /// No description provided for @rhythmDeletedSuccess.
   ///
   /// In en, this message translates to:
   /// **'Habit \"{rhythmName}\" deleted'**
-  String rhythmDeletedSuccess(String rhythmName);
+  String rhythmDeletedSuccess(Object rhythmName);
 
   /// No description provided for @errorDeletingHabit.
   ///
   /// In en, this message translates to:
   /// **'Error deleting rhythm: {error}'**
-  String errorDeletingHabit(String error);
+  String errorDeletingHabit(Object error);
 
   /// No description provided for @limitReached.
   ///
   /// In en, this message translates to:
   /// **'Limit reached: maximum {maxHabits} rhythms in free plan.'**
-  String limitReached(int maxHabits);
+  String limitReached(Object maxHabits);
 
   /// No description provided for @premiumThemesOnly.
   ///
@@ -1020,13 +1032,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Login error: {error}'**
-  String loginError(String error);
+  String loginError(Object error);
 
   /// No description provided for @logoutError.
   ///
   /// In en, this message translates to:
   /// **'Error logging out: {error}'**
-  String logoutError(String error);
+  String logoutError(Object error);
 
   /// No description provided for @wrongPassword.
   ///
@@ -1062,7 +1074,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Authentication error: {message}'**
-  String authError(String message);
+  String authError(Object message);
 
   /// No description provided for @champion.
   ///
@@ -1151,7 +1163,7 @@ abstract class AppLocalizations {
   /// No description provided for @allHabitsPaused.
   ///
   /// In en, this message translates to:
-  /// **'All your rhythms are paused. Reactivate some or create a new one.'**
+  /// **'All your habits are paused. Reactivate one or create a new one.'**
   String get allHabitsPaused;
 
   /// No description provided for @startJourneyBetterHabits.
@@ -1163,13 +1175,13 @@ abstract class AppLocalizations {
   /// No description provided for @createNewHabit.
   ///
   /// In en, this message translates to:
-  /// **'Create new rhythm'**
+  /// **'Create new habit'**
   String get createNewHabit;
 
   /// No description provided for @createMyFirstHabit.
   ///
   /// In en, this message translates to:
-  /// **'Create my first rhythm'**
+  /// **'Create my first habit'**
   String get createMyFirstHabit;
 
   /// No description provided for @notificationSettings.
@@ -1224,25 +1236,25 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'✅ Cancelled notifications for rhythm {rhythmId}'**
-  String notificationsCancelled(String rhythmId);
+  String notificationsCancelled(Object rhythmId);
 
   /// No description provided for @errorCancellingNotifications.
   ///
   /// In en, this message translates to:
   /// **'❌ Error cancelling notifications for rhythm {rhythmId}: {error}'**
-  String errorCancellingNotifications(String rhythmId, String error);
+  String errorCancellingNotifications(Object error, Object rhythmId);
 
   /// No description provided for @instantNotificationSent.
   ///
   /// In en, this message translates to:
   /// **'✅ Instant notification sent: {title}'**
-  String instantNotificationSent(String title);
+  String instantNotificationSent(Object title);
 
   /// No description provided for @errorSendingNotification.
   ///
   /// In en, this message translates to:
   /// **'❌ Error sending instant notification: {error}'**
-  String errorSendingNotification(String error);
+  String errorSendingNotification(Object error);
 
   /// No description provided for @testNotificationTitle.
   ///
@@ -1272,55 +1284,55 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'❌ Error scheduling test notification: {error}'**
-  String errorSchedulingTestNotification(String error);
+  String errorSchedulingTestNotification(Object error);
 
   /// No description provided for @localizationInitialized.
   ///
   /// In en, this message translates to:
   /// **'✅ Localization initialized: {languageCode}'**
-  String localizationInitialized(String languageCode);
+  String localizationInitialized(Object languageCode);
 
   /// No description provided for @notificationReceivediOS.
   ///
   /// In en, this message translates to:
   /// **'📱 Notification received on iOS: {title}'**
-  String notificationReceivediOS(String title);
+  String notificationReceivediOS(Object title);
 
   /// No description provided for @userTappedNotification.
   ///
   /// In en, this message translates to:
   /// **'📱 User tapped notification: {payload}'**
-  String userTappedNotification(String payload);
+  String userTappedNotification(Object payload);
 
   /// No description provided for @rhythmUpdatedSuccessfully.
   ///
   /// In en, this message translates to:
   /// **'Habit \"{rhythmName}\" updated successfully'**
-  String rhythmUpdatedSuccessfully(String rhythmName);
+  String rhythmUpdatedSuccessfully(Object rhythmName);
 
   /// No description provided for @confirmDeleteHabitMessage.
   ///
   /// In en, this message translates to:
   /// **'Are you sure you want to delete \"{rhythmName}\"?\\n\\nThis action cannot be undone. All rhythm data including completion history will be deleted.'**
-  String confirmDeleteHabitMessage(String rhythmName);
+  String confirmDeleteHabitMessage(Object rhythmName);
 
   /// No description provided for @rhythmDeletedSuccessfully.
   ///
   /// In en, this message translates to:
   /// **'Habit \"{rhythmName}\" deleted'**
-  String rhythmDeletedSuccessfully(String rhythmName);
+  String rhythmDeletedSuccessfully(Object rhythmName);
 
   /// No description provided for @rhythmCreatedSuccessfully.
   ///
   /// In en, this message translates to:
   /// **'Habit \"{rhythmName}\" created successfully'**
-  String rhythmCreatedSuccessfully(String rhythmName);
+  String rhythmCreatedSuccessfully(Object rhythmName);
 
   /// No description provided for @confirmDeleteHabitShort.
   ///
   /// In en, this message translates to:
   /// **'Are you sure you want to delete \"{rhythmName}\"?'**
-  String confirmDeleteHabitShort(String rhythmName);
+  String confirmDeleteHabitShort(Object rhythmName);
 
   /// No description provided for @ensureAppNotInDoNotDisturb.
   ///
@@ -1508,23 +1520,281 @@ abstract class AppLocalizations {
   /// **'Progress to Next Level'**
   String get progressToNextLevel;
 
+  /// No description provided for @paywallMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get paywallMonthly;
+
+  /// No description provided for @paywallAnnual.
+  ///
+  /// In en, this message translates to:
+  /// **'Annual'**
+  String get paywallAnnual;
+
+  /// No description provided for @paywallLifetime.
+  ///
+  /// In en, this message translates to:
+  /// **'Lifetime'**
+  String get paywallLifetime;
+
+  /// No description provided for @paywallPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'/month'**
+  String get paywallPerMonth;
+
+  /// No description provided for @paywallPerYear.
+  ///
+  /// In en, this message translates to:
+  /// **'/year'**
+  String get paywallPerYear;
+
+  /// No description provided for @paywallOneTimePayment.
+  ///
+  /// In en, this message translates to:
+  /// **'one-time payment'**
+  String get paywallOneTimePayment;
+
+  /// No description provided for @paywallDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'37% OFF'**
+  String get paywallDiscount;
+
+  /// No description provided for @paywallLimitedOffer.
+  ///
+  /// In en, this message translates to:
+  /// **'LIMITED OFFER'**
+  String get paywallLimitedOffer;
+
+  /// No description provided for @paywallUnlimitedHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited Habits'**
+  String get paywallUnlimitedHabits;
+
+  /// No description provided for @paywallUnlimitedHabitsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Create all the habits you want'**
+  String get paywallUnlimitedHabitsDesc;
+
+  /// No description provided for @paywallAdvancedStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Statistics'**
+  String get paywallAdvancedStats;
+
+  /// No description provided for @paywallAdvancedStatsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep analysis and trends'**
+  String get paywallAdvancedStatsDesc;
+
+  /// No description provided for @paywallPremiumThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'5 Premium Themes'**
+  String get paywallPremiumThemes;
+
+  /// No description provided for @paywallPremiumThemesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean, Sunset, Forest and more'**
+  String get paywallPremiumThemesDesc;
+
+  /// No description provided for @paywallNoAds.
+  ///
+  /// In en, this message translates to:
+  /// **'No Ads'**
+  String get paywallNoAds;
+
+  /// No description provided for @paywallNoAdsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Completely clean experience'**
+  String get paywallNoAdsDesc;
+
+  /// No description provided for @paywallAutoBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic Backup'**
+  String get paywallAutoBackup;
+
+  /// No description provided for @paywallAutoBackupDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data safe in the cloud'**
+  String get paywallAutoBackupDesc;
+
+  /// No description provided for @paywallAiInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Insights'**
+  String get paywallAiInsights;
+
+  /// No description provided for @paywallAiInsightsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart recommendations'**
+  String get paywallAiInsightsDesc;
+
+  /// No description provided for @paywallErrorCreatingHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Error creating habit'**
+  String get paywallErrorCreatingHabit;
+
+  /// No description provided for @paywallErrorLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous login error'**
+  String get paywallErrorLogin;
+
+  /// No description provided for @paywallErrorGoogleLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Google login error'**
+  String get paywallErrorGoogleLogin;
+
+  /// No description provided for @paywallErrorEmailLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Email login error'**
+  String get paywallErrorEmailLogin;
+
+  /// No description provided for @paywallErrorRegistration.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration error'**
+  String get paywallErrorRegistration;
+
+  /// No description provided for @paywallErrorLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout error'**
+  String get paywallErrorLogout;
+
+  /// No description provided for @paywallErrorPasswordReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Error sending password reset email'**
+  String get paywallErrorPasswordReset;
+
+  /// No description provided for @paywallErrorDeleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Error deleting account'**
+  String get paywallErrorDeleteAccount;
+
+  /// No description provided for @paywallErrorUpdateProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Error updating profile'**
+  String get paywallErrorUpdateProfile;
+
+  /// No description provided for @paywallErrorGetUserData.
+  ///
+  /// In en, this message translates to:
+  /// **'Error getting user data'**
+  String get paywallErrorGetUserData;
+
+  /// No description provided for @paywallErrorUpdatePreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Error updating preferences'**
+  String get paywallErrorUpdatePreferences;
+
+  /// No description provided for @paywallErrorUpdatePremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Error updating premium status'**
+  String get paywallErrorUpdatePremium;
+
+  /// No description provided for @paywallErrorLinkAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Error linking account'**
+  String get paywallErrorLinkAccount;
+
+  /// No description provided for @paywallErrorGetHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Error getting habits'**
+  String get paywallErrorGetHabits;
+
+  /// No description provided for @paywallErrorUpdateHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Error updating habit'**
+  String get paywallErrorUpdateHabit;
+
+  /// No description provided for @paywallErrorDeleteHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Error deleting habit'**
+  String get paywallErrorDeleteHabit;
+
+  /// No description provided for @paywallErrorHabitNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit not found'**
+  String get paywallErrorHabitNotFound;
+
+  /// No description provided for @paywallErrorUpdateCompletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Error updating completion'**
+  String get paywallErrorUpdateCompletion;
+
+  /// No description provided for @paywallErrorGetStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Error getting statistics'**
+  String get paywallErrorGetStats;
+
+  /// No description provided for @paywallErrorBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Error performing backup'**
+  String get paywallErrorBackup;
+
+  /// No description provided for @paywallErrorGetPeriodData.
+  ///
+  /// In en, this message translates to:
+  /// **'Error getting period data'**
+  String get paywallErrorGetPeriodData;
+
+  /// No description provided for @paywallErrorCleanOldData.
+  ///
+  /// In en, this message translates to:
+  /// **'Error cleaning old data'**
+  String get paywallErrorCleanOldData;
+
+  /// No description provided for @paywallErrorLoadingHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading habits'**
+  String get paywallErrorLoadingHabits;
+
   /// No description provided for @pointsToLevel.
   ///
   /// In en, this message translates to:
   /// **'{points} points to level {level}'**
-  String pointsToLevel(int points, int level);
+  String pointsToLevel(Object level, Object points);
 
   /// No description provided for @unlockedCount.
   ///
   /// In en, this message translates to:
   /// **'Unlocked ({count})'**
-  String unlockedCount(int count);
+  String unlockedCount(Object count);
 
   /// No description provided for @lockedCount.
   ///
   /// In en, this message translates to:
   /// **'Locked ({count})'**
-  String lockedCount(int count);
+  String lockedCount(Object count);
 
   /// No description provided for @active.
   ///
@@ -2010,7 +2280,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{count} languages'**
-  String languagesCount(int count);
+  String languagesCount(Object count);
 
   /// No description provided for @icon.
   ///
@@ -2042,6 +2312,12 @@ abstract class AppLocalizations {
   /// **'Reminder time'**
   String get reminderTime;
 
+  /// No description provided for @dangerZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger Zone'**
+  String get dangerZone;
+
   /// No description provided for @pleaseEnterName.
   ///
   /// In en, this message translates to:
@@ -2054,6 +2330,18 @@ abstract class AppLocalizations {
   /// **'Name must be at least 2 characters'**
   String get nameMinTwoCharacters;
 
+  /// No description provided for @basicInformationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Information'**
+  String get basicInformationLabel;
+
+  /// No description provided for @deleteWarningMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This action cannot be undone. All habit data including completion history will be deleted.'**
+  String get deleteWarningMessage;
+
   /// No description provided for @totalPoints.
   ///
   /// In en, this message translates to:
@@ -2064,7 +2352,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Progress to level {level}'**
-  String progressToLevel(int level);
+  String progressToLevel(Object level);
 
   /// No description provided for @maxLevelReached.
   ///
@@ -2100,7 +2388,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{count} points'**
-  String pointsWithCount(int count);
+  String pointsWithCount(Object count);
 
   /// No description provided for @unlockedLabel.
   ///
@@ -2112,7 +2400,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{percent}% Completed'**
-  String percentCompleted(int percent);
+  String percentCompleted(Object percent);
 
   /// No description provided for @totalHabits.
   ///
@@ -2124,13 +2412,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{percent}% This week'**
-  String percentThisWeek(int percent);
+  String percentThisWeek(Object percent);
 
   /// No description provided for @percentThisMonth.
   ///
   /// In en, this message translates to:
   /// **'{percent}% This month'**
-  String percentThisMonth(int percent);
+  String percentThisMonth(Object percent);
 
   /// No description provided for @days.
   ///
@@ -2154,32 +2442,32 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Week {number} of {year}'**
-  String weekNumber(int number, int year);
+  String weekNumber(Object number, Object year);
 
   /// No description provided for @dayOfMonth.
   ///
   /// In en, this message translates to:
   /// **'Day {day} of {total}'**
-  String dayOfMonth(int day, int total);
+  String dayOfMonth(Object day, Object total);
 
   /// No description provided for @dateFormat.
   ///
   /// In en, this message translates to:
   /// **'{day} {month}'**
-  String dateFormat(int day, String month);
+  String dateFormat(Object day, Object month);
 
   /// No description provided for @dateRangeFormat.
   ///
   /// In en, this message translates to:
   /// **'{startDay} {startMonth} - {endDay} {endMonth}'**
   String dateRangeFormat(
-      int startDay, String startMonth, int endDay, String endMonth);
+      Object endDay, Object endMonth, Object startDay, Object startMonth);
 
   /// No description provided for @monthYear.
   ///
   /// In en, this message translates to:
   /// **'{month} {year}'**
-  String monthYear(String month, int year);
+  String monthYear(Object month, Object year);
 
   /// No description provided for @goodMorning.
   ///
@@ -2418,7 +2706,7 @@ abstract class AppLocalizations {
   /// No description provided for @noHabitsScheduledToday.
   ///
   /// In en, this message translates to:
-  /// **'No rhythms scheduled for today'**
+  /// **'You have no habits scheduled for today or you\'ve completed them all.'**
   String get noHabitsScheduledToday;
 
   /// No description provided for @weeklyProgress.
@@ -2511,6 +2799,90 @@ abstract class AppLocalizations {
   /// **'W4'**
   String get week4;
 
+  /// No description provided for @weekHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Week Habits'**
+  String get weekHabits;
+
+  /// No description provided for @weekProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} days'**
+  String weekProgress(Object completed, Object total);
+
+  /// No description provided for @habitLimitReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit Limit Reached'**
+  String get habitLimitReached;
+
+  /// No description provided for @habitLimitMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve reached the limit of {limit} habits in the free plan.\n\nUpgrade to Ritmo PRO for unlimited habits and premium features!'**
+  String habitLimitMessage(Object limit);
+
+  /// No description provided for @upgradeToPro.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade to PRO'**
+  String get upgradeToPro;
+
+  /// No description provided for @enableNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Notifications'**
+  String get enableNotifications;
+
+  /// No description provided for @notificationsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive reminders for your habits'**
+  String get notificationsDescription;
+
+  /// No description provided for @defaultReminderTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Default Reminder Time'**
+  String get defaultReminderTime;
+
+  /// No description provided for @reminderSound.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder Sound'**
+  String get reminderSound;
+
+  /// No description provided for @vibration.
+  ///
+  /// In en, this message translates to:
+  /// **'Vibration'**
+  String get vibration;
+
+  /// No description provided for @soundDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get soundDefault;
+
+  /// No description provided for @soundNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None (Silent)'**
+  String get soundNone;
+
+  /// No description provided for @soundChime.
+  ///
+  /// In en, this message translates to:
+  /// **'Chime'**
+  String get soundChime;
+
+  /// No description provided for @soundBell.
+  ///
+  /// In en, this message translates to:
+  /// **'Bell'**
+  String get soundBell;
+
   /// No description provided for @loadingHabits.
   ///
   /// In en, this message translates to:
@@ -2526,7 +2898,7 @@ abstract class AppLocalizations {
   /// No description provided for @createAccount.
   ///
   /// In en, this message translates to:
-  /// **'Create account'**
+  /// **'Create Account'**
   String get createAccount;
 
   /// No description provided for @saveYourProgressTitle.
@@ -2589,6 +2961,180 @@ abstract class AppLocalizations {
   /// **'Paywall coming soon'**
   String get paywallComingSoon;
 
+  /// No description provided for @paywallNotImplementedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming Soon'**
+  String get paywallNotImplementedTitle;
+
+  /// No description provided for @paywallNotImplementedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The payment system is under development. For now, you can activate Ritmo PRO from Settings > \"Activate Premium (Testing)\".'**
+  String get paywallNotImplementedMessage;
+
+  /// No description provided for @paywallMainTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock Ritmo\'s full potential'**
+  String get paywallMainTitle;
+
+  /// No description provided for @paywallChoosePlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your plan'**
+  String get paywallChoosePlan;
+
+  /// No description provided for @paywallStartButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with Ritmo PRO'**
+  String get paywallStartButton;
+
+  /// No description provided for @paywallTermsAndConditions.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing, you accept our Terms of Service and Privacy Policy'**
+  String get paywallTermsAndConditions;
+
+  /// No description provided for @manageHabitsTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage habits'**
+  String get manageHabitsTooltip;
+
+  /// No description provided for @notificationTroubleshootingTips.
+  ///
+  /// In en, this message translates to:
+  /// **'• Verify that notifications are enabled in system settings\n• Make sure the app is not in \"Do Not Disturb\" mode\n• Check that habits have reminder times configured'**
+  String get notificationTroubleshootingTips;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'HabitPro'**
+  String get loginTitle;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Build better habits, day by day'**
+  String get loginSubtitle;
+
+  /// No description provided for @signInButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signInButton;
+
+  /// No description provided for @emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get emailLabel;
+
+  /// No description provided for @emailValidationError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email'**
+  String get emailValidationError;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordLabel;
+
+  /// No description provided for @passwordRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password'**
+  String get passwordRequiredError;
+
+  /// No description provided for @passwordLengthError.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get passwordLengthError;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot your password?'**
+  String get forgotPassword;
+
+  /// No description provided for @signInOrCreateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signInOrCreateAccount;
+
+  /// No description provided for @orContinueWith.
+  ///
+  /// In en, this message translates to:
+  /// **'or continue with'**
+  String get orContinueWith;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back!'**
+  String get welcomeBack;
+
+  /// No description provided for @accountCreatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created successfully!'**
+  String get accountCreatedSuccessfully;
+
+  /// No description provided for @statsGoodMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Good month! 📊\nYou\'re progressing.\nKeep improving!'**
+  String get statsGoodMonth;
+
+  /// No description provided for @statsBuilding.
+  ///
+  /// In en, this message translates to:
+  /// **'Building! 🏗️\nEvery month counts.\nKeep going!'**
+  String get statsBuilding;
+
+  /// No description provided for @statsSeedsPlanted.
+  ///
+  /// In en, this message translates to:
+  /// **'Seeds planted! 🌱\nYou\'ve started.\nYou\'ll grow!'**
+  String get statsSeedsPlanted;
+
+  /// No description provided for @statsNewMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'New month! 🚀\nInfinite possibilities.\nMake it yours!'**
+  String get statsNewMonth;
+
+  /// No description provided for @signUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get signUp;
+
+  /// No description provided for @fullNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get fullNameLabel;
+
+  /// No description provided for @nameRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your name'**
+  String get nameRequiredError;
+
+  /// No description provided for @emailRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get emailRequiredError;
+
   /// No description provided for @firstStreakAchievement.
   ///
   /// In en, this message translates to:
@@ -2647,7 +3193,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{streak} days'**
-  String streakFormat(int streak);
+  String streakFormat(Object streak);
 
   /// No description provided for @notificationsToRemindHabits.
   ///
@@ -2792,6 +3338,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your email and we\'ll send you a link to reset your password.'**
   String get passwordResetMessage;
+
+  /// No description provided for @errorCreatingHabit.
+  ///
+  /// In en, this message translates to:
+  /// **'Error creating habit'**
+  String get errorCreatingHabit;
+
+  /// No description provided for @languageChangedTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Language changed to {languageName}'**
+  String languageChangedTo(Object languageName);
+
+  /// No description provided for @genericError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get genericError;
+
+  /// No description provided for @themeExecutiveMinimalist.
+  ///
+  /// In en, this message translates to:
+  /// **'💼 Executive Minimalist'**
+  String get themeExecutiveMinimalist;
+
+  /// No description provided for @themeGlassmorphism.
+  ///
+  /// In en, this message translates to:
+  /// **'✨ Glassmorphism'**
+  String get themeGlassmorphism;
+
+  /// No description provided for @themeNeumorphism.
+  ///
+  /// In en, this message translates to:
+  /// **'🎭 Neumorphism'**
+  String get themeNeumorphism;
+
+  /// No description provided for @allDoneForToday.
+  ///
+  /// In en, this message translates to:
+  /// **'All done for today!'**
+  String get allDoneForToday;
+
+  /// No description provided for @welcomeToRitmo.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Ritmo!'**
+  String get welcomeToRitmo;
+
+  /// No description provided for @startYourJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your journey to better habits by creating your first daily habit.'**
+  String get startYourJourney;
+
+  /// No description provided for @loginSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Login successful!'**
+  String get loginSuccess;
+
+  /// No description provided for @continuingAsGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Continuing as guest'**
+  String get continuingAsGuest;
+
+  /// No description provided for @resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get resetPassword;
 }
 
 class _AppLocalizationsDelegate

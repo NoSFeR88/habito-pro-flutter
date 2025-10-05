@@ -64,6 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundDark,
       appBar: AppBar(
+        centerTitle: false,
+        titleSpacing: 16,
         title: DynamicRitmoLogo(
           fontSize: 28,
           animated: true,
@@ -369,60 +371,65 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildPortraitLayout(BuildContext context, List<Habit> habitsToday, EdgeInsets screenPadding) {
     return Column(
       children: [
-        // Resumen de estadísticas - expandido para más espacio
-        Expanded(
-          flex: 3, // Más espacio para stats
+        // StatsOverview FIJO arriba (Hoy/Semana/Mes + contenedor lila)
+        SizedBox(
+          height: 291,
           child: Padding(
-            padding: screenPadding,
+            padding: EdgeInsets.fromLTRB(screenPadding.left, 12, screenPadding.right, 0),
             child: StatsOverview(),
           ),
         ),
 
-        // Tarjeta de gamificación
-        const GamificationCard(),
-
-        // Título de hábitos de hoy
-        Padding(
-          padding: EdgeInsets.fromLTRB(screenPadding.left, 8, screenPadding.right, 16),
-          child: Row(
+        // GamificationCard + Hábitos con scroll CONJUNTO
+        Expanded(
+          child: ListView(
+            padding: EdgeInsets.zero,
             children: [
-              Icon(
-                Icons.today,
-                color: AppColors.primary,
-                size: _isTablet ? 32 : 28,
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'Hoy • $_currentDateString',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: _isTablet ? 24 : null,
+              // GamificationCard (scrollea con los hábitos)
+              const GamificationCard(),
+
+              // Título "Hoy"
+              Padding(
+                padding: EdgeInsets.fromLTRB(screenPadding.left, 8, screenPadding.right, 16),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.today,
+                      color: AppColors.primary,
+                      size: _isTablet ? 32 : 28,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Hoy • $_currentDateString',
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: _isTablet ? 24 : null,
+                      ),
+                    ),
+                  ],
                 ),
               ),
+
+              // Lista de hábitos
+              if (habitsToday.isEmpty)
+                SizedBox(
+                  height: 300,
+                  child: _buildEmptyState(),
+                )
+              else
+                ...habitsToday.map((habit) => Padding(
+                  padding: EdgeInsets.fromLTRB(screenPadding.left, 0, screenPadding.right, 12),
+                  child: HabitCard(
+                    habit: habit,
+                    onTap: () => _toggleHabit(context, habit.id),
+                    onLongPress: () => _showHabitOptions(context, habit),
+                  ),
+                )).toList(),
+
+              // Espacio final para FAB
+              const SizedBox(height: 100),
             ],
           ),
-        ),
-
-        // Lista de hábitos de hoy - menos espacio
-        Expanded(
-          flex: 2, // Menos espacio para lista
-          child: habitsToday.isEmpty
-              ? _buildEmptyState()
-              : ListView.builder(
-                  padding: EdgeInsets.fromLTRB(screenPadding.left, 0, screenPadding.right, 80),
-                  itemCount: habitsToday.length,
-                  itemBuilder: (context, index) {
-                    final habit = habitsToday[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: HabitCard(
-                        habit: habit,
-                        onTap: () => _toggleHabit(context, habit.id),
-                        onLongPress: () => _showHabitOptions(context, habit),
-                      ),
-                    );
-                  },
-                ),
         ),
       ],
     );
@@ -510,6 +517,60 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildStatCard(
+    BuildContext context,
+    String label,
+    String value,
+    IconData icon,
+    Color color,
+  ) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: AppColors.surfaceDark,
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(
+          color: color.withOpacity(0.2),
+          width: 1,
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            color: color,
+            size: 16,
+          ),
+          const SizedBox(height: 4),
+          FittedBox(
+            child: Text(
+              value,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: color,
+                fontSize: 14,
+              ),
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: AppColors.textSecondaryDark,
+              fontSize: 10,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
     );
   }
 
@@ -613,3 +674,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+

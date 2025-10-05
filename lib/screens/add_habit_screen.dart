@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/habit.dart';
 import '../providers/habit_provider.dart';
+import '../providers/premium_provider.dart';
+import '../screens/paywall_screen.dart';
 import '../generated/l10n/app_localizations.dart';
 
 class AddHabitScreen extends StatefulWidget {
@@ -394,6 +396,16 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
       return;
     }
 
+    // Verificar límite de hábitos
+    final habitProvider = Provider.of<HabitProvider>(context, listen: false);
+    final premiumProvider = Provider.of<PremiumProvider>(context, listen: false);
+    final currentHabitCount = habitProvider.habits.length;
+
+    if (!premiumProvider.canAddMoreHabits(currentHabitCount)) {
+      _showHabitLimitDialog();
+      return;
+    }
+
     setState(() {
       _isLoading = true;
     });
@@ -413,7 +425,6 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
         isActive: true,
       );
 
-      final habitProvider = Provider.of<HabitProvider>(context, listen: false);
       await habitProvider.addHabit(habit);
 
       if (mounted) {
@@ -429,7 +440,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error: $e'),
+            content: Text('${AppLocalizations.of(context)!.genericError}: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -441,5 +452,43 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
         });
       }
     }
+  }
+
+  void _showHabitLimitDialog() {
+    final premiumProvider = Provider.of<PremiumProvider>(context, listen: false);
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.habitLimitReached),
+        content: Text(
+          AppLocalizations.of(context)!.habitLimitMessage(
+            PremiumProvider.maxFreeHabits,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(AppLocalizations.of(context)!.cancel),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context); // Cerrar diálogo
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PaywallScreen(),
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Colors.white,
+            ),
+            child: Text(AppLocalizations.of(context)!.upgradeToPro),
+          ),
+        ],
+      ),
+    );
   }
 }

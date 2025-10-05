@@ -4,6 +4,7 @@ import '../providers/gamification_provider.dart';
 import '../models/achievement.dart';
 import '../screens/achievements_screen.dart';
 import '../generated/l10n/app_localizations.dart';
+import '../core/design_constants.dart';
 
 class GamificationCard extends StatelessWidget {
   const GamificationCard({super.key});
@@ -16,7 +17,10 @@ class GamificationCard extends StatelessWidget {
         final progress = gamificationProvider.getLevelProgress();
 
         return Card(
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          margin: EdgeInsets.symmetric(
+            horizontal: DesignConstants.paddingScreen,
+            vertical: DesignConstants.spacingBetweenCards / 2,
+          ),
           child: InkWell(
             onTap: () {
               Navigator.push(
@@ -24,10 +28,11 @@ class GamificationCard extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const AchievementsScreen()),
               );
             },
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(DesignConstants.cardBorderRadius),
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(12.0), // Reduced from 16 to fix overflow
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
@@ -55,7 +60,7 @@ class GamificationCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 8), // Reduced from 12
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +75,7 @@ class GamificationCard extends StatelessWidget {
                               '${stats.totalPoints} ${AppLocalizations.of(context)!.totalPoints}',
                               style: TextStyle(
                                 color: Colors.grey[600],
-                                fontSize: 12,
+                                fontSize: DesignConstants.statLabelFontSize,
                               ),
                             ),
                           ],
@@ -82,7 +87,7 @@ class GamificationCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8), // Reduced from 12
                   if (stats.level < 10) ...[
                     Row(
                       children: [
@@ -141,7 +146,7 @@ class GamificationCard extends StatelessWidget {
                       ],
                     ),
                   ],
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8), // Reduced from 12
                   Row(
                     children: [
                       _buildQuickStat(
