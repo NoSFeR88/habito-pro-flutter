@@ -1,44 +1,45 @@
 # ESTADO DEL PROYECTO - RITMO App
 
-## 📅 Última Actualización: 2025-10-05
-## 🎯 Estado General: ✅ **PLAN MAESTRO IMPLEMENTADO + FASE 4 COMPLETADA**
+## 📅 Última Actualización: 2025-10-05 (Sesión 29)
+## 🎯 Estado General: ✅ **FASE 2 COMPLETADA + CI/CD BASELINE FUNCIONAL**
 
 ---
 
-## 🚀 **NOVEDAD - PLAN MAESTRO CLAUDE CODE + AGENTS** ⭐ NUEVO
+## 🚀 **NOVEDAD - BASELINE INTELIGENTE DE WARNINGS** ⭐ NUEVO (Sesión 29)
 
-### ✅ **Infraestructura CI/CD y Automation**
-- **Estado**: ✅ Completado (Sesión 28)
-- **Descripción**: Sistema completo de automation para desarrollo asistido por agentes
+### ✅ **Sistema de Baseline con Detección de Regresiones**
+- **Estado**: ✅ Completado (Sesión 29)
+- **Descripción**: Sistema inteligente que permite warnings legacy mientras detecta regresiones
 - **Implementación**:
-  - ✅ **GitHub Actions CI/CD** (7 jobs): analyze, test, i18n-check, build, security, comment, approval
-  - ✅ **Scripts PowerShell seguros**: safe-test.ps1, safe-build.ps1, safe-lint.ps1
-  - ✅ **Sistema de telemetría**: log-agent-operation.ps1, count-tokens.ps1, generate-dashboard.ps1
-  - ✅ **CLAUDE.md v3.0**: Merged con Plan Maestro + Windows optimizado
-  - ✅ **PROJECT_INDEX.md**: Índice completo para búsqueda rápida
-  - ✅ **GitHub CLI configurado**: gh v2.81.0 + autenticado
+  - ✅ **Baseline establecido**: 303 warnings/infos (2025-10-05)
+  - ✅ **Validación automática**: Falla si errors > 0 o warnings > baseline
+  - ✅ **Celebración de mejoras**: Detecta y celebra reducciones de warnings
+  - ✅ **Plan de reducción**: Documentado en `.github/BASELINE_WARNINGS.md`
+  - ✅ **5 Fases de reducción**: 303 → 250 → 200 → 100 → 0
 
 **Impacto**:
-- 🎯 Automation completa del flujo de trabajo
-- 🎯 PRs validados automáticamente (7 checks)
-- 🎯 Telemetría de operaciones agente
-- 🎯 Seguridad reforzada (secrets scan + firebase_options protection)
+- ✅ CI funcional con código legacy
+- ✅ Detecta warnings nuevos automáticamente
+- ✅ Incentiva reducción gradual de deuda técnica
+- ✅ Sistema de incentivos (Bronce/Plata/Oro/Diamante)
 
 ---
 
-## ✅ **COMPLETADO SESIÓN 28 - PILOT + INFRAESTRUCTURA**
+## ✅ **COMPLETADO SESIÓN 29 - BASELINE + 37 ERRORES CORREGIDOS**
 
-### 🟢 **FASE 2 PILOT: Fix Overflow GamificationCard**
-- **Estado**: ✅ Completado
-- **Descripción**: Corrección overflow 26px + 12px en widget de gamificación
+### 🟢 **FASE 2 PILOT: Fix Overflow GamificationCard** (100% COMPLETADA)
+- **Estado**: ✅ Completado y validado por CI
+- **Descripción**: Corrección overflow 26px + 12px + infraestructura CI/CD completa
 - **Implementación**:
   - ✅ Padding reducido: 16 → 12
   - ✅ SizedBox heights: 12 → 8 (3 ubicaciones)
   - ✅ Margins con DesignConstants
   - ✅ BorderRadius con constante
-  - ✅ Validado con flutter analyze + tests
+  - ✅ **37 errores de compilación corregidos**
+  - ✅ **Baseline de warnings implementado**
+  - ✅ **CI/CD completamente funcional**
 - **PR**: #1 - https://github.com/NoSFeR88/habito-pro-flutter/pull/1
-- **Commits**: 10 commits organizados (fix + features + docs)
+- **Commits**: 13 commits (fix + features + docs + CI fixes)
 
 ### 🟢 **Archivos Clave Agregados**
 - ✅ `lib/core/design_constants.dart` - Constantes UI unificadas
