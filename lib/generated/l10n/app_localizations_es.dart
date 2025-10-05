@@ -265,7 +265,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String notificationScheduled(Object dateTime, Object rhythmName) {
-    return 'Notificación programada para 5 segundos';
+    return '✅ Notificación programada: $rhythmName - $dateTime';
   }
 
   @override
@@ -321,10 +321,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get themeBasicPurple => 'Morado Básico';
 
   @override
-  String get themeCyberNeon => 'Neón Cibernético';
+  String get themeCyberNeon => '🌟 Neón Cibernético';
 
   @override
-  String get themeAuroraInspiration => 'Inspiración Aurora';
+  String get themeAuroraInspiration => '🎨 Inspiración Aurora';
 
   @override
   String get themeZenGarden => '🧘 Jardín Zen';
@@ -333,10 +333,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get premiumThemes => 'Temas Premium';
 
   @override
-  String get activatePremium => 'Activar Premium';
+  String get activatePremium => 'Activar Premium (Pruebas)';
 
   @override
-  String get premiumPrice => 'Precio Premium';
+  String get premiumPrice => '\$2.99/mes';
 
   @override
   String get notifications => 'Notificaciones';
@@ -358,14 +358,15 @@ class AppLocalizationsEs extends AppLocalizations {
       'Los ritmos pausados aparecerán aquí';
 
   @override
-  String get noHabits => 'No hay hábitos';
+  String get noHabits => 'No tienes ritmos';
 
   @override
   String get startJourneyCreatingFirstHabit =>
       'Comienza tu viaje creando tu primer hábito';
 
   @override
-  String get deleteHabitConfirm => 'Confirmar eliminación de hábito';
+  String get deleteHabitConfirm =>
+      '¿Estás seguro de que quieres eliminar este hábito?';
 
   @override
   String get editHabit => 'Editar Ritmo';
@@ -380,8 +381,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get descriptionOptional => 'Descripción (Opcional)';
 
   @override
-  String get descriptionHint =>
-      'Ej: Ejercicio matutino, Leer antes de dormir...';
+  String get descriptionHint => 'Ej: 8 vasos por día, 30 minutos...';
 
   @override
   String get monday => 'Lunes';
@@ -414,10 +414,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deleteHabitButton => 'Eliminar Hábito';
 
   @override
-  String get deleteWarning => 'Advertencia de Eliminación';
+  String get deleteWarning =>
+      'Esta acción no se puede deshacer. Se eliminarán todos los datos del hábito incluyendo el historial de completados.';
 
   @override
-  String get selectAtLeastOneDay => 'Selecciona al menos un día de la semana';
+  String get selectAtLeastOneDay =>
+      'Por favor selecciona al menos un día de la semana';
 
   @override
   String rhythmUpdatedSuccess(Object rhythmName) {
@@ -426,7 +428,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String errorUpdatingHabit(Object error) {
-    return 'Error actualizando hábito';
+    return 'Error al actualizar el hábito: $error';
   }
 
   @override
@@ -434,7 +436,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String deleteHabitConfirmation(Object rhythmName) {
-    return 'Confirmación de eliminación de hábito';
+    return '¿Estás seguro de que quieres eliminar \"$rhythmName\"?\\n\\nEsta acción no se puede deshacer. Todos los datos del ritmo incluyendo el historial de completados serán eliminados.';
   }
 
   @override
@@ -444,69 +446,76 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String errorDeletingHabit(Object error) {
-    return 'Error eliminando hábito';
+    return 'Error al eliminar el hábito: $error';
   }
 
   @override
   String limitReached(Object maxHabits) {
-    return 'Límite alcanzado';
+    return 'Límite alcanzado: máximo $maxHabits ritmos en el plan gratuito.';
   }
 
   @override
-  String get premiumThemesOnly => 'Solo en Temas Premium';
+  String get premiumThemesOnly =>
+      'Los temas premium solo están disponibles en Ritmo PRO.';
 
   @override
-  String get advancedStatsOnly => 'Solo en Estadísticas Avanzadas';
+  String get advancedStatsOnly =>
+      'Las estadísticas avanzadas están disponibles en Ritmo PRO.';
 
   @override
-  String get exportDataOnly => 'Solo en Exportar Datos';
+  String get exportDataOnly =>
+      'La exportación de datos está disponible en Ritmo PRO.';
 
   @override
-  String get aiInsightsOnly => 'Solo en Insights de IA';
+  String get aiInsightsOnly =>
+      'Los análisis con IA están disponibles en Ritmo PRO.';
 
   @override
-  String get featureOnlyInPro => 'Función solo en PRO';
+  String get featureOnlyInPro => 'Esta función está disponible en Ritmo PRO.';
 
   @override
   String get loadingYourHabits => 'Cargando tus hábitos...';
 
   @override
-  String get guestMode => 'Modo invitado';
+  String get guestMode => 'Modo invitado - Tus datos no se guardarán';
 
   @override
-  String get createAccountToSave => 'Crear cuenta para guardar';
+  String get createAccountToSave =>
+      'Crea una cuenta para guardar tus ritmos y sincronizarlos entre dispositivos.';
 
   @override
   String get later => 'Más tarde';
 
   @override
   String loginError(Object error) {
-    return 'Error de inicio de sesión';
+    return 'Error de inicio de sesión: $error';
   }
 
   @override
   String logoutError(Object error) {
-    return 'Error al cerrar sesión';
+    return 'Error al cerrar sesión: $error';
   }
 
   @override
-  String get wrongPassword => 'Contraseña incorrecta';
+  String get wrongPassword => 'Contraseña incorrecta.';
 
   @override
-  String get passwordTooShort => 'Contraseña muy corta';
+  String get passwordTooShort =>
+      'La contraseña debe tener al menos 6 caracteres.';
 
   @override
-  String get invalidEmail => 'Email inválido';
+  String get invalidEmail => 'El correo electrónico no es válido.';
 
   @override
-  String get tooManyAttempts => 'Demasiados intentos';
+  String get tooManyAttempts =>
+      'Demasiados intentos. Intenta de nuevo más tarde.';
 
   @override
-  String get connectionError => 'Error de conexión';
+  String get connectionError => 'Error de conexión. Verifica tu internet.';
 
   @override
   String authError(Object message) {
-    return 'Error de autenticación';
+    return 'Error de autenticación: $message';
   }
 
   @override
@@ -584,10 +593,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get rhythmReminders => 'Recordatorios de Hábitos';
 
   @override
-  String get notificationsToRemind => 'Notificaciones para recordar';
+  String get notificationsToRemind =>
+      'Notificaciones para recordarte completar tus ritmos diarios';
 
   @override
-  String get reminderTicker => 'Ticker de recordatorio';
+  String get reminderTicker => 'Recordatorio de hábito';
 
   @override
   String get timeToWorkOnHabit => '¡Es hora de trabajar en tu hábito!';
@@ -672,7 +682,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ensureAppNotInDoNotDisturb =>
-      'Asegúrate de que la app no esté en No Molestar';
+      '• Asegúrate de que la app no esté en modo \"No Molestar\"\\n';
 
   @override
   String get firstStreak => 'Primera Racha';
