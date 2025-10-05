@@ -27,11 +27,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void initState() {
     super.initState();
     // Pre-llenar ejemplo para mejorar UX
-    _habitNameController.text = 'Ir al gimnasio';
+    // Se inicializará en didChangeDependencies cuando tengamos acceso al context
     // Pre-seleccionar Lun-Mié-Vie (índices 0, 2, 4)
     _selectedDays[0] = true; // Lunes
     _selectedDays[2] = true; // Miércoles
     _selectedDays[4] = true; // Viernes
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // No pre-llenar - dejar vacío para que el usuario escriba su propio hábito
   }
 
   @override
@@ -42,11 +48,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Future<void> _createFirstHabit() async {
-    if (_habitNameController.text.trim().isEmpty) return;
-
     setState(() => _isCreatingHabit = true);
 
     try {
+      // Si no hay nombre, solo marcar onboarding como completado sin crear hábito
+      if (_habitNameController.text.trim().isEmpty) {
+        final onboardingProvider = Provider.of<OnboardingProvider>(context, listen: false);
+        await onboardingProvider.completeOnboarding();
+        return;
+      }
+
       final habitProvider = Provider.of<HabitProvider>(context, listen: false);
 
       // Convertir selectedDays (bool) a frequency (int) - días 1-7 (Lun-Dom)
@@ -60,7 +71,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       final habit = Habit(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         name: _habitNameController.text.trim(),
-        description: 'Mi primer hábito flexible en Ritmo',
+        description: '',
         icon: Icons.fitness_center,
         color: AppColors.primary.value,
         frequency: frequency,
@@ -78,7 +89,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error creando hábito: $e')),
+          SnackBar(content: Text('${AppLocalizations.of(context)!.errorCreatingHabit}: $e')),
         );
       }
     } finally {
@@ -466,7 +477,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  l10n.habitNameHint,
+                  l10n.rhythmNameHint,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -478,7 +489,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   controller: _habitNameController,
                   style: TextStyle(color: AppColors.textDark),
                   decoration: InputDecoration(
-                    hintText: l10n.habitNameHint,
+                    hintText: l10n.onboardingExampleHabitName,
                     hintStyle: TextStyle(color: AppColors.textSecondaryDark),
                     filled: true,
                     fillColor: AppColors.backgroundDark,

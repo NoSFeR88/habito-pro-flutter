@@ -26,36 +26,38 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
   int _selectedPlan = 1; // 0=Monthly, 1=Annual, 2=Lifetime
   bool _isProcessing = false;
 
-  final List<Map<String, dynamic>> _plans = [
-    {
-      'type': 'monthly',
-      'title': 'Mensual',
-      'price': '\$3.99',
-      'period': '/mes',
-      'savings': '',
-      'color': AppColors.primary.withOpacity(0.1),
-      'borderColor': AppColors.primary.withOpacity(0.3),
-    },
-    {
-      'type': 'annual',
-      'title': 'Anual',
-      'price': '\$29.99',
-      'period': '/año',
-      'savings': '37% DESCUENTO',
-      'color': AppColors.success.withOpacity(0.1),
-      'borderColor': AppColors.success,
-      'highlight': true,
-    },
-    {
-      'type': 'lifetime',
-      'title': 'De por vida',
-      'price': '\$49.99',
-      'period': 'pago único',
-      'savings': 'OFERTA LIMITADA',
-      'color': AppColors.warning.withOpacity(0.1),
-      'borderColor': AppColors.warning,
-    },
-  ];
+  List<Map<String, dynamic>> _getPlans(BuildContext context) {
+    return [
+      {
+        'type': 'monthly',
+        'title': AppLocalizations.of(context)!.paywallMonthly,
+        'price': '\$3.99',
+        'period': AppLocalizations.of(context)!.paywallPerMonth,
+        'savings': '',
+        'color': AppColors.primary.withOpacity(0.1),
+        'borderColor': AppColors.primary.withOpacity(0.3),
+      },
+      {
+        'type': 'annual',
+        'title': AppLocalizations.of(context)!.paywallAnnual,
+        'price': '\$29.99',
+        'period': AppLocalizations.of(context)!.paywallPerYear,
+        'savings': AppLocalizations.of(context)!.paywallDiscount,
+        'color': AppColors.success.withOpacity(0.1),
+        'borderColor': AppColors.success,
+        'highlight': true,
+      },
+      {
+        'type': 'lifetime',
+        'title': AppLocalizations.of(context)!.paywallLifetime,
+        'price': '\$49.99',
+        'period': AppLocalizations.of(context)!.paywallOneTimePayment,
+        'savings': AppLocalizations.of(context)!.paywallLimitedOffer,
+        'color': AppColors.warning.withOpacity(0.1),
+        'borderColor': AppColors.warning,
+      },
+    ];
+  }
 
   @override
   void initState() {
@@ -96,42 +98,56 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
     setState(() => _isProcessing = true);
 
     try {
-      final premiumProvider = Provider.of<PremiumProvider>(context, listen: false);
-      final selectedPlan = _plans[_selectedPlan];
+      final plans = _getPlans(context);
+      final selectedPlan = plans[_selectedPlan];
 
-      // Simular proceso de compra
-      await Future.delayed(const Duration(seconds: 2));
+      // ⚠️ PRODUCCIÓN: Sistema de pagos no implementado aún
+      // TODO: Integrar in_app_purchase package para pagos reales
+      // Documentación: https://pub.dev/packages/in_app_purchase
 
-      // Para desarrollo - simular compra exitosa
-      await premiumProvider.grantPremium(selectedPlan['type']);
+      await Future.delayed(const Duration(seconds: 1));
 
       if (mounted) {
-        // Mostrar mensaje de éxito
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Row(
+        // Mostrar diálogo informando que la funcionalidad aún no está disponible
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            backgroundColor: AppColors.surfaceDark,
+            title: Row(
               children: [
-                Icon(Icons.check_circle, color: AppColors.success),
+                Icon(Icons.info_outline, color: AppColors.primary),
                 const SizedBox(width: 8),
-                Text(AppLocalizations.of(context)!.welcomeToRitmoPro),
+                Expanded(
+                  child: Text(
+                    AppLocalizations.of(context)!.paywallNotImplementedTitle,
+                    style: TextStyle(color: AppColors.textDark),
+                  ),
+                ),
               ],
             ),
-            backgroundColor: AppColors.surfaceDark,
-            duration: const Duration(seconds: 3),
+            content: Text(
+              AppLocalizations.of(context)!.paywallNotImplementedMessage,
+              style: TextStyle(color: AppColors.textSecondaryDark),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  AppLocalizations.of(context)!.understood,
+                  style: TextStyle(color: AppColors.primary),
+                ),
+              ),
+            ],
           ),
         );
 
-        // Callback de éxito
-        widget.onPurchaseSuccess?.call();
-
-        // Cerrar paywall
-        Navigator.of(context).pop(true);
+        debugPrint('⚠️ Payment system not implemented yet - Selected plan: ${selectedPlan['type']}');
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('${AppLocalizations.of(context)!.purchaseError}: $e'),
+            content: Text('Error: $e'),
             backgroundColor: AppColors.error,
           ),
         );
@@ -216,7 +232,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
 
                             // Título principal
                             Text(
-                              'Desbloquea todo el potencial de Ritmo',
+                              l10n.paywallMainTitle,
                               style: TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
@@ -267,7 +283,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                             const SizedBox(height: 32),
 
                             // Planes de precios
-                            ..._buildPricingPlans(),
+                            ..._buildPricingPlans(context),
 
                             const SizedBox(height: 24),
 
@@ -294,7 +310,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                                         ),
                                       )
                                     : Text(
-                                        'Comenzar con Ritmo PRO',
+                                        l10n.paywallStartButton,
                                         style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
@@ -307,7 +323,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
 
                             // Términos y condiciones
                             Text(
-                              'Al continuar, aceptas nuestros Términos de Servicio y Política de Privacidad',
+                              l10n.paywallTermsAndConditions,
                               style: TextStyle(
                                 fontSize: 12,
                                 color: AppColors.textSecondaryDark,
@@ -334,33 +350,33 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
     final features = [
       {
         'icon': Icons.all_inclusive,
-        'title': 'Hábitos ilimitados',
-        'subtitle': 'Crea todos los hábitos que quieras',
+        'title': AppLocalizations.of(context)!.paywallUnlimitedHabits,
+        'subtitle': AppLocalizations.of(context)!.paywallUnlimitedHabitsDesc,
       },
       {
         'icon': Icons.bar_chart,
-        'title': 'Estadísticas avanzadas',
-        'subtitle': 'Análisis profundo y tendencias',
+        'title': AppLocalizations.of(context)!.paywallAdvancedStats,
+        'subtitle': AppLocalizations.of(context)!.paywallAdvancedStatsDesc,
       },
       {
         'icon': Icons.palette,
-        'title': '5 temas premium',
-        'subtitle': 'Ocean, Sunset, Forest y más',
+        'title': AppLocalizations.of(context)!.paywallPremiumThemes,
+        'subtitle': AppLocalizations.of(context)!.paywallPremiumThemesDesc,
       },
       {
-        'icon': Icons.ads_click_off,
-        'title': 'Sin publicidad',
-        'subtitle': 'Experiencia completamente limpia',
+        'icon': Icons.block,
+        'title': AppLocalizations.of(context)!.paywallNoAds,
+        'subtitle': AppLocalizations.of(context)!.paywallNoAdsDesc,
       },
       {
         'icon': Icons.cloud_upload,
-        'title': 'Backup automático',
-        'subtitle': 'Tus datos seguros en la nube',
+        'title': AppLocalizations.of(context)!.paywallAutoBackup,
+        'subtitle': AppLocalizations.of(context)!.paywallAutoBackupDesc,
       },
       {
         'icon': Icons.psychology,
-        'title': 'AI Insights',
-        'subtitle': 'Recomendaciones inteligentes',
+        'title': AppLocalizations.of(context)!.paywallAiInsights,
+        'subtitle': AppLocalizations.of(context)!.paywallAiInsightsDesc,
       },
     ];
 
@@ -416,10 +432,12 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
     }).toList();
   }
 
-  List<Widget> _buildPricingPlans() {
+  List<Widget> _buildPricingPlans(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final plans = _getPlans(context);
     return [
       Text(
-        'Elige tu plan',
+        l10n.paywallChoosePlan,
         style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
@@ -428,8 +446,8 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
         textAlign: TextAlign.center,
       ),
       const SizedBox(height: 16),
-      ...List.generate(_plans.length, (index) {
-        final plan = _plans[index];
+      ...List.generate(plans.length, (index) {
+        final plan = plans[index];
         final isSelected = _selectedPlan == index;
         final isHighlighted = plan['highlight'] == true;
 

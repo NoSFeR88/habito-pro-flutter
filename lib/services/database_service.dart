@@ -21,7 +21,7 @@ class DatabaseService {
       await docRef.set(newHabit.toMap());
       return newHabit;
     } catch (e) {
-      throw Exception('Error creando hábito: $e');
+      throw Exception('Habit creation error: $e');
     }
   }
 
@@ -39,7 +39,7 @@ class DatabaseService {
         return Habit.fromMap(data);
       }).toList();
     } catch (e) {
-      throw Exception('Error obteniendo hábitos: $e');
+      throw Exception('Habits fetch error: $e');
     }
   }
 
@@ -63,7 +63,7 @@ class DatabaseService {
     try {
       await _habitsCollection.doc(habit.id).update(habit.toMap());
     } catch (e) {
-      throw Exception('Error actualizando hábito: $e');
+      throw Exception('Habit update error: $e');
     }
   }
 
@@ -75,7 +75,7 @@ class DatabaseService {
         'deletedAt': FieldValue.serverTimestamp(),
       });
     } catch (e) {
-      throw Exception('Error eliminando hábito: $e');
+      throw Exception('Habit deletion error: $e');
     }
   }
 
@@ -86,7 +86,7 @@ class DatabaseService {
       final doc = await docRef.get();
       
       if (!doc.exists) {
-        throw Exception('Hábito no encontrado');
+        throw Exception('Habit not found');
       }
 
       final habit = Habit.fromMap(doc.data() as Map<String, dynamic>);
@@ -107,7 +107,7 @@ class DatabaseService {
         'lastUpdated': FieldValue.serverTimestamp(),
       });
     } catch (e) {
-      throw Exception('Error actualizando completación: $e');
+      throw Exception('Completion update error: $e');
     }
   }
 
@@ -168,7 +168,7 @@ class DatabaseService {
         'completionRate': completionRate,
       };
     } catch (e) {
-      throw Exception('Error obteniendo estadísticas: $e');
+      throw Exception('Statistics error: $e');
     }
   }
 
@@ -184,7 +184,7 @@ class DatabaseService {
       
       await batch.commit();
     } catch (e) {
-      throw Exception('Error realizando backup: $e');
+      throw Exception('Backup error: $e');
     }
   }
 
@@ -220,7 +220,7 @@ class DatabaseService {
       
       return completionData;
     } catch (e) {
-      throw Exception('Error obteniendo datos del período: $e');
+      throw Exception('Period data error: $e');
     }
   }
 
@@ -247,7 +247,7 @@ class DatabaseService {
         }
       }
     } catch (e) {
-      throw Exception('Error limpiando datos antiguos: $e');
+      throw Exception('Data cleanup error: $e');
     }
   }
 

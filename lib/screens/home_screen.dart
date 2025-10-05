@@ -369,77 +369,68 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildPortraitLayout(BuildContext context, List<Habit> habitsToday, EdgeInsets screenPadding) {
-    final screenHeight = MediaQuery.of(context).size.height;
-
-    return CustomScrollView(
-      slivers: [
-        // StatsOverview colapsable con padding horizontal y superior
-        SliverToBoxAdapter(
+    return Column(
+      children: [
+        // StatsOverview FIJO arriba (Hoy/Semana/Mes + contenedor lila)
+        SizedBox(
+          height: 291,
           child: Padding(
             padding: EdgeInsets.fromLTRB(screenPadding.left, 12, screenPadding.right, 0),
-            child: SizedBox(
-              height: 280,
-              child: StatsOverview(),
-            ),
+            child: StatsOverview(),
           ),
         ),
 
-        // GamificationCard (permanece visible al scrollear)
-        SliverToBoxAdapter(
-          child: const GamificationCard(),
-        ),
+        // GamificationCard + Hábitos con scroll CONJUNTO
+        Expanded(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              // GamificationCard (scrollea con los hábitos)
+              const GamificationCard(),
 
-        // Título "Hoy"
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(screenPadding.left, 8, screenPadding.right, 16),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.today,
-                  color: AppColors.primary,
-                  size: _isTablet ? 32 : 28,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'Hoy • $_currentDateString',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: _isTablet ? 24 : null,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-
-        // Lista de hábitos scrolleable
-        habitsToday.isEmpty
-            ? SliverToBoxAdapter(child: _buildEmptyState())
-            : SliverPadding(
-                padding: EdgeInsets.fromLTRB(
-                  screenPadding.left,
-                  0,
-                  screenPadding.right,
-                  100, // Espacio para FAB + margen adicional
-                ),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      final habit = habitsToday[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: HabitCard(
-                          habit: habit,
-                          onTap: () => _toggleHabit(context, habit.id),
-                          onLongPress: () => _showHabitOptions(context, habit),
-                        ),
-                      );
-                    },
-                    childCount: habitsToday.length,
-                  ),
+              // Título "Hoy"
+              Padding(
+                padding: EdgeInsets.fromLTRB(screenPadding.left, 8, screenPadding.right, 16),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.today,
+                      color: AppColors.primary,
+                      size: _isTablet ? 32 : 28,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Hoy • $_currentDateString',
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: _isTablet ? 24 : null,
+                      ),
+                    ),
+                  ],
                 ),
               ),
+
+              // Lista de hábitos
+              if (habitsToday.isEmpty)
+                SizedBox(
+                  height: 300,
+                  child: _buildEmptyState(),
+                )
+              else
+                ...habitsToday.map((habit) => Padding(
+                  padding: EdgeInsets.fromLTRB(screenPadding.left, 0, screenPadding.right, 12),
+                  child: HabitCard(
+                    habit: habit,
+                    onTap: () => _toggleHabit(context, habit.id),
+                    onLongPress: () => _showHabitOptions(context, habit),
+                  ),
+                )).toList(),
+
+              // Espacio final para FAB
+              const SizedBox(height: 100),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -683,3 +674,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+

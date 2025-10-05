@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../models/habit.dart';
 import '../services/database_helper.dart';
 import '../services/notification_service.dart';
-import '../widgets/gamification_card.dart';
 import 'gamification_provider.dart';
 
 class HabitProvider extends ChangeNotifier {
@@ -34,11 +33,6 @@ class HabitProvider extends ChangeNotifier {
       await _notificationService.initialize();
 
       await _loadHabitsFromDatabase();
-
-      // Si no hay hábitos, crear datos de ejemplo
-      if (_habits.isEmpty) {
-        await _createSampleHabits();
-      }
 
       // Programar notificaciones para todos los hábitos
       await _scheduleAllNotifications();
@@ -125,13 +119,14 @@ class HabitProvider extends ChangeNotifier {
   }
 
   // Marcar hábito como completado/no completado
-  Future<void> toggleHabitCompletion(String habitId, [DateTime? date]) async {
+  /// Retorna true si necesita mostrar diálogo para cambiar hora de notificación
+  Future<bool> toggleHabitCompletion(String habitId, [DateTime? date]) async {
     try {
       final targetDate = date ?? DateTime.now();
       final dateStr = targetDate.toDateString();
 
       final habitIndex = _habits.indexWhere((h) => h.id == habitId);
-      if (habitIndex == -1) return;
+      if (habitIndex == -1) return false;
 
       final habit = _habits[habitIndex];
       final newCompletions = Map<String, bool>.from(habit.completions);
@@ -156,6 +151,26 @@ class HabitProvider extends ChangeNotifier {
       // Solo actualizar datos, sin reprogramar notificaciones
       await _updateHabitData(updatedHabit);
 
+      // NUEVA LÓGICA DE NOTIFICACIONES SIMPLIFICADA
+      final now = DateTime.now();
+      final isToday = targetDate.year == now.year &&
+                      targetDate.month == now.month &&
+                      targetDate.day == now.day;
+
+      bool needsTimeDialog = false; // Flag para mostrar diálogo de hora
+
+      if (isToday && updatedHabit.isReminderEnabled) {
+        if (willBeCompleted) {
+          // COMPLETAR: Cancelar todas + Reprogramar desde próxima ocurrencia
+          await _notificationService.scheduleFromNextOccurrence(updatedHabit);
+          debugPrint('✅ Hábito completado - Notificaciones desde próxima ocurrencia: ${habit.name}');
+        } else {
+          // DESMARCAR: Solicitar nueva hora (diálogo en UI)
+          needsTimeDialog = true;
+          debugPrint('🔔 Hábito desmarcado - Se necesita nueva hora de notificación');
+        }
+      }
+
       // Manejar puntos de gamificación
       if (_gamificationProvider != null) {
         if (willBeCompleted) {
@@ -179,8 +194,35 @@ class HabitProvider extends ChangeNotifier {
       }
 
       _clearError();
+      return needsTimeDialog; // Retornar si necesita mostrar diálogo
     } catch (e) {
       _setError('Error actualizando completado: $e');
+      return false;
+    }
+  }
+
+  // Actualizar hora de recordatorio y reprogramar notificaciones
+  Future<void> updateReminderTime(String habitId, TimeOfDay newTime) async {
+    try {
+      final habitIndex = _habits.indexWhere((h) => h.id == habitId);
+      if (habitIndex == -1) {
+        _setError('Hábito no encontrado');
+        return;
+      }
+
+      final habit = _habits[habitIndex];
+      final updatedHabit = habit.copyWith(reminderTime: newTime);
+
+      // Actualizar en base de datos
+      await _updateHabitData(updatedHabit);
+
+      // Reprogramar TODAS las notificaciones con la nueva hora
+      await _notificationService.scheduleHabitReminder(updatedHabit);
+
+      debugPrint('✅ Hora de recordatorio actualizada: ${habit.name} - ${newTime.hour}:${newTime.minute.toString().padLeft(2, '0')}');
+      _clearError();
+    } catch (e) {
+      _setError('Error actualizando hora de recordatorio: $e');
     }
   }
 
@@ -211,12 +253,41 @@ class HabitProvider extends ChangeNotifier {
     };
   }
 
+  // Obtener todos los hábitos activos de la semana actual con su progreso
+  List<Map<String, dynamic>> get habitsForWeek {
+    final now = DateTime.now();
+    final weekStart = now.subtract(Duration(days: now.weekday - 1));
+
+    return _habits.where((habit) => habit.isActive).map((habit) {
+      int completedDays = 0;
+      int scheduledDays = 0;
+
+      // Contar días completados y programados en la semana
+      for (int i = 0; i < 7; i++) {
+        final day = weekStart.add(Duration(days: i));
+        if (habit.frequency.contains(day.weekday)) {
+          scheduledDays++;
+          final dayStr = day.toDateString();
+          if (habit.completions[dayStr] ?? false) {
+            completedDays++;
+          }
+        }
+      }
+
+      return {
+        'habit': habit,
+        'completedDays': completedDays,
+        'scheduledDays': scheduledDays,
+        'percentage': scheduledDays > 0 ? (completedDays / scheduledDays * 100).toInt() : 0,
+      };
+    }).toList();
+  }
+
   // Obtener hábitos por completar hoy (ordenados)
+
   List<Habit> get habitsForToday {
     final today = DateTime.now().weekday;
-    final now = DateTime.now();
     final currentTime = TimeOfDay.now();
-    final todayStr = now.toDateString();
 
     final habitsToday = _habits.where((habit) =>
         habit.isActive &&
@@ -356,7 +427,7 @@ class HabitProvider extends ChangeNotifier {
         await _databaseHelper.insertHabit(habit);
         _habits.add(habit);
       } catch (e) {
-        print('Error insertando hábito de ejemplo ${habit.name}: $e');
+        print('Error inserting example habit ${habit.name}: $e');
       }
     }
     notifyListeners();
@@ -383,7 +454,7 @@ class HabitProvider extends ChangeNotifier {
         await _notificationService.scheduleHabitReminder(habit);
       }
     } catch (e) {
-      print('Error programando notificaciones: $e');
+      print('Notification scheduling error: $e');
     }
   }
 

@@ -259,6 +259,98 @@ class NotificationService {
     }
   }
 
+  /// Programa notificaciones SOLO desde la próxima ocurrencia del hábito
+  /// (excluye el día de hoy - usado cuando se completa un hábito)
+  Future<void> scheduleFromNextOccurrence(Habit habit, [BuildContext? context]) async {
+    if (!habit.isReminderEnabled) {
+      debugPrint('⏭️ Recordatorios deshabilitados para: ${habit.name}');
+      return;
+    }
+    if (context != null) _context = context;
+
+    try {
+      // Cancelar TODAS las notificaciones previas
+      await cancelHabitReminders(habit.id);
+
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day);
+      int notificationCount = 0;
+
+      // Encontrar la PRÓXIMA ocurrencia (no hoy)
+      for (int daysAhead = 1; daysAhead <= 7; daysAhead++) {
+        final futureDate = today.add(Duration(days: daysAhead));
+        final futureDayOfWeek = futureDate.weekday;
+
+        if (habit.frequency.contains(futureDayOfWeek)) {
+          // Esta es la próxima ocurrencia
+          final scheduledDateTime = DateTime(
+            futureDate.year,
+            futureDate.month,
+            futureDate.day,
+            habit.reminderTime.hour,
+            habit.reminderTime.minute,
+          );
+
+          final notificationId = _generateNotificationId(habit.id, futureDayOfWeek);
+
+          final androidDetails = AndroidNotificationDetails(
+            'habit_reminders',
+            _getLocalizedString('habitReminders', 'Habit Reminders'),
+            channelDescription: _getLocalizedString('notificationsToRemindHabits', 'Notifications to remind you to complete your daily habits'),
+            importance: Importance.high,
+            priority: Priority.high,
+            ticker: _getLocalizedString('habitReminderTicker', 'Habit reminder'),
+            icon: '@mipmap/ic_launcher',
+            enableVibration: true,
+            autoCancel: true,
+          );
+
+          const iosDetails = DarwinNotificationDetails(
+            presentAlert: true,
+            presentBadge: true,
+            presentSound: true,
+          );
+
+          final notificationDetails = NotificationDetails(
+            android: androidDetails,
+            iOS: iosDetails,
+            macOS: iosDetails,
+          );
+
+          // Programar con repetición semanal desde esta fecha
+          await _notificationsPlugin.zonedSchedule(
+            notificationId,
+            '🎯 ${habit.name}',
+            habit.description.isNotEmpty
+                ? habit.description
+                : _getLocalizedString('defaultHabitReminder', 'Time to work on your habit!'),
+            tz.TZDateTime.from(scheduledDateTime, tz.local),
+            notificationDetails,
+            androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+            uiLocalNotificationDateInterpretation:
+                UILocalNotificationDateInterpretation.absoluteTime,
+            matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime, // Repetición semanal
+            payload: habit.id,
+          );
+
+          notificationCount++;
+          debugPrint('✅ Notificación programada desde próxima ocurrencia: ${habit.name} - ${_formatDateTime(scheduledDateTime)}');
+          break; // Solo programar desde la primera próxima ocurrencia
+        }
+      }
+
+      if (notificationCount == 0) {
+        debugPrint('⚠️ No se encontró próxima ocurrencia para ${habit.name}');
+      } else {
+        debugPrint('✅ Total notificaciones desde próxima ocurrencia: $notificationCount');
+      }
+
+    } catch (e) {
+      debugPrint('❌ Error programando desde próxima ocurrencia: $e');
+      rethrow;
+    }
+  }
+
   Future<void> cancelAllNotifications() async {
     try {
       await _notificationsPlugin.cancelAll();

@@ -9,6 +9,7 @@ class Habit {
   final int color;
   final List<int> frequency; // 1-7 (Lun-Dom)
   final TimeOfDay reminderTime;
+  final bool isReminderEnabled;
   final DateTime createdAt;
   final Map<String, bool> completions; // "2024-01-15": true
   final int streak;
@@ -22,6 +23,7 @@ class Habit {
     required this.color,
     required this.frequency,
     required this.reminderTime,
+    this.isReminderEnabled = true,
     required this.createdAt,
     required this.completions,
     this.streak = 0,
@@ -80,6 +82,7 @@ class Habit {
     int? color,
     List<int>? frequency,
     TimeOfDay? reminderTime,
+    bool? isReminderEnabled,
     DateTime? createdAt,
     Map<String, bool>? completions,
     int? streak,
@@ -93,6 +96,7 @@ class Habit {
       color: color ?? this.color,
       frequency: frequency ?? this.frequency,
       reminderTime: reminderTime ?? this.reminderTime,
+      isReminderEnabled: isReminderEnabled ?? this.isReminderEnabled,
       createdAt: createdAt ?? this.createdAt,
       completions: completions ?? this.completions,
       streak: streak ?? this.streak,
@@ -111,6 +115,7 @@ class Habit {
       'frequency': frequency,
       'reminderHour': reminderTime.hour,
       'reminderMinute': reminderTime.minute,
+      'isReminderEnabled': isReminderEnabled,
       'createdAt': createdAt.toIso8601String(),
       'completions': completions,
       'streak': streak,
@@ -133,6 +138,7 @@ class Habit {
         hour: json['reminderHour'],
         minute: json['reminderMinute'],
       ),
+      isReminderEnabled: json['isReminderEnabled'] ?? true,
       createdAt: DateTime.parse(json['createdAt']),
       completions: Map<String, bool>.from(json['completions']),
       streak: json['streak'] ?? 0,

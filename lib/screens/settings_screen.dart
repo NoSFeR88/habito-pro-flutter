@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/locale_provider.dart';
 import '../providers/theme_provider.dart';
+import '../providers/premium_provider.dart';
+import '../providers/notification_settings_provider.dart';
 import '../generated/l10n/app_localizations.dart';
 import '../core/theme.dart';
 
@@ -80,7 +82,7 @@ class SettingsScreen extends StatelessWidget {
                                 color: Theme.of(context).primaryColor,
                               ),
                               title: Text(l10n.themes),
-                              subtitle: Text(themeProvider.getColorSchemeName(themeProvider.colorScheme)),
+                              subtitle: Text(themeProvider.getColorSchemeName(themeProvider.colorScheme, context)),
                             ),
                             const SizedBox(height: 8),
                             // Temas Gratuitos
@@ -135,14 +137,17 @@ class SettingsScreen extends StatelessWidget {
                             // Botón Premium Temporal (para testing)
                             if (!themeProvider.isPremiumUser)
                               ElevatedButton.icon(
-                                onPressed: () {
-                                  themeProvider.enablePremiumForTesting();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(l10n.premiumTestingActivated),
-                                      backgroundColor: Colors.green,
-                                    ),
-                                  );
+                                onPressed: () async {
+                                  final premiumProvider = Provider.of<PremiumProvider>(context, listen: false);
+                                  await premiumProvider.grantPremium('testing');
+                                  if (context.mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(l10n.premiumTestingActivated),
+                                        backgroundColor: Colors.green,
+                                      ),
+                                    );
+                                  }
                                 },
                                 icon: const Icon(Icons.star),
                                 label: Text(l10n.activatePremium),
@@ -222,7 +227,7 @@ class SettingsScreen extends StatelessWidget {
                                                 : null,
                                       ),
                                       title: Text(
-                                        themeProvider.getColorSchemeName(scheme),
+                                        themeProvider.getColorSchemeName(scheme, context),
                                         style: TextStyle(
                                           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                                           color: canSelect ? null : Colors.grey,
@@ -255,8 +260,9 @@ class SettingsScreen extends StatelessWidget {
                                                   action: SnackBarAction(
                                                     label: l10n.activatePremium,
                                                     textColor: Colors.black,
-                                                    onPressed: () {
-                                                      themeProvider.enablePremiumForTesting();
+                                                    onPressed: () async {
+                                                      final premiumProvider = Provider.of<PremiumProvider>(context, listen: false);
+                                                      await premiumProvider.grantPremium('testing');
                                                     },
                                                   ),
                                                 ),
@@ -275,6 +281,11 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+            const SizedBox(height: 20),
+
+            // Notifications Section
+            _buildNotificationsSection(context, l10n),
 
             const SizedBox(height: 20),
 
@@ -343,7 +354,7 @@ class SettingsScreen extends StatelessWidget {
                                   if (context.mounted) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                        content: Text('Language changed to $languageName'),
+                                        content: Text(AppLocalizations.of(context)!.languageChangedTo(languageName)),
                                         backgroundColor: Theme.of(context).primaryColor,
                                         duration: const Duration(seconds: 2),
                                       ),
@@ -520,5 +531,155 @@ class SettingsScreen extends StatelessWidget {
       case AppColorScheme.neumorphism:
         return const Color(0xFF667eea); // Soft Blue
     }
+  }
+
+  Widget _buildNotificationsSection(BuildContext context, AppLocalizations l10n) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.notifications_outlined,
+                  color: Theme.of(context).primaryColor,
+                  size: 24,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  l10n.notifications,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Consumer<NotificationSettingsProvider>(
+              builder: (context, notifSettings, child) {
+                return Column(
+                  children: [
+                    // Enable/Disable Notifications
+                    SwitchListTile(
+                      secondary: const Icon(Icons.notifications_active),
+                      title: Text(l10n.enableNotifications),
+                      subtitle: Text(l10n.notificationsDescription),
+                      value: notifSettings.notificationsEnabled,
+                      onChanged: (value) {
+                        notifSettings.setNotificationsEnabled(value);
+                      },
+                    ),
+                    const Divider(),
+
+                    // Default Reminder Time
+                    ListTile(
+                      leading: const Icon(Icons.access_time),
+                      title: Text(l10n.defaultReminderTime),
+                      subtitle: Text(
+                        '${notifSettings.defaultReminderTime.hour}:${notifSettings.defaultReminderTime.minute.toString().padLeft(2, '0')}',
+                      ),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: notifSettings.notificationsEnabled
+                          ? () async {
+                              final TimeOfDay? picked = await showTimePicker(
+                                context: context,
+                                initialTime: notifSettings.defaultReminderTime,
+                              );
+                              if (picked != null) {
+                                notifSettings.setDefaultReminderTime(picked);
+                              }
+                            }
+                          : null,
+                    ),
+                    const Divider(),
+
+                    // Reminder Sound
+                    ListTile(
+                      leading: const Icon(Icons.volume_up),
+                      title: Text(l10n.reminderSound),
+                      subtitle: Text(_getSoundLabel(notifSettings.reminderSound, l10n)),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: notifSettings.notificationsEnabled
+                          ? () {
+                              _showSoundPickerDialog(context, notifSettings, l10n);
+                            }
+                          : null,
+                    ),
+                    const Divider(),
+
+                    // Vibration
+                    SwitchListTile(
+                      secondary: const Icon(Icons.vibration),
+                      title: Text(l10n.vibration),
+                      value: notifSettings.vibrationEnabled,
+                      onChanged: notifSettings.notificationsEnabled
+                          ? (value) {
+                              notifSettings.setVibrationEnabled(value);
+                            }
+                          : null,
+                    ),
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _getSoundLabel(String sound, AppLocalizations l10n) {
+    switch (sound) {
+      case 'default':
+        return l10n.soundDefault;
+      case 'none':
+        return l10n.soundNone;
+      case 'chime':
+        return l10n.soundChime;
+      case 'bell':
+        return l10n.soundBell;
+      default:
+        return l10n.soundDefault;
+    }
+  }
+
+  void _showSoundPickerDialog(
+    BuildContext context,
+    NotificationSettingsProvider notifSettings,
+    AppLocalizations l10n,
+  ) {
+    final sounds = [
+      {'value': 'default', 'label': l10n.soundDefault},
+      {'value': 'none', 'label': l10n.soundNone},
+      {'value': 'chime', 'label': l10n.soundChime},
+      {'value': 'bell', 'label': l10n.soundBell},
+    ];
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.reminderSound),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: sounds.map((sound) {
+            final isSelected = notifSettings.reminderSound == sound['value'];
+            return RadioListTile<String>(
+              title: Text(sound['label']!),
+              value: sound['value']!,
+              groupValue: notifSettings.reminderSound,
+              selected: isSelected,
+              onChanged: (value) {
+                if (value != null) {
+                  notifSettings.setReminderSound(value);
+                  Navigator.pop(context);
+                }
+              },
+            );
+          }).toList(),
+        ),
+      ),
+    );
   }
 }

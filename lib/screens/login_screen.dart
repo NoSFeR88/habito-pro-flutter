@@ -68,8 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         const SizedBox(height: 24),
-        const Text(
-          'HábitoPro',
+        Text(
+          AppLocalizations.of(context)!.loginTitle,
           style: TextStyle(
             color: Colors.white,
             fontSize: 32,
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         const SizedBox(height: 8),
         Text(
-          'Construye mejores hábitos, día a día',
+          AppLocalizations.of(context)!.loginSubtitle,
           style: TextStyle(
             color: Colors.white.withOpacity(0.8),
             fontSize: 16,
@@ -159,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                'Iniciar Sesión',
+                AppLocalizations.of(context)!.signInButton,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: _isLoginMode ? Colors.white : Colors.grey[600],
@@ -180,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                'Registrarse',
+                AppLocalizations.of(context)!.signUp,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: !_isLoginMode ? Colors.white : Colors.grey[600],
@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildNameField() {
     return TextFormField(
       decoration: InputDecoration(
-        labelText: 'Nombre completo',
+        labelText: AppLocalizations.of(context)!.fullNameLabel,
         prefixIcon: const Icon(Icons.person_outline),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -205,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Por favor ingresa tu nombre';
+          return AppLocalizations.of(context)!.nameRequiredError;
         }
         return null;
       },
@@ -217,7 +217,7 @@ class _LoginScreenState extends State<LoginScreen> {
       controller: _emailController,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-        labelText: 'Correo electrónico',
+        labelText: AppLocalizations.of(context)!.emailLabel,
         prefixIcon: const Icon(Icons.email_outlined),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -225,10 +225,10 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Por favor ingresa tu email';
+          return AppLocalizations.of(context)!.emailRequiredError;
         }
         if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-          return 'Por favor ingresa un email válido';
+          return AppLocalizations.of(context)!.emailValidationError;
         }
         return null;
       },
@@ -240,7 +240,7 @@ class _LoginScreenState extends State<LoginScreen> {
       controller: _passwordController,
       obscureText: _obscurePassword,
       decoration: InputDecoration(
-        labelText: 'Contraseña',
+        labelText: AppLocalizations.of(context)!.passwordLabel,
         prefixIcon: const Icon(Icons.lock_outline),
         suffixIcon: IconButton(
           icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
@@ -252,10 +252,10 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Por favor ingresa tu contraseña';
+          return AppLocalizations.of(context)!.passwordRequiredError;
         }
         if (!_isLoginMode && value.length < 6) {
-          return 'La contraseña debe tener al menos 6 caracteres';
+          return AppLocalizations.of(context)!.passwordLengthError;
         }
         return null;
       },
@@ -268,7 +268,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: TextButton(
         onPressed: () => _showForgotPasswordDialog(authProvider),
         child: Text(
-          '¿Olvidaste tu contraseña?',
+          AppLocalizations.of(context)!.forgotPassword,
           style: TextStyle(
             color: AppColors.primary,
             fontSize: 12,
@@ -299,7 +299,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             )
           : Text(
-              _isLoginMode ? 'Iniciar Sesión' : 'Crear Cuenta',
+              _isLoginMode ? AppLocalizations.of(context)!.signInButton : AppLocalizations.of(context)!.createAccount,
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -312,10 +312,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return Row(
       children: [
         Expanded(child: Divider(color: Colors.grey[300])),
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            'o continúa con',
+            AppLocalizations.of(context)!.orContinueWith,
             style: TextStyle(
               color: Colors.grey,
               fontSize: 12,
@@ -411,8 +411,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(_isLoginMode 
-              ? '¡Bienvenido de nuevo!' 
-              : '¡Cuenta creada exitosamente!'),
+              ? AppLocalizations.of(context)!.welcomeBack
+              : AppLocalizations.of(context)!.accountCreatedSuccessfully),
           backgroundColor: AppColors.success,
         ),
       );
@@ -464,7 +464,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Correo electrónico',
+                  labelText: AppLocalizations.of(context)!.emailLabel,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),

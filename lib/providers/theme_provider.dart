@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../generated/l10n/app_localizations.dart';
+import 'premium_provider.dart';
 
 enum AppThemeMode {
   light,
@@ -27,12 +28,28 @@ class ThemeProvider with ChangeNotifier {
   AppThemeMode _themeMode = AppThemeMode.system;
   AppColorScheme _colorScheme = AppColorScheme.blue;
   bool _useSystemAccentColor = false;
-  bool _isPremiumUser = false; // TODO: Connect to actual premium subscription
+  PremiumProvider? _premiumProvider;
 
   AppThemeMode get themeMode => _themeMode;
   AppColorScheme get colorScheme => _colorScheme;
   bool get useSystemAccentColor => _useSystemAccentColor;
-  bool get isPremiumUser => _isPremiumUser;
+  bool get isPremiumUser => _premiumProvider?.isPremium ?? false;
+
+  void setPremiumProvider(PremiumProvider premiumProvider) {
+    _premiumProvider = premiumProvider;
+    _premiumProvider!.addListener(_onPremiumChanged);
+    notifyListeners();
+  }
+
+  void _onPremiumChanged() {
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _premiumProvider?.removeListener(_onPremiumChanged);
+    super.dispose();
+  }
 
   // Check if a color scheme requires premium
   bool isThemePremium(AppColorScheme scheme) {
@@ -48,7 +65,7 @@ class ThemeProvider with ChangeNotifier {
 
   // Get available themes based on premium status
   List<AppColorScheme> get availableThemes {
-    if (_isPremiumUser) {
+    if (isPremiumUser) {
       return AppColorScheme.values;
     } else {
       return [AppColorScheme.blue, AppColorScheme.green, AppColorScheme.purple];
@@ -86,7 +103,7 @@ class ThemeProvider with ChangeNotifier {
 
   Future<void> setColorScheme(AppColorScheme scheme) async {
     // Check if theme requires premium and user doesn't have it
-    if (isThemePremium(scheme) && !_isPremiumUser) {
+    if (isThemePremium(scheme) && !isPremiumUser) {
       // TODO: Show premium upgrade dialog
       return;
     }
@@ -97,11 +114,7 @@ class ThemeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Temporary method to enable premium for testing
-  void enablePremiumForTesting() {
-    _isPremiumUser = true;
-    notifyListeners();
-  }
+  // Removed: enablePremiumForTesting() - Use PremiumProvider.togglePremiumForTesting() instead
 
   Future<void> setUseSystemAccentColor(bool value) async {
     _useSystemAccentColor = value;
@@ -387,29 +400,29 @@ class ThemeProvider with ChangeNotifier {
     }
   }
 
-  String getColorSchemeName(AppColorScheme scheme) {
+  String getColorSchemeName(AppColorScheme scheme, BuildContext context) {
     switch (scheme) {
       // Free themes
       case AppColorScheme.blue:
-        return 'Azul Básico';
+        return AppLocalizations.of(context)!.themeBasicBlue;
       case AppColorScheme.green:
-        return 'Verde Básico';
+        return AppLocalizations.of(context)!.themeBasicGreen;
       case AppColorScheme.purple:
-        return 'Morado Básico';
+        return AppLocalizations.of(context)!.themeBasicPurple;
 
       // Premium themes
       case AppColorScheme.executiveMinimalist:
-        return '💼 Ejecutivo Minimalista';
+        return AppLocalizations.of(context)!.themeExecutiveMinimalist;
       case AppColorScheme.neonCyber:
-        return '🌟 Cyber Neón';
+        return AppLocalizations.of(context)!.themeCyberNeon;
       case AppColorScheme.auroraInspiration:
-        return '🎨 Aurora Inspiración';
+        return AppLocalizations.of(context)!.themeAuroraInspiration;
       case AppColorScheme.zenGarden:
-        return '🧘 Jardín Zen';
+        return AppLocalizations.of(context)!.themeZenGarden;
       case AppColorScheme.glassmorphism:
-        return '✨ Glassmorphism';
+        return AppLocalizations.of(context)!.themeGlassmorphism;
       case AppColorScheme.neumorphism:
-        return '🎭 Neumorphism';
+        return AppLocalizations.of(context)!.themeNeumorphism;
     }
   }
 

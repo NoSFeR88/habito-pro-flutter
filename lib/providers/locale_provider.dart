@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LocaleProvider extends ChangeNotifier {
   static const String _localeKey = 'selected_locale';
+  static const String _manuallySetKey = 'user_manually_set_locale';
 
   Locale? _locale;
 
@@ -80,42 +81,67 @@ class LocaleProvider extends ChangeNotifier {
   };
 
   /// Initialize locale from device or saved preference
+  /// Priority:
+  /// 1. User manually set locale (via Settings) - ALWAYS wins
+  /// 2. Device locale (auto-sync) - If user never changed manually
   Future<void> initializeLocale() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final savedLocaleCode = prefs.getString(_localeKey);
+      final userManuallySet = prefs.getBool(_manuallySetKey) ?? false;
+      final deviceLocale = PlatformDispatcher.instance.locale;
 
-      if (savedLocaleCode != null) {
-        // Use saved locale
-        _locale = Locale(savedLocaleCode);
-      } else {
-        // Use device locale if supported, otherwise default to English
-        final deviceLocale = PlatformDispatcher.instance.locale;
-        if (supportedLocales.any((locale) => locale.languageCode == deviceLocale.languageCode)) {
-          _locale = Locale(deviceLocale.languageCode);
+      debugPrint('🌍 LOCALE DEBUG:');
+      debugPrint('  - savedLocaleCode from SharedPrefs: $savedLocaleCode');
+      debugPrint('  - userManuallySet: $userManuallySet');
+      debugPrint('  - Device locale: ${deviceLocale.languageCode}');
+      debugPrint('  - Device country: ${deviceLocale.countryCode}');
+      debugPrint('  - Full device locale: $deviceLocale');
+
+      if (userManuallySet && savedLocaleCode != null) {
+        // Priority 1: User manually changed language in Settings
+        if (supportedLocales.any((locale) => locale.languageCode == savedLocaleCode)) {
+          _locale = Locale(savedLocaleCode);
+          debugPrint('  - ✅ Using USER MANUALLY SET locale: $savedLocaleCode (highest priority)');
         } else {
-          _locale = const Locale('en'); // Default to English
+          // Saved locale no longer supported, fallback to device
+          _locale = _getDeviceOrDefaultLocale(deviceLocale);
+          await _saveLocale(_locale!.languageCode, manuallySet: false);
+          debugPrint('  - ⚠️ Saved locale not supported, using device/default: ${_locale!.languageCode}');
         }
-
-        // Save the initial locale
-        await _saveLocale(_locale!.languageCode);
+      } else {
+        // Priority 2: Auto-sync with device locale (user never changed manually)
+        _locale = _getDeviceOrDefaultLocale(deviceLocale);
+        await _saveLocale(_locale!.languageCode, manuallySet: false);
+        debugPrint('  - 🔄 AUTO-SYNC with device locale: ${_locale!.languageCode}');
       }
 
+      debugPrint('  - 🎯 FINAL locale selected: ${_locale!.languageCode}');
       notifyListeners();
     } catch (e) {
-      debugPrint('Error initializing locale: $e');
+      debugPrint('❌ Error initializing locale: $e');
       _locale = const Locale('en'); // Fallback to English
       notifyListeners();
     }
   }
 
-  /// Change the app locale
+  /// Get device locale if supported, otherwise default to English
+  Locale _getDeviceOrDefaultLocale(Locale deviceLocale) {
+    if (supportedLocales.any((locale) => locale.languageCode == deviceLocale.languageCode)) {
+      return Locale(deviceLocale.languageCode);
+    } else {
+      return const Locale('en');
+    }
+  }
+
+  /// Change the app locale (called when user manually selects language in Settings)
   Future<void> setLocale(Locale newLocale) async {
     if (newLocale == _locale) return;
 
     if (supportedLocales.contains(newLocale)) {
       _locale = newLocale;
-      await _saveLocale(newLocale.languageCode);
+      await _saveLocale(newLocale.languageCode, manuallySet: true);
+      debugPrint('🔧 User MANUALLY changed locale to: ${newLocale.languageCode}');
       notifyListeners();
     }
   }
@@ -127,12 +153,14 @@ class LocaleProvider extends ChangeNotifier {
   }
 
   /// Save locale preference
-  Future<void> _saveLocale(String languageCode) async {
+  Future<void> _saveLocale(String languageCode, {required bool manuallySet}) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(_localeKey, languageCode);
+      await prefs.setBool(_manuallySetKey, manuallySet);
+      debugPrint('💾 Saved locale: $languageCode (manually set: $manuallySet)');
     } catch (e) {
-      debugPrint('Error saving locale preference: $e');
+      debugPrint('❌ Error saving locale preference: $e');
     }
   }
 
