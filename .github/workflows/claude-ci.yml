@@ -318,7 +318,77 @@ jobs:
               body: body
             });
 
-  # Job 7: Gate de Aprobación (solo para PRs de claude/*)
+  # Job 7: Telemetría (captura métricas de la ejecución)
+  telemetry:
+    name: 📊 Telemetría
+    runs-on: windows-latest
+    needs: [analyze, test, i18n-check, build-check, security]
+    if: always()  # Ejecutar siempre, incluso si otros jobs fallan
+
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+
+      - name: 📊 Registrar operación CI
+        shell: pwsh
+        run: |
+          # Determinar status global
+          $analyzeStatus = "${{ needs.analyze.result }}"
+          $testStatus = "${{ needs.test.result }}"
+          $i18nStatus = "${{ needs.i18n-check.result }}"
+          $buildStatus = "${{ needs.build-check.result }}"
+          $securityStatus = "${{ needs.security.result }}"
+
+          $allSuccess = ($analyzeStatus -eq "success") -and `
+                        ($testStatus -eq "success") -and `
+                        ($i18nStatus -eq "success") -and `
+                        ($buildStatus -eq "success") -and `
+                        ($securityStatus -eq "success")
+
+          $globalStatus = if ($allSuccess) { "success" } else { "failed" }
+
+          # Crear directorio telemetry si no existe
+          if (-not (Test-Path "telemetry")) {
+            New-Item -ItemType Directory -Path "telemetry" -Force | Out-Null
+          }
+
+          # Generar JSON de telemetría
+          $telemetryData = @{
+            task = "ci-pipeline"
+            status = $globalStatus
+            timestamp = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+            duration_ms = 0  # Calculado por GitHub Actions
+            tokens_consumed = 0  # Estimado si se usa agente
+            pipeline = @{
+              analyze = $analyzeStatus
+              test = $testStatus
+              i18n = $i18nStatus
+              build = $buildStatus
+              security = $securityStatus
+            }
+            metadata = @{
+              workflow_run = "${{ github.run_id }}"
+              pr_number = "${{ github.event.pull_request.number }}"
+              branch = "${{ github.head_ref }}"
+              actor = "${{ github.actor }}"
+              commit_sha = "${{ github.sha }}"
+            }
+          }
+
+          $filename = "telemetry/ci-run-${{ github.run_id }}.json"
+          $telemetryData | ConvertTo-Json -Depth 5 -Compress | Out-File -FilePath $filename -Encoding ASCII
+
+          Write-Host "✅ Telemetría registrada: $filename" -ForegroundColor Green
+          Write-Host "Status global: $globalStatus" -ForegroundColor $(if ($globalStatus -eq "success") { "Green" } else { "Red" })
+
+      - name: 📤 Upload telemetry artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: telemetry-metrics
+          path: telemetry/*.json
+          retention-days: 30
+
+  # Job 8: Gate de Aprobación (solo para PRs de claude/*)
   require-approval:
     name: 🚧 Requiere Aprobación Humana
     runs-on: windows-latest

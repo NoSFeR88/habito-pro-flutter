@@ -62,7 +62,7 @@ function Write-Log {
     }
 }
 
-# Función para crear JSON de resultado
+# Función para crear JSON de resultado (Schema Plan Maestro)
 function New-ResultJson {
     param(
         [int]$TotalTests = 0,
@@ -75,18 +75,28 @@ function New-ResultJson {
     )
 
     $result = @{
-        timestamp = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+        task = "unit-tests"
         status = $Status
-        total_tests = $TotalTests
-        passed = $Passed
-        failed = $Failed
-        coverage = $Coverage
+        timestamp = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
         duration_ms = $DurationMs
+        tokens_consumed = 0  # Estimado por CI si aplica
+        tests = @{
+            total = $TotalTests
+            passed = $Passed
+            failed = $Failed
+            skipped = 0
+        }
+        coverage = $Coverage
         failures = $Failures
         log_file = $LogFile
+        metadata = @{
+            test_path = if ($TestPath) { $TestPath } else { "all" }
+            coverage_enabled = $Coverage.IsPresent
+            flutter_version = "unknown"  # Se actualiza en ejecución
+        }
     }
 
-    return $result | ConvertTo-Json -Depth 5
+    return $result | ConvertTo-Json -Depth 5 -Compress
 }
 
 # Inicio
@@ -109,8 +119,9 @@ try {
     Push-Location $ProjectRoot
 
     # Verificar que flutter está disponible
-    $flutterVersion = flutter --version 2>&1 | Select-String "Flutter" | Select-Object -First 1
-    Write-Log "Flutter detectado: $flutterVersion"
+    $flutterVersionRaw = flutter --version 2>&1 | Select-String "Flutter" | Select-Object -First 1
+    $flutterVersion = $flutterVersionRaw -replace '.*Flutter\s+([\d.]+).*', '$1'
+    Write-Log "Flutter detectado: $flutterVersionRaw"
 
     # Construir comando de test
     $testCommand = "flutter test"
@@ -175,7 +186,7 @@ try {
     # Determinar status
     $status = if ($exitCode -eq 0) { "success" } else { "failed" }
 
-    # Generar JSON resultado
+    # Generar JSON resultado (actualizar metadata)
     $resultJson = New-ResultJson `
         -TotalTests $totalTests `
         -Passed $passed `
@@ -184,6 +195,11 @@ try {
         -DurationMs $durationMs `
         -Failures $failures `
         -Status $status
+
+    # Actualizar flutter_version en metadata
+    $resultObj = $resultJson | ConvertFrom-Json
+    $resultObj.metadata.flutter_version = $flutterVersion
+    $resultJson = $resultObj | ConvertTo-Json -Depth 5 -Compress
 
     # Output JSON a stdout
     Write-Output $resultJson

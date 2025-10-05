@@ -70,25 +70,44 @@ function New-LintResultJson {
         [int]$Infos = 0,
         [array]$Issues = @(),
         [int]$HardcodedStrings = 0,
-        [bool]$Formatted = $false
+        [bool]$Formatted = $false,
+        [int]$DurationMs = 0
     )
 
     $result = @{
-        timestamp = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+        task = "static-analysis"
         status = $Status
-        errors = $Errors
-        warnings = $Warnings
-        infos = $Infos
-        issues = $Issues
-        hardcoded_strings = $HardcodedStrings
-        formatted = $Formatted
+        timestamp = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+        duration_ms = $DurationMs
+        tokens_consumed = 0  # Estimado por CI si aplica
+        analyze = @{
+            errors = $Errors
+            warnings = $Warnings
+            infos = $Infos
+            total_issues = $Errors + $Warnings + $Infos
+        }
+        i18n = @{
+            hardcoded_strings = $HardcodedStrings
+            check_passed = ($HardcodedStrings -eq 0)
+        }
+        formatting = @{
+            applied = $Formatted
+            tool = "dart format"
+        }
+        issues_sample = $Issues | Select-Object -First 10  # Solo primeros 10
         log_file = $LogFile
+        metadata = @{
+            fix_mode = $Fix.IsPresent
+            format_mode = $Format.IsPresent
+        }
     }
 
-    return $result | ConvertTo-Json -Depth 5
+    return $result | ConvertTo-Json -Depth 5 -Compress
 }
 
 Write-Log "=== SAFE-LINT INICIADO ==="
+
+$StartTime = Get-Date
 
 try {
     if (-not (Test-Path (Join-Path $ProjectRoot "pubspec.yaml"))) {
@@ -176,6 +195,10 @@ try {
 
     Write-Log "Status final: $status"
 
+    # Calcular duración
+    $duration = (Get-Date) - $StartTime
+    $durationMs = [int]$duration.TotalMilliseconds
+
     # Generar JSON resultado
     $resultJson = New-LintResultJson `
         -Status $status `
@@ -184,7 +207,8 @@ try {
         -Infos $infos `
         -Issues $issues `
         -HardcodedStrings $hardcodedCount `
-        -Formatted $formatted
+        -Formatted $formatted `
+        -DurationMs $durationMs
 
     Write-Output $resultJson
 
