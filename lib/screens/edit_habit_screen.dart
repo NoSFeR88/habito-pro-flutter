@@ -23,7 +23,9 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   late IconData _selectedIcon;
   late int _selectedColor;
+  late FrequencyType _selectedFrequencyType;
   late Set<int> _selectedDays;
+  late int _weeklyTarget;
   late TimeOfDay _reminderTime;
   bool _isLoading = false;
 
@@ -34,7 +36,9 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
     _descriptionController = TextEditingController(text: widget.habit.description);
     _selectedIcon = widget.habit.icon;
     _selectedColor = widget.habit.color;
+    _selectedFrequencyType = widget.habit.frequencyType;
     _selectedDays = widget.habit.frequency.toSet();
+    _weeklyTarget = widget.habit.weeklyTarget ?? 3;
     _reminderTime = widget.habit.reminderTime;
   }
 
@@ -478,12 +482,31 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
     });
 
     try {
+      // Determinar frequency list según el tipo
+      List<int> frequencyList;
+      switch (_selectedFrequencyType) {
+        case FrequencyType.daily:
+          frequencyList = [1, 2, 3, 4, 5, 6, 7];
+          break;
+        case FrequencyType.weekdays:
+          frequencyList = [1, 2, 3, 4, 5];
+          break;
+        case FrequencyType.custom:
+          frequencyList = _selectedDays.toList()..sort();
+          break;
+        case FrequencyType.weekly:
+          frequencyList = [1, 2, 3, 4, 5, 6, 7];
+          break;
+      }
+
       final updatedHabit = widget.habit.copyWith(
         name: _nameController.text.trim(),
         description: _descriptionController.text.trim(),
         icon: _selectedIcon,
         color: _selectedColor,
-        frequency: _selectedDays.toList()..sort(),
+        frequencyType: _selectedFrequencyType,
+        frequency: frequencyList,
+        weeklyTarget: _selectedFrequencyType == FrequencyType.weekly ? _weeklyTarget : null,
         reminderTime: _reminderTime,
       );
 
