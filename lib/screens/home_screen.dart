@@ -8,7 +8,6 @@ import '../widgets/gamification_card.dart';
 import '../widgets/dynamic_ritmo_logo.dart';
 import '../models/habit.dart';
 import '../core/theme.dart';
-import '../services/notification_service.dart';
 import '../generated/l10n/app_localizations.dart';
 import '../utils/responsive_utils.dart';
 import 'add_habit_screen.dart';

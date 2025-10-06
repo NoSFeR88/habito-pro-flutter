@@ -5,7 +5,6 @@ import '../providers/theme_provider.dart';
 import '../providers/premium_provider.dart';
 import '../providers/notification_settings_provider.dart';
 import '../generated/l10n/app_localizations.dart';
-import '../core/theme.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);

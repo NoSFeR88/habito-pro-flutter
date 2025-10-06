@@ -4,7 +4,6 @@ import '../generated/l10n/app_localizations.dart';
 import '../providers/habit_provider.dart';
 import '../models/habit.dart';
 import '../core/theme.dart';
-import 'dart:math' as math;
 
 class StatsOverview extends StatefulWidget {
   const StatsOverview({super.key});
