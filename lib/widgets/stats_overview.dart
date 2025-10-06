@@ -231,7 +231,7 @@ class _StatsOverviewState extends State<StatsOverview> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 10),
 
                 // Barra de progreso
                 Column(
