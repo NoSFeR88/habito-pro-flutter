@@ -1,39 +1,410 @@
 # CONTEXTO ÚLTIMA SESIÓN - RITMO App
 
-## 📅 Fecha: 2025-10-06 (Sesión 41 - MILESTONE + OPTIMIZACIÓN + REFACTORING)
-## 🎯 Estado: 🏆 **441 TESTS + ES 100% + REFACTORING INICIADO** 🏆
+## 📅 Fecha: 2025-10-06 (Sesión 44 - BUG #5 HIGH FIXED)
+## 🎯 Estado: ✅ **6/7 BUGS FIXED (85.7%) - PR #25 LISTO PARA MERGE** ✅
 
 ---
 
-## 📊 **RESUMEN SESIÓN 41**
+## 📊 **RESUMEN SESIÓN 44**
+
+### ✅ **Trabajo Completado**:
+
+#### **1. BUG #5 HIGH: EditHabitScreen Selector 4 Modos** ✅ FIXED
+
+**Problema**:
+EditHabitScreen no tenía el selector de 4 modos como AddHabitScreen.
+Al editar hábito weekly, no aparecía slider para ajustar target.
+
+**Fix Aplicado**:
+- ✅ Reemplazado `_buildFrequencySelection()` con selector completo 4 modos
+- ✅ Agregado `_buildFrequencyTypeOption()` - método auxiliar para cada opción
+- ✅ Agregado `_buildCustomDaysSelector()` - renderizado condicional Custom
+- ✅ Agregado `_buildWeeklyTargetSelector()` - slider 1-7 Weekly
+
+**Archivos modificados**:
+- `lib/screens/edit_habit_screen.dart:256-518` (+239 líneas, -83 líneas)
+
+**Resultado**:
+- ✅ Paridad completa Add/Edit screens
+- ✅ Slider weekly interactivo funcional
+- ✅ Usuarios pueden cambiar tipo de frecuencia al editar
+- ✅ UX consistente en toda la app
+
+**Commit**: `fdf5372` - fix(high): Add 4-mode frequency selector to EditHabitScreen (#5)
+
+---
+
+#### **2. Análisis BUG #4 LOW: Puntos Iniciales**
+
+**Conclusión**: ❌ **NO ES BUG** - Comportamiento esperado
+
+**Análisis**:
+- Inicialización correcta: `_totalPoints = prefs.getInt(_pointsKey) ?? 0;`
+- Al completar primer hábito: 5 pts base + 10 pts logro "First Step" = 15 pts total
+- Gamificación funciona correctamente otorgando puntos por logros
+
+**Acción**: Marcar como "Working as designed" en reporte bugs
+
+---
+
+### 📊 **ESTADO BUGS ACTUALIZADO**:
+
+| Bug | Severidad | Estado | Commit |
+|-----|-----------|--------|--------|
+| #7 | 🔴 CRITICAL | ✅ FIXED | `736caf8` |
+| #1 | 🟡 MEDIUM | ✅ FIXED | `51e6fe7` |
+| #2 | 🟢 LOW | ✅ FIXED | `51e6fe7` |
+| #3 | 🟢 LOW | ✅ FIXED | `51e6fe7` |
+| #6 | 🟢 LOW | ✅ FIXED | `51e6fe7` |
+| #5 | 🟠 HIGH | ✅ FIXED | `fdf5372` |
+| #4 | 🟢 LOW | ⚪ N/A | Not a bug |
+
+**Total Fixed**: 6/7 bugs (85.7%)
+
+---
+
+### 📋 **PR #25 - RESUMEN FINAL**:
+
+**Branch**: `claude/feature-advanced-frequency`
+**Commits Totales**: 7 commits
+- 2 feat (advanced frequency system)
+- 1 refactor (cleanup warnings + docs)
+- 3 fix (critical + ux + high)
+
+**Estadísticas**:
+- 📝 Archivos modificados: 51
+- ➕ Líneas agregadas: +6,406
+- ➖ Líneas eliminadas: -281
+- 📄 Documentación nueva: 3 archivos (1,285 líneas)
+
+**CI Status**: ✅ Verde (todos los checks pasando)
+
+**Listo para**: Merge a master
+
+---
+
+## 📊 **RESUMEN SESIÓN 43** (HISTÓRICO)
+
+### ✅ **Trabajo Completado**:
+
+#### **1. Testing Manual Exhaustivo** (100% COMPLETADO)
+
+**Implementación**:
+- ✅ Plan de testing con 27 test cases documentado
+- ✅ Testing ejecutado en dispositivo Android real (2311DRK48G)
+- ✅ 7 bugs encontrados y categorizados (1 crítico, 1 high, 1 medium, 4 low)
+- ✅ Reporte completo con steps to reproduce + root cause analysis
+
+**Archivos creados**:
+- `docs/TESTING_MANUAL_ADVANCED_FREQUENCY.md` (517 líneas) - Plan exhaustivo 27 test cases
+- `docs/BUGS_FOUND_TESTING.md` (377 líneas) - Reporte completo 7 bugs
+
+**Bugs Encontrados**:
+- 🔴 BUG #7 CRITICAL: Bonus points infinitos (exploit gamificación)
+- 🟠 BUG #5 HIGH: EditHabitScreen sin selector 4 modos
+- 🟡 BUG #1 MEDIUM: Strings i18n mixtos (español/inglés)
+- 🟢 BUG #6 LOW: Pluralización "1 días" → "1 día"
+- 🟢 BUG #2 LOW: No se muestra frecuencia en cards
+- 🟢 BUG #3 LOW: Subtítulo custom days no aparece
+- 🟢 BUG #4 LOW: Puntos iniciales incorrectos
+
+---
+
+#### **2. BUG #7 CRÍTICO: Bonus Points Infinitos** ✅ FIXED
+
+**Problema**:
+Al descompletar hábito weekly, bonus (+10 pts) no se quitaba, solo base (-5 pts).
+Exploit: Completar/descompletar repeatedly = puntos infinitos.
+
+**Root Cause**:
+```dart
+// ANTES (línea 196-201)
+if (previousHabit.isWeeklyTargetMet) { // ❌ Verifica ANTES de descompletar
+  pointsToRemove += 10;
+}
+```
+
+**Fix Aplicado**:
+```dart
+// DESPUÉS (línea 197-203)
+if (previousHabit.isWeeklyTargetMet &&
+    !updatedHabit.isWeeklyTargetMet) { // ✅ Verifica transición
+  pointsToRemove += 10; // Solo si ANTES cumplía Y AHORA no
+}
+```
+
+**Archivos modificados**:
+- `lib/providers/habit_provider.dart:197-203` - Lógica de bonus corregida
+
+**Commit**: `736caf8` - fix(critical): Prevent infinite bonus points exploit
+
+---
+
+#### **3. Code Review y Limpieza de Warnings** ✅ COMPLETADO
+
+**Implementación**:
+- ✅ 13 warnings corregidos (11 → 0 en producción)
+- ✅ 1 assertion fix (unnecessary `!` operator)
+- ✅ 11 unused imports removidos
+- ✅ 1 unused variable removida
+
+**Archivos limpiados** (13 archivos):
+- `lib/models/habit.dart:61` - Fix assertion lógica
+- `lib/main.dart` - 2 imports removidos
+- `lib/screens/add_habit_screen.dart:645` - Variable no usada removida
+- `lib/screens/all_habits_screen.dart` - Import removido
+- `lib/screens/onboarding_screen.dart` - Import removido
+- `lib/screens/paywall_screen.dart` - 2 imports removidos
+- `lib/screens/settings_screen.dart` - Import removido
+- `lib/services/ads_service.dart` - Import removido
+- `lib/services/notification_service.dart` - Import removido
+- `lib/widgets/stats_overview.dart` - Import removido
+- `lib/screens/home_screen.dart` - Import removido
+
+**Resultado**: 0 errores, 0 warnings en producción ✅
+
+**Commit**: `a1d1200` - refactor(cleanup): Fix 13 warnings and add testing documentation
+
+---
+
+#### **4. BUG #1 MEDIUM: i18n Strings Mixtos** ✅ FIXED
+
+**Problema**: Fechas mostraban español/inglés mixto ("Hoy • Lun, 6 Oct" en inglés)
+
+**Fix Aplicado**:
+- DateFormat con locale automático: `DateFormat('EEE, d MMM', locale)`
+- "Hoy" → `AppLocalizations.of(context)!.today`
+
+**Resultado**:
+- EN: "Today • Mon, 6 Oct" ✅
+- ES: "Hoy • Lun, 6 Oct" ✅
+
+**Archivos modificados**:
+- `lib/screens/home_screen.dart:360-370` - Método _getCurrentDateString() con DateFormat
+- `lib/screens/home_screen.dart:404` - Uso de AppLocalizations.today
+- `lib/screens/home_screen.dart:463` - Uso de AppLocalizations.today
+
+---
+
+#### **5. BUG #6 LOW: Pluralización "1 días"** ✅ FIXED
+
+**Problema**: Gramática incorrecta "1 días" en lugar de "1 día"
+
+**Fix Aplicado**: ICU pluralization
+```json
+// ANTES
+"streakFormat": "{streak} días"
+
+// DESPUÉS
+"streakFormat": "{streak, plural, =1{1 día} other{{streak} días}}"
+```
+
+**Resultado**:
+- ES: "1 día" (singular) ✅, "2 días" (plural) ✅
+- EN: "1 day" (singular) ✅, "2 days" (plural) ✅
+
+**Archivos modificados**:
+- `lib/l10n/app_en.arb:512` - ICU pluralization días
+- `lib/l10n/app_es.arb:512` - ICU pluralization días
+
+---
+
+#### **6. BUG #2 & #3 LOW: Display Frecuencia + Custom Days** ✅ FIXED
+
+**Problema**:
+- Cards no mostraban tipo de frecuencia (Daily/Weekly/etc)
+- Custom frequency no mostraba días seleccionados
+
+**Fix Aplicado**:
+- Agregado `getFrequencyLabel()` en Habit model
+- Agregado `getCustomDaysString()` en Habit model
+- HabitCard muestra frecuencia antes de racha
+
+**Display ahora**:
+```
+Morning Workout
+Daily • 🔥 5 days streak
+
+Gym Routine
+Custom • Mon, Wed, Fri • 🔥 2 weeks
+
+Read 30min
+3/week • 🔥 1 day
+```
+
+**Archivos modificados**:
+- `lib/models/habit.dart:280-307` - Métodos getFrequencyLabel() y getCustomDaysString()
+- `lib/widgets/habit_card.dart:92-140` - Display frecuencia + custom days + diferenciación weekly/daily streak
+
+**Bonus Fix**: Rachas weekly usan `weeklyStreakLabel` con pluralización correcta de semanas.
+
+**Commit**: `51e6fe7` - fix(ux): Fix i18n, pluralization, and frequency display
+
+---
+
+### 📋 **Documentación Creada**:
+
+1. **`docs/TESTING_MANUAL_ADVANCED_FREQUENCY.md`** (517 líneas)
+   - 27 test cases (7 suites)
+   - Modo Daily (3 tests)
+   - Modo Weekdays (3 tests)
+   - Modo Custom (4 tests)
+   - Modo Weekly (7 tests) - crítico
+   - Tests transversales (4 tests)
+   - i18n EN/ES (2 tests)
+   - Edge cases (4 tests)
+
+2. **`docs/BUGS_FOUND_TESTING.md`** (377 líneas)
+   - Reporte completo 7 bugs
+   - Severidad + Steps to reproduce
+   - Root cause analysis
+   - Fix status tracking
+
+3. **`docs/FIX_BUG_5_INSTRUCTIONS.md`** (instruções completas)
+   - Cómo copiar métodos de AddHabitScreen
+   - 4 métodos a agregar a EditHabitScreen
+   - Testing plan después del fix
+
+4. **`scripts/fix-warnings.ps1`** (script automatización)
+   - Fix automático de imports no usados
+
+---
+
+### 📈 **Métricas Sesión 43**:
+
+**Commits**:
+- `a1d1200` - refactor(cleanup): Fix 13 warnings + testing docs
+- `736caf8` - fix(critical): Bonus points exploit
+- `51e6fe7` - fix(ux): i18n, pluralization, frequency display
+
+**Archivos**:
+- 📝 Modificados: 18 archivos
+- 📄 Creados: 3 documentos
+- ➕ Líneas agregadas: ~1,500
+- ➖ Líneas eliminadas: ~30
+
+**Bugs**:
+- 🔴 Críticos fixed: 1/1 (100%)
+- 🟡 Medium fixed: 1/1 (100%)
+- 🟢 Low fixed: 3/4 (75%)
+- 🟠 High documented: 1/1 (instrucciones completas)
+- ⏳ Pendientes: 2 (BUG #4, #5)
+
+**Tokens**:
+- Consumidos sesión 43: ~70k tokens
+- Total acumulado: ~130k/200k (65%)
+- Modelo usado: Sonnet 4.5 (100%)
+
+**Tiempo**: ~3 horas efectivas
+
+---
+
+## 📊 **RESUMEN SESIÓN 42** (HISTÓRICO)
+
+### ✅ **Trabajo Completado**:
+
+#### **Feature: Advanced Frequency System** (COMPLETADO 100%)
+
+**Implementación Core**:
+- ✅ **Enum FrequencyType**: 4 modos (daily/weekdays/custom/weekly)
+- ✅ **Modelo Habit**: Nuevos campos + lógica rachas dual (días vs semanas)
+- ✅ **DatabaseHelper**: Migración v1→v2 + CRUD actualizado
+- ✅ **HabitProvider**: Bonus semanal (+10 pts) + gamificación mejorada
+- ✅ **i18n**: 24 strings nuevas (EN + ES) regeneradas
+- ✅ **AddHabitScreen**: Selector 4 modos + slider weekly interactivo
+- ✅ **EditHabitScreen**: Soporte completo nuevos campos
+
+**Archivos modificados** (7 core):
+- `lib/models/habit.dart` (+150 líneas) - Enum + dual streak calculation
+- `lib/services/database_helper.dart` (+40 líneas) - Migration v1→v2
+- `lib/providers/habit_provider.dart` (+30 líneas) - Bonus points logic
+- `lib/screens/add_habit_screen.dart` (+280 líneas) - 4-mode UI + slider
+- `lib/screens/edit_habit_screen.dart` (+25 líneas) - Save logic updated
+- `lib/l10n/app_en.arb` (+24 strings) - Frequency UI strings
+- `lib/l10n/app_es.arb` (+24 strings) - Traducciones completas
+
+**Gamificación**:
+- ✅ Base: 5 puntos por completion
+- ✅ Bonus: +10 puntos si cumple weekly target
+- ✅ Total: hasta 15 puntos por hábito
+- ✅ Bonus se pierde al descompletar (lógica dual)
+
+**Database**:
+- ✅ Migration v1→v2 (safe, app no lanzada)
+- ✅ Nuevas columnas: `frequency_type`, `weekly_target`
+- ✅ Backward compatible con defaults
+
+**Resultado**:
+- ✅ PR #25 creado: https://github.com/NoSFeR88/habito-pro-flutter/pull/25
+- ✅ Branch: `claude/feature-advanced-frequency`
+- ✅ 2 commits descriptivos
+- ✅ 0 errores compilación
+- ✅ Solo deprecation warnings (no bloqueantes)
+
+### 📈 **Métricas**:
+- **Tokens**: 123k/200k (61% usado)
+- **PRs**: 1 creado (#25)
+- **Commits**: 2 (feature completo)
+- **Archivos**: 7 core + 30 generated
+- **Líneas**: +3,885 / -121
+- **Tiempo**: ~4 horas
+- **Modelo usado**: Sonnet 4.5 (100%)
+
+### 🎯 **Próxima Sesión (44)**:
+1. `/remember` para cargar contexto
+2. **FIX BUG #5 HIGH**: EditHabitScreen slider weekly
+   - Seguir instrucciones en `docs/FIX_BUG_5_INSTRUCTIONS.md`
+   - Copiar 4 métodos de AddHabitScreen a EditHabitScreen
+   - Testing: Editar hábito weekly y verificar slider
+3. **FIX BUG #4 LOW**: Puntos iniciales incorrectos
+   - Revisar `lib/providers/gamification_provider.dart` init
+   - Asegurar `_totalPoints = 0` al iniciar
+4. **Testing de regresión**: Verificar BUG #7 crítico funciona correctamente
+   - Crear hábito weekly target 3
+   - Completar 3 veces → Verificar +15 pts
+   - Descompletar → Verificar -15 pts (no -5)
+5. **Merge PR #25** si todos los bugs están fixed
+6. **Considerar**: Unit tests para lógica bonus (30+ tests)
+
+### 💡 **Lecciones Aprendidas Sesión 43**:
+1. ✅ **Testing manual encuentra bugs críticos** que unit tests no detectan
+   - Bug #7 (infinite points) es un exploit de lógica de negocio
+   - Requiere pensamiento adversarial, no solo happy path
+2. ✅ **Verificar transiciones de estado**, no solo estado final
+   - ANTES: `previousHabit.isWeeklyTargetMet` ❌
+   - DESPUÉS: `previousHabit.met && !updatedHabit.met` ✅
+3. ✅ **Pluralización ICU desde el inicio** evita refactoring posterior
+   - "{count, plural, =1{singular} other{plural}}"
+   - Aplicar también a semanas, meses, etc.
+4. ✅ **DateFormat con locale** mejor que arrays hardcoded
+   - `DateFormat('EEE, d MMM', locale)` se adapta automáticamente
+5. ✅ **Documentación exhaustiva de bugs** facilita fixes futuros
+   - Root cause analysis ahorra tiempo
+   - Steps to reproduce permiten regression testing
+6. ⚠️ **EditHabitScreen desactualizado** - requiere mantenimiento paralelo
+   - Cuando se actualiza AddHabitScreen, revisar EditHabitScreen
+   - Considerar refactorizar UI compartida
+
+### 💡 **Lecciones Aprendidas Sesión 42** (HISTÓRICO):
+- ✅ Arquitectura híbrida (FrequencyType + weeklyTarget) más robusta que nullable simple
+- ✅ Commits incrementales (modelo → DB → UI) facilitan review
+- ✅ Dual streak calculation (días vs semanas) mejora UX para weekly
+- ⚠️ RECORDAR: App NO lanzada - mejoras sin restricciones permitidas
+
+---
+
+## 📝 **HISTÓRICO SESIÓN 41**
+
+## 📅 Fecha: 2025-10-06 (Sesión 41 - MILESTONE + OPTIMIZACIÓN + REFACTORING)
+## 🎯 Estado: 🏆 **441 TESTS + ES 100% + REFACTORING INICIADO** 🏆
 
 ### ✅ **Trabajo Completado**:
 1. **Consolidación Milestone Testing** (441 tests, 80% coverage)
    - 4 PRs mergeados: #20, #21, #22, #23
    - Master actualizado: commit `85c1cd7`
 2. **Verificación Traducciones ES** (100% completo, 544/544 strings)
-   - Información "140 pendientes" desactualizada
-   - Documentación actualizada
 3. **Optimización Uso Modelos Documentada**
-   - CLAUDE.md v3.1.0 con guidelines
-   - CLAUDE_USAGE_OPTIMIZATION_QUICK.md creado
-   - Decisiones arquitectónicas documentadas
-4. **Refactoring Iniciado** (limpieza código)
-   - 10 unused imports eliminados
-   - Warnings: 360 → 350 (-2.8%)
-   - PR #24 creado
-
-### 📈 **Métricas**:
-- **Tokens**: ~130k/200k (65% usado)
-- **PRs**: 5 (4 merged + 1 creado)
-- **Archivos**: 14 modificados
-- **Warnings**: -10
-- **Modelo usado**: Sonnet 4.5 (100%)
-
-### 🎯 **Próxima Sesión (42)**:
-1. `/remember` para cargar contexto
-2. Verificar PR #24: `gh pr checks 24`
-3. Decidir: Refactoring continuo vs Features FASE 5 vs Testing
+4. **Refactoring Iniciado** (limpieza código - PR #24)
 
 ---
 
@@ -460,16 +831,126 @@ flutter gen-l10n
 
 ---
 
-**FIN CONTEXTO SESIÓN 41 - MILESTONE CONSOLIDADO + REFACTORING INICIADO** 🏆
+## 📝 **LECCIONES APRENDIDAS SESIÓN 42**
 
-> 🎯 **Siguiente sesión (42)**:
+### **Arquitectura & Design Patterns**:
+1. ✅ **Enum + campos complementarios** mejor que nullable único
+   - FrequencyType (enum) + weeklyTarget (nullable) = arquitectura robusta
+   - Validaciones en tiempo compilación (assertions)
+   - Más mantenible y extensible
+2. ✅ **Migración DB incremental** con defaults es segura
+   - ALTER TABLE con valores default permite backward compatibility
+   - App no lanzada = libertad total para mejoras
+3. ✅ **Dual streak calculation** mejora UX dramáticamente
+   - Weekly: cuenta semanas (más intuitivo para usuarios)
+   - Daily/Custom: cuenta días (comportamiento esperado)
+
+### **Desarrollo Eficiente**:
+- ✅ Commits incrementales (modelo → DB → providers → UI) facilitan review
+- ✅ i18n desde inicio evita refactoring posterior
+- ✅ Copiar/adaptar UI patterns entre screens ahorra tiempo (Add → Edit)
+- ✅ Validaciones contextuales (por FrequencyType) mejoran UX
+
+### **Uso de Modelos**:
+- ✅ Sesión completa con **Sonnet 4.5** (100%)
+- ✅ Tareas: arquitectura compleja, DB migration, UI, i18n, PR
+- ✅ Consumo: 123k tokens (61% sesión)
+- ✅ Costo-efectividad: Excelente para feature completa
+
+---
+
+---
+
+## 🎯 **PUNTO EXACTO DONDE QUEDAMOS SESIÓN 43**
+
+### **Estado Actual** (2025-10-06 ~23:30):
+- ✅ **Branch**: `claude/feature-advanced-frequency`
+- ✅ **Último commit**: `51e6fe7` - fix(ux): i18n, pluralization, frequency display
+- ✅ **Total commits PR #25**: 6 commits
+  - 2 feat (advanced frequency system)
+  - 1 refactor (cleanup warnings)
+  - 2 fix (critical bonus + ux issues)
+  - 1 docs (testing + bugs report)
+- ✅ **CI**: Verde (todos los checks pasando)
+- ✅ **Bugs fixed**: 5/7 (1 crítico, 1 medium, 3 low)
+- ⏳ **Bugs pendientes**: 2/7 (1 high documentado, 1 low)
+
+### **PR #25 Estado**:
+- **URL**: https://github.com/NoSFeR88/habito-pro-flutter/pull/25
+- **Título**: feat: Advanced frequency system with 4 modes + bug fixes
+- **Commits**: 6
+- **Líneas**: +6,467 / -165 (net +6,302)
+- **CI**: ✅ ALL GREEN
+- **Ready for review**: ⏳ Pendiente fix BUG #5 (high priority)
+
+### **Archivos Modificados Sesión 43** (18 archivos):
+- `lib/providers/habit_provider.dart` - Fix bonus logic crítico
+- `lib/screens/home_screen.dart` - i18n dates con DateFormat
+- `lib/models/habit.dart` - Métodos display frecuencia + custom days
+- `lib/widgets/habit_card.dart` - Display frecuencia + weekly streak
+- `lib/l10n/app_en.arb` - Pluralización ICU
+- `lib/l10n/app_es.arb` - Pluralización ICU
+- `lib/main.dart` - Imports cleanup
+- `lib/screens/add_habit_screen.dart` - Variable cleanup
+- `lib/screens/all_habits_screen.dart` - Import cleanup
+- `lib/screens/onboarding_screen.dart` - Import cleanup
+- `lib/screens/paywall_screen.dart` - Imports cleanup
+- `lib/screens/settings_screen.dart` - Import cleanup
+- `lib/services/ads_service.dart` - Import cleanup
+- `lib/services/notification_service.dart` - Import cleanup
+- `lib/widgets/stats_overview.dart` - Import cleanup
+
+### **Documentación Creada**:
+- `docs/TESTING_MANUAL_ADVANCED_FREQUENCY.md` (517 líneas)
+- `docs/BUGS_FOUND_TESTING.md` (377 líneas)
+- `docs/FIX_BUG_5_INSTRUCTIONS.md` (completo)
+- `scripts/fix-warnings.ps1`
+
+### **Acción Inmediata Próxima Sesión (44)**:
+1. **`/remember`** para cargar contexto
+2. **FIX BUG #5 HIGH**: EditHabitScreen slider
+   - Seguir `docs/FIX_BUG_5_INSTRUCTIONS.md`
+   - Copiar 4 métodos de AddHabitScreen
+   - Testing edición hábito weekly
+3. **FIX BUG #4 LOW**: Puntos iniciales
+4. **Testing regresión BUG #7**: Verificar bonus funcionando
+5. **Merge PR #25** si todo está verde
+
+---
+
+**FIN CONTEXTO SESIÓN 43 - TESTING MANUAL + 5 BUGS FIXED** ✅
+
+> 🎯 **Siguiente sesión (44)**:
 > 1. Ejecutar `/remember`
-> 2. Verificar estado PR #24: `gh pr checks 24`
-> 3. Decidir siguiente paso (3 opciones disponibles)
+> 2. Fix BUG #5 (high): EditHabitScreen slider weekly
+> 3. Fix BUG #4 (low): Puntos iniciales
+> 4. Testing regresión BUG #7 crítico
+> 5. Merge PR #25 a master
 >
-> 🎊 **LOGROS SESIÓN 41**:
-> - 441 tests (80% coverage mantenido)
-> - ES 100% verificado
-> - Optimización documentada
-> - Refactoring iniciado (PR #24)
-> - 10 warnings eliminados
+> 🎊 **LOGROS SESIÓN 43**:
+> - 🐛 Bug crítico fixed: Infinite bonus points
+> - ✅ 4 bugs UX fixed: i18n, pluralización, display
+> - 📋 Testing manual exhaustivo: 27 test cases
+> - 📝 Documentación completa: 3 docs + report bugs
+> - 🧹 Código limpio: 0 warnings producción
+> - 🚀 PR #25: 6 commits, CI verde
+
+---
+
+## 📊 **HISTÓRICO - SESIÓN 42** (PARA REFERENCIA)
+
+**FIN CONTEXTO SESIÓN 42 - ADVANCED FREQUENCY SYSTEM IMPLEMENTADO** 🚀
+
+> 🎯 **Siguiente sesión (43)**:
+> 1. Ejecutar `/remember`
+> 2. Verificar PR #25: `gh pr checks 25`
+> 3. Testing manual (4 modos + bonus +10 pts)
+> 4. Considerar: Unit tests para nueva lógica
+>
+> 🎊 **LOGROS SESIÓN 42**:
+> - Feature completa: 4 modos frecuencia
+> - Gamificación mejorada: bonus +10 pts
+> - DB migration v1→v2 (safe)
+> - 24 strings i18n (EN + ES)
+> - PR #25 creado y pusheado
+> - 0 errores compilación
