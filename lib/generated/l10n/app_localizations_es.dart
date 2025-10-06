@@ -1808,4 +1808,106 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get resetPassword => 'Restablecer contraseña';
+
+  @override
+  String get frequencyType => 'Tipo de Frecuencia';
+
+  @override
+  String get frequencyTypeDaily => 'Todos los días';
+
+  @override
+  String get frequencyTypeWeekdays => 'Solo días laborales';
+
+  @override
+  String get frequencyTypeCustom => 'Días personalizados';
+
+  @override
+  String get frequencyTypeWeekly => 'X días por semana';
+
+  @override
+  String get selectFrequencyType =>
+      'Selecciona con qué frecuencia quieres hacer este hábito';
+
+  @override
+  String get dailyDescription => 'Hacer este hábito todos los días';
+
+  @override
+  String get weekdaysDescription => 'Solo de lunes a viernes';
+
+  @override
+  String get customDescription => 'Elegir días específicos de la semana';
+
+  @override
+  String get weeklyDescription => 'Elegir cuántos días por semana (flexible)';
+
+  @override
+  String get daysPerWeek => 'Días por semana';
+
+  @override
+  String get selectDaysPerWeek => '¿Cuántos días por semana?';
+
+  @override
+  String timesPerWeek(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'veces',
+      one: 'vez',
+    );
+    return '$count $_temp0 por semana';
+  }
+
+  @override
+  String get atLeastOncePerWeek => 'Al menos una vez por semana';
+
+  @override
+  String targetDaysPerWeek(Object count) {
+    return '$count días por semana';
+  }
+
+  @override
+  String get weeklyTargetMet => '✓ ¡Meta semanal cumplida!';
+
+  @override
+  String weeklyTargetProgress(Object completed, Object target) {
+    return '$completed de $target días esta semana';
+  }
+
+  @override
+  String weeklyStreakLabel(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'semanas',
+      one: 'semana',
+    );
+    return 'Racha de $count $_temp0';
+  }
+
+  @override
+  String dailyStreakLabel(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'días',
+      one: 'día',
+    );
+    return 'Racha de $count $_temp0';
+  }
+
+  @override
+  String bonusPoints(Object points) {
+    return '¡+$points puntos bonus!';
+  }
+
+  @override
+  String get weeklyBonusEarned => '¡Meta semanal completada! +10 puntos bonus';
+
+  @override
+  String get frequencyTypeRequired =>
+      'Por favor selecciona un tipo de frecuencia';
+
+  @override
+  String get weeklyTargetRequired =>
+      'Por favor selecciona cuántos días por semana';
 }

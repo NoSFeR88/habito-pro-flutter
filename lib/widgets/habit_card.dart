@@ -89,6 +89,35 @@ class HabitCard extends StatelessWidget {
                         // Información adicional
                         Row(
                           children: [
+                            // Frecuencia
+                            Text(
+                              habit.getFrequencyLabel(),
+                              style: RitmoTypography.statistics.copyWith(
+                                color: Colors.grey[600],
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            // Custom days (solo si es custom)
+                            if (habit.frequencyType == FrequencyType.custom) ...[
+                              const SizedBox(width: 4),
+                              Text(
+                                '• ${habit.getCustomDaysString([
+                                  AppLocalizations.of(context)!.dayShortMon,
+                                  AppLocalizations.of(context)!.dayShortTue,
+                                  AppLocalizations.of(context)!.dayShortWed,
+                                  AppLocalizations.of(context)!.dayShortThu,
+                                  AppLocalizations.of(context)!.dayShortFri,
+                                  AppLocalizations.of(context)!.dayShortSat,
+                                  AppLocalizations.of(context)!.dayShortSun,
+                                ])}',
+                                style: RitmoTypography.statistics.copyWith(
+                                  color: Colors.grey[500],
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                            const SizedBox(width: 12),
                             // Racha
                             if (habit.streak > 0) ...[
                               Icon(
@@ -98,7 +127,10 @@ class HabitCard extends StatelessWidget {
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                AppLocalizations.of(context)!.streakFormat(habit.streak),
+                                // Use weeklyStreakLabel for weekly habits, streakFormat for others
+                                habit.frequencyType == FrequencyType.weekly
+                                    ? AppLocalizations.of(context)!.weeklyStreakLabel(habit.streak)
+                                    : AppLocalizations.of(context)!.streakFormat(habit.streak),
                                 style: RitmoTypography.statistics.copyWith(
                                   color: Colors.orange[600],
                                   fontSize: 14,

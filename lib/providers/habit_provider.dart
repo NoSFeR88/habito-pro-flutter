@@ -174,13 +174,36 @@ class HabitProvider extends ChangeNotifier {
       // Manejar puntos de gamificación
       if (_gamificationProvider != null) {
         if (willBeCompleted) {
-          // Completando hábito: agregar puntos base (5 puntos por completar)
-          _gamificationProvider!.addPoints(5);
-          debugPrint('✅ +5 puntos por completar hábito: ${habit.name}');
+          // Puntos base por completar
+          int pointsEarned = 5;
+
+          // BONUS SEMANAL para hábitos con frecuencia weekly
+          if (updatedHabit.frequencyType == FrequencyType.weekly) {
+            // Verificar si con esta completion cumple el target semanal
+            if (updatedHabit.isWeeklyTargetMet) {
+              pointsEarned += 10; // +10 puntos bonus por cumplir target semanal
+              debugPrint('🎯 +10 puntos BONUS por cumplir target semanal: ${habit.name}');
+            }
+          }
+
+          _gamificationProvider!.addPoints(pointsEarned);
+          debugPrint('✅ +$pointsEarned puntos por completar hábito: ${habit.name}');
         } else {
-          // Descompletando hábito: quitar puntos base
-          _gamificationProvider!.removePoints(5);
-          debugPrint('❌ -5 puntos por descompletar hábito: ${habit.name}');
+          // Descompletando hábito
+          int pointsToRemove = 5;
+
+          // Si tenía bonus semanal ANTES de descompletar, también se pierde
+          final previousHabit = _habits[habitIndex];
+          if (previousHabit.frequencyType == FrequencyType.weekly &&
+              previousHabit.isWeeklyTargetMet &&
+              !updatedHabit.isWeeklyTargetMet) {
+            // Solo quitar bonus si ANTES cumplía target y AHORA ya no lo cumple
+            pointsToRemove += 10; // Remover también el bonus
+            debugPrint('⚠️ Perdiendo bonus semanal (ya no cumple target)');
+          }
+
+          _gamificationProvider!.removePoints(pointsToRemove);
+          debugPrint('❌ -$pointsToRemove puntos por descompletar hábito: ${habit.name}');
         }
 
         // Verificar logros

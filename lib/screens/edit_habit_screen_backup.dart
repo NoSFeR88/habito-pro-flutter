@@ -2,45 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/habit.dart';
 import '../providers/habit_provider.dart';
+import '../providers/premium_provider.dart';
+import '../screens/paywall_screen.dart';
 import '../generated/l10n/app_localizations.dart';
 
-class EditHabitScreen extends StatefulWidget {
-  final Habit habit;
-
-  const EditHabitScreen({
-    Key? key,
-    required this.habit,
-  }) : super(key: key);
+class AddHabitScreen extends StatefulWidget {
+  const AddHabitScreen({Key? key}) : super(key: key);
 
   @override
-  State<EditHabitScreen> createState() => _EditHabitScreenState();
+  State<AddHabitScreen> createState() => _AddHabitScreenState();
 }
 
-class _EditHabitScreenState extends State<EditHabitScreen> {
+class _AddHabitScreenState extends State<AddHabitScreen> {
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController _nameController;
-  late TextEditingController _descriptionController;
+  final _nameController = TextEditingController();
+  final _descriptionController = TextEditingController();
 
-  late IconData _selectedIcon;
-  late int _selectedColor;
-  late FrequencyType _selectedFrequencyType;
-  late Set<int> _selectedDays;
-  late int _weeklyTarget;
-  late TimeOfDay _reminderTime;
+  IconData _selectedIcon = HabitIcons.icons[0];
+  int _selectedColor = HabitIcons.colors[0];
+  FrequencyType _selectedFrequencyType = FrequencyType.daily;
+  Set<int> _selectedDays = {1, 2, 3, 4, 5, 6, 7}; // Para custom
+  int _weeklyTarget = 3; // Para weekly (default 3 días/semana)
+  TimeOfDay _reminderTime = const TimeOfDay(hour: 9, minute: 0);
   bool _isLoading = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _nameController = TextEditingController(text: widget.habit.name);
-    _descriptionController = TextEditingController(text: widget.habit.description);
-    _selectedIcon = widget.habit.icon;
-    _selectedColor = widget.habit.color;
-    _selectedFrequencyType = widget.habit.frequencyType;
-    _selectedDays = widget.habit.frequency.toSet();
-    _weeklyTarget = widget.habit.weeklyTarget ?? 3;
-    _reminderTime = widget.habit.reminderTime;
-  }
 
   @override
   void dispose() {
@@ -53,7 +37,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.editHabit),
+        title: Text(AppLocalizations.of(context)!.newHabit),
         actions: [
           if (_isLoading)
             const Padding(
@@ -66,7 +50,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
             )
           else
             TextButton(
-              onPressed: _saveChanges,
+              onPressed: _saveHabit,
               child: Text(AppLocalizations.of(context)!.save),
             ),
         ],
@@ -85,8 +69,6 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
             _buildFrequencySelection(),
             const SizedBox(height: 24),
             _buildReminderTime(),
-            const SizedBox(height: 24),
-            _buildDangerZone(),
             const SizedBox(height: 32),
           ],
         ),
@@ -102,7 +84,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppLocalizations.of(context)!.basicInformationLabel,
+              AppLocalizations.of(context)!.basicInformation,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -113,7 +95,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.habitNameLabel,
                 hintText: AppLocalizations.of(context)!.habitNameHint,
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(),
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
@@ -132,7 +114,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.descriptionOptional,
                 hintText: AppLocalizations.of(context)!.descriptionHint,
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(),
               ),
               maxLines: 3,
               textCapitalization: TextCapitalization.sentences,
@@ -548,58 +530,6 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
     );
   }
 
-  Widget _buildDangerZone() {
-    return Card(
-      color: Colors.red.withOpacity(0.05),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.warning_amber_outlined,
-                  color: Colors.red[700],
-                  size: 20,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  AppLocalizations.of(context)!.dangerZone,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red[700],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: _deleteHabit,
-                icon: const Icon(Icons.delete_outline),
-                label: Text(AppLocalizations.of(context)!.deleteHabitButton),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.red[700],
-                  side: BorderSide(color: Colors.red.withOpacity(0.5)),
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              AppLocalizations.of(context)!.deleteWarningMessage,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Colors.red[600],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   String _formatTimeOfDay(TimeOfDay time) {
     final hour = time.hour.toString().padLeft(2, '0');
     final minute = time.minute.toString().padLeft(2, '0');
@@ -618,18 +548,29 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
     }
   }
 
-  Future<void> _saveChanges() async {
+  Future<void> _saveHabit() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
-    if (_selectedDays.isEmpty) {
+    // Validar según el tipo de frecuencia
+    if (_selectedFrequencyType == FrequencyType.custom && _selectedDays.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(AppLocalizations.of(context)!.selectAtLeastOneDay),
           backgroundColor: Colors.orange,
         ),
       );
+      return;
+    }
+
+    // Verificar límite de hábitos
+    final habitProvider = Provider.of<HabitProvider>(context, listen: false);
+    final premiumProvider = Provider.of<PremiumProvider>(context, listen: false);
+    final currentHabitCount = habitProvider.habits.length;
+
+    if (!premiumProvider.canAddMoreHabits(currentHabitCount)) {
+      _showHabitLimitDialog();
       return;
     }
 
@@ -651,11 +592,12 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           frequencyList = _selectedDays.toList()..sort();
           break;
         case FrequencyType.weekly:
-          frequencyList = [1, 2, 3, 4, 5, 6, 7];
+          frequencyList = [1, 2, 3, 4, 5, 6, 7]; // Para weekly, frequency no importa
           break;
       }
 
-      final updatedHabit = widget.habit.copyWith(
+      final habit = Habit(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
         name: _nameController.text.trim(),
         description: _descriptionController.text.trim(),
         icon: _selectedIcon,
@@ -664,16 +606,19 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
         frequency: frequencyList,
         weeklyTarget: _selectedFrequencyType == FrequencyType.weekly ? _weeklyTarget : null,
         reminderTime: _reminderTime,
+        createdAt: DateTime.now(),
+        completions: {},
+        streak: 0,
+        isActive: true,
       );
 
-      final habitProvider = Provider.of<HabitProvider>(context, listen: false);
-      await habitProvider.updateHabit(updatedHabit);
+      await habitProvider.addHabit(habit);
 
       if (mounted) {
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(AppLocalizations.of(context)!.habitUpdatedMessage),
+            content: Text(AppLocalizations.of(context)!.habitCreatedSuccessfully),
             backgroundColor: Colors.green,
           ),
         );
@@ -682,7 +627,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('${AppLocalizations.of(context)!.updateError}: $e'),
+            content: Text('${AppLocalizations.of(context)!.genericError}: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -696,66 +641,41 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
     }
   }
 
-  Future<void> _deleteHabit() async {
-    final confirm = await showDialog<bool>(
+  void _showHabitLimitDialog() {
+    final premiumProvider = Provider.of<PremiumProvider>(context, listen: false);
+
+    showDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(AppLocalizations.of(context)!.deleteHabitTitle),
-          content: Text(
-            AppLocalizations.of(context)!.confirmDeleteHabitMessage(widget.habit.name),
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.habitLimitReached),
+        content: Text(
+          AppLocalizations.of(context)!.habitLimitMessage(
+            PremiumProvider.maxFreeHabits,
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: Text(AppLocalizations.of(context)!.cancel),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(AppLocalizations.of(context)!.cancel),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context); // Cerrar diálogo
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PaywallScreen(),
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Colors.white,
             ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(true),
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.red[700],
-              ),
-              child: Text(AppLocalizations.of(context)!.delete),
-            ),
-          ],
-        );
-      },
+            child: Text(AppLocalizations.of(context)!.upgradeToPro),
+          ),
+        ],
+      ),
     );
-
-    if (confirm == true) {
-      setState(() {
-        _isLoading = true;
-      });
-
-      try {
-        final habitProvider = Provider.of<HabitProvider>(context, listen: false);
-        await habitProvider.deleteHabit(widget.habit.id);
-
-        if (mounted) {
-          Navigator.pop(context);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(AppLocalizations.of(context)!.habitDeletedMessage),
-              backgroundColor: Colors.red,
-            ),
-          );
-        }
-      } catch (e) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('${AppLocalizations.of(context)!.deleteError}: $e'),
-              backgroundColor: Colors.red,
-            ),
-          );
-        }
-      } finally {
-        if (mounted) {
-          setState(() {
-            _isLoading = false;
-          });
-        }
-      }
-    }
   }
 }

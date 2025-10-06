@@ -18,7 +18,9 @@
       "Bash(gh run view:*)",
       "Bash(ConvertFrom-Json)",
       "Bash(Format-Table -AutoSize)",
-      "Bash(Select-String -Pattern \"(FAILED|ERROR|✓|✗)\" -Context 2)"
+      "Bash(Select-String -Pattern \"(FAILED|ERROR|✓|✗)\" -Context 2)",
+      "Bash(Select-String -Pattern \"(error|warning)\")",
+      "Bash(Select-Object -First 20)"
     ],
     "deny": [],
     "ask": []
