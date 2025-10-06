@@ -3410,6 +3410,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reset password'**
   String get resetPassword;
+
+  /// No description provided for @frequencyType.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency Type'**
+  String get frequencyType;
+
+  /// No description provided for @frequencyTypeDaily.
+  ///
+  /// In en, this message translates to:
+  /// **'Every day'**
+  String get frequencyTypeDaily;
+
+  /// No description provided for @frequencyTypeWeekdays.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekdays only'**
+  String get frequencyTypeWeekdays;
+
+  /// No description provided for @frequencyTypeCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom days'**
+  String get frequencyTypeCustom;
+
+  /// No description provided for @frequencyTypeWeekly.
+  ///
+  /// In en, this message translates to:
+  /// **'X days per week'**
+  String get frequencyTypeWeekly;
+
+  /// No description provided for @selectFrequencyType.
+  ///
+  /// In en, this message translates to:
+  /// **'Select how often you want to do this habit'**
+  String get selectFrequencyType;
+
+  /// No description provided for @dailyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Do this habit every single day'**
+  String get dailyDescription;
+
+  /// No description provided for @weekdaysDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday through Friday only'**
+  String get weekdaysDescription;
+
+  /// No description provided for @customDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose specific days of the week'**
+  String get customDescription;
+
+  /// No description provided for @weeklyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how many days per week (flexible)'**
+  String get weeklyDescription;
+
+  /// No description provided for @daysPerWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Days per week'**
+  String get daysPerWeek;
+
+  /// No description provided for @selectDaysPerWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'How many days per week?'**
+  String get selectDaysPerWeek;
+
+  /// No description provided for @timesPerWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} {count, plural, =1{time} other{times}} per week'**
+  String timesPerWeek(num count);
+
+  /// No description provided for @atLeastOncePerWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'At least once per week'**
+  String get atLeastOncePerWeek;
+
+  /// No description provided for @targetDaysPerWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days per week'**
+  String targetDaysPerWeek(Object count);
+
+  /// No description provided for @weeklyTargetMet.
+  ///
+  /// In en, this message translates to:
+  /// **'✓ Weekly target met!'**
+  String get weeklyTargetMet;
+
+  /// No description provided for @weeklyTargetProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {target} days this week'**
+  String weeklyTargetProgress(Object completed, Object target);
+
+  /// No description provided for @weeklyStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} {count, plural, =1{week} other{weeks}} streak'**
+  String weeklyStreakLabel(num count);
+
+  /// No description provided for @dailyStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} {count, plural, =1{day} other{days}} streak'**
+  String dailyStreakLabel(num count);
+
+  /// No description provided for @bonusPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'+{points} bonus points!'**
+  String bonusPoints(Object points);
+
+  /// No description provided for @weeklyBonusEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly target completed! +10 bonus points'**
+  String get weeklyBonusEarned;
+
+  /// No description provided for @frequencyTypeRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a frequency type'**
+  String get frequencyTypeRequired;
+
+  /// No description provided for @weeklyTargetRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select how many days per week'**
+  String get weeklyTargetRequired;
 }
 
 class _AppLocalizationsDelegate

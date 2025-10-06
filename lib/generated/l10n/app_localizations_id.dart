@@ -1790,4 +1790,104 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get resetPassword => 'Reset password';
+
+  @override
+  String get frequencyType => 'Frequency Type';
+
+  @override
+  String get frequencyTypeDaily => 'Every day';
+
+  @override
+  String get frequencyTypeWeekdays => 'Weekdays only';
+
+  @override
+  String get frequencyTypeCustom => 'Custom days';
+
+  @override
+  String get frequencyTypeWeekly => 'X days per week';
+
+  @override
+  String get selectFrequencyType =>
+      'Select how often you want to do this habit';
+
+  @override
+  String get dailyDescription => 'Do this habit every single day';
+
+  @override
+  String get weekdaysDescription => 'Monday through Friday only';
+
+  @override
+  String get customDescription => 'Choose specific days of the week';
+
+  @override
+  String get weeklyDescription => 'Choose how many days per week (flexible)';
+
+  @override
+  String get daysPerWeek => 'Days per week';
+
+  @override
+  String get selectDaysPerWeek => 'How many days per week?';
+
+  @override
+  String timesPerWeek(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'times',
+      one: 'time',
+    );
+    return '$count $_temp0 per week';
+  }
+
+  @override
+  String get atLeastOncePerWeek => 'At least once per week';
+
+  @override
+  String targetDaysPerWeek(Object count) {
+    return '$count days per week';
+  }
+
+  @override
+  String get weeklyTargetMet => '✓ Weekly target met!';
+
+  @override
+  String weeklyTargetProgress(Object completed, Object target) {
+    return '$completed of $target days this week';
+  }
+
+  @override
+  String weeklyStreakLabel(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'weeks',
+      one: 'week',
+    );
+    return '$count $_temp0 streak';
+  }
+
+  @override
+  String dailyStreakLabel(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'days',
+      one: 'day',
+    );
+    return '$count $_temp0 streak';
+  }
+
+  @override
+  String bonusPoints(Object points) {
+    return '+$points bonus points!';
+  }
+
+  @override
+  String get weeklyBonusEarned => 'Weekly target completed! +10 bonus points';
+
+  @override
+  String get frequencyTypeRequired => 'Please select a frequency type';
+
+  @override
+  String get weeklyTargetRequired => 'Please select how many days per week';
 }

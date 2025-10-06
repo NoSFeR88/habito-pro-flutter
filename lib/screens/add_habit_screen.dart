@@ -20,7 +20,9 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
 
   IconData _selectedIcon = HabitIcons.icons[0];
   int _selectedColor = HabitIcons.colors[0];
-  Set<int> _selectedDays = {1, 2, 3, 4, 5, 6, 7}; // Todos los días por defecto
+  FrequencyType _selectedFrequencyType = FrequencyType.daily;
+  Set<int> _selectedDays = {1, 2, 3, 4, 5, 6, 7}; // Para custom
+  int _weeklyTarget = 3; // Para weekly (default 3 días/semana)
   TimeOfDay _reminderTime = const TimeOfDay(hour: 9, minute: 0);
   bool _isLoading = false;
 
@@ -234,6 +236,143 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
   }
 
   Widget _buildFrequencySelection() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.frequencyType,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              AppLocalizations.of(context)!.selectFrequencyType,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Colors.grey[600],
+              ),
+            ),
+            const SizedBox(height: 16),
+            // Selector de tipo de frecuencia (4 opciones)
+            _buildFrequencyTypeOption(
+              FrequencyType.daily,
+              Icons.today,
+              AppLocalizations.of(context)!.frequencyTypeDaily,
+              AppLocalizations.of(context)!.dailyDescription,
+            ),
+            const SizedBox(height: 8),
+            _buildFrequencyTypeOption(
+              FrequencyType.weekdays,
+              Icons.work,
+              AppLocalizations.of(context)!.frequencyTypeWeekdays,
+              AppLocalizations.of(context)!.weekdaysDescription,
+            ),
+            const SizedBox(height: 8),
+            _buildFrequencyTypeOption(
+              FrequencyType.custom,
+              Icons.calendar_month,
+              AppLocalizations.of(context)!.frequencyTypeCustom,
+              AppLocalizations.of(context)!.customDescription,
+            ),
+            const SizedBox(height: 8),
+            _buildFrequencyTypeOption(
+              FrequencyType.weekly,
+              Icons.repeat,
+              AppLocalizations.of(context)!.frequencyTypeWeekly,
+              AppLocalizations.of(context)!.weeklyDescription,
+            ),
+            const SizedBox(height: 16),
+            // Mostrar selector de días si es custom
+            if (_selectedFrequencyType == FrequencyType.custom)
+              _buildCustomDaysSelector(),
+            // Mostrar slider si es weekly
+            if (_selectedFrequencyType == FrequencyType.weekly)
+              _buildWeeklyTargetSelector(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFrequencyTypeOption(
+    FrequencyType type,
+    IconData icon,
+    String title,
+    String description,
+  ) {
+    final isSelected = _selectedFrequencyType == type;
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _selectedFrequencyType = type;
+          // Ajustar días seleccionados según el tipo
+          if (type == FrequencyType.daily) {
+            _selectedDays = {1, 2, 3, 4, 5, 6, 7};
+          } else if (type == FrequencyType.weekdays) {
+            _selectedDays = {1, 2, 3, 4, 5};
+          }
+        });
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isSelected
+                ? Color(_selectedColor)
+                : Colors.grey.withOpacity(0.3),
+            width: isSelected ? 2 : 1,
+          ),
+          borderRadius: BorderRadius.circular(12),
+          color: isSelected
+              ? Color(_selectedColor).withOpacity(0.1)
+              : null,
+        ),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: isSelected ? Color(_selectedColor) : Colors.grey,
+              size: 24,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: isSelected ? Color(_selectedColor) : null,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    description,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (isSelected)
+              Icon(
+                Icons.check_circle,
+                color: Color(_selectedColor),
+                size: 24,
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCustomDaysSelector() {
     const days = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
     final dayNames = [
       AppLocalizations.of(context)!.mondayFull,
@@ -245,90 +384,118 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
       AppLocalizations.of(context)!.sundayFull,
     ];
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.frequency,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(7, (index) {
-                final dayNumber = index + 1;
-                final isSelected = _selectedDays.contains(dayNumber);
+    return Column(
+      children: [
+        const Divider(),
+        const SizedBox(height: 8),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: List.generate(7, (index) {
+            final dayNumber = index + 1;
+            final isSelected = _selectedDays.contains(dayNumber);
 
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      if (isSelected) {
-                        _selectedDays.remove(dayNumber);
-                      } else {
-                        _selectedDays.add(dayNumber);
-                      }
-                    });
-                  },
-                  child: Tooltip(
-                    message: dayNames[index],
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: isSelected
-                            ? Color(_selectedColor)
-                            : Colors.grey.withOpacity(0.2),
-                        border: Border.all(
-                          color: isSelected
-                              ? Color(_selectedColor)
-                              : Colors.grey.withOpacity(0.5),
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          days[index],
-                          style: TextStyle(
-                            color: isSelected ? Colors.white : Colors.grey[700],
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  if (isSelected) {
+                    _selectedDays.remove(dayNumber);
+                  } else {
+                    _selectedDays.add(dayNumber);
+                  }
+                });
+              },
+              child: Tooltip(
+                message: dayNames[index],
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: isSelected
+                        ? Color(_selectedColor)
+                        : Colors.grey.withOpacity(0.2),
+                    border: Border.all(
+                      color: isSelected
+                          ? Color(_selectedColor)
+                          : Colors.grey.withOpacity(0.5),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      days[index],
+                      style: TextStyle(
+                        color: isSelected ? Colors.white : Colors.grey[700],
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                );
-              }),
+                ),
+              ),
+            );
+          }),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildWeeklyTargetSelector() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Divider(),
+        const SizedBox(height: 8),
+        Text(
+          AppLocalizations.of(context)!.selectDaysPerWeek,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: [
+            Expanded(
+              child: Slider(
+                value: _weeklyTarget.toDouble(),
+                min: 1,
+                max: 7,
+                divisions: 6,
+                label: AppLocalizations.of(context)!.targetDaysPerWeek(_weeklyTarget),
+                activeColor: Color(_selectedColor),
+                onChanged: (value) {
+                  setState(() {
+                    _weeklyTarget = value.toInt();
+                  });
+                },
+              ),
             ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _selectedDays = {1, 2, 3, 4, 5, 6, 7};
-                    });
-                  },
-                  child: Text(AppLocalizations.of(context)!.allDays),
+            const SizedBox(width: 12),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Color(_selectedColor).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Color(_selectedColor)),
+              ),
+              child: Text(
+                '$_weeklyTarget',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(_selectedColor),
                 ),
-                const SizedBox(width: 8),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _selectedDays = {1, 2, 3, 4, 5};
-                    });
-                  },
-                  child: Text(AppLocalizations.of(context)!.weekdays),
-                ),
-              ],
+              ),
             ),
           ],
         ),
-      ),
+        const SizedBox(height: 8),
+        Text(
+          AppLocalizations.of(context)!.timesPerWeek(_weeklyTarget),
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color: Colors.grey[600],
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+      ],
     );
   }
 
@@ -386,7 +553,8 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
       return;
     }
 
-    if (_selectedDays.isEmpty) {
+    // Validar según el tipo de frecuencia
+    if (_selectedFrequencyType == FrequencyType.custom && _selectedDays.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(AppLocalizations.of(context)!.selectAtLeastOneDay),
@@ -411,13 +579,32 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
     });
 
     try {
+      // Determinar frequency list según el tipo
+      List<int> frequencyList;
+      switch (_selectedFrequencyType) {
+        case FrequencyType.daily:
+          frequencyList = [1, 2, 3, 4, 5, 6, 7];
+          break;
+        case FrequencyType.weekdays:
+          frequencyList = [1, 2, 3, 4, 5];
+          break;
+        case FrequencyType.custom:
+          frequencyList = _selectedDays.toList()..sort();
+          break;
+        case FrequencyType.weekly:
+          frequencyList = [1, 2, 3, 4, 5, 6, 7]; // Para weekly, frequency no importa
+          break;
+      }
+
       final habit = Habit(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         name: _nameController.text.trim(),
         description: _descriptionController.text.trim(),
         icon: _selectedIcon,
         color: _selectedColor,
-        frequency: _selectedDays.toList()..sort(),
+        frequencyType: _selectedFrequencyType,
+        frequency: frequencyList,
+        weeklyTarget: _selectedFrequencyType == FrequencyType.weekly ? _weeklyTarget : null,
         reminderTime: _reminderTime,
         createdAt: DateTime.now(),
         completions: {},

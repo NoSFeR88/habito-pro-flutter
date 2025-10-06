@@ -24,7 +24,7 @@ class DatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 1,
+      version: 2, // Incrementado para migración
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -38,7 +38,9 @@ class DatabaseHelper {
         description TEXT NOT NULL,
         icon_code_point INTEGER NOT NULL,
         color INTEGER NOT NULL,
+        frequency_type TEXT NOT NULL DEFAULT 'daily',
         frequency TEXT NOT NULL,
+        weekly_target INTEGER,
         reminder_hour INTEGER NOT NULL,
         reminder_minute INTEGER NOT NULL,
         created_at TEXT NOT NULL,
@@ -50,7 +52,15 @@ class DatabaseHelper {
   }
 
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    // Manejar upgrades de base de datos en el futuro
+    if (oldVersion < 2) {
+      // Migración v1 → v2: Agregar campos para frecuencia avanzada
+      await db.execute(
+        'ALTER TABLE habits ADD COLUMN frequency_type TEXT NOT NULL DEFAULT "daily"',
+      );
+      await db.execute(
+        'ALTER TABLE habits ADD COLUMN weekly_target INTEGER',
+      );
+    }
   }
 
   // CRUD Operations para Habits
@@ -64,7 +74,9 @@ class DatabaseHelper {
       'description': habit.description,
       'icon_code_point': habit.icon.codePoint,
       'color': habit.color,
+      'frequency_type': habit.frequencyType.toJson(),
       'frequency': jsonEncode(habit.frequency),
+      'weekly_target': habit.weeklyTarget,
       'reminder_hour': habit.reminderTime.hour,
       'reminder_minute': habit.reminderTime.minute,
       'created_at': habit.createdAt.toIso8601String(),
@@ -111,7 +123,9 @@ class DatabaseHelper {
       'description': habit.description,
       'icon_code_point': habit.icon.codePoint,
       'color': habit.color,
+      'frequency_type': habit.frequencyType.toJson(),
       'frequency': jsonEncode(habit.frequency),
+      'weekly_target': habit.weeklyTarget,
       'reminder_hour': habit.reminderTime.hour,
       'reminder_minute': habit.reminderTime.minute,
       'completions': jsonEncode(habit.completions),
@@ -190,7 +204,11 @@ class DatabaseHelper {
         fontFamily: 'MaterialIcons',
       ),
       color: map['color'],
+      frequencyType: map['frequency_type'] != null
+          ? FrequencyTypeExtension.fromJson(map['frequency_type'])
+          : FrequencyType.daily,
       frequency: List<int>.from(jsonDecode(map['frequency'])),
+      weeklyTarget: map['weekly_target'],
       reminderTime: TimeOfDay(
         hour: map['reminder_hour'],
         minute: map['reminder_minute'],
