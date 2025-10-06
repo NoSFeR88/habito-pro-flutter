@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../core/theme.dart';
 import '../generated/l10n/app_localizations.dart';
-import '../providers/premium_provider.dart';
 
 class PaywallScreen extends StatefulWidget {
   final String? featureBlocked; // Para mostrar mensaje específico

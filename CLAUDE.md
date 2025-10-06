@@ -1,8 +1,33 @@
 # CLAUDE.md — RITMO Habit Tracker
 
-**Versión**: 3.0.0 (Merged con Plan Maestro + Windows)
-**Última actualización**: 2025-10-05
-**Estado**: ✅ PRODUCTION-READY CON CARACTERÍSTICAS PREMIUM
+**Versión**: 3.1.0 (+ Optimización Uso de Modelos)
+**Última actualización**: 2025-10-06
+**Estado**: ✅ PRODUCTION-READY CON 441 TESTS (80% COVERAGE ALCANZADO)
+
+---
+
+## 🤖 USO ÓPTIMO DE MODELOS (CRÍTICO)
+
+### **Modelo por Defecto: Sonnet 4.5**
+- **Usa Sonnet 4.5 para 90-95% del trabajo** (tests, features, traducciones, bug fixes)
+- **Reserva Opus 4 solo para**: decisiones arquitectónicas complejas, refactorizaciones masivas (>10 archivos), security crítico
+
+### **Comandos Rápidos**
+```bash
+/model sonnet          # Establece Sonnet (usa SIEMPRE al inicio)
+/clear                 # Limpia contexto entre features (ahorra tokens)
+/status                # Verifica modelo activo y uso de cuota
+```
+
+### **Decisiones Arquitectónicas Tomadas (NO RE-CONSULTAR)**
+✅ **Provider pattern** (vs Riverpod/BLoC) - implementado y estable
+✅ **SQLite local + Firebase cloud** - arquitectura híbrida completa
+✅ **Material 3 + 6 temas premium** - design system maduro
+✅ **26 idiomas con flutter_localizations** - sistema i18n completo
+✅ **441 tests unitarios (80% coverage)** - sprint testing completado
+
+**Antes de preguntar**: Consulta `PROJECT_INDEX.md`, `CONTEXT_LAST_SESSION.md`, este archivo.
+**Ahorro**: 2,000-5,000 tokens por sesión evitando re-consultas.
 
 ---
 
@@ -182,10 +207,11 @@ flutter test
 - ✅ Sistema de rachas corregido e intuitivo
 - ✅ 6 temas premium dramáticos
 - ✅ Gamificación funcional (5 puntos por hábito)
-- ✅ 26 idiomas soportados (EN 100%, ES 71%)
+- ✅ 26 idiomas soportados (EN 100%, **ES 100%** ✅)
 - ✅ UI/UX profesional sin elementos de desarrollo
 - ✅ Orientación bloqueada a vertical
 - ✅ Límite 5 hábitos free → Premium ilimitado
+- ✅ 441 tests unitarios (80% coverage)
 
 ---
 

@@ -18,7 +18,18 @@
       "Bash(gh run view:*)",
       "Bash(ConvertFrom-Json)",
       "Bash(Format-Table -AutoSize)",
-      "Bash(Select-String -Pattern \"(FAILED|ERROR|✓|✗)\" -Context 2)"
+      "Bash(Select-String -Pattern \"(FAILED|ERROR|✓|✗)\" -Context 2)",
+      "Bash(for i in {1..10})",
+      "Bash(do echo \"=== Check $i/10 ===\")",
+      "Bash(done)",
+      "Bash(Select-String -Pattern \"Build\" -Context 0,1)",
+      "Bash(Select-String -Pattern \"^00:0|tests passed|Some tests failed|^\\+\")",
+      "Bash(Select-String -Pattern \"^00:00 \\+|All tests passed|Some tests failed|Error:\")",
+      "Bash(Select-String -Pattern \"🧪 Tests Unitarios\")",
+      "Bash(Start-Sleep -Seconds 30)",
+      "Bash(flutter pub:*)",
+      "Bash(Select-String -Pattern \"^00:00 \\+|All tests passed|Some tests failed|tests? passed\")",
+      "Bash(python:*)"
     ],
     "deny": [],
     "ask": []
