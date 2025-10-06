@@ -27,6 +27,7 @@ class HabitCard extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200), // Reducida para mejor rendimiento
         child: Card(
+          color: Theme.of(context).colorScheme.surfaceContainerLow,
           elevation: isCompleted ? 1 : 3,
           child: Container(
             decoration: BoxDecoration(

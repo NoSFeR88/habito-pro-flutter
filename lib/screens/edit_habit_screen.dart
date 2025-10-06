@@ -96,6 +96,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildBasicInfo() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -145,6 +146,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildIconSelection() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -198,6 +200,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildColorSelection() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -255,6 +258,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildFrequencySelection() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -519,6 +523,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildReminderTime() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
