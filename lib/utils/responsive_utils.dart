@@ -67,4 +67,41 @@ class ResponsiveUtils {
   static double getFabSize(BuildContext context) {
     return isLandscape(context) && isMobile(context) ? 48.0 : 56.0;
   }
+
+  /// Obtener padding responsivo basado en tamaño de pantalla
+  /// Aumenta spacing en tablets y desktop para mejor uso del espacio
+  static double getResponsivePadding(BuildContext context,
+      {double base = 16.0}) {
+    if (isDesktop(context)) {
+      return base * 2.0; // 32px en desktop
+    } else if (isTablet(context)) {
+      return base * 1.5; // 24px en tablet
+    } else {
+      return base; // 16px en mobile
+    }
+  }
+
+  /// Obtener spacing entre secciones responsivo
+  static double getResponsiveSpacing(BuildContext context,
+      {double base = 24.0}) {
+    if (isDesktop(context)) {
+      return base * 1.5; // 36px en desktop
+    } else if (isTablet(context)) {
+      return base * 1.25; // 30px en tablet
+    } else {
+      return base; // 24px en mobile
+    }
+  }
+
+  /// Obtener font size responsivo
+  static double getResponsiveFontSize(BuildContext context,
+      {double base = 16.0}) {
+    if (isDesktop(context)) {
+      return base * 1.125; // +12.5% en desktop
+    } else if (isTablet(context)) {
+      return base * 1.0625; // +6.25% en tablet
+    } else {
+      return base;
+    }
+  }
 }

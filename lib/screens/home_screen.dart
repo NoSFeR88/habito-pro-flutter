@@ -425,6 +425,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     habit: habit,
                     onTap: () => _toggleHabit(context, habit.id),
                     onLongPress: () => _showHabitOptions(context, habit),
+                    useOpenContainer: true,
                   ),
                 )).toList(),
 
@@ -498,6 +499,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             habit: habit,
                             onTap: () => _toggleHabit(context, habit.id),
                             onLongPress: () => _showHabitOptions(context, habit),
+                            useOpenContainer: true,
                           );
                         },
                       )
@@ -512,6 +514,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               habit: habit,
                               onTap: () => _toggleHabit(context, habit.id),
                               onLongPress: () => _showHabitOptions(context, habit),
+                              useOpenContainer: true,
                             ),
                           );
                         },

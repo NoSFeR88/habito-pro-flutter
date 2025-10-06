@@ -11,8 +11,9 @@ class TouchTargets {
     double iconSize = DesignConstants.iconButtonSize,
     Color? color,
     String? tooltip,
+    String? semanticLabel,
   }) {
-    return SizedBox(
+    final button = SizedBox(
       width: DesignConstants.minTouchTarget,
       height: DesignConstants.minTouchTarget,
       child: IconButton(
@@ -23,6 +24,18 @@ class TouchTargets {
         onPressed: onPressed,
       ),
     );
+
+    // Si hay semanticLabel, agregar Semantics
+    if (semanticLabel != null) {
+      return Semantics(
+        label: semanticLabel,
+        button: true,
+        enabled: onPressed != null,
+        child: ExcludeSemantics(child: button),
+      );
+    }
+
+    return button;
   }
 
   /// IconButton with explicit constraints (alternative approach)
