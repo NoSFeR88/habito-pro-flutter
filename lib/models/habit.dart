@@ -58,7 +58,7 @@ class Habit {
         ),
         assert(
           frequencyType != FrequencyType.weekly ||
-          (weeklyTarget! >= 1 && weeklyTarget! <= 7),
+          (weeklyTarget != null && weeklyTarget >= 1 && weeklyTarget <= 7),
           'weeklyTarget must be between 1 and 7',
         );
 

@@ -5,7 +5,6 @@ import '../generated/l10n/app_localizations.dart';
 import '../providers/habit_provider.dart';
 import '../providers/onboarding_provider.dart';
 import '../models/habit.dart';
-import 'home_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
