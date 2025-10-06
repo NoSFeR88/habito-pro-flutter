@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/habit.dart';
 import '../generated/l10n/app_localizations.dart';
 import '../core/ritmo_typography.dart';
+import '../core/design_constants.dart';
 
 class HabitCard extends StatelessWidget {
   final Habit habit;
@@ -29,7 +30,7 @@ class HabitCard extends StatelessWidget {
           elevation: isCompleted ? 1 : 3,
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(DesignConstants.borderRadiusLarge),
               border: isCompleted 
                   ? Border.all(color: habitColor, width: 2)
                   : null,
@@ -46,7 +47,7 @@ class HabitCard extends StatelessWidget {
                       color: isCompleted 
                           ? habitColor.withOpacity(0.2)
                           : habitColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(DesignConstants.borderRadiusLarge),
                       border: isCompleted
                           ? Border.all(color: habitColor, width: 1.5)
                           : null,
@@ -173,7 +174,7 @@ class HabitCard extends StatelessWidget {
                           color: habitColor,
                           width: 2,
                         ),
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(DesignConstants.borderRadiusLarge),
                       ),
                       child: isCompleted
                           ? const Icon(

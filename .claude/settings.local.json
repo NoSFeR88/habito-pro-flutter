@@ -20,7 +20,10 @@
       "Bash(Format-Table -AutoSize)",
       "Bash(Select-String -Pattern \"(FAILED|ERROR|✓|✗)\" -Context 2)",
       "Bash(Select-String -Pattern \"(error|warning)\")",
-      "Bash(Select-Object -First 20)"
+      "Bash(Select-Object -First 20)",
+      "Bash(git tag:*)",
+      "Bash(python:*)",
+      "Bash(Select-String -Pattern \"(prefer_const|Analyzing)\")"
     ],
     "deny": [],
     "ask": []

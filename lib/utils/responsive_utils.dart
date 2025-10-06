@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 
 class ResponsiveUtils {
   static bool isTablet(BuildContext context) {
-    return MediaQuery.of(context).size.width > 600;
+    return MediaQuery.sizeOf(context).width > 600;
   }
 
   static bool isDesktop(BuildContext context) {
-    return MediaQuery.of(context).size.width > 1200;
+    return MediaQuery.sizeOf(context).width > 1200;
   }
 
   static bool isLandscape(BuildContext context) {
-    return MediaQuery.of(context).orientation == Orientation.landscape;
+    return MediaQuery.orientationOf(context) == Orientation.landscape;
   }
 
   static bool isMobile(BuildContext context) {
-    return MediaQuery.of(context).size.width <= 600;
+    return MediaQuery.sizeOf(context).width <= 600;
   }
 
   static double getCardWidth(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.sizeOf(context).width;
     final isLandscape = ResponsiveUtils.isLandscape(context);
 
     if (isDesktop(context)) {
@@ -31,7 +31,7 @@ class ResponsiveUtils {
   }
 
   static int getCrossAxisCount(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.sizeOf(context).width;
 
     if (screenWidth > 1200) {
       return 3;

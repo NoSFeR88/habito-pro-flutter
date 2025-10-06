@@ -3192,8 +3192,8 @@ abstract class AppLocalizations {
   /// No description provided for @streakFormat.
   ///
   /// In en, this message translates to:
-  /// **'{streak} days'**
-  String streakFormat(Object streak);
+  /// **'{streak, plural, =1{1 day} other{{streak} days}}'**
+  String streakFormat(num streak);
 
   /// No description provided for @notificationsToRemindHabits.
   ///
