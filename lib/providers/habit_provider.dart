@@ -192,12 +192,14 @@ class HabitProvider extends ChangeNotifier {
           // Descompletando hábito
           int pointsToRemove = 5;
 
-          // Si tenía bonus semanal, también se pierde
+          // Si tenía bonus semanal ANTES de descompletar, también se pierde
           final previousHabit = _habits[habitIndex];
           if (previousHabit.frequencyType == FrequencyType.weekly &&
-              previousHabit.isWeeklyTargetMet) {
+              previousHabit.isWeeklyTargetMet &&
+              !updatedHabit.isWeeklyTargetMet) {
+            // Solo quitar bonus si ANTES cumplía target y AHORA ya no lo cumple
             pointsToRemove += 10; // Remover también el bonus
-            debugPrint('⚠️ Perdiendo bonus semanal');
+            debugPrint('⚠️ Perdiendo bonus semanal (ya no cumple target)');
           }
 
           _gamificationProvider!.removePoints(pointsToRemove);
