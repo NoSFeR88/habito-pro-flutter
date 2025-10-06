@@ -509,7 +509,7 @@
   "perfectWeekAchievement": "Perfect Week",
   "rhythmCollectorAchievement": "Collector",
   "rhythmMasterAchievement": "Rhythm Master",
-  "streakFormat": "{streak} days",
+  "streakFormat": "{streak, plural, =1{1 day} other{{streak} days}}",
   "notificationsToRemindHabits": "Notifications to remind you to complete your daily rhythms",
   "rhythmReminderTicker": "Habit reminder",
   "defaultHabitReminder": "Time to work on your rhythm!",

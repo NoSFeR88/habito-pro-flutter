@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import '../providers/habit_provider.dart';
 import '../providers/gamification_provider.dart';
 import '../widgets/habit_card.dart';
@@ -359,13 +360,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   String _getCurrentDateString() {
     final now = DateTime.now();
-    final weekdays = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
-    final months = [
-      'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
-      'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
-    ];
+    final locale = Localizations.localeOf(context).languageCode;
 
-    return '${weekdays[now.weekday - 1]}, ${now.day} ${months[now.month - 1]}';
+    // Formato: "Mon, 6 Oct" (EN) o "Lun, 6 Oct" (ES)
+    final weekdayFormat = DateFormat('EEE', locale);
+    final dayFormat = DateFormat('d', locale);
+    final monthFormat = DateFormat('MMM', locale);
+
+    return '${weekdayFormat.format(now)}, ${dayFormat.format(now)} ${monthFormat.format(now)}';
   }
 
   Widget _buildPortraitLayout(BuildContext context, List<Habit> habitsToday, EdgeInsets screenPadding) {
@@ -400,7 +402,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      'Hoy • $_currentDateString',
+                      '${AppLocalizations.of(context)!.today} • $_currentDateString',
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: _isTablet ? 24 : null,
@@ -459,7 +461,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Hoy • ${_getCurrentDateString()}',
+                          '${AppLocalizations.of(context)!.today} • ${_getCurrentDateString()}',
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),

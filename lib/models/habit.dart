@@ -276,6 +276,35 @@ class Habit {
   factory Habit.fromMap(Map<String, dynamic> map) {
     return Habit.fromJson(map);
   }
+
+  /// Obtener etiqueta de frecuencia para UI
+  /// Retorna: "Daily", "Weekdays", "Custom", "3/week"
+  String getFrequencyLabel() {
+    switch (frequencyType) {
+      case FrequencyType.daily:
+        return 'Daily';
+      case FrequencyType.weekdays:
+        return 'Weekdays';
+      case FrequencyType.custom:
+        return 'Custom';
+      case FrequencyType.weekly:
+        return '$weeklyTarget/week';
+    }
+  }
+
+  /// Obtener días seleccionados como string legible
+  /// Retorna: "Mon, Wed, Fri" o "Lun, Mié, Vie"
+  String getCustomDaysString(List<String> dayNames) {
+    if (frequencyType != FrequencyType.custom) return '';
+
+    final selectedDayNames = <String>[];
+    for (int day in frequency) {
+      if (day >= 1 && day <= 7) {
+        selectedDayNames.add(dayNames[day - 1]);
+      }
+    }
+    return selectedDayNames.join(', ');
+  }
 }
 
 // Extension para formatear fechas
