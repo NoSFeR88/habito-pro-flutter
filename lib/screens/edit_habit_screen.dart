@@ -707,8 +707,12 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(AppLocalizations.of(context)!.deleteHabitTitle),
-          content: Text(
-            AppLocalizations.of(context)!.confirmDeleteHabitMessage(widget.habit.name),
+          content: ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 280),
+            child: Text(
+              AppLocalizations.of(context)!.confirmDeleteHabitMessage(widget.habit.name),
+              style: const TextStyle(height: 1.4),
+            ),
           ),
           actions: [
             TextButton(

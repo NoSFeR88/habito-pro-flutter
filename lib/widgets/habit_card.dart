@@ -124,8 +124,11 @@ class HabitCard extends StatelessWidget {
                     ],
                     const SizedBox(height: 8),
 
-                    // Información adicional
-                    Row(
+                    // Información adicional (con Wrap para evitar overflow)
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 4,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         // Frecuencia
                         Text(
@@ -137,8 +140,7 @@ class HabitCard extends StatelessWidget {
                           ),
                         ),
                         // Custom days (solo si es custom)
-                        if (habit.frequencyType == FrequencyType.custom) ...[
-                          const SizedBox(width: 4),
+                        if (habit.frequencyType == FrequencyType.custom)
                           Text(
                             '• ${habit.getCustomDaysString([
                                   AppLocalizations.of(context)!.dayShortMon,
@@ -154,44 +156,51 @@ class HabitCard extends StatelessWidget {
                               fontSize: 12,
                             ),
                           ),
-                        ],
-                        const SizedBox(width: 12),
                         // Racha
                         if (habit.streak > 0) ...[
-                          Icon(
-                            Icons.local_fire_department,
-                            size: 16,
-                            color: Colors.orange[600],
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.local_fire_department,
+                                size: 16,
+                                color: Colors.orange[600],
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                // Use weeklyStreakLabel for weekly habits, streakFormat for others
+                                habit.frequencyType == FrequencyType.weekly
+                                    ? AppLocalizations.of(context)!
+                                        .weeklyStreakLabel(habit.streak)
+                                    : AppLocalizations.of(context)!
+                                        .streakFormat(habit.streak),
+                                style: RitmoTypography.statistics.copyWith(
+                                  color: Colors.orange[600],
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 4),
-                          Text(
-                            // Use weeklyStreakLabel for weekly habits, streakFormat for others
-                            habit.frequencyType == FrequencyType.weekly
-                                ? AppLocalizations.of(context)!
-                                    .weeklyStreakLabel(habit.streak)
-                                : AppLocalizations.of(context)!
-                                    .streakFormat(habit.streak),
-                            style: RitmoTypography.statistics.copyWith(
-                              color: Colors.orange[600],
-                              fontSize: 14,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
                         ],
 
                         // Hora de recordatorio
-                        Icon(
-                          Icons.schedule,
-                          size: 16,
-                          color: Colors.grey[500],
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          _formatTime(habit.reminderTime),
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: Colors.grey[500],
-                                  ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.schedule,
+                              size: 16,
+                              color: Colors.grey[500],
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              _formatTime(habit.reminderTime),
+                              style:
+                                  Theme.of(context).textTheme.bodySmall?.copyWith(
+                                        color: Colors.grey[500],
+                                      ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
