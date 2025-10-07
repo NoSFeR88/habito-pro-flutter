@@ -1,6 +1,8 @@
 # ESTADO DEL PROYECTO - RITMO App
 
-## 📅 Última Actualización: 2025-10-05 (Sesión 29)
+**Versión**: 1.0.0
+**Última actualización**: 2025-10-05 (Sesión 29)
+
 ## 🎯 Estado General: ✅ **FASE 2 COMPLETADA + CI/CD BASELINE FUNCIONAL**
 
 ---

@@ -1,5 +1,8 @@
 # 📑 ÍNDICE COMPLETO DEL PROYECTO RITMO
 
+**Versión**: 1.0.0
+**Última actualización**: 2025-09-30
+
 > **PROPÓSITO**: Minimizar consumo de tokens mediante búsqueda directa y eficiente de cualquier componente del proyecto.
 
 ---
@@ -26,9 +29,10 @@
 ### **Core Documents** (Protocol /remember)
 ```
 CLAUDE.md                                    # Instrucciones proyecto + comandos útiles
-docs/CONTEXT_LAST_SESSION.md               # Última sesión (2025-09-30) + pendientes
+docs/CONTEXT_LAST_SESSION.md               # Última sesión (2025-10-07) + pendientes
 docs/BILINGUAL_GUIDE.md                     # Protocolo bilingüe ES/EN
 docs/PROJECT_STATUS.md                      # Estado general + roadmap
+docs/BUSINESS_INFO.md                       # ⚠️ CONFIDENCIAL: Pricing + estrategia monetización
 README.md                                    # Info básica Flutter
 ```
 

@@ -1,8 +1,39 @@
 # CLAUDE.md — RITMO Habit Tracker
 
-**Versión**: 3.0.0 (Merged con Plan Maestro + Windows)
-**Última actualización**: 2025-10-05
+**Versión**: 3.1.0
+**Última actualización**: 2025-10-07
 **Estado**: ✅ PRODUCTION-READY CON CARACTERÍSTICAS PREMIUM
+
+---
+
+## 🧠 Resumen Ejecutivo (Quick Start)
+
+| Campo | Valor |
+|-------|-------|
+| **Proyecto** | RITMO Habit Tracker |
+| **Tipo** | Flutter Mobile App (Android/iOS) |
+| **Arquitectura** | Clean Architecture + Provider Pattern |
+| **Stack** | Flutter 3.x + SQLite + Firebase |
+| **Estado** | Production-ready (Fase 4 completada) |
+| **Idiomas** | 26 soportados (EN: 100%, ES: 71%) |
+| **Principios** | Mobile-First + A11Y (WCAG AA) + i18n |
+| **Branch actual** | `claude/session49-tests-maintenance-optimizations` |
+| **PR activo** | #26 - Esperando CI verde |
+
+### 🚀 Comandos Rápidos
+
+```powershell
+# Testing
+flutter test --coverage                # Tests con coverage
+flutter analyze                        # Análisis estático
+
+# Traducciones
+flutter gen-l10n                       # Regenerar traducciones
+
+# Git & PR
+gh pr status                           # Ver estado PRs
+gh pr checks 26 --watch                # Monitorear CI PR #26
+```
 
 ---
 
@@ -16,11 +47,38 @@
 
 ## 🚨 Reglas Generales (CRÍTICO)
 
+### 🔐 Información Confidencial de Negocio
+
+⚠️ **REGLA CRÍTICA**: **NUNCA mencionar** información de negocio en outputs a menos que el usuario **explícitamente** pregunte sobre ello.
+
+**Información confidencial** (ver `docs/BUSINESS_INFO.md`):
+- ❌ Pricing específico ($X.XX/mes)
+- ❌ Proyecciones de revenue
+- ❌ Estrategia de monetización
+- ❌ Análisis competitivo con precios
+- ❌ Metas de conversión/KPIs
+
+**Respuestas técnicas permitidas**:
+- ✅ "Sistema premium implementado"
+- ✅ "Límite de 5 hábitos en tier gratuito"
+- ✅ "Features premium disponibles"
+- ✅ "Validación de premium en `premium_provider.dart`"
+
+**Cuándo SÍ mencionar**:
+- Usuario pregunta explícitamente sobre pricing
+- Debugging específico de paywall screen
+- Cambios solicitados en monetización
+
+**Archivo de referencia**: `docs/BUSINESS_INFO.md` (⚠️ Confidencial - Solo product owner)
+
+---
+
 ### Seguridad y Privacidad
 1. **NUNCA** ejecutar comandos que accedan a:
    - `/secrets`, `firebase_options.dart` (solo lectura permitida)
    - `google-services.json`, API keys, credenciales
    - Datos de usuarios reales (usar mocks en desarrollo)
+   - `docs/BUSINESS_INFO.md` (solo leer si usuario pregunta sobre pricing)
 
 2. **SIEMPRE** reemplazar datos sensibles por mocks antes de logging/debugging
 
@@ -166,7 +224,7 @@ flutter test
 - **State Management**: Provider
 - **Local DB**: SQLite (DatabaseHelper)
 - **Cloud**: Firebase (Auth, Firestore, Analytics)
-- **Payments**: Premium features ($2.99/mes)
+- **Monetización**: Sistema premium implementado (límite free tier)
 - **Platform**: Windows (desarrollo), Android/iOS (producción)
 
 ### Archivos Clave
@@ -273,20 +331,29 @@ Ver documento completo: [CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md](../../CLAUDE_G
 - 📦 **Dividir tareas grandes** en pasos de máximo 3-5 archivos por vez (solo si hay riesgo de agotamiento)
 - 🔄 **Usar `/remember`** al recuperar contexto después de `/save`
 
-### 🔄 Flujo Correcto: /save → /clear → /remember
+### 🔄 Flujo Correcto: /save → /clear → /bootstrap
 
 **PROTOCOLO OBLIGATORIO** para limpiar contexto sin pérdida:
 
 ```
 1. /save          ← Guarda contexto actual en CONTEXT_LAST_SESSION.md
 2. /clear         ← Limpia chat (opcional - solo si necesitas liberar contexto)
-3. /remember      ← Recupera contexto actualizado
+3. /bootstrap     ← Recupera contexto completo desde cero
+   O
+3. /remember      ← Recupera contexto parcial (si ya tienes base cargada)
 ```
 
 ⚠️ **CRÍTICO**: NUNCA ejecutar `/clear` sin `/save` previo → **pérdida total de trabajo**
 
+**Diferencia entre comandos de restauración:**
+
+| Comando | Uso | Archivos Leídos | Cuándo Usar |
+|---------|-----|-----------------|-------------|
+| `/bootstrap` | Restauración completa | TODOS (8 archivos) | Después de `/clear`, primera sesión del día |
+| `/remember` | Restauración parcial | Selectivo (1-8 archivos) | Durante sesión activa, actualizaciones |
+
 **Frecuencia típica** en sesiones largas:
-- Cada 40-50k tokens consumidos → `/save` + `/clear` + `/remember`
+- Cada 40-50k tokens consumidos → `/save` + `/clear` + `/bootstrap`
 - Permite múltiples ciclos de trabajo en sesión única
 - Budget efectivo: ~200k × N ciclos
 
@@ -326,7 +393,7 @@ summaries: [<<s1>>, <<s2>>]
 5. 🌍 `docs/BILINGUAL_GUIDE.md` (protocolo bilingüe)
 6. 📊 `docs/PROJECT_STATUS.md` (estado general proyecto)
 7. 📖 `README.md` (info básica proyecto)
-8. 📚 `../../doc/README.md` (biblioteca Flutter - conocimiento base móvil)
+8. 📚 `../../docs/flutter/README.md` (biblioteca Flutter - conocimiento base móvil)
 
 ### PROTOCOLO DE EJECUCIÓN:
 1. ✅ Leer TODOS los 8 archivos de la lista SIN EXCEPCIÓN (usar Read tool)
@@ -338,7 +405,7 @@ summaries: [<<s1>>, <<s2>>]
    - "✅ docs/BILINGUAL_GUIDE.md - [protocolo bilingüe confirmado]"
    - "✅ docs/PROJECT_STATUS.md - [estado general confirmado]"
    - "✅ README.md - [tipo de proyecto confirmado]"
-   - "✅ ../../doc/README.md - [biblioteca Flutter disponible - 7 docs, consulta por keyword]"
+   - "✅ ../../docs/flutter/README.md - [biblioteca Flutter disponible - 17 docs, consulta por keyword]"
 3. ✅ Presentar resumen ejecutivo del contexto recuperado
 4. ✅ Identificar exactamente dónde quedamos y próximo paso
 5. ✅ Declarar "Listo para continuar exactamente donde quedamos"
@@ -354,7 +421,8 @@ summaries: [<<s1>>, <<s2>>]
 - 📊 **Estado del proyecto**: Ver `docs/PROJECT_STATUS.md`
 - 📝 **Contexto de sesiones**: Ver `docs/CONTEXT_LAST_SESSION.md`
 - 🌍 **Proceso para idiomas**: Ver `docs/BILINGUAL_GUIDE.md`
-- 📚 **Biblioteca Flutter**: Ver `../../doc/README.md` → `00_MASTER_INDEX.md` para búsqueda rápida
+- 📚 **Biblioteca Flutter**: Ver `../../docs/flutter/README.md` → `00_MASTER_INDEX.md` para búsqueda rápida
+- 🌍 **Protocolo i18n**: Ver `../../docs/flutter/12_I18N_L10N.md` para internacionalización desde DÍA 1
 
 ---
 
@@ -419,7 +487,7 @@ final mockHabits = [
 ### Cambios que Requieren Aprobación Manual
 - ⚠️ **Infra/Secrets**: @sec-oncall (obligatorio)
 - ⚠️ **Firebase config**: @backend-lead
-- ⚠️ **Payments/Premium**: @product-owner
+- ⚠️ **Monetización/Premium/Pricing**: @product-owner (ver `docs/BUSINESS_INFO.md`)
 - ⚠️ **Breaking changes**: @tech-lead
 
 ---
@@ -471,26 +539,42 @@ jobs:
 
 ## 🔄 Evolución de Principios
 
-⚠️ **PROTOCOLO OBLIGATORIO - DETECCIÓN PROACTIVA**
+⚠️ **PROTOCOLO OBLIGATORIO - DETECCIÓN BASADA EN EVIDENCIA**
+
+**⚠️ RESTRICCIÓN CRÍTICA**: Solo notificar principios nuevos si se basan en **evidencia de cambios realizados y probados**, no en especulación.
+
+**Criterios obligatorios** (TODOS deben cumplirse):
+1. ✅ **Evidencia concreta**: El principio se aplicó en código real (con rutas de archivos y líneas)
+2. ✅ **Problema resuelto**: Solucionó un bug, mejoró performance o simplificó código (medible)
+3. ✅ **Verificado**: El cambio fue probado (tests pasando, CI verde, o validado manualmente)
+4. ✅ **Generalizable**: Aplica a más de 1 caso de uso (no es solución única/específica)
 
 Cuando detectes/descubras durante el trabajo:
-- ✨ Nuevo patrón útil o best practice
-- ❌ Anti-patrón que causó problemas
-- 🎯 Solución elegante a problema común
+- ✨ Nuevo patrón útil o best practice **que aplicaste en el código**
+- ❌ Anti-patrón que causó problemas **que corregiste con evidencia**
+- 🎯 Solución elegante a problema común **que implementaste y probaste**
 
 **DEBES notificar con formato:**
 ```
-💡 **NUEVO PRINCIPIO DETECTADO**
+💡 **NUEVO PRINCIPIO DETECTADO (Basado en Evidencia)**
 
-**Contexto**: [Dónde se descubrió]
+**Contexto**: [Dónde se descubrió - sesión, archivo, líneas]
 **Principio**: [Descripción concisa]
-**Beneficio**: [Por qué es útil]
+**Beneficio**: [Por qué es útil - con métricas si aplica]
 **Aplicabilidad**: [RITMO / Universal / Flutter-específico]
+
+**📊 Evidencia** (OBLIGATORIO):
+- **Archivo modificado**: `path/to/file.ext:100-150`
+- **Problema resuelto**: [Descripción específica]
+- **Solución aplicada**: [Qué cambió exactamente]
+- **Verificación**: [Tests pasando / CI verde / Validado]
+- **Impacto medible**: [Ej: -26 warnings, +30 tests, 60% ↑]
 
 **Propuesta**: ¿Agregarlo a CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md?
 ```
 
 **Frecuencia**: Máximo 3 por sesión, al final de tareas (no interrumpir flujo)
+**Documentación completa**: Ver sección "Evolución Continua de Principios" en `CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md`
 
 ---
 
