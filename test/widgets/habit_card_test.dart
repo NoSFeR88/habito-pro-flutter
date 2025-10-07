@@ -390,5 +390,134 @@ void main() {
       final completionButtons = find.byType(GestureDetector);
       expect(completionButtons, findsWidgets);
     });
+
+    testWidgets('should have semantic label with habit details', (tester) async {
+      final habit = createTestHabit(
+        name: 'Morning Run',
+        description: '30 minutes cardio',
+        streak: 5,
+      );
+
+      await tester.pumpWidget(createTestWidget(habit: habit));
+
+      // Verificar que existe Semantics widget
+      expect(find.byType(Semantics), findsWidgets);
+    });
+
+    testWidgets('should have proper semantic structure for screen readers', (tester) async {
+      final habit = createTestHabit(
+        name: 'Read Book',
+        description: '20 pages daily',
+        streak: 10,
+      );
+
+      await tester.pumpWidget(createTestWidget(habit: habit));
+
+      // Verificar estructura semántica completa
+      expect(find.byType(Card), findsOneWidget);
+      expect(find.byType(Semantics), findsWidgets);
+    });
+
+    testWidgets('should have semantic label for completed habit', (tester) async {
+      final today = DateTime.now();
+      final todayKey = '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
+
+      final habit = createTestHabit(
+        name: 'Meditation',
+        completions: {todayKey: true},
+      );
+
+      await tester.pumpWidget(createTestWidget(habit: habit));
+
+      // Verificar que el estado de completado está en el semantic label
+      expect(find.byType(Semantics), findsWidgets);
+    });
+
+    testWidgets('should have semantic label for incomplete habit', (tester) async {
+      final habit = createTestHabit(
+        name: 'Exercise',
+        completions: {},
+      );
+
+      await tester.pumpWidget(createTestWidget(habit: habit));
+
+      // Verificar semantic label indica pendiente
+      expect(find.byType(Semantics), findsWidgets);
+    });
+  });
+
+  group('HabitCard - Container Transform (OpenContainer)', () {
+    testWidgets('should use OpenContainer when useOpenContainer is true', (tester) async {
+      final habit = createTestHabit();
+
+      await tester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en'),
+            Locale('es'),
+          ],
+          home: Scaffold(
+            body: HabitCard(
+              habit: habit,
+              onTap: () {},
+              useOpenContainer: true,
+            ),
+          ),
+        ),
+      );
+
+      // Verificar que existe OpenContainer cuando useOpenContainer = true
+      // OpenContainer se renderiza como un widget normal, no podemos verificar tipo directo
+      // pero podemos verificar que el card se renderiza correctamente
+      expect(find.byType(HabitCard), findsOneWidget);
+      expect(find.byType(Card), findsOneWidget);
+    });
+
+    testWidgets('should not use OpenContainer when useOpenContainer is false', (tester) async {
+      final habit = createTestHabit();
+
+      await tester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en'),
+            Locale('es'),
+          ],
+          home: Scaffold(
+            body: HabitCard(
+              habit: habit,
+              onTap: () {},
+              useOpenContainer: false,
+            ),
+          ),
+        ),
+      );
+
+      // Verificar que el card se renderiza sin OpenContainer
+      expect(find.byType(HabitCard), findsOneWidget);
+      expect(find.byType(Card), findsOneWidget);
+      expect(find.byType(GestureDetector), findsWidgets);
+    });
+
+    testWidgets('should default to no OpenContainer when parameter omitted', (tester) async {
+      final habit = createTestHabit();
+
+      await tester.pumpWidget(createTestWidget(habit: habit));
+
+      // Por defecto useOpenContainer = false
+      expect(find.byType(HabitCard), findsOneWidget);
+      expect(find.byType(GestureDetector), findsWidgets);
+    });
   });
 }

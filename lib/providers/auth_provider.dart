@@ -38,7 +38,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       _userData = await _authService.getUserData();
     } catch (e) {
-      print('User data loading error: $e');
+      debugPrint('User data loading error: $e');
     }
   }
 

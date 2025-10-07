@@ -210,7 +210,7 @@ class AuthService {
         });
       }
     } catch (e) {
-      print('User document creation error: $e');
+      debugPrint('User document creation error: $e');
       // No lanzar excepción aquí para no interferir con el login
     }
   }

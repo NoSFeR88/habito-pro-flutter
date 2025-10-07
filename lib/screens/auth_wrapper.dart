@@ -130,7 +130,7 @@ class _UserAuthenticatedScreenState extends State<_UserAuthenticatedScreen> {
       
       _hasInitialized = true;
     } catch (e) {
-      print('User data initialization error: $e');
+      debugPrint('User data initialization error: $e');
     }
   }
 

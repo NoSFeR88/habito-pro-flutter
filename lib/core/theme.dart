@@ -48,13 +48,11 @@ class AppTheme {
       secondary: AppColors.secondary,
       tertiary: AppColors.accent,
       surface: AppColors.surface,
-      surfaceVariant: AppColors.surfaceVariant,
-      background: AppColors.background,
+      surfaceContainerHighest: AppColors.surfaceVariant, // Migrado de surfaceVariant
       error: AppColors.error,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
       onSurface: AppColors.text,
-      onBackground: AppColors.text,
       onError: Colors.white,
     ),
     appBarTheme: const AppBarTheme(
@@ -66,7 +64,7 @@ class AppTheme {
     cardTheme: CardThemeData(
       color: AppColors.surface,
       elevation: 4,
-      shadowColor: AppColors.primary.withOpacity(0.1),
+      shadowColor: AppColors.primary.withValues(alpha: 0.1),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -74,7 +72,7 @@ class AppTheme {
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         elevation: 4,
-        shadowColor: AppColors.primary.withOpacity(0.3),
+        shadowColor: AppColors.primary.withValues(alpha: 0.3),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
       ),
@@ -100,12 +98,10 @@ class AppTheme {
       secondary: AppColors.secondary,
       tertiary: AppColors.accent,
       surface: AppColors.surfaceDark,
-      background: AppColors.backgroundDark,
       error: AppColors.error,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
       onSurface: AppColors.textDark,
-      onBackground: AppColors.textDark,
       onError: Colors.white,
     ),
     appBarTheme: const AppBarTheme(
@@ -117,7 +113,7 @@ class AppTheme {
     cardTheme: CardThemeData(
       color: AppColors.surfaceDark,
       elevation: 8,
-      shadowColor: Colors.black.withOpacity(0.3),
+      shadowColor: Colors.black.withValues(alpha: 0.3),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -125,7 +121,7 @@ class AppTheme {
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         elevation: 6,
-        shadowColor: AppColors.primary.withOpacity(0.4),
+        shadowColor: AppColors.primary.withValues(alpha: 0.4),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
       ),

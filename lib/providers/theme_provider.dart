@@ -152,8 +152,8 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFFF5F5F5),
                 onSurface: Color(0xFF1C1B1F),
-                background: Color(0xFFFAFAFA),
-                onBackground: Color(0xFF1C1B1F),
+
+
               )
             : const ColorScheme.dark(
                 primary: Color(0xFF2196F3),
@@ -162,8 +162,8 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFF1E1E1E),
                 onSurface: Color(0xFFE6E1E5),
-                background: Color(0xFF121212),
-                onBackground: Color(0xFFE6E1E5),
+
+
               );
 
       case AppColorScheme.green:
@@ -175,8 +175,8 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFFF1F8E9),
                 onSurface: Color(0xFF1B5E20),
-                background: Color(0xFFF8FFF8),
-                onBackground: Color(0xFF1B5E20),
+
+
               )
             : const ColorScheme.dark(
                 primary: Color(0xFF4CAF50),
@@ -185,8 +185,8 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFF1B2A1B),
                 onSurface: Color(0xFFE8F5E8),
-                background: Color(0xFF0F1B0F),
-                onBackground: Color(0xFFE8F5E8),
+
+
               );
 
       case AppColorScheme.purple:
@@ -198,8 +198,8 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFFF3E5F5),
                 onSurface: Color(0xFF4A148C),
-                background: Color(0xFFFFF8FF),
-                onBackground: Color(0xFF4A148C),
+
+
               )
             : const ColorScheme.dark(
                 primary: Color(0xFF9C27B0),
@@ -208,8 +208,8 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFF2A1B2A),
                 onSurface: Color(0xFFF5E8F5),
-                background: Color(0xFF1B0F1B),
-                onBackground: Color(0xFFF5E8F5),
+
+
               );
 
       // PREMIUM THEMES - Dramatically different designs worth $2.99/month
@@ -222,8 +222,8 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFFFFFFFF),
                 surface: Color(0xFFFAFAFA), // Pearl White
                 onSurface: Color(0xFF2c3e50), // Charcoal
-                background: Color(0xFFF8F9FA),
-                onBackground: Color(0xFF2c3e50),
+
+
                 error: Color(0xFFe74c3c),
                 onError: Color(0xFFFFFFFF),
               )
@@ -234,8 +234,6 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFF2c3e50), // Charcoal
                 onSurface: Color(0xFFF8F9FA),
-                background: Color(0xFF1a1a1a), // Deep Professional
-                onBackground: Color(0xFFF8F9FA),
                 error: Color(0xFFe74c3c),
                 onError: Color(0xFFFFFFFF),
               );
@@ -249,8 +247,6 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFF1a1a1a), // Dark for contrast
                 onSurface: Color(0xFF00ffff),
-                background: Color(0xFF0a0a0a), // Deep Space Black
-                onBackground: Color(0xFF39ff14), // Laser Green
                 error: Color(0xFFff073a),
                 onError: Color(0xFFFFFFFF),
               )
@@ -261,8 +257,6 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFF0a0a0a), // Deep Space Black
                 onSurface: Color(0xFF00ffff),
-                background: Color(0xFF000000), // Pure Black
-                onBackground: Color(0xFF39ff14), // Laser Green
                 error: Color(0xFFff073a),
                 onError: Color(0xFFFFFFFF),
               );
@@ -276,8 +270,6 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFFf8f4ff), // Soft Purple Tint
                 onSurface: Color(0xFF2e1a4a), // Deep Indigo
-                background: Color(0xFFfff8ff), // Almost White with Purple
-                onBackground: Color(0xFF2e1a4a),
                 error: Color(0xFFdc143c),
                 onError: Color(0xFFFFFFFF),
               )
@@ -288,8 +280,6 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFF2e1a4a), // Deep Indigo
                 onSurface: Color(0xFFff69b4),
-                background: Color(0xFF1a0d2e), // Midnight Purple
-                onBackground: Color(0xFFff69b4),
                 error: Color(0xFFdc143c),
                 onError: Color(0xFFFFFFFF),
               );
@@ -303,8 +293,6 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFFF5F5DC), // Warm Stone
                 onSurface: Color(0xFF8b4513), // Earth Brown
-                background: Color(0xFFfaf9f7), // Natural White
-                onBackground: Color(0xFF8b4513),
                 error: Color(0xFFcd5c5c),
                 onError: Color(0xFFFFFFFF),
               )
@@ -315,8 +303,6 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFF2f2f1f), // Dark Earth
                 onSurface: Color(0xFF87ceeb),
-                background: Color(0xFF1a1a0f), // Deep Natural
-                onBackground: Color(0xFF87ceeb),
                 error: Color(0xFFcd5c5c),
                 onError: Color(0xFFFFFFFF),
               );
@@ -330,8 +316,6 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFFffffff), // White
                 onSurface: Color(0xFF1a1a1a),
-                background: Color(0xFFeef4ff), // Light Blue Tint
-                onBackground: Color(0xFF1a1a1a),
                 error: Color(0xFFff4757),
                 onError: Color(0xFFFFFFFF),
               )
@@ -342,8 +326,6 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFF000000),
                 surface: Color(0xFF1a1a1a), // Dark
                 onSurface: Color(0xFFffffff),
-                background: Color(0xFF0f1419), // Deep Blue Black
-                onBackground: Color(0xFFffffff),
                 error: Color(0xFFff4757),
                 onError: Color(0xFFFFFFFF),
               );
@@ -357,8 +339,6 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFFFFFFFF),
                 surface: Color(0xFFe0e5ec), // Neumorphic Base
                 onSurface: Color(0xFF3d4852),
-                background: Color(0xFFe0e5ec), // Same as surface for flat effect
-                onBackground: Color(0xFF3d4852),
                 error: Color(0xFFf093fb),
                 onError: Color(0xFF000000),
               )
@@ -369,8 +349,8 @@ class ThemeProvider with ChangeNotifier {
                 onSecondary: Color(0xFFFFFFFF),
                 surface: Color(0xFF2c2c2c), // Dark Neumorphic
                 onSurface: Color(0xFFffffff),
-                background: Color(0xFF2c2c2c),
-                onBackground: Color(0xFFffffff),
+
+
                 error: Color(0xFFf093fb),
                 onError: Color(0xFF000000),
               );
