@@ -172,12 +172,12 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: isSelected
-                          ? Color(_selectedColor).withOpacity(0.2)
-                          : Colors.grey.withOpacity(0.1),
+                          ? Color(_selectedColor).withValues(alpha:0.2)
+                          : Colors.grey.withValues(alpha:0.1),
                       border: Border.all(
                         color: isSelected
                             ? Color(_selectedColor)
-                            : Colors.grey.withOpacity(0.3),
+                            : Colors.grey.withValues(alpha:0.3),
                         width: isSelected ? 2 : 1,
                       ),
                     ),
@@ -232,7 +232,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
                       boxShadow: isSelected
                           ? [
                               BoxShadow(
-                                color: Color(color).withOpacity(0.4),
+                                color: Color(color).withValues(alpha:0.4),
                                 blurRadius: 8,
                                 spreadRadius: 2,
                               )
@@ -345,12 +345,12 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
           border: Border.all(
             color: isSelected
                 ? Color(_selectedColor)
-                : Colors.grey.withOpacity(0.3),
+                : Colors.grey.withValues(alpha:0.3),
             width: isSelected ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(12),
           color: isSelected
-              ? Color(_selectedColor).withOpacity(0.1)
+              ? Color(_selectedColor).withValues(alpha:0.1)
               : null,
         ),
         child: Row(
@@ -435,11 +435,11 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
                     shape: BoxShape.circle,
                     color: isSelected
                         ? Color(_selectedColor)
-                        : Colors.grey.withOpacity(0.2),
+                        : Colors.grey.withValues(alpha:0.2),
                     border: Border.all(
                       color: isSelected
                           ? Color(_selectedColor)
-                          : Colors.grey.withOpacity(0.5),
+                          : Colors.grey.withValues(alpha:0.5),
                     ),
                   ),
                   child: Center(
@@ -494,7 +494,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: Color(_selectedColor).withOpacity(0.1),
+                color: Color(_selectedColor).withValues(alpha:0.1),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: Color(_selectedColor)),
               ),
@@ -544,7 +544,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
               onTap: _selectTime,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
-                side: BorderSide(color: Colors.grey.withOpacity(0.3)),
+                side: BorderSide(color: Colors.grey.withValues(alpha:0.3)),
               ),
             ),
           ],
@@ -555,7 +555,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildDangerZone() {
     return Card(
-      color: Colors.red.withOpacity(0.05),
+      color: Colors.red.withValues(alpha:0.05),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -587,7 +587,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
                 label: Text(AppLocalizations.of(context)!.deleteHabitButton),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.red[700],
-                  side: BorderSide(color: Colors.red.withOpacity(0.5)),
+                  side: BorderSide(color: Colors.red.withValues(alpha:0.5)),
                   padding: const EdgeInsets.symmetric(vertical: 12),
                 ),
               ),

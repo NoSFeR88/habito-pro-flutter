@@ -154,12 +154,12 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: isSelected
-                          ? Color(_selectedColor).withOpacity(0.2)
-                          : Colors.grey.withOpacity(0.1),
+                          ? Color(_selectedColor).withValues(alpha:0.2)
+                          : Colors.grey.withValues(alpha:0.1),
                       border: Border.all(
                         color: isSelected
                             ? Color(_selectedColor)
-                            : Colors.grey.withOpacity(0.3),
+                            : Colors.grey.withValues(alpha:0.3),
                         width: isSelected ? 2 : 1,
                       ),
                     ),
@@ -214,7 +214,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
                       boxShadow: isSelected
                           ? [
                               BoxShadow(
-                                color: Color(color).withOpacity(0.4),
+                                color: Color(color).withValues(alpha:0.4),
                                 blurRadius: 8,
                                 spreadRadius: 2,
                               )
@@ -327,12 +327,12 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
           border: Border.all(
             color: isSelected
                 ? Color(_selectedColor)
-                : Colors.grey.withOpacity(0.3),
+                : Colors.grey.withValues(alpha:0.3),
             width: isSelected ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(12),
           color: isSelected
-              ? Color(_selectedColor).withOpacity(0.1)
+              ? Color(_selectedColor).withValues(alpha:0.1)
               : null,
         ),
         child: Row(
@@ -417,11 +417,11 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
                     shape: BoxShape.circle,
                     color: isSelected
                         ? Color(_selectedColor)
-                        : Colors.grey.withOpacity(0.2),
+                        : Colors.grey.withValues(alpha:0.2),
                     border: Border.all(
                       color: isSelected
                           ? Color(_selectedColor)
-                          : Colors.grey.withOpacity(0.5),
+                          : Colors.grey.withValues(alpha:0.5),
                     ),
                   ),
                   child: Center(
@@ -476,7 +476,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: Color(_selectedColor).withOpacity(0.1),
+                color: Color(_selectedColor).withValues(alpha:0.1),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: Color(_selectedColor)),
               ),
@@ -526,7 +526,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
               onTap: _selectTime,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
-                side: BorderSide(color: Colors.grey.withOpacity(0.3)),
+                side: BorderSide(color: Colors.grey.withValues(alpha:0.3)),
               ),
             ),
           ],

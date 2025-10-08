@@ -107,10 +107,10 @@ class _StatsOverviewState extends State<StatsOverview> {
           margin: const EdgeInsets.symmetric(horizontal: 6),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
-            color: isActive ? activeColor.withOpacity(0.2) : Colors.transparent,
+            color: isActive ? activeColor.withValues(alpha:0.2) : Colors.transparent,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: isActive ? activeColor : AppColors.primary.withOpacity(0.3),
+              color: isActive ? activeColor : AppColors.primary.withValues(alpha:0.3),
               width: 1.5,
             ),
           ),
@@ -148,7 +148,7 @@ class _StatsOverviewState extends State<StatsOverview> {
       margin: const EdgeInsets.all(0),
       color: AppColors.surfaceDark,
       elevation: 6,
-      shadowColor: shadowColor.withOpacity(0.2),
+      shadowColor: shadowColor.withValues(alpha:0.2),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
@@ -157,7 +157,7 @@ class _StatsOverviewState extends State<StatsOverview> {
             end: Alignment.bottomRight,
             colors: [
               AppColors.surfaceDark,
-              gradientColor.withOpacity(0.1),
+              gradientColor.withValues(alpha:0.1),
             ],
           ),
         ),
@@ -172,7 +172,7 @@ class _StatsOverviewState extends State<StatsOverview> {
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: headerIconColor.withOpacity(0.1),
+                        color: headerIconColor.withValues(alpha:0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
@@ -215,7 +215,7 @@ class _StatsOverviewState extends State<StatsOverview> {
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                   decoration: BoxDecoration(
-                    color: _getProgressColor(percentage).withOpacity(0.1),
+                    color: _getProgressColor(percentage).withValues(alpha:0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
@@ -272,7 +272,7 @@ class _StatsOverviewState extends State<StatsOverview> {
                       height: 6,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
-                        color: AppColors.backgroundDark.withOpacity(0.3),
+                        color: AppColors.backgroundDark.withValues(alpha:0.3),
                       ),
                       child: FractionallySizedBox(
                         alignment: Alignment.centerLeft,
@@ -446,7 +446,7 @@ class _StatsOverviewState extends State<StatsOverview> {
             color: AppColors.surfaceDark,
             borderRadius: BorderRadius.circular(6),
             border: Border.all(
-              color: color.withOpacity(0.2),
+              color: color.withValues(alpha:0.2),
               width: 1,
             ),
           ),

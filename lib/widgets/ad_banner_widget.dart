@@ -57,7 +57,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
             color: AppColors.surfaceDark,
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: AppColors.textSecondaryDark.withOpacity(0.1),
+              color: AppColors.textSecondaryDark.withValues(alpha:0.1),
             ),
           ),
           child: ClipRRect(
@@ -84,7 +84,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.primary.withOpacity(0.9),
+                          color: AppColors.primary.withValues(alpha:0.9),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
@@ -142,10 +142,10 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.1),
+                  color: AppColors.primary.withValues(alpha:0.1),
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
-                    color: AppColors.primary.withOpacity(0.3),
+                    color: AppColors.primary.withValues(alpha:0.3),
                   ),
                 ),
                 child: Row(

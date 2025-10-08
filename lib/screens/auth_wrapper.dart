@@ -180,7 +180,7 @@ class _AnonymousUserWrapper extends StatelessWidget {
             left: 0,
             right: 0,
             child: Container(
-              color: Colors.orange.withOpacity(0.9),
+              color: Colors.orange.withValues(alpha:0.9),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: SafeArea(
                 bottom: false,

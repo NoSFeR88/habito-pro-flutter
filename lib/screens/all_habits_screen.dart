@@ -223,8 +223,8 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: habit.isActive
-              ? (isCompletedToday ? AppColors.success : AppColors.primary.withOpacity(0.3))
-              : AppColors.textSecondaryDark.withOpacity(0.3),
+              ? (isCompletedToday ? AppColors.success : AppColors.primary.withValues(alpha:0.3))
+              : AppColors.textSecondaryDark.withValues(alpha:0.3),
         ),
       ),
       child: ListTile(
@@ -233,7 +233,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
           width: 50,
           height: 50,
           decoration: BoxDecoration(
-            color: Color(habit.color).withOpacity(0.2),
+            color: Color(habit.color).withValues(alpha:0.2),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(
@@ -325,7 +325,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha:0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -351,7 +351,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: AppColors.textSecondaryDark.withOpacity(0.1),
+          color: AppColors.textSecondaryDark.withValues(alpha:0.1),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Text(
@@ -369,8 +369,8 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: isCompletedToday
-            ? AppColors.success.withOpacity(0.1)
-            : AppColors.warning.withOpacity(0.1),
+            ? AppColors.success.withValues(alpha:0.1)
+            : AppColors.warning.withValues(alpha:0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(

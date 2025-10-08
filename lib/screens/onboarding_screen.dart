@@ -238,7 +238,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
-                colors: [AppColors.primary, AppColors.primary.withOpacity(0.6)],
+                colors: [AppColors.primary, AppColors.primary.withValues(alpha:0.6)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -307,7 +307,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           width: 40,
           height: 40,
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.2),
+            color: AppColors.primary.withValues(alpha:0.2),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(icon, color: AppColors.primary, size: 20),
@@ -356,9 +356,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: AppColors.error.withOpacity(0.1),
+              color: AppColors.error.withValues(alpha:0.1),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColors.error.withOpacity(0.3)),
+              border: Border.all(color: AppColors.error.withValues(alpha:0.3)),
             ),
             child: Column(
               children: [
@@ -389,9 +389,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: AppColors.success.withOpacity(0.1),
+              color: AppColors.success.withValues(alpha:0.1),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColors.success.withOpacity(0.3)),
+              border: Border.all(color: AppColors.success.withValues(alpha:0.3)),
             ),
             child: Column(
               children: [
@@ -534,7 +534,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           border: Border.all(
                             color: _selectedDays[index]
                               ? AppColors.primary
-                              : AppColors.textSecondaryDark.withOpacity(0.3),
+                              : AppColors.textSecondaryDark.withValues(alpha:0.3),
                           ),
                         ),
                         child: Center(
@@ -593,7 +593,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
-                colors: [AppColors.success, AppColors.success.withOpacity(0.6)],
+                colors: [AppColors.success, AppColors.success.withValues(alpha:0.6)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -637,7 +637,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             decoration: BoxDecoration(
               color: AppColors.surfaceDark,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: AppColors.primary.withOpacity(0.3)),
+              border: Border.all(color: AppColors.primary.withValues(alpha:0.3)),
             ),
             child: Column(
               children: [
@@ -647,7 +647,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.2),
+                        color: AppColors.primary.withValues(alpha:0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(

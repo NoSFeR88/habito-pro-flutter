@@ -204,7 +204,7 @@ class SettingsScreen extends StatelessWidget {
                                   padding: const EdgeInsets.only(bottom: 8),
                                   child: Card(
                                     elevation: isSelected ? 4 : 1,
-                                    color: isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
+                                    color: isSelected ? Theme.of(context).primaryColor.withValues(alpha:0.1) : null,
                                     child: ListTile(
                                       leading: Container(
                                         width: 40,
@@ -337,7 +337,7 @@ class SettingsScreen extends StatelessWidget {
                                 subtitle: Text(
                                   _getLanguageNativeName(locale.languageCode),
                                   style: TextStyle(
-                                    color: isSelected ? Colors.white.withOpacity(0.9) : Theme.of(context).textTheme.bodySmall?.color,
+                                    color: isSelected ? Colors.white.withValues(alpha:0.9) : Theme.of(context).textTheme.bodySmall?.color,
                                     fontSize: 12,
                                   ),
                                 ),

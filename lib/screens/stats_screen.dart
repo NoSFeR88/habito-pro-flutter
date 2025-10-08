@@ -302,6 +302,26 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget _buildWeeklyChart(List<Habit> habits) {
     final weekData = _getWeekData(habits);
 
+    // Calcular minY y maxY dinámicamente para mejor visibilidad
+    double minYValue = 0;
+    double maxYValue = 100;
+
+    if (weekData.isNotEmpty) {
+      final values = weekData.map((spot) => spot.y).toList();
+      final dataMin = values.reduce((a, b) => a < b ? a : b);
+      final dataMax = values.reduce((a, b) => a > b ? a : b);
+
+      // Si todos los valores están en un rango estrecho, ajustar para mejor visibilidad
+      if (dataMax - dataMin < 30 && dataMax > 0) {
+        // Dar margen de 10% arriba y abajo
+        minYValue = (dataMin - 10).clamp(0, 100);
+        maxYValue = (dataMax + 10).clamp(0, 100);
+      }
+    }
+
+    // Calcular interval dinámico
+    final intervalValue = maxYValue - minYValue > 0 ? (maxYValue - minYValue) / 5 : 20;
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(DesignConstants.cardPadding),
@@ -326,7 +346,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 40,
-                        interval: 20,
+                        interval: intervalValue,
                         getTitlesWidget: (value, meta) {
                           if (value != value.toInt()) return const Text('');
                           return Text(
@@ -364,8 +384,8 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                     ),
                   ),
                   borderData: FlBorderData(show: true),
-                  minY: 0,
-                  maxY: 100,
+                  minY: minYValue,
+                  maxY: maxYValue,
                   lineBarsData: [
                     LineChartBarData(
                       spots: weekData,
@@ -685,6 +705,26 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
       );
     }
 
+    // Calcular minY y maxY dinámicamente para mejor visibilidad
+    double minYValue = 0;
+    double maxYValue = 100;
+
+    if (monthlyData.isNotEmpty) {
+      final values = monthlyData.map((spot) => spot.y).toList();
+      final dataMin = values.reduce((a, b) => a < b ? a : b);
+      final dataMax = values.reduce((a, b) => a > b ? a : b);
+
+      // Si todos los valores están en un rango estrecho, ajustar para mejor visibilidad
+      if (dataMax - dataMin < 30 && dataMax > 0) {
+        // Dar margen de 10% arriba y abajo
+        minYValue = (dataMin - 10).clamp(0, 100);
+        maxYValue = (dataMax + 10).clamp(0, 100);
+      }
+    }
+
+    // Calcular interval dinámico
+    final intervalValue = maxYValue - minYValue > 0 ? (maxYValue - minYValue) / 5 : 20;
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(DesignConstants.cardPadding),
@@ -709,7 +749,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 40,
-                        interval: 20,
+                        interval: intervalValue,
                         getTitlesWidget: (value, meta) {
                           if (value != value.toInt()) return const Text('');
                           return Text(
@@ -741,8 +781,8 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                     ),
                   ),
                   borderData: FlBorderData(show: true),
-                  minY: 0,
-                  maxY: 100,
+                  minY: minYValue,
+                  maxY: maxYValue,
                   lineBarsData: [
                     LineChartBarData(
                       spots: monthlyData,

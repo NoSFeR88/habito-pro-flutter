@@ -146,7 +146,7 @@ class _DynamicRitmoLogoState extends State<DynamicRitmoLogo>
                     offset: const Offset(1, 1),
                     blurRadius: 2,
                     color: (widget.color ?? theme.colorScheme.primary)
-                        .withOpacity(0.3),
+                        .withValues(alpha:0.3),
                   ),
                 ],
               ),
@@ -206,10 +206,10 @@ class LogoStyleIndicator extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
+        color: Theme.of(context).colorScheme.surface.withValues(alpha:0.8),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+          color: Theme.of(context).colorScheme.outline.withValues(alpha:0.2),
         ),
       ),
       child: Text(

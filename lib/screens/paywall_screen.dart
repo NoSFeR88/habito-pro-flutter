@@ -32,8 +32,8 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
         'price': '\$3.99',
         'period': AppLocalizations.of(context)!.paywallPerMonth,
         'savings': '',
-        'color': AppColors.primary.withOpacity(0.1),
-        'borderColor': AppColors.primary.withOpacity(0.3),
+        'color': AppColors.primary.withValues(alpha:0.1),
+        'borderColor': AppColors.primary.withValues(alpha:0.3),
       },
       {
         'type': 'annual',
@@ -41,7 +41,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
         'price': '\$29.99',
         'period': AppLocalizations.of(context)!.paywallPerYear,
         'savings': AppLocalizations.of(context)!.paywallDiscount,
-        'color': AppColors.success.withOpacity(0.1),
+        'color': AppColors.success.withValues(alpha:0.1),
         'borderColor': AppColors.success,
         'highlight': true,
       },
@@ -51,7 +51,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
         'price': '\$49.99',
         'period': AppLocalizations.of(context)!.paywallOneTimePayment,
         'savings': AppLocalizations.of(context)!.paywallLimitedOffer,
-        'color': AppColors.warning.withOpacity(0.1),
+        'color': AppColors.warning.withValues(alpha:0.1),
         'borderColor': AppColors.warning,
       },
     ];
@@ -213,7 +213,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                                 gradient: LinearGradient(
                                   colors: [
                                     AppColors.primary,
-                                    AppColors.primary.withOpacity(0.6),
+                                    AppColors.primary.withValues(alpha:0.6),
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -246,10 +246,10 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                               Container(
                                 padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
-                                  color: AppColors.warning.withOpacity(0.1),
+                                  color: AppColors.warning.withValues(alpha:0.1),
                                   borderRadius: BorderRadius.circular(12),
                                   border: Border.all(
-                                    color: AppColors.warning.withOpacity(0.3),
+                                    color: AppColors.warning.withValues(alpha:0.3),
                                   ),
                                 ),
                                 child: Row(
@@ -387,7 +387,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
+                color: AppColors.primary.withValues(alpha:0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(

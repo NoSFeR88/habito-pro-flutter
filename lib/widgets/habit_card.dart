@@ -84,8 +84,8 @@ class HabitCard extends StatelessWidget {
                 height: 56,
                 decoration: BoxDecoration(
                   color: isCompleted
-                      ? habitColor.withOpacity(0.2)
-                      : habitColor.withOpacity(0.1),
+                      ? habitColor.withValues(alpha:0.2)
+                      : habitColor.withValues(alpha:0.1),
                   borderRadius:
                       BorderRadius.circular(DesignConstants.borderRadiusLarge),
                   border: isCompleted
