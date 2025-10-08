@@ -642,8 +642,6 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
   }
 
   void _showHabitLimitDialog() {
-    final premiumProvider = Provider.of<PremiumProvider>(context, listen: false);
-
     showDialog(
       context: context,
       builder: (context) => AlertDialog(

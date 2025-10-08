@@ -4,7 +4,6 @@ import '../generated/l10n/app_localizations.dart';
 import '../providers/habit_provider.dart';
 import '../models/habit.dart';
 import '../core/theme.dart';
-import 'dart:math' as math;
 
 class StatsOverview extends StatefulWidget {
   const StatsOverview({super.key});
@@ -543,7 +542,6 @@ class _StatsOverviewState extends State<StatsOverview> {
       '', AppLocalizations.of(context)!.january, AppLocalizations.of(context)!.february, AppLocalizations.of(context)!.march, AppLocalizations.of(context)!.april, AppLocalizations.of(context)!.may, AppLocalizations.of(context)!.june,
       AppLocalizations.of(context)!.july, AppLocalizations.of(context)!.august, AppLocalizations.of(context)!.september, AppLocalizations.of(context)!.october, AppLocalizations.of(context)!.november, AppLocalizations.of(context)!.december
     ];
-    final days = ['', AppLocalizations.of(context)!.mondayFull, AppLocalizations.of(context)!.tuesdayFull, AppLocalizations.of(context)!.wednesdayFull, AppLocalizations.of(context)!.thursdayFull, AppLocalizations.of(context)!.fridayFull, AppLocalizations.of(context)!.saturdayFull, AppLocalizations.of(context)!.sundayFull];
 
     return AppLocalizations.of(context)!.dateFormat(now.day, months[now.month]);
   }
