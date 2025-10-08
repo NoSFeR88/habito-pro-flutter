@@ -1,0 +1,91 @@
+{
+  "dashboard": {
+    "title": "RITMO Habit Tracker - Development Metrics Dashboard",
+    "repo": "NoSFeR88/habito-pro-flutter",
+    "branch": "master",
+    "telemetry_path": "telemetry/sessions",
+    "refresh_interval_minutes": 5,
+    "timezone": "UTC"
+  },
+  "metrics": {
+    "efficiency": {
+      "target": 8.0,
+      "warning_threshold": 3.0,
+      "unit": "tasks/10k tokens"
+    },
+    "roi": {
+      "baseline_cost_per_task": 15.97,
+      "optimized_cost_per_task": 4.13,
+      "hourly_rate": 50
+    },
+    "phases": [
+      {
+        "id": 1,
+        "name": "Foundation",
+        "status": "completed",
+        "completion": 100
+      },
+      {
+        "id": 2,
+        "name": "Pilot",
+        "status": "completed",
+        "completion": 100
+      },
+      {
+        "id": 3,
+        "name": "Scale",
+        "status": "completed",
+        "completion": 100
+      },
+      {
+        "id": 4,
+        "name": "Optimize",
+        "status": "completed",
+        "completion": 100
+      },
+      {
+        "id": 5,
+        "name": "Automate",
+        "status": "in_progress",
+        "completion": 75
+      }
+    ]
+  },
+  "widgets": [
+    {
+      "id": "efficiency_trend",
+      "title": "Efficiency Trend (Last 30 Sessions)",
+      "type": "line_chart",
+      "data_source": "telemetry/sessions/*.json",
+      "metric": "efficiency"
+    },
+    {
+      "id": "roi_counter",
+      "title": "Total ROI Savings",
+      "type": "counter",
+      "data_source": "calculated",
+      "format": "$X,XXX.XX"
+    },
+    {
+      "id": "phase_progress",
+      "title": "Plan Maestro Progress",
+      "type": "circular_progress",
+      "data_source": "phases",
+      "current_phase": 5
+    },
+    {
+      "id": "top_optimizations",
+      "title": "Top Optimizations",
+      "type": "ranked_list",
+      "data_source": "docs/EFFICIENCY_BEST_PRACTICES.md"
+    }
+  ],
+  "theme": {
+    "primary_color": "#6200EE",
+    "success_color": "#4CAF50",
+    "warning_color": "#FF9800",
+    "danger_color": "#F44336",
+    "background": "#FAFAFA",
+    "card_background": "#FFFFFF"
+  }
+}
