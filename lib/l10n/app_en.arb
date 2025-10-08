@@ -568,5 +568,11 @@
   "bonusPoints": "+{points} bonus points!",
   "weeklyBonusEarned": "Weekly target completed! +10 bonus points",
   "frequencyTypeRequired": "Please select a frequency type",
-  "weeklyTargetRequired": "Please select how many days per week"
+  "weeklyTargetRequired": "Please select how many days per week",
+  "notificationTroubleshootingTitle": "Not receiving notifications?",
+  "notificationTroubleshootingBullet1": "• Verify that notifications are enabled in system settings",
+  "notificationTroubleshootingBullet2": "• Make sure the app has notification permissions",
+  "notificationTroubleshootingBullet3": "• Check that 'Do Not Disturb' mode is off",
+  "notificationTroubleshootingBullet4": "• Try rescheduling notifications with the button above",
+  "errorOccurred": "Error"
 }

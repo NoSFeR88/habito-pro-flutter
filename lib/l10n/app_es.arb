@@ -568,5 +568,11 @@
   "bonusPoints": "¡+{points} puntos bonus!",
   "weeklyBonusEarned": "¡Meta semanal completada! +10 puntos bonus",
   "frequencyTypeRequired": "Por favor selecciona un tipo de frecuencia",
-  "weeklyTargetRequired": "Por favor selecciona cuántos días por semana"
+  "weeklyTargetRequired": "Por favor selecciona cuántos días por semana",
+  "notificationTroubleshootingTitle": "¿No recibes notificaciones?",
+  "notificationTroubleshootingBullet1": "• Verifica que las notificaciones estén activadas en la configuración del sistema",
+  "notificationTroubleshootingBullet2": "• Asegúrate de que la app tenga permisos de notificación",
+  "notificationTroubleshootingBullet3": "• Revisa que no esté en modo 'No molestar'",
+  "notificationTroubleshootingBullet4": "• Intenta reprogramar las notificaciones con el botón de arriba",
+  "errorOccurred": "Error"
 }

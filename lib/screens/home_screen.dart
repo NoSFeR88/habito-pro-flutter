@@ -618,12 +618,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: Text(AppLocalizations.of(context)!.notificationHelp),
-                      content: const Text(
-                        'Si no recibes notificaciones:\n\n'
-                        '• Verifica que las notificaciones estén activadas en la configuración del sistema\n'
-                        '• Asegúrate de que la app no esté en modo "No molestar"\n'
-                        '• Comprueba que los hábitos tengan horarios de recordatorio configurados'
+                      title: Text(AppLocalizations.of(context)!.notificationTroubleshootingTitle),
+                      content: Text(
+                        '${AppLocalizations.of(context)!.notificationTroubleshootingBullet1}\n'
+                        '${AppLocalizations.of(context)!.notificationTroubleshootingBullet2}\n'
+                        '${AppLocalizations.of(context)!.notificationTroubleshootingBullet3}\n'
+                        '${AppLocalizations.of(context)!.notificationTroubleshootingBullet4}'
                       ),
                       actions: [
                         TextButton(

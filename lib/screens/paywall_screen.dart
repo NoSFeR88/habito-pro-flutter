@@ -145,7 +145,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error: $e'),
+            content: Text('${AppLocalizations.of(context)!.errorOccurred}: $e'),
             backgroundColor: AppColors.error,
           ),
         );
