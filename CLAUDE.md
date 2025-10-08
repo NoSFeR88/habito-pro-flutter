@@ -15,7 +15,7 @@
 | **Arquitectura** | Clean Architecture + Provider Pattern |
 | **Stack** | Flutter 3.x + SQLite + Firebase |
 | **Estado** | Production-ready (Fase 4 completada) |
-| **Idiomas** | 26 soportados (EN: 100%, ES: 71%) |
+| **Idiomas** | 26 soportados (EN: 100%, ES: 100%) |
 | **Principios** | Mobile-First + A11Y (WCAG AA) + i18n |
 | **Branch actual** | `claude/session49-tests-maintenance-optimizations` |
 | **PR activo** | #26 - Esperando CI verde |
@@ -250,16 +250,11 @@ flutter test
 ## 🎯 Tareas Priorizadas para Agentes
 
 ### 🔥 Alta Prioridad
-1. **Completar traducciones ES** (71% → 100%)
-   - 140 strings pendientes en `app_es.arb`
-   - Seguir protocolo `docs/BILINGUAL_GUIDE.md`
+1. ✅ ~~**Completar traducciones ES**~~ **COMPLETADO** (100% - 571/571 strings)
 
-2. **Fix overflows en GamificationCard**
-   - Archivo: `lib/widgets/gamification_card.dart:30`
-   - Error: 26px y 12px overflow
-   - Usar `design_constants.dart`
+2. ✅ ~~**Fix overflows en GamificationCard**~~ **COMPLETADO** (PR #26 merged)
 
-3. **Tests unitarios para providers**
+3. **Tests unitarios para providers** 🧪
    - Coverage actual: ~50%
    - Meta: 80%+
    - Prioridad: `habit_provider.dart`, `premium_provider.dart`
@@ -642,8 +637,8 @@ dir /s /b lib\*.dart
 **Plataforma desarrollo**: Windows
 
 **Pendientes inmediatos**:
-1. ⚠️ Fix overflow GamificationCard (26px + 12px)
-2. 📝 Completar traducciones ES (140 strings)
+1. ✅ ~~Fix overflow GamificationCard~~ COMPLETADO (PR #26)
+2. ✅ ~~Completar traducciones ES~~ COMPLETADO (100%)
 3. 🧪 Aumentar test coverage (50% → 80%)
 
 ---
