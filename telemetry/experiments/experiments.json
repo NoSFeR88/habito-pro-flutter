@@ -1,0 +1,173 @@
+{
+  "experiments": [
+    {
+      "experiment_id": "exp-001-workflow-templates",
+      "name": "Workflow Templates vs Manual Development",
+      "description": "Comparar eficiencia usando templates predefinidos vs desarrollo manual",
+      "status": "active",
+      "created_at": "2025-10-08T23:00:00Z",
+      "variants": [
+        {
+          "id": "template",
+          "name": "Using Workflow Template",
+          "description": "Seguir template de WORKFLOW_TEMPLATES.md exactamente",
+          "constraints": {
+            "must_read_template": true,
+            "follow_structure": true,
+            "use_optimized_bootstrap": true
+          }
+        },
+        {
+          "id": "manual",
+          "name": "Manual Development",
+          "description": "Desarrollo sin template, usando intuición y experiencia",
+          "constraints": {
+            "no_template": true,
+            "organic_approach": true
+          }
+        }
+      ],
+      "metrics": [
+        {
+          "name": "tokens_used",
+          "type": "numeric",
+          "unit": "tokens",
+          "target": "minimize"
+        },
+        {
+          "name": "duration_minutes",
+          "type": "numeric",
+          "unit": "minutes",
+          "target": "minimize"
+        },
+        {
+          "name": "quality_score",
+          "type": "numeric",
+          "unit": "0-10",
+          "target": "maximize",
+          "calculation": "tests_passing + code_quality + documentation"
+        },
+        {
+          "name": "bugs_introduced",
+          "type": "numeric",
+          "unit": "count",
+          "target": "minimize"
+        }
+      ],
+      "sample_size": 10,
+      "current_samples": 0,
+      "allocation": "random_50_50"
+    },
+    {
+      "experiment_id": "exp-002-context-caching",
+      "name": "Context Caching vs Full Reload",
+      "description": "Comparar cache warming vs lectura completa en cada sesión",
+      "status": "planned",
+      "created_at": "2025-10-08T23:00:00Z",
+      "variants": [
+        {
+          "id": "cache",
+          "name": "With Context Caching",
+          "description": "Usar context-cache.py warm al inicio",
+          "constraints": {
+            "run_cache_warm": true,
+            "use_cached_reads": true
+          }
+        },
+        {
+          "id": "no_cache",
+          "name": "Full Reload Every Time",
+          "description": "Leer archivos completos sin cache",
+          "constraints": {
+            "no_cache": true,
+            "full_reads": true
+          }
+        }
+      ],
+      "metrics": [
+        {
+          "name": "tokens_used",
+          "type": "numeric",
+          "unit": "tokens",
+          "target": "minimize"
+        },
+        {
+          "name": "startup_time",
+          "type": "numeric",
+          "unit": "seconds",
+          "target": "minimize"
+        },
+        {
+          "name": "context_quality",
+          "type": "numeric",
+          "unit": "0-10",
+          "target": "maximize",
+          "calculation": "relevance + completeness"
+        }
+      ],
+      "sample_size": 10,
+      "current_samples": 0,
+      "allocation": "random_50_50"
+    },
+    {
+      "experiment_id": "exp-003-agent-specialization",
+      "name": "Specialized Agent vs General Purpose",
+      "description": "Comparar agentes especializados vs general-purpose para tareas específicas",
+      "status": "planned",
+      "created_at": "2025-10-08T23:00:00Z",
+      "variants": [
+        {
+          "id": "specialized",
+          "name": "Specialized Agent",
+          "description": "Usar agente especializado para tipo de tarea",
+          "constraints": {
+            "use_smart_router": true,
+            "match_agent_to_task": true
+          }
+        },
+        {
+          "id": "general",
+          "name": "General Purpose Agent",
+          "description": "Usar siempre agente general",
+          "constraints": {
+            "use_general_agent": true
+          }
+        }
+      ],
+      "metrics": [
+        {
+          "name": "success_rate",
+          "type": "percentage",
+          "unit": "%",
+          "target": "maximize"
+        },
+        {
+          "name": "tokens_per_task",
+          "type": "numeric",
+          "unit": "tokens",
+          "target": "minimize"
+        },
+        {
+          "name": "task_completion_time",
+          "type": "numeric",
+          "unit": "minutes",
+          "target": "minimize"
+        }
+      ],
+      "sample_size": 15,
+      "current_samples": 0,
+      "allocation": "random_50_50"
+    }
+  ],
+  "global_settings": {
+    "significance_level": 0.05,
+    "minimum_effect_size": 0.5,
+    "auto_adoption_threshold": {
+      "p_value": 0.01,
+      "effect_size": 0.5,
+      "sample_size_reached": true
+    },
+    "results_directory": "telemetry/experiments/results/",
+    "logging_enabled": true
+  }
+}
