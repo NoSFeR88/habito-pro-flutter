@@ -43,7 +43,7 @@ jobs:
 
       - name: 📊 Upload Gitleaks Results
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: gitleaks-report
           path: results.sarif
@@ -74,7 +74,7 @@ jobs:
           flutter pub outdated --show-all --json > outdated.json || true
 
       - name: 📊 Upload dependency report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dependency-report
           path: outdated.json
@@ -108,7 +108,7 @@ jobs:
           grep -i "error\|warning\|hint" analyze-report.txt > security-issues.txt || echo "No issues found"
 
       - name: 📤 Upload analysis report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: code-quality-report
           path: |
@@ -137,7 +137,7 @@ jobs:
             --enableExperimental
 
       - name: 📊 Upload OWASP report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: owasp-dependency-check-report
           path: reports
@@ -152,7 +152,7 @@ jobs:
 
     steps:
       - name: 📥 Download all artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: 📊 Generate Security Summary
         run: |
