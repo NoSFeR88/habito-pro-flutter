@@ -1,0 +1,11 @@
+# Gitleaks Ignore File
+# Format: commit_sha:file_path:rule_id:line_number
+# See: https://github.com/gitleaks/gitleaks#gitleaksignore
+
+# Claude IDE Cache Files - False Positives
+# These are SHA256 hashes of file paths, not actual secrets
+
+# From commit dc7d131 (Session 53) - file_hashes.json false positives
+dc7d131ec148bf9512511efb43b4ec7b9c168c6a:.claude-ide/chroma_db/file_hashes.json:generic-api-key:10
+dc7d131ec148bf9512511efb43b4ec7b9c168c6a:.claude-ide/chroma_db/file_hashes.json:generic-api-key:21
+dc7d131ec148bf9512511efb43b4ec7b9c168c6a:.claude-ide/chroma_db/file_hashes.json:generic-api-key:32

@@ -1,0 +1,7 @@
+# Telemetry data (local only - not committed)
+sessions/*.json
+tokens/*.json
+
+# Keep directory structure
+!.gitkeep
+!README.md

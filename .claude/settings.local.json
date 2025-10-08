@@ -17,7 +17,12 @@
       "Bash(fi)",
       "Bash(timeout 60 flutter test:*)",
       "Bash(flutter pub outdated:*)",
-      "Bash(flutter pub get:*)"
+      "Bash(flutter pub get:*)",
+      "Bash(powershell:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh run list:*)",
+      "Bash(tee:*)",
+      "Bash(timeout 120 flutter test)"
     ],
     "deny": [],
     "ask": []

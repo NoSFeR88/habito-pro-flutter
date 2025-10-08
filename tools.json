@@ -1,0 +1,363 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "RITMO - Agent-Computer Interface (ACI)",
+  "description": "Formal specification of tools and operations available for Claude Code",
+  "version": "1.0.0",
+  "created": "2025-10-08",
+  "tools": {
+    "flutter": {
+      "test": {
+        "command": "flutter test",
+        "description": "Run all Flutter tests",
+        "args": {
+          "coverage": {
+            "flag": "--coverage",
+            "description": "Generate coverage report",
+            "optional": true
+          },
+          "file": {
+            "flag": "",
+            "description": "Specific test file to run",
+            "optional": true,
+            "example": "test/models/habit_test.dart"
+          }
+        },
+        "output": {
+          "success": "All tests passed",
+          "failure": "X tests failed",
+          "format": "junit"
+        },
+        "validation": {
+          "pre": ["Ensure flutter pub get was run"],
+          "post": ["Verify exit code 0"]
+        }
+      },
+      "analyze": {
+        "command": "flutter analyze",
+        "description": "Run static analysis",
+        "args": {},
+        "output": {
+          "success": "No issues found",
+          "warning": "X warnings found",
+          "error": "X errors found"
+        },
+        "validation": {
+          "post": ["Check against baseline in BASELINE_WARNINGS.md"]
+        }
+      },
+      "gen-l10n": {
+        "command": "flutter gen-l10n",
+        "description": "Regenerate localization files",
+        "args": {},
+        "output": {
+          "success": "Generated X localizations",
+          "location": "lib/generated/l10n/"
+        },
+        "validation": {
+          "pre": ["Verify app_en.arb and app_es.arb are valid JSON"],
+          "post": ["Check generated files exist"]
+        }
+      },
+      "pub-get": {
+        "command": "flutter pub get",
+        "description": "Install dependencies",
+        "args": {},
+        "output": {
+          "success": "Got dependencies",
+          "location": ".dart_tool/"
+        }
+      },
+      "build": {
+        "command": "flutter build apk",
+        "description": "Build Android APK",
+        "args": {
+          "release": {
+            "flag": "--release",
+            "description": "Build release version",
+            "optional": true
+          },
+          "debug": {
+            "flag": "--debug",
+            "description": "Build debug version",
+            "optional": true
+          }
+        },
+        "output": {
+          "success": "APK built successfully",
+          "location": "build/app/outputs/flutter-apk/"
+        },
+        "validation": {
+          "pre": ["Ensure no pending changes", "Run tests first"],
+          "post": ["Verify APK size < 50MB"]
+        }
+      }
+    },
+    "git": {
+      "status": {
+        "command": "git status",
+        "description": "Show working tree status",
+        "args": {},
+        "output": {
+          "format": "text"
+        },
+        "safe": true
+      },
+      "diff": {
+        "command": "git diff",
+        "description": "Show changes",
+        "args": {
+          "staged": {
+            "flag": "--staged",
+            "description": "Show staged changes",
+            "optional": true
+          }
+        },
+        "output": {
+          "format": "diff"
+        },
+        "safe": true
+      },
+      "commit": {
+        "command": "git commit",
+        "description": "Create commit",
+        "args": {
+          "message": {
+            "flag": "-m",
+            "description": "Commit message",
+            "required": true,
+            "validation": "Follow conventional commits format"
+          }
+        },
+        "validation": {
+          "pre": ["Verify tests pass", "Run flutter analyze"],
+          "post": ["Verify commit created"]
+        },
+        "safe": false
+      },
+      "push": {
+        "command": "git push",
+        "description": "Push commits to remote",
+        "args": {},
+        "validation": {
+          "pre": ["Verify CI is green", "Not pushing to main/master directly"],
+          "require_approval": true
+        },
+        "safe": false
+      }
+    },
+    "scripts": {
+      "log-session": {
+        "command": "powershell -File scripts/log-session.ps1",
+        "description": "Log session metrics for telemetry",
+        "args": {
+          "SessionId": {
+            "required": true,
+            "type": "string",
+            "example": "55"
+          },
+          "DurationMinutes": {
+            "required": true,
+            "type": "int",
+            "example": 90
+          },
+          "TasksCompleted": {
+            "required": false,
+            "type": "int",
+            "example": 3
+          },
+          "TotalTokens": {
+            "required": false,
+            "type": "int",
+            "example": 48000
+          },
+          "Notes": {
+            "required": false,
+            "type": "string",
+            "example": "ACI implementation"
+          }
+        },
+        "output": {
+          "location": "telemetry/sessions/session-{id}.json"
+        },
+        "safe": true
+      },
+      "log-tokens": {
+        "command": "powershell -File scripts/log-tokens.ps1",
+        "description": "Log individual operation token usage",
+        "args": {
+          "Operation": {
+            "required": true,
+            "type": "string",
+            "example": "Read habit_provider.dart"
+          },
+          "TokensUsed": {
+            "required": true,
+            "type": "int",
+            "example": 1250
+          },
+          "SessionId": {
+            "required": false,
+            "type": "string",
+            "example": "55"
+          }
+        },
+        "output": {
+          "location": "telemetry/tokens/tokens-{date}.json"
+        },
+        "safe": true
+      },
+      "safe-test": {
+        "command": "powershell -File scripts/safe-test.ps1",
+        "description": "Run tests with safety checks",
+        "args": {},
+        "validation": {
+          "pre": ["Check for pending changes"],
+          "post": ["Verify tests pass"]
+        },
+        "safe": true
+      },
+      "safe-lint": {
+        "command": "powershell -File scripts/safe-lint.ps1",
+        "description": "Run lint with baseline validation",
+        "args": {},
+        "validation": {
+          "post": ["Compare against BASELINE_WARNINGS.md"]
+        },
+        "safe": true
+      }
+    },
+    "github": {
+      "pr-create": {
+        "command": "gh pr create",
+        "description": "Create pull request",
+        "args": {
+          "title": {
+            "flag": "--title",
+            "required": true,
+            "validation": "Follow conventional commits format"
+          },
+          "body": {
+            "flag": "--body",
+            "required": true,
+            "template": ".github/PULL_REQUEST_TEMPLATE.md"
+          }
+        },
+        "validation": {
+          "pre": ["Tests pass", "CI is green", "Telemetry logged"],
+          "post": ["PR number returned"]
+        },
+        "safe": false
+      },
+      "pr-status": {
+        "command": "gh pr status",
+        "description": "Check PR status",
+        "args": {},
+        "safe": true
+      },
+      "pr-checks": {
+        "command": "gh pr checks",
+        "description": "View PR CI checks",
+        "args": {
+          "pr": {
+            "required": true,
+            "type": "int",
+            "example": 26
+          }
+        },
+        "safe": true
+      }
+    }
+  },
+  "policies": {
+    "safe_operations": [
+      "git status",
+      "git diff",
+      "flutter analyze",
+      "flutter test",
+      "gh pr status"
+    ],
+    "require_approval": [
+      "git push",
+      "gh pr create",
+      "flutter build --release"
+    ],
+    "forbidden": [
+      "rm -rf",
+      "git push --force",
+      "flutter clean (without backup)"
+    ]
+  },
+  "workflows": {
+    "create_pr": {
+      "steps": [
+        {
+          "step": 1,
+          "tool": "flutter.test",
+          "required": true
+        },
+        {
+          "step": 2,
+          "tool": "flutter.analyze",
+          "required": true
+        },
+        {
+          "step": 3,
+          "tool": "git.commit",
+          "required": true
+        },
+        {
+          "step": 4,
+          "tool": "scripts.log-session",
+          "required": true
+        },
+        {
+          "step": 5,
+          "tool": "github.pr-create",
+          "required": true
+        }
+      ]
+    },
+    "end_session": {
+      "steps": [
+        {
+          "step": 1,
+          "tool": "scripts.log-session",
+          "required": true
+        },
+        {
+          "step": 2,
+          "action": "Update CONTEXT_LAST_SESSION.md",
+          "required": true
+        },
+        {
+          "step": 3,
+          "action": "Verify all commits pushed",
+          "required": false
+        }
+      ]
+    }
+  },
+  "validation_rules": {
+    "commit_message": {
+      "pattern": "^(feat|fix|docs|style|refactor|perf|test|chore)(\\(.+\\))?: .{1,100}$",
+      "examples": [
+        "feat(telemetry): add session logging",
+        "fix(tests): resolve widget test failures",
+        "docs(readme): update installation steps"
+      ]
+    },
+    "file_changes": {
+      "max_files_per_commit": 10,
+      "excluded_paths": [
+        "firebase_options.dart",
+        "google-services.json",
+        ".env"
+      ]
+    },
+    "pr_requirements": {
+      "min_description_length": 50,
+      "require_telemetry": true,
+      "require_tests": true
+    }
+  }
+}
