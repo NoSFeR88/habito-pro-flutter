@@ -72,37 +72,56 @@ class _HomeScreenState extends State<HomeScreen> {
           changeInterval: Duration(seconds: 8),
         ),
         actions: [
-          IconButton.filledTonal(
-            icon: const Icon(Icons.list_alt),
-            tooltip: 'Gestionar hábitos',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const AllHabitsScreen()),
-              );
-            },
+          Semantics(
+            label: l10n.manageHabits,
+            button: true,
+            child: IconButton.filledTonal(
+              icon: const Icon(Icons.list_alt),
+              tooltip: l10n.manageHabits,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const AllHabitsScreen()),
+                );
+              },
+            ),
           ),
-          IconButton.filledTonal(
-            icon: const Icon(Icons.analytics_outlined),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const StatsScreen()),
-              );
-            },
+          Semantics(
+            label: l10n.statistics,
+            button: true,
+            child: IconButton.filledTonal(
+              icon: const Icon(Icons.analytics_outlined),
+              tooltip: l10n.statistics,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const StatsScreen()),
+                );
+              },
+            ),
           ),
-          IconButton.filledTonal(
-            icon: const Icon(Icons.notifications_outlined),
-            onPressed: () => _showNotificationSettings(context),
+          Semantics(
+            label: l10n.notifications,
+            button: true,
+            child: IconButton.filledTonal(
+              icon: const Icon(Icons.notifications_outlined),
+              tooltip: l10n.notifications,
+              onPressed: () => _showNotificationSettings(context),
+            ),
           ),
-          IconButton.filledTonal(
-            icon: const Icon(Icons.settings_outlined),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const SettingsScreen()),
-              );
-            },
+          Semantics(
+            label: l10n.settings,
+            button: true,
+            child: IconButton.filledTonal(
+              icon: const Icon(Icons.settings_outlined),
+              tooltip: l10n.settings,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                );
+              },
+            ),
           ),
         ],
       ),

@@ -87,31 +87,42 @@ class _StatsOverviewState extends State<StatsOverview> {
         activeColor = AppColors.primary;
     }
 
-    return GestureDetector(
-      onTap: () {
-        _pageController.animateToPage(
-          page,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-        );
-      },
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 6),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: isActive ? activeColor.withOpacity(0.2) : Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: isActive ? activeColor : AppColors.primary.withOpacity(0.3),
-            width: 1.5,
+    final semanticLabel = isActive
+        ? '$label, ${AppLocalizations.of(context)!.active}'
+        : label;
+
+    return Semantics(
+      label: semanticLabel,
+      button: true,
+      selected: isActive,
+      child: GestureDetector(
+        onTap: () {
+          _pageController.animateToPage(
+            page,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
+        },
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: isActive ? activeColor.withOpacity(0.2) : Colors.transparent,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: isActive ? activeColor : AppColors.primary.withOpacity(0.3),
+              width: 1.5,
+            ),
           ),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            color: isActive ? activeColor : AppColors.primary,
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
+          child: ExcludeSemantics(
+            child: Text(
+              label,
+              style: TextStyle(
+                color: isActive ? activeColor : AppColors.primary,
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ),
         ),
       ),
@@ -420,50 +431,61 @@ class _StatsOverviewState extends State<StatsOverview> {
     IconData icon,
     Color color,
   ) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: AppColors.surfaceDark,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(
-          color: color.withOpacity(0.2),
-          width: 1,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: color,
-            size: 16,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Adaptive sizing for very narrow cards
+        final isVeryNarrow = constraints.maxWidth < 100;
+        final cardPadding = isVeryNarrow ? 8.0 : 12.0;
+        final iconSize = isVeryNarrow ? 14.0 : 16.0;
+        final fontSize = isVeryNarrow ? 12.0 : 14.0;
+        final labelFontSize = isVeryNarrow ? 9.0 : 10.0;
+
+        return Container(
+          padding: EdgeInsets.all(cardPadding),
+          decoration: BoxDecoration(
+            color: AppColors.surfaceDark,
+            borderRadius: BorderRadius.circular(6),
+            border: Border.all(
+              color: color.withOpacity(0.2),
+              width: 1,
+            ),
           ),
-          const SizedBox(height: 4),
-          FittedBox(
-            child: Text(
-              value,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
                 color: color,
-                fontSize: 14,
+                size: iconSize,
               ),
-            ),
+              const SizedBox(height: 4),
+              FittedBox(
+                child: Text(
+                  value,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                    fontSize: fontSize,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                label,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.textSecondaryDark,
+                  fontWeight: FontWeight.w500,
+                  fontSize: labelFontSize,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ),
-          const SizedBox(height: 2),
-          Text(
-            label,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textSecondaryDark,
-              fontWeight: FontWeight.w500,
-              fontSize: 10,
-            ),
-            textAlign: TextAlign.center,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
