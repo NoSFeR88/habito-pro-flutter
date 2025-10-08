@@ -1,0 +1,12 @@
+# Gitleaks Ignore File
+# This file contains paths that should be excluded from secrets scanning
+# See: https://github.com/gitleaks/gitleaks#gitleaksignore
+
+# Claude IDE Cache Files
+# These contain SHA256 hashes of file paths, not actual secrets
+.claude-ide/chroma_db/file_hashes.json:*
+.claude-ide/**/*.json:generic-api-key
+
+# Claude IDE Session Files (contain no secrets, just metadata)
+.claude-ide/sessions/**/*.json
+.claude-ide/LAST_SESSION_SUMMARY.md
