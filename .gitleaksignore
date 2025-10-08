@@ -1,12 +1,11 @@
 # Gitleaks Ignore File
-# This file contains paths that should be excluded from secrets scanning
+# Format: commit_sha:file_path:rule_id:line_number
 # See: https://github.com/gitleaks/gitleaks#gitleaksignore
 
-# Claude IDE Cache Files
-# These contain SHA256 hashes of file paths, not actual secrets
-.claude-ide/chroma_db/file_hashes.json:*
-.claude-ide/**/*.json:generic-api-key
+# Claude IDE Cache Files - False Positives
+# These are SHA256 hashes of file paths, not actual secrets
 
-# Claude IDE Session Files (contain no secrets, just metadata)
-.claude-ide/sessions/**/*.json
-.claude-ide/LAST_SESSION_SUMMARY.md
+# From commit dc7d131 (Session 53) - file_hashes.json false positives
+dc7d131ec148bf9512511efb43b4ec7b9c168c6a:.claude-ide/chroma_db/file_hashes.json:generic-api-key:10
+dc7d131ec148bf9512511efb43b4ec7b9c168c6a:.claude-ide/chroma_db/file_hashes.json:generic-api-key:21
+dc7d131ec148bf9512511efb43b4ec7b9c168c6a:.claude-ide/chroma_db/file_hashes.json:generic-api-key:32
