@@ -1,0 +1,34 @@
+{
+  "session_id": "session-20251008-122005",
+  "session_type": "ritmo",
+  "timestamp": "2025-10-08T12:20:05.444264",
+  "project_root": "C:\\Users\\shill\\AppData\\Local\\Android\\Sdk\\Proyectos\\Aplicaciones Play Store\\habito_pro_clean",
+  "context": {
+    "files_open": [],
+    "cursor_positions": {},
+    "last_read_lines": {}
+  },
+  "project_state": {
+    "branch": "claude/session49-tests-maintenance-optimizations",
+    "last_commit": "51a5cc6 fix(tests): Correct import path in habit_provider_test",
+    "uncommitted_changes": true,
+    "git_status": "M .claude/settings.local.json\n?? .claude-ide/\n?? test_results.txt"
+  },
+  "conversation": {
+    "last_task": "",
+    "pending_tasks": [],
+    "decisions_made": [],
+    "todos": []
+  },
+  "principles_versions": {
+    "CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md": "FILE_NOT_FOUND",
+    "CLAUDE.md": "8b7f5d25",
+    "BILINGUAL_GUIDE.md": "d4088a47",
+    "PROJECT_INDEX.md": "c8f838d1"
+  },
+  "tokens_estimated": 0,
+  "metadata": {
+    "created_by": "Claude IDE System",
+    "version": "1.0.0"
+  }
+}

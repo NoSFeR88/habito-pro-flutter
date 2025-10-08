@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-10-08T11:44:38.695451",
+  "target_file": "lib\\main.dart",
+  "analysis": {
+    "lines": 224,
+    "classes": [
+      {
+        "name": "HabitApp",
+        "extends": "StatefulWidget",
+        "implements": null
+      },
+      {
+        "name": "_HabitAppState",
+        "extends": "State",
+        "implements": null
+      }
+    ],
+    "functions": 5,
+    "dependencies": [
+      "package:flutter/material.dart",
+      "package:flutter/services.dart",
+      "package:flutter_localizations/flutter_localizations.dart",
+      "package:provider/provider.dart",
+      "package:firebase_core/firebase_core.dart"
+    ]
+  },
+  "violations": [
+    {
+      "principle": "SRP",
+      "severity": "medium",
+      "description": "Multiple concerns detected: UI Rendering, Validation Logic, State Management",
+      "indicators": [
+        "multiple_concerns"
+      ],
+      "line": 1
+    }
+  ],
+  "refactorings": [
+    {
+      "step": 1,
+      "principle": "SRP",
+      "principle_name": "Single Responsibility Principle",
+      "issue": "Multiple concerns detected: UI Rendering, Validation Logic, State Management",
+      "solutions": [
+        "Extraer responsabilidades a clases separadas",
+        "Aplicar pattern Strategy para comportamientos variables",
+        "Usar Composition over Inheritance"
+      ],
+      "priority": "medium",
+      "estimated_hours": 2
+    }
+  ],
+  "estimated_effort": 2
+}

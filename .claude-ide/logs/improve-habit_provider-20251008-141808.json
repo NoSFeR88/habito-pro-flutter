@@ -1,0 +1,94 @@
+{
+  "file": "lib/providers/habit_provider.dart",
+  "timestamp": "2025-10-08T14:18:08.783585",
+  "diagnostics": {
+    "errors": 0,
+    "warnings": 0,
+    "details": []
+  },
+  "code_smells": {
+    "total": 11,
+    "by_type": {
+      "god_class": 1,
+      "magic_number": 9,
+      "long_line": 1
+    },
+    "details": [
+      {
+        "type": "god_class",
+        "severity": "warning",
+        "line": 7,
+        "message": "Class has ~18 methods (consider splitting)"
+      },
+      {
+        "type": "magic_number",
+        "severity": "warning",
+        "line": 184,
+        "message": "Magic number found: 10 (consider named constant)"
+      },
+      {
+        "type": "magic_number",
+        "severity": "warning",
+        "line": 185,
+        "message": "Magic number found: 10 (consider named constant)"
+      },
+      {
+        "type": "magic_number",
+        "severity": "warning",
+        "line": 201,
+        "message": "Magic number found: 10 (consider named constant)"
+      },
+      {
+        "type": "long_line",
+        "severity": "info",
+        "line": 245,
+        "message": "Line too long (133 chars, recommend <120)"
+      },
+      {
+        "type": "magic_number",
+        "severity": "warning",
+        "line": 304,
+        "message": "Magic number found: 100 (consider named constant)"
+      },
+      {
+        "type": "magic_number",
+        "severity": "warning",
+        "line": 334,
+        "message": "Magic number found: 60 (consider named constant)"
+      },
+      {
+        "type": "magic_number",
+        "severity": "warning",
+        "line": 335,
+        "message": "Magic number found: 60 (consider named constant)"
+      },
+      {
+        "type": "magic_number",
+        "severity": "warning",
+        "line": 336,
+        "message": "Magic number found: 60 (consider named constant)"
+      },
+      {
+        "type": "magic_number",
+        "severity": "warning",
+        "line": 445,
+        "message": "Magic number found: 70 (consider named constant)"
+      }
+    ]
+  },
+  "best_practices": [],
+  "priority_improvements": [
+    {
+      "level": "HIGH",
+      "category": "Architecture",
+      "count": 1,
+      "action": "Consider splitting large classes (SRP violation)"
+    },
+    {
+      "level": "LOW",
+      "category": "Maintainability",
+      "count": 9,
+      "action": "Replace magic numbers with named constants"
+    }
+  ]
+}

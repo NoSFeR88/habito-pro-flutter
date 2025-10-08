@@ -1,0 +1,2180 @@
+{
+  "diagnostics": [
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_ELEMENT",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\providers\\\\theme_provider.dart",
+      "message": "360"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_LOCAL_VARIABLE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "645"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_IMPORT",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "12"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_ELEMENT",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "528"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_IMPORT",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "7"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_LOCAL_VARIABLE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "546"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_ELEMENT",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "602"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_ELEMENT",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "620"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_ELEMENT",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "638"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_LOCAL_VARIABLE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "489"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_LOCAL_VARIABLE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "395"
+    },
+    {
+      "severity": "WARNING",
+      "type": "STATIC_WARNING",
+      "file": "UNUSED_LOCAL_VARIABLE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\widgets\\\\gamification_card_test.dart",
+      "message": "48"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\achievements_screen.dart",
+      "message": "141"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\achievements_screen.dart",
+      "message": "340"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\achievements_screen.dart",
+      "message": "358"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "10"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "99"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "118"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "157"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "158"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "162"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "217"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "330"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "335"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "420"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "424"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "479"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\add_habit_screen.dart",
+      "message": "529"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "12"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "226"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "227"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "236"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "261"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "280"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "287"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "311"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "328"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "354"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "359"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "372"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\all_habits_screen.dart",
+      "message": "373"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\auth_wrapper.dart",
+      "message": "11"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\auth_wrapper.dart",
+      "message": "47"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\auth_wrapper.dart",
+      "message": "157"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\auth_wrapper.dart",
+      "message": "183"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "10"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "175"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "176"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "180"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "235"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "348"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "353"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "438"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "442"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "497"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "547"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "558"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "590"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_BUILD_CONTEXT_SYNCHRONOUSLY",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen.dart",
+      "message": "740"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "10"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "98"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "117"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "155"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "156"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "160"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "214"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "326"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "331"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "416"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "420"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "475"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\edit_habit_screen_backup.dart",
+      "message": "524"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "22"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "70"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "73"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "270"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "381"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "UNNECESSARY_TO_LIST_IN_SPREADS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "430"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "451"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "451"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "457"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "541"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_BUILD_CONTEXT_SYNCHRONOUSLY",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "639"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_BUILD_CONTEXT_SYNCHRONOUSLY",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\home_screen.dart",
+      "message": "641"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\login_screen.dart",
+      "message": "8"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\login_screen.dart",
+      "message": "59"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\login_screen.dart",
+      "message": "74"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\login_screen.dart",
+      "message": "85"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\login_screen.dart",
+      "message": "273"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\login_screen.dart",
+      "message": "317"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\login_screen.dart",
+      "message": "320"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_BUILD_CONTEXT_SYNCHRONOUSLY",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\login_screen.dart",
+      "message": "490"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "10"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "75"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_BUILD_CONTEXT_SYNCHRONOUSLY",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "85"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "141"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "241"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "257"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "269"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "310"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "319"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "335"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "345"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "359"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "361"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "367"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "371"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "381"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "392"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "394"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "398"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_LITERALS_TO_CREATE_IMMUTABLES",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "399"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "400"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "402"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "404"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "414"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "424"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "448"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "458"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "480"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "489"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "492"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "506"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "537"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "564"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "596"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "612"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "624"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "640"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "650"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "653"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "668"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "676"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "712"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\onboarding_screen.dart",
+      "message": "719"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "9"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "35"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "36"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "44"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "54"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "116"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "121"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "128"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "135"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "184"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "189"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "191"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "216"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "234"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "249"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "252"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "257"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "266"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "325"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "390"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "406"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "414"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "422"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "439"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "504"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "552"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\paywall_screen.dart",
+      "message": "560"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\settings_screen.dart",
+      "message": "10"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\settings_screen.dart",
+      "message": "178"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\settings_screen.dart",
+      "message": "207"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\settings_screen.dart",
+      "message": "340"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\settings_screen.dart",
+      "message": "345"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\settings_screen.dart",
+      "message": "425"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\settings_screen.dart",
+      "message": "434"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\settings_screen.dart",
+      "message": "670"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\settings_screen.dart",
+      "message": "672"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\splash_screen.dart",
+      "message": "8"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\splash_screen.dart",
+      "message": "95"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\splash_screen.dart",
+      "message": "120"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\splash_screen.dart",
+      "message": "124"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\splash_screen.dart",
+      "message": "130"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\stats_screen.dart",
+      "message": "40"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\stats_screen.dart",
+      "message": "41"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\stats_screen.dart",
+      "message": "42"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\stats_screen.dart",
+      "message": "1111"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\screens\\\\stats_screen.dart",
+      "message": "1137"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "13"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "60"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "87"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "92"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "120"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "124"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "134"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "145"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "148"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "153"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "158"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "175"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\ad_banner_widget.dart",
+      "message": "207"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\dynamic_ritmo_logo.dart",
+      "message": "33"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\dynamic_ritmo_logo.dart",
+      "message": "40"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\dynamic_ritmo_logo.dart",
+      "message": "47"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\dynamic_ritmo_logo.dart",
+      "message": "54"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\dynamic_ritmo_logo.dart",
+      "message": "61"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\dynamic_ritmo_logo.dart",
+      "message": "149"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\dynamic_ritmo_logo.dart",
+      "message": "209"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\dynamic_ritmo_logo.dart",
+      "message": "212"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\gamification_card.dart",
+      "message": "37"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\gamification_card.dart",
+      "message": "158"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\gamification_card.dart",
+      "message": "346"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\gamification_card.dart",
+      "message": "376"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "USE_SUPER_PARAMETERS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\habit_card.dart",
+      "message": "15"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\habit_card.dart",
+      "message": "87"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\habit_card.dart",
+      "message": "88"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "103"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "106"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "141"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "150"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "165"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "208"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "265"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\lib\\\\widgets\\\\stats_overview.dart",
+      "message": "430"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\achievement_test.dart",
+      "message": "146"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\achievement_test.dart",
+      "message": "177"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\achievement_test.dart",
+      "message": "191"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\achievement_test.dart",
+      "message": "191"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\achievement_test.dart",
+      "message": "205"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\achievement_test.dart",
+      "message": "222"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\achievement_test.dart",
+      "message": "255"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\achievement_test.dart",
+      "message": "255"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "13"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "24"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "40"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "66"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "82"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "101"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "128"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "144"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "163"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "181"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "208"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "233"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "249"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "266"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "283"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "299"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "320"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "378"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "395"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "412"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "429"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "446"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "468"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\models\\\\habit_test.dart",
+      "message": "484"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "48"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "99"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "130"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "142"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "145"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "213"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "243"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "260"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "262"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "283"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "285"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "304"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "306"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "321"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "337"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "339"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "364"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "366"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "388"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "390"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "397"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "413"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "415"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "416"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "419"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "420"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "444"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "446"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "471"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "473"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "500"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "502"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "526"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "528"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "572"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "586"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "603"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "605"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "611"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "633"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "635"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\gamification_provider_test.dart",
+      "message": "642"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "142"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "157"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "172"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "190"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "200"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "201"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "202"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "312"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "350"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "356"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_DECLARATIONS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "411"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\notification_settings_provider_test.dart",
+      "message": "441"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\premium_provider_test.dart",
+      "message": "41"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\premium_provider_test.dart",
+      "message": "59"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\providers\\\\premium_provider_test.dart",
+      "message": "136"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\widget_test.dart",
+      "message": "15"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\widget_test.dart",
+      "message": "16"
+    },
+    {
+      "severity": "INFO",
+      "type": "LINT",
+      "file": "PREFER_CONST_CONSTRUCTORS",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\widget_test.dart",
+      "message": "17"
+    },
+    {
+      "severity": "INFO",
+      "type": "HINT",
+      "file": "DEPRECATED_MEMBER_USE",
+      "line": "C:\\\\Users\\\\shill\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\Proyectos\\\\Aplicaciones Play Store\\\\habito_pro_clean\\\\test\\\\widgets\\\\stats_overview_test.dart",
+      "message": "68"
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 12,
+    "info": 298
+  },
+  "timestamp": "2025-10-08T13:32:36.978992"
+}

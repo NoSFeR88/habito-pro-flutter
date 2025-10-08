@@ -15,7 +15,7 @@
 | **Arquitectura** | Clean Architecture + Provider Pattern |
 | **Stack** | Flutter 3.x + SQLite + Firebase |
 | **Estado** | Production-ready (Fase 4 completada) |
-| **Idiomas** | 26 soportados (EN: 100%, ES: 71%) |
+| **Idiomas** | 26 soportados (EN: 100%, ES: 100%) |
 | **Principios** | Mobile-First + A11Y (WCAG AA) + i18n |
 | **Branch actual** | `claude/session49-tests-maintenance-optimizations` |
 | **PR activo** | #26 - Esperando CI verde |
@@ -121,6 +121,18 @@ flutter test
 
 # Formateo de código
 dart format lib/
+```
+
+### Telemetría (Plan Maestro)
+```powershell
+# Registrar operación individual
+.\scripts\log-tokens.ps1 -Operation "Read habit_provider.dart" -TokensUsed 1250 -SessionId "54"
+
+# Registrar sesión completa
+.\scripts\log-session.ps1 -SessionId "54" -DurationMinutes 120 -TasksCompleted 5 -TotalTokens 45000 -Notes "Descripción de la sesión"
+
+# Ver resumen de sesiones
+Get-Content telemetry\sessions\*.json | ConvertFrom-Json | Select-Object session_id, tokens_used, duration_minutes, tasks_completed | Format-Table
 ```
 
 ---
@@ -250,16 +262,11 @@ flutter test
 ## 🎯 Tareas Priorizadas para Agentes
 
 ### 🔥 Alta Prioridad
-1. **Completar traducciones ES** (71% → 100%)
-   - 140 strings pendientes en `app_es.arb`
-   - Seguir protocolo `docs/BILINGUAL_GUIDE.md`
+1. ✅ ~~**Completar traducciones ES**~~ **COMPLETADO** (100% - 571/571 strings)
 
-2. **Fix overflows en GamificationCard**
-   - Archivo: `lib/widgets/gamification_card.dart:30`
-   - Error: 26px y 12px overflow
-   - Usar `design_constants.dart`
+2. ✅ ~~**Fix overflows en GamificationCard**~~ **COMPLETADO** (PR #26 merged)
 
-3. **Tests unitarios para providers**
+3. **Tests unitarios para providers** 🧪
    - Coverage actual: ~50%
    - Meta: 80%+
    - Prioridad: `habit_provider.dart`, `premium_provider.dart`
@@ -634,17 +641,50 @@ dir /s /b lib\*.dart
 
 ---
 
+## 📊 WORKFLOW DE SESIÓN (PLAN MAESTRO)
+
+### ⚠️ AL FINALIZAR CADA SESIÓN
+
+**IMPORTANTE**: Registrar métricas para tracking de eficiencia:
+
+```powershell
+# 1. Registrar sesión completa
+.\scripts\log-session.ps1 `
+  -SessionId "XX" `
+  -DurationMinutes 90 `
+  -TasksCompleted 3 `
+  -TotalTokens 48000 `
+  -Notes "Descripción breve de lo logrado"
+
+# 2. Actualizar CONTEXT_LAST_SESSION.md con resultados
+
+# 3. Verificar KPIs (opcional)
+Get-ChildItem telemetry\sessions\session-*.json | ForEach-Object {
+    $s = Get-Content $_.FullName | ConvertFrom-Json
+    Write-Host "Sesión $($s.session_id): $($s.tokens_used) tokens, $($s.tasks_completed) tareas"
+}
+```
+
+**Checklist post-sesión**:
+- [ ] Métricas registradas con `log-session.ps1`
+- [ ] `CONTEXT_LAST_SESSION.md` actualizado
+- [ ] Commits pusheados (si aplica)
+- [ ] PR creado/actualizado (si aplica)
+
+---
+
 ## 🎯 Estado Actual del Proyecto
 
-**Fase**: ✅ FASE 4 COMPLETADA (Monetización)
+**Fase**: ✅ FASE 4 COMPLETADA (Monetización) + Fase 1 Plan Maestro COMPLETADA
 **Branch**: master
 **Último commit**: adb19a7 "refactor(ui): Optimize layout spacing"
 **Plataforma desarrollo**: Windows
 
 **Pendientes inmediatos**:
-1. ⚠️ Fix overflow GamificationCard (26px + 12px)
-2. 📝 Completar traducciones ES (140 strings)
-3. 🧪 Aumentar test coverage (50% → 80%)
+1. ✅ ~~Fix overflow GamificationCard~~ COMPLETADO (PR #26)
+2. ✅ ~~Completar traducciones ES~~ COMPLETADO (100%)
+3. ✅ ~~Implementar telemetría~~ COMPLETADO (Sesión 54)
+4. 🔄 ACI Formal + SAST en CI (Sesión 55)
 
 ---
 
