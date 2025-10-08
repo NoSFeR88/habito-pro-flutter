@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ritmo/providers/locale_provider.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   // Setup mock SharedPreferences antes de cada test
   setUp(() {
     SharedPreferences.setMockInitialValues({});

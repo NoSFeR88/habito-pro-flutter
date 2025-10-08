@@ -32,11 +32,17 @@ class PremiumProvider extends ChangeNotifier {
 
       final endDateString = prefs.getString(_subscriptionEndKey);
       if (endDateString != null) {
-        _subscriptionEndDate = DateTime.parse(endDateString);
+        try {
+          _subscriptionEndDate = DateTime.parse(endDateString);
 
-        // Verificar si la suscripción ha expirado
-        if (_subscriptionEndDate!.isBefore(DateTime.now())) {
-          await _revokePremium();
+          // Verificar si la suscripción ha expirado
+          if (_subscriptionEndDate!.isBefore(DateTime.now())) {
+            await _revokePremium();
+          }
+        } catch (e) {
+          // Invalid date format - ignore and continue
+          debugPrint('⚠️ Invalid subscription end date format: $endDateString');
+          _subscriptionEndDate = null;
         }
       }
 
