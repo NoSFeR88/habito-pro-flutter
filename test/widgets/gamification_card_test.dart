@@ -375,12 +375,10 @@ void main() {
       // Verificar que existe Semantics widget
       expect(find.byType(Semantics), findsWidgets);
 
-      // Verificar que el InkWell tiene semantic label
-      final semanticsFinder = find.ancestor(
-        of: find.byType(InkWell),
-        matching: find.byType(Semantics),
-      );
-      expect(semanticsFinder, findsOneWidget);
+      // Verificar que existe al menos un Semantics con label que contiene información relevante
+      final semantics = tester.getSemantics(find.byType(GamificationCard));
+      expect(semantics.label, contains('Apprentice')); // Level title
+      expect(semantics.label, contains('150')); // Points
     });
 
     testWidgets('should be accessible to screen readers', (tester) async {
