@@ -323,7 +323,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Text(AppLocalizations.of(context)!.viewStatistics),
                 onTap: () {
                   Navigator.pop(context);
-                  // TODO: Navegar a estadísticas del hábito
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const StatsScreen(),
+                    ),
+                  );
                 },
               ),
               ListTile(
