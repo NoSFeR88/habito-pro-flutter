@@ -191,14 +191,50 @@ jobs:
       - name: 💬 Comment on PR (if applicable)
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
+        continue-on-error: true
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            const summary = fs.readFileSync(process.env.GITHUB_STEP_SUMMARY, 'utf8');
 
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: summary
-            });
+            // Build summary manually to avoid GITHUB_STEP_SUMMARY format issues
+            let summary = '## 🔒 Security Scan Summary\n\n';
+            summary += `**Workflow Run**: [View Details](${context.payload.repository.html_url}/actions/runs/${context.runId})\n\n`;
+            summary += '### Results:\n\n';
+
+            // Check artifacts (simplified check)
+            try {
+              const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId
+              });
+
+              const hasGitleaksReport = artifacts.data.artifacts.some(a => a.name === 'gitleaks-report');
+              const hasDependencyReport = artifacts.data.artifacts.some(a => a.name === 'dependency-report');
+              const hasCodeQualityReport = artifacts.data.artifacts.some(a => a.name === 'code-quality-report');
+
+              summary += hasGitleaksReport ? '- 🔴 **Secrets Detection**: Check report\n' : '- ✅ **No Secrets Detected**\n';
+              summary += hasDependencyReport ? '- ⚠️ **Dependencies**: Check report\n' : '- ✅ **Dependencies OK**\n';
+              summary += hasCodeQualityReport ? '- ⚠️ **Code Quality**: Check report\n' : '- ✅ **Code Quality OK**\n';
+
+            } catch (error) {
+              console.log('Error fetching artifacts:', error.message);
+              summary += '- ℹ️ **Status**: Security scans completed, check workflow run for details\n';
+            }
+
+            summary += '\n**Recommendation**: Review security scan artifacts before merging.\n';
+
+            // Create comment
+            try {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: summary
+              });
+              console.log('Comment posted successfully');
+            } catch (error) {
+              console.error('Failed to post comment:', error.message);
+              core.warning(`Could not post PR comment: ${error.message}`);
+            }
