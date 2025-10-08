@@ -1898,4 +1898,26 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get weeklyTargetRequired => 'Please select how many days per week';
+
+  @override
+  String get notificationTroubleshootingTitle => 'Not receiving notifications?';
+
+  @override
+  String get notificationTroubleshootingBullet1 =>
+      '• Verify that notifications are enabled in system settings';
+
+  @override
+  String get notificationTroubleshootingBullet2 =>
+      '• Make sure the app has notification permissions';
+
+  @override
+  String get notificationTroubleshootingBullet3 =>
+      '• Check that \'Do Not Disturb\' mode is off';
+
+  @override
+  String get notificationTroubleshootingBullet4 =>
+      '• Try rescheduling notifications with the button above';
+
+  @override
+  String get errorOccurred => 'Error';
 }

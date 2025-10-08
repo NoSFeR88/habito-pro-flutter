@@ -512,7 +512,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "bn": [
@@ -1028,7 +1034,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "cs": [
@@ -1544,7 +1556,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "da": [
@@ -2060,7 +2078,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "de": [
@@ -2576,7 +2600,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "fi": [
@@ -3092,7 +3122,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "fr": [
@@ -3608,7 +3644,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "hi": [
@@ -4124,7 +4166,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "id": [
@@ -4640,7 +4688,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "it": [
@@ -5156,7 +5210,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "ja": [
@@ -5672,7 +5732,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "ko": [
@@ -6188,7 +6254,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "nl": [
@@ -6704,7 +6776,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "no": [
@@ -7220,7 +7298,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "pl": [
@@ -7736,7 +7820,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "pt": [
@@ -8252,7 +8342,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "ro": [
@@ -8768,7 +8864,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "ru": [
@@ -9284,7 +9386,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "sv": [
@@ -9800,7 +9908,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "th": [
@@ -10316,7 +10430,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "tl": [
@@ -10832,7 +10952,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "tr": [
@@ -11348,7 +11474,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "vi": [
@@ -11864,7 +11996,13 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ],
 
   "zh": [
@@ -12380,6 +12518,12 @@
     "bonusPoints",
     "weeklyBonusEarned",
     "frequencyTypeRequired",
-    "weeklyTargetRequired"
+    "weeklyTargetRequired",
+    "notificationTroubleshootingTitle",
+    "notificationTroubleshootingBullet1",
+    "notificationTroubleshootingBullet2",
+    "notificationTroubleshootingBullet3",
+    "notificationTroubleshootingBullet4",
+    "errorOccurred"
   ]
 }

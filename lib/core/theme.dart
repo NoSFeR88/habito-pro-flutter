@@ -48,7 +48,11 @@ class AppTheme {
       secondary: AppColors.secondary,
       tertiary: AppColors.accent,
       surface: AppColors.surface,
-      surfaceContainerHighest: AppColors.surfaceVariant, // Migrado de surfaceVariant
+      surfaceContainerHighest: AppColors.surfaceVariant,
+      surfaceContainerHigh: Color(0xFFF5F5F5), // Nivel intermedio alto
+      surfaceContainer: Color(0xFFEFEFEF), // Nivel intermedio
+      surfaceContainerLow: Color(0xFFE8E8E8), // Nivel bajo
+      surfaceContainerLowest: Color(0xFFE0E0E0), // Nivel más bajo
       error: AppColors.error,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
@@ -98,6 +102,11 @@ class AppTheme {
       secondary: AppColors.secondary,
       tertiary: AppColors.accent,
       surface: AppColors.surfaceDark,
+      surfaceContainerHighest: Color(0xFF4A4A6C), // Nivel más alto (más claro)
+      surfaceContainerHigh: Color(0xFF444465), // Nivel intermedio alto
+      surfaceContainer: Color(0xFF3E3E5E), // Nivel intermedio
+      surfaceContainerLow: Color(0xFF383857), // Nivel bajo
+      surfaceContainerLowest: Color(0xFF323250), // Nivel más bajo (más oscuro)
       error: AppColors.error,
       onPrimary: Colors.white,
       onSecondary: Colors.white,

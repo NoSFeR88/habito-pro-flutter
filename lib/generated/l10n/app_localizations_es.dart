@@ -1916,4 +1916,26 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get weeklyTargetRequired =>
       'Por favor selecciona cuántos días por semana';
+
+  @override
+  String get notificationTroubleshootingTitle => '¿No recibes notificaciones?';
+
+  @override
+  String get notificationTroubleshootingBullet1 =>
+      '• Verifica que las notificaciones estén activadas en la configuración del sistema';
+
+  @override
+  String get notificationTroubleshootingBullet2 =>
+      '• Asegúrate de que la app tenga permisos de notificación';
+
+  @override
+  String get notificationTroubleshootingBullet3 =>
+      '• Revisa que no esté en modo \'No molestar\'';
+
+  @override
+  String get notificationTroubleshootingBullet4 =>
+      '• Intenta reprogramar las notificaciones con el botón de arriba';
+
+  @override
+  String get errorOccurred => 'Error';
 }

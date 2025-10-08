@@ -3548,6 +3548,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please select how many days per week'**
   String get weeklyTargetRequired;
+
+  /// No description provided for @notificationTroubleshootingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Not receiving notifications?'**
+  String get notificationTroubleshootingTitle;
+
+  /// No description provided for @notificationTroubleshootingBullet1.
+  ///
+  /// In en, this message translates to:
+  /// **'• Verify that notifications are enabled in system settings'**
+  String get notificationTroubleshootingBullet1;
+
+  /// No description provided for @notificationTroubleshootingBullet2.
+  ///
+  /// In en, this message translates to:
+  /// **'• Make sure the app has notification permissions'**
+  String get notificationTroubleshootingBullet2;
+
+  /// No description provided for @notificationTroubleshootingBullet3.
+  ///
+  /// In en, this message translates to:
+  /// **'• Check that \'Do Not Disturb\' mode is off'**
+  String get notificationTroubleshootingBullet3;
+
+  /// No description provided for @notificationTroubleshootingBullet4.
+  ///
+  /// In en, this message translates to:
+  /// **'• Try rescheduling notifications with the button above'**
+  String get notificationTroubleshootingBullet4;
+
+  /// No description provided for @errorOccurred.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get errorOccurred;
 }
 
 class _AppLocalizationsDelegate
