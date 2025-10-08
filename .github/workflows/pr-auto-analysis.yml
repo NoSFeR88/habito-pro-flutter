@@ -1,0 +1,134 @@
+name: PR Auto-Analysis
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch base branch
+        run: |
+          git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run PR analysis
+        id: analysis
+        env:
+          BASE_BRANCH: origin/${{ github.base_ref }}
+          HEAD_BRANCH: HEAD
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          python scripts/analyze-pr.py
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const prNumber = context.payload.pull_request.number;
+
+            // Read analysis JSON
+            let analysis;
+            try {
+              const analysisPath = `.automation/pr-analysis/pr-${prNumber}.json`;
+              const analysisData = fs.readFileSync(analysisPath, 'utf8');
+              analysis = JSON.parse(analysisData);
+            } catch (error) {
+              console.log('Could not read analysis file:', error);
+              return;
+            }
+
+            // Format comment
+            const complexity = analysis.complexity;
+            const tokens = analysis.estimated_tokens;
+            const duration = analysis.estimated_duration_minutes;
+            const filesChanged = analysis.diff.files_changed;
+            const insertions = analysis.diff.insertions;
+            const deletions = analysis.diff.deletions;
+            const totalChanges = analysis.diff.total_changes;
+
+            const complexityEmojis = {
+              'simple': '🟢',
+              'moderate': '🟡',
+              'complex': '🟠',
+              'very_complex': '🔴'
+            };
+            const emoji = complexityEmojis[complexity] || '⚪';
+
+            let comment = '## 🤖 PR Auto-Analysis Report\n\n';
+            comment += '### 📊 Summary\n\n';
+            comment += `- **Complexity**: ${emoji} ${complexity.toUpperCase()}\n`;
+            comment += `- **Files Changed**: ${filesChanged}\n`;
+            comment += `- **Lines Changed**: +${insertions} -${deletions} (total: ${totalChanges})\n`;
+            comment += `- **Estimated Tokens**: ~${tokens.toLocaleString()}\n`;
+            comment += `- **Estimated Duration**: ~${duration} minutes\n`;
+            comment += `- **Efficiency Target**: ${(1 / (tokens / 10000)).toFixed(1)} tasks/10k tokens\n\n`;
+
+            comment += '### 💡 Recommendations\n\n';
+            analysis.recommendations.forEach((rec, i) => {
+              comment += `${i + 1}. ${rec}\n`;
+            });
+
+            comment += '\n### 📚 Resources\n\n';
+            comment += '- [Workflow Templates](docs/WORKFLOW_TEMPLATES.md)\n';
+            comment += '- [Efficiency Best Practices](docs/EFFICIENCY_BEST_PRACTICES.md)\n';
+            comment += '- [Quick Start Guide](docs/QUICK_START_OPTIMIZED.md)\n';
+
+            const now = new Date().toISOString();
+            comment += `\n---\n*Analysis generated at ${now}*\n`;
+
+            // Find existing comment
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+
+            const botComment = comments.data.find(c =>
+              c.user.type === 'Bot' && c.body.includes('PR Auto-Analysis Report')
+            );
+
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+              console.log('Updated existing analysis comment');
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: comment
+              });
+              console.log('Created new analysis comment');
+            }
+
+      - name: Generate summary
+        run: |
+          echo "## 🤖 PR Analysis Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Analysis has been posted as a comment on the PR." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "View analysis: ${{ github.event.pull_request.html_url }}" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,209 @@
+name: Coverage Auto-Report
+
+on:
+  pull_request:
+    branches: [master, main]
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Run tests with coverage
+        run: |
+          flutter test --coverage --coverage-path=coverage/lcov.info
+
+      - name: Parse coverage
+        id: coverage
+        run: |
+          if [ ! -f coverage/lcov.info ]; then
+            echo "coverage_percent=0" >> $GITHUB_OUTPUT
+            echo "lines_covered=0" >> $GITHUB_OUTPUT
+            echo "lines_total=0" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Calculate coverage using lcov
+          sudo apt-get update && sudo apt-get install -y lcov
+
+          # Generate summary
+          lcov --summary coverage/lcov.info > coverage_summary.txt 2>&1 || true
+
+          # Extract coverage percentage
+          COVERAGE=$(grep -oP 'lines......: \K[0-9.]+' coverage_summary.txt | head -1 || echo "0")
+          LINES_COVERED=$(grep -oP 'lines......: [0-9]+ of \K[0-9]+' coverage_summary.txt | head -1 || echo "0")
+          LINES_TOTAL=$(grep -oP 'lines......: [0-9]+ of [0-9]+ \(\K[0-9.]+' coverage_summary.txt | head -1 || echo "0")
+
+          echo "coverage_percent=$COVERAGE" >> $GITHUB_OUTPUT
+          echo "lines_covered=$LINES_COVERED" >> $GITHUB_OUTPUT
+          echo "lines_total=$LINES_TOTAL" >> $GITHUB_OUTPUT
+
+          # Determine status
+          if (( $(echo "$COVERAGE >= 80" | bc -l) )); then
+            echo "status=excellent" >> $GITHUB_OUTPUT
+            echo "emoji=🟢" >> $GITHUB_OUTPUT
+          elif (( $(echo "$COVERAGE >= 70" | bc -l) )); then
+            echo "status=good" >> $GITHUB_OUTPUT
+            echo "emoji=🟡" >> $GITHUB_OUTPUT
+          elif (( $(echo "$COVERAGE >= 50" | bc -l) )); then
+            echo "status=acceptable" >> $GITHUB_OUTPUT
+            echo "emoji=🟠" >> $GITHUB_OUTPUT
+          else
+            echo "status=needs_improvement" >> $GITHUB_OUTPUT
+            echo "emoji=🔴" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate coverage badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GITHUB_TOKEN }}
+          gistID: ${{ secrets.COVERAGE_GIST_ID || 'none' }}
+          filename: ritmo-coverage.json
+          label: Coverage
+          message: ${{ steps.coverage.outputs.coverage_percent }}%
+          color: |
+            ${{
+              steps.coverage.outputs.status == 'excellent' && 'brightgreen' ||
+              steps.coverage.outputs.status == 'good' && 'yellow' ||
+              steps.coverage.outputs.status == 'acceptable' && 'orange' ||
+              'red'
+            }}
+        continue-on-error: true
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const coverage = parseFloat('${{ steps.coverage.outputs.coverage_percent }}');
+            const linesCovered = '${{ steps.coverage.outputs.lines_covered }}';
+            const linesTotal = '${{ steps.coverage.outputs.lines_total }}';
+            const status = '${{ steps.coverage.outputs.status }}';
+            const emoji = '${{ steps.coverage.outputs.emoji }}';
+
+            const statusMessages = {
+              'excellent': 'Excellent coverage! 🎉',
+              'good': 'Good coverage 👍',
+              'acceptable': 'Acceptable coverage ⚠️',
+              'needs_improvement': 'Coverage needs improvement ❌'
+            };
+
+            let comment = `## ${emoji} Code Coverage Report\n\n`;
+            comment += `**Overall Coverage**: ${coverage.toFixed(1)}%\n`;
+            comment += `**Lines Covered**: ${linesCovered} / ${linesTotal}\n`;
+            comment += `**Status**: ${statusMessages[status]}\n\n`;
+
+            // Coverage thresholds
+            comment += '### 📊 Thresholds\n\n';
+            comment += '| Level | Range | Status |\n';
+            comment += '|-------|-------|--------|\n';
+            comment += `| 🟢 Excellent | ≥ 80% | ${coverage >= 80 ? '✅' : ''} |\n`;
+            comment += `| 🟡 Good | 70-79% | ${coverage >= 70 && coverage < 80 ? '✅' : ''} |\n`;
+            comment += `| 🟠 Acceptable | 50-69% | ${coverage >= 50 && coverage < 70 ? '✅' : ''} |\n`;
+            comment += `| 🔴 Needs Work | < 50% | ${coverage < 50 ? '✅' : ''} |\n\n`;
+
+            // Recommendations based on status
+            if (status === 'needs_improvement' || status === 'acceptable') {
+              comment += '### 💡 Recommendations\n\n';
+              comment += '- Add tests for uncovered code paths\n';
+              comment += '- Focus on critical business logic first\n';
+              comment += '- See [Testing Strategy](docs/TESTING_STRATEGY.md) for guidelines\n\n';
+            }
+
+            // Coverage details
+            comment += '### 📁 Coverage by File\n\n';
+            comment += 'Run `flutter test --coverage` locally to see detailed coverage by file.\n\n';
+
+            comment += '---\n';
+            comment += '*Coverage report generated by GitHub Actions*\n';
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number
+            });
+
+            const botComment = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('Code Coverage Report')
+            );
+
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: comment
+              });
+            }
+
+      - name: Upload coverage to artifacts
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 30
+
+      - name: Generate summary
+        run: |
+          echo "## 📊 Coverage Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Coverage**: ${{ steps.coverage.outputs.coverage_percent }}%" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ${{ steps.coverage.outputs.emoji }} ${{ steps.coverage.outputs.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Lines**: ${{ steps.coverage.outputs.lines_covered }} / ${{ steps.coverage.outputs.lines_total }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ steps.coverage.outputs.status }}" == "excellent" ]; then
+            echo "✅ Excellent! Coverage meets high standards." >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ steps.coverage.outputs.status }}" == "good" ]; then
+            echo "👍 Good coverage. Consider adding more tests for critical paths." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Coverage below recommended threshold. Please add tests." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Check coverage threshold
+        if: github.event_name == 'pull_request'
+        run: |
+          COVERAGE=${{ steps.coverage.outputs.coverage_percent }}
+
+          # Set minimum threshold (70%)
+          THRESHOLD=70
+
+          if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
+            echo "❌ Coverage $COVERAGE% is below threshold of $THRESHOLD%"
+            echo "::warning::Coverage $COVERAGE% is below recommended threshold of $THRESHOLD%"
+            # Don't fail the build, just warn
+            exit 0
+          else
+            echo "✅ Coverage $COVERAGE% meets threshold of $THRESHOLD%"
+          fi

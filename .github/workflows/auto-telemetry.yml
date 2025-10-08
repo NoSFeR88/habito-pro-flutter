@@ -1,0 +1,92 @@
+name: Auto-Telemetry
+
+on:
+  workflow_run:
+    workflows: ["Flutter CI", "Security Scan"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  log-ci-session:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Calculate metrics
+        id: metrics
+        run: |
+          # Calculate workflow duration
+          WORKFLOW_ID="${{ github.event.workflow_run.id }}"
+          DURATION=$(((${{ github.event.workflow_run.updated_at }} - ${{ github.event.workflow_run.created_at }}) / 1000))
+
+          # Estimate tokens (rough approximation based on changed files)
+          FILES_CHANGED=$(git diff --name-only HEAD~1 HEAD 2>/dev/null | wc -l || echo "0")
+          ESTIMATED_TOKENS=$((FILES_CHANGED * 500))
+
+          # Count tasks (commits in this workflow run)
+          TASKS_COMPLETED=$(git log --oneline --since="1 hour ago" | wc -l || echo "1")
+
+          echo "duration=$DURATION" >> $GITHUB_OUTPUT
+          echo "tokens=$ESTIMATED_TOKENS" >> $GITHUB_OUTPUT
+          echo "tasks=$TASKS_COMPLETED" >> $GITHUB_OUTPUT
+          echo "workflow_name=${{ github.event.workflow_run.name }}" >> $GITHUB_OUTPUT
+
+      - name: Create telemetry file
+        run: |
+          SESSION_ID="ci-${{ github.run_number }}"
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          mkdir -p telemetry/ci-sessions
+
+          cat > telemetry/ci-sessions/session-${SESSION_ID}.json << EOF
+          {
+            "session_id": "${SESSION_ID}",
+            "type": "ci_workflow",
+            "workflow_name": "${{ steps.metrics.outputs.workflow_name }}",
+            "timestamp": "${TIMESTAMP}",
+            "duration_seconds": ${{ steps.metrics.outputs.duration }},
+            "estimated_tokens": ${{ steps.metrics.outputs.tokens }},
+            "tasks_completed": ${{ steps.metrics.outputs.tasks }},
+            "efficiency": $(echo "scale=2; ${{ steps.metrics.outputs.tasks }} * 10000 / ${{ steps.metrics.outputs.tokens }}" | bc || echo "0"),
+            "branch": "${{ github.ref_name }}",
+            "commit_sha": "${{ github.sha }}",
+            "triggered_by": "${{ github.actor }}",
+            "status": "${{ github.event.workflow_run.conclusion }}",
+            "metadata": {
+              "run_id": "${{ github.run_id }}",
+              "run_number": "${{ github.run_number }}",
+              "repository": "${{ github.repository }}"
+            }
+          }
+          EOF
+
+      - name: Commit telemetry data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add telemetry/ci-sessions/*.json
+          git commit -m "ci: Add telemetry for workflow run #${{ github.run_number }}" || echo "No changes to commit"
+          git push || echo "Nothing to push"
+
+      - name: Generate summary
+        run: |
+          echo "## 📊 CI Telemetry Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Session ID**: ci-${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Workflow**: ${{ steps.metrics.outputs.workflow_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Duration**: ${{ steps.metrics.outputs.duration }}s" >> $GITHUB_STEP_SUMMARY
+          echo "- **Estimated Tokens**: ${{ steps.metrics.outputs.tokens }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Tasks**: ${{ steps.metrics.outputs.tasks }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ${{ github.event.workflow_run.conclusion }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Telemetry logged to \`telemetry/ci-sessions/session-ci-${{ github.run_number }}.json\`" >> $GITHUB_STEP_SUMMARY
