@@ -1,0 +1,34 @@
+{
+  "file": "lib/models/habit.dart",
+  "function": "calculateStreak",
+  "structure": {
+    "classes": [
+      "Habit",
+      "HabitIcons"
+    ],
+    "functions": [],
+    "imports": [
+      "dart:convert",
+      "package:flutter/material.dart"
+    ]
+  },
+  "code_snippet": "  int calculateStreak() {\n    if (frequencyType == FrequencyType.weekly) {\n      return _calculateWeeklyStreak();\n    } else {\n      return _calculateDailyStreak();\n    }\n  }",
+  "related_context": [
+    {
+      "file": "lib\\providers\\gamification_provider.dart",
+      "relevance": "47%",
+      "snippet": "  int _calculateLongestStreak() {\n    // This would be calculated from actual habit data\n    return 0; // Placeholder\n  }\n"
+    },
+    {
+      "file": "lib\\providers\\gamification_provider.dart",
+      "relevance": "36%",
+      "snippet": "  int _calculateHabitStreak(Habit habit) {\n    // Usar el m\u00e9todo mejorado del modelo Habit\n    return habit.calculateStreak();\n  }\n"
+    },
+    {
+      "file": "lib\\providers\\gamification_provider.dart",
+      "relevance": "31%",
+      "snippet": "  int _calculateTotalCompletions() {\n    // This would be calculated from actual habit data\n    return 0; // Placeholder\n  }\n\n  double _calculateAverageCompletion() {\n    // This would be calculated f"
+    }
+  ],
+  "prompt_for_claude": "Please explain this code:\n\n**File**: lib/models/habit.dart\n**Function**: calculateStreak\n\n**Code**:\n```dart\n  int calculateStreak() {\n    if (frequencyType == FrequencyType.weekly) {\n      return _calculateWeeklyStreak();\n    } else {\n      return _calculateDailyStreak();\n    }\n  }\n```\n\n**Related Context** (from RAG search):\n- lib\\providers\\gamification_provider.dart:   int _calculateLongestStreak() {\n    // This would be calculated from actual habit data\n    return 0; // Placeholder\n  }\n...\n- lib\\providers\\gamification_provider.dart:   int _calculateHabitStreak(Habit habit) {\n    // Usar el m\u00e9todo mejorado del modelo Habit\n    return habit.calculateStreak();\n  }\n...\n- lib\\providers\\gamification_provider.dart:   int _calculateTotalCompletions() {\n    // This would be calculated from actual habit data\n    return 0; // Placeholder\n  }\n\n  double _calculateAvera...\n\n**File Structure**:\n- Classes: Habit, HabitIcons\n- Key functions: \n\nPlease provide:\n1. High-level purpose\n2. Key logic explanation\n3. Dependencies and relationships\n4. Potential issues or improvements\n"
+}

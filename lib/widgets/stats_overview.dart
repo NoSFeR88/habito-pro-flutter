@@ -599,60 +599,6 @@ class _StatsOverviewState extends State<StatsOverview> {
     return Icons.rocket_launch_rounded;
   }
 
-  String _getMotivationalMessage(int percentage) {
-    if (percentage == 100) {
-      return AppLocalizations.of(context)!.motivationPerfectDay;
-    } else if (percentage >= 90) {
-      return AppLocalizations.of(context)!.motivationAlmostPerfect;
-    } else if (percentage >= 70) {
-      return AppLocalizations.of(context)!.motivationExcellentDay;
-    } else if (percentage >= 50) {
-      return AppLocalizations.of(context)!.motivationGoodProgress;
-    } else if (percentage >= 30) {
-      return AppLocalizations.of(context)!.motivationStarted;
-    } else if (percentage > 0) {
-      return AppLocalizations.of(context)!.motivationFirstStep;
-    } else {
-      return AppLocalizations.of(context)!.motivationYourMoment;
-    }
-  }
-
-  String _getWeeklyMotivationalMessage(int percentage) {
-    if (percentage == 100) {
-      return AppLocalizations.of(context)!.motivationPerfectWeek;
-    } else if (percentage >= 90) {
-      return AppLocalizations.of(context)!.motivationBrutalWeek;
-    } else if (percentage >= 70) {
-      return AppLocalizations.of(context)!.motivationGreatWeek;
-    } else if (percentage >= 50) {
-      return AppLocalizations.of(context)!.motivationGoodRhythm;
-    } else if (percentage >= 30) {
-      return AppLocalizations.of(context)!.motivationProgressing;
-    } else if (percentage > 0) {
-      return AppLocalizations.of(context)!.motivationStartedWeek;
-    } else {
-      return AppLocalizations.of(context)!.motivationNewWeek;
-    }
-  }
-
-  String _getMonthlyMotivationalMessage(int percentage) {
-    if (percentage == 100) {
-      return AppLocalizations.of(context)!.motivationLegendaryMonth;
-    } else if (percentage >= 90) {
-      return AppLocalizations.of(context)!.motivationEpicMonth;
-    } else if (percentage >= 70) {
-      return AppLocalizations.of(context)!.motivationSolidMonth;
-    } else if (percentage >= 50) {
-      return '¡Buen mes! 📊\nVas progresando.\n¡Sigue mejorando!';
-    } else if (percentage >= 30) {
-      return '¡Construyendo! 🏗️\nCada mes cuenta.\n¡Pa\'lante!';
-    } else if (percentage > 0) {
-      return '¡Semillas plantadas! 🌱\nYa comenzaste.\n¡Crecerás!';
-    } else {
-      return '¡Nuevo mes! 🚀\nInfinitas posibilidades.\n¡Hazlo tuyo!';
-    }
-  }
-
   String _getShortMotivationalMessage(BuildContext context, int percentage) {
     if (percentage == 100) {
       return AppLocalizations.of(context)!.motivationPerfectShort;

@@ -1,21 +1,23 @@
 {
   "permissions": {
     "allow": [
-      "Bash(Select-String -Pattern \"(PASSED|FAILED|ERROR|✓|✗|All tests passed)\" -Context 2)",
-      "Bash(Select-String -Pattern \"(warning|error|info)\")",
-      "Bash(Select-Object -First 30)",
-      "Read(//c/Users/shill/AppData/Local/Android/Sdk/Proyectos/**)",
-      "Read(//c/Users/shill/AppData/Local/Android/Sdk/Proyectos/doc/**)",
-      "WebSearch",
-      "Bash(python:*)",
-      "Bash(Get-ChildItem -Path \"C:\\Users\\shill\\AppData\\Local\\Android\\Sdk\\Proyectos\" -Recurse -Filter \"remember.py\")",
-      "Bash(Select-Object -First 5 FullName)",
-      "Bash(tree:*)",
-      "Bash(Select-Object -First 100)",
-      "Bash(Get-ChildItem -Recurse -Directory -Depth 2)",
-      "Bash(Select-Object FullName)",
-      "Bash(Format-List)",
-      "Bash(cat:*)"
+      "Bash(git checkout:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(Select-String -Pattern \"FAILED|Error|Exception\" -Context 2)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr:*)",
+      "Bash(Get-Content app_es.arb)",
+      "Bash(Select-String '\"\"\"\": \"\"\"\"\"\"\"\"')",
+      "Bash(Measure-Object -Line)",
+      "Bash(flutter test:*)",
+      "Bash(if [ -f coverage/lcov.info ])",
+      "Bash(then grep -E '^(SF:|DA:)' coverage/lcov.info)",
+      "Bash(awk:*)",
+      "Bash(else echo \"Coverage file not found\")",
+      "Bash(fi)",
+      "Bash(timeout 60 flutter test:*)",
+      "Bash(flutter pub outdated:*)",
+      "Bash(flutter pub get:*)"
     ],
     "deny": [],
     "ask": []

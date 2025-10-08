@@ -357,29 +357,6 @@ class ThemeProvider with ChangeNotifier {
     }
   }
 
-  Color _getSchemeColor(AppColorScheme scheme) {
-    switch (scheme) {
-      case AppColorScheme.blue:
-        return const Color(0xFF2196F3); // Material Blue
-      case AppColorScheme.green:
-        return const Color(0xFF4CAF50); // Material Green
-      case AppColorScheme.purple:
-        return const Color(0xFF9C27B0); // Material Purple
-      case AppColorScheme.executiveMinimalist:
-        return const Color(0xFF3498db); // Professional Blue
-      case AppColorScheme.neonCyber:
-        return const Color(0xFF00ffff); // Electric Cyan
-      case AppColorScheme.auroraInspiration:
-        return const Color(0xFF8a2be2); // Cosmic Purple
-      case AppColorScheme.zenGarden:
-        return const Color(0xFF87ceeb); // Sage Green
-      case AppColorScheme.glassmorphism:
-        return const Color(0xFF4c83ff); // Vivid Blue
-      case AppColorScheme.neumorphism:
-        return const Color(0xFF667eea); // Soft Purple
-    }
-  }
-
   String getColorSchemeName(AppColorScheme scheme, BuildContext context) {
     switch (scheme) {
       // Free themes

@@ -1,0 +1,20 @@
+{
+  "file": "lib\\models\\habit.dart",
+  "classes": [
+    {
+      "name": "Habit",
+      "extends": null,
+      "implements": []
+    },
+    {
+      "name": "HabitIcons",
+      "extends": null,
+      "implements": []
+    }
+  ],
+  "functions": [],
+  "imports": [
+    "dart:convert",
+    "package:flutter/material.dart"
+  ]
+}

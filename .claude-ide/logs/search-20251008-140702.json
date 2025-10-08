@@ -1,0 +1,93 @@
+{
+  "query": "habit streak calculation",
+  "collection": "both",
+  "top_k": 5,
+  "results": [
+    {
+      "id": "lib\\screens\\stats_screen.dart::chunk_24",
+      "file": "lib\\screens\\stats_screen.dart",
+      "chunk": "  int _calculateCurrentStreak(Habit habit) {\n    final now = DateTime.now();\n    int streak = 0;\n\n    for (int i = 0; i < 30; i++) {\n      final day = now.subtract(Duration(days: i));\n      final dayStr = day.toDateString();\n\n      if (habit.frequency.contains(day.weekday)) {\n        if (habit.completions[dayStr] ?? false) {\n          streak++;\n        } else {\n          break;\n        }\n      }\n    }\n\n    return streak;\n  }\n",
+      "score": 0.744647204875946,
+      "metadata": {
+        "indexed_at": "2025-10-08T14:03:23.389772",
+        "start_line": 1028,
+        "file": "lib\\screens\\stats_screen.dart",
+        "type": "code",
+        "language": "dart",
+        "chunk_index": 24,
+        "end_line": 1048,
+        "entity": "_calculateCurrentStreak"
+      },
+      "collection": "code"
+    },
+    {
+      "id": "lib\\providers\\gamification_provider.dart::chunk_7",
+      "file": "lib\\providers\\gamification_provider.dart",
+      "chunk": "  int _calculateLongestStreakFromHabits(List<Habit> habits) {\n    int longestStreak = 0;\n    for (final habit in habits) {\n      final streak = _calculateHabitStreak(habit);\n      if (streak > longestStreak) {\n        longestStreak = streak;\n      }\n    }\n    return longestStreak;\n  }\n",
+      "score": 0.6816758513450623,
+      "metadata": {
+        "language": "dart",
+        "type": "code",
+        "start_line": 258,
+        "file": "lib\\providers\\gamification_provider.dart",
+        "chunk_index": 7,
+        "entity": "_calculateLongestStreakFromHabits",
+        "indexed_at": "2025-10-08T14:03:02.581717",
+        "end_line": 269
+      },
+      "collection": "code"
+    },
+    {
+      "id": "lib\\providers\\habit_provider.dart::chunk_9",
+      "file": "lib\\providers\\habit_provider.dart",
+      "chunk": "  int getHabitCompletionCount(String habitId) {\n    try {\n      // TODO: Implementar con base de datos cuando est\u00e9 disponible\n      // Por ahora retornamos un valor simulado basado en el h\u00e1bito\n      final habit = _habits.firstWhere((h) => h.id == habitId);\n      // Simulamos bas\u00e1ndonos en cu\u00e1nto tiempo ha existido el h\u00e1bito\n      final daysSinceCreation = DateTime.now().difference(habit.createdAt).inDays;\n      return (daysSinceCreation * 0.7).round(); // Simula 70% de completaci\u00f3n\n    } catch (e) {\n      return 0;\n    }\n  }\n\n  // Obtener la racha actual de un h\u00e1bito",
+      "score": 0.6214731335639954,
+      "metadata": {
+        "start_line": 437,
+        "language": "dart",
+        "chunk_index": 9,
+        "entity": "getHabitCompletionCount",
+        "type": "code",
+        "end_line": 451,
+        "indexed_at": "2025-10-08T14:03:03.796377",
+        "file": "lib\\providers\\habit_provider.dart"
+      },
+      "collection": "code"
+    },
+    {
+      "id": "lib\\providers\\gamification_provider.dart::chunk_9",
+      "file": "lib\\providers\\gamification_provider.dart",
+      "chunk": "  int _calculateHabitStreak(Habit habit) {\n    // Usar el m\u00e9todo mejorado del modelo Habit\n    return habit.calculateStreak();\n  }\n",
+      "score": 0.5938584804534912,
+      "metadata": {
+        "entity": "_calculateHabitStreak",
+        "start_line": 277,
+        "file": "lib\\providers\\gamification_provider.dart",
+        "end_line": 282,
+        "language": "dart",
+        "type": "code",
+        "indexed_at": "2025-10-08T14:03:02.680904",
+        "chunk_index": 9
+      },
+      "collection": "code"
+    },
+    {
+      "id": "lib\\providers\\gamification_provider.dart::chunk_5",
+      "file": "lib\\providers\\gamification_provider.dart",
+      "chunk": "  int _calculateLongestStreak() {\n    // This would be calculated from actual habit data\n    return 0; // Placeholder\n  }\n",
+      "score": 0.5793620347976685,
+      "metadata": {
+        "end_line": 248,
+        "entity": "_calculateLongestStreak",
+        "start_line": 243,
+        "type": "code",
+        "indexed_at": "2025-10-08T14:03:02.468415",
+        "chunk_index": 5,
+        "language": "dart",
+        "file": "lib\\providers\\gamification_provider.dart"
+      },
+      "collection": "code"
+    }
+  ],
+  "timestamp": "2025-10-08T14:07:02.621038"
+}
