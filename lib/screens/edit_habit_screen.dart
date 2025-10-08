@@ -96,6 +96,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildBasicInfo() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -145,6 +146,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildIconSelection() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -198,6 +200,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildColorSelection() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -255,6 +258,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildFrequencySelection() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -519,6 +523,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
 
   Widget _buildReminderTime() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -702,8 +707,12 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(AppLocalizations.of(context)!.deleteHabitTitle),
-          content: Text(
-            AppLocalizations.of(context)!.confirmDeleteHabitMessage(widget.habit.name),
+          content: ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 280),
+            child: Text(
+              AppLocalizations.of(context)!.confirmDeleteHabitMessage(widget.habit.name),
+              style: const TextStyle(height: 1.4),
+            ),
           ),
           actions: [
             TextButton(

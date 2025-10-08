@@ -398,63 +398,6 @@ class HabitProvider extends ChangeNotifier {
     }
   }
 
-  // Crear hábitos de ejemplo (ahora persistente)
-  Future<void> _createSampleHabits() async {
-    final sampleHabits = [
-      Habit(
-        id: 'sample1',
-        name: 'Beber agua',
-        description: '8 vasos al día',
-        icon: Icons.local_drink,
-        color: 0xFF00D2D3,
-        frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: const TimeOfDay(hour: 9, minute: 0),
-        createdAt: DateTime.now().subtract(const Duration(days: 7)),
-        completions: {
-          DateTime.now().subtract(const Duration(days: 1)).toDateString(): true,
-          DateTime.now().subtract(const Duration(days: 2)).toDateString(): true,
-        },
-        streak: 2,
-      ),
-      Habit(
-        id: 'sample2',
-        name: 'Ejercicio',
-        description: '30 min diarios',
-        icon: Icons.fitness_center,
-        color: 0xFF00B894,
-        frequency: [1, 3, 5],
-        reminderTime: const TimeOfDay(hour: 7, minute: 0),
-        createdAt: DateTime.now().subtract(const Duration(days: 5)),
-        completions: {},
-        streak: 0,
-      ),
-      Habit(
-        id: 'sample3',
-        name: 'Leer',
-        description: '20 páginas',
-        icon: Icons.book,
-        color: 0xFF6C5CE7,
-        frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: const TimeOfDay(hour: 22, minute: 0),
-        createdAt: DateTime.now().subtract(const Duration(days: 3)),
-        completions: {
-          DateTime.now().toDateString(): true,
-        },
-        streak: 1,
-      ),
-    ];
-
-    // Guardar cada hábito en la base de datos
-    for (final habit in sampleHabits) {
-      try {
-        await _databaseHelper.insertHabit(habit);
-        _habits.add(habit);
-      } catch (e) {
-        print('Error inserting example habit ${habit.name}: $e');
-      }
-    }
-    notifyListeners();
-  }
 
   // Método para limpiar todos los datos (útil para testing)
   Future<void> clearAllData() async {
@@ -477,7 +420,7 @@ class HabitProvider extends ChangeNotifier {
         await _notificationService.scheduleHabitReminder(habit);
       }
     } catch (e) {
-      print('Notification scheduling error: $e');
+      debugPrint('Notification scheduling error: $e');
     }
   }
 

@@ -1672,8 +1672,14 @@ class AppLocalizationsTh extends AppLocalizations {
   String get rhythmMasterAchievement => 'Rhythm Master';
 
   @override
-  String streakFormat(Object streak) {
-    return '$streak days';
+  String streakFormat(num streak) {
+    String _temp0 = intl.Intl.pluralLogic(
+      streak,
+      locale: localeName,
+      other: '$streak days',
+      one: '1 day',
+    );
+    return '$_temp0';
   }
 
   @override

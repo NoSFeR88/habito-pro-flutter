@@ -120,14 +120,14 @@ class HabitApp extends StatefulWidget {
   final NotificationSettingsProvider notificationSettingsProvider;
 
   const HabitApp({
-    Key? key,
+    super.key,
     required this.localeProvider,
     required this.onboardingProvider,
     required this.premiumProvider,
     required this.themeProvider,
     required this.gamificationProvider,
     required this.notificationSettingsProvider,
-  }) : super(key: key);
+  });
 
   @override
   State<HabitApp> createState() => _HabitAppState();

@@ -78,6 +78,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
 
   Widget _buildBasicInfo() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -127,6 +128,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
 
   Widget _buildIconSelection() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -180,6 +182,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
 
   Widget _buildColorSelection() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -237,6 +240,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
 
   Widget _buildFrequencySelection() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -501,6 +505,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
 
   Widget _buildReminderTime() {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

@@ -40,6 +40,7 @@ class AchievementsScreen extends StatelessWidget {
 
   Widget _buildPlayerStats(BuildContext context, GameStats stats, AppLocalizations l10n) {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -159,6 +160,7 @@ class AchievementsScreen extends StatelessWidget {
     final stats = provider.gameStats;
 
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -296,6 +298,7 @@ class AchievementsScreen extends StatelessWidget {
 
   Widget _buildAchievementCard(BuildContext context, Achievement achievement, bool isUnlocked) {
     return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       margin: const EdgeInsets.only(bottom: 8),
       child: Padding(
         padding: const EdgeInsets.all(12),

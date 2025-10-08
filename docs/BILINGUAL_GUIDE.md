@@ -1,5 +1,8 @@
 # 🌍 GUÍA COMPLETA BILINGÜE - RITMO APP
 
+**Versión**: 1.0.0
+**Última actualización**: 2025-09-29
+
 ## ✅ ESTADO ACTUAL
 **FECHA**: 2025-09-29
 **PROGRESO**: 266 → 140 strings sin traducir (**47% MEJORA**)

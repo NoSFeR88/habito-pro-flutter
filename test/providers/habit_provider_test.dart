@@ -42,6 +42,8 @@ Habit createTestHabit({
 // ============================================================================
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   late HabitProvider provider;
   late GamificationProvider gamificationProvider;
 

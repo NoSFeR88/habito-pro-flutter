@@ -22,6 +22,24 @@ class DesignConstants {
   static const double statCardIconSize = 32.0;
   static const double habitIconSize = 24.0;
 
+  // Touch Targets (WCAG AA compliance - Material 3)
+  static const double minTouchTarget = 48.0;
+  static const double iconButtonSize = 24.0;
+
+  // Border Radius (Material 3 design tokens)
+  static const double borderRadiusSmall = 8.0;
+  static const double borderRadiusMedium = 12.0;  // Same as cardBorderRadius
+  static const double borderRadiusLarge = 16.0;
+
+  // Spacing Scale (Material 3 - 4/8pt system)
+  static const double space4 = 4.0;   // Micro
+  static const double space8 = 8.0;   // Small
+  static const double space12 = 12.0; // Medium
+  static const double space16 = 16.0; // Default (same as paddingScreen)
+  static const double space24 = 24.0; // Large (same as spacingBetweenSections)
+  static const double space32 = 32.0; // XL
+  static const double space48 = 48.0; // XXL / Touch targets
+
   // StatsOverview (Today/Week/Month tabs)
   static const double statsOverviewCardPadding = 8.0;
   static const double statsOverviewHeaderIconPadding = 8.0;

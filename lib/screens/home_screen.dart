@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           changeInterval: Duration(seconds: 8),
         ),
         actions: [
-          IconButton(
+          IconButton.filledTonal(
             icon: const Icon(Icons.list_alt),
             tooltip: 'Gestionar hábitos',
             onPressed: () {
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          IconButton(
+          IconButton.filledTonal(
             icon: const Icon(Icons.analytics_outlined),
             onPressed: () {
               Navigator.push(
@@ -92,11 +92,11 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          IconButton(
+          IconButton.filledTonal(
             icon: const Icon(Icons.notifications_outlined),
             onPressed: () => _showNotificationSettings(context),
           ),
-          IconButton(
+          IconButton.filledTonal(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () {
               Navigator.push(
@@ -425,6 +425,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     habit: habit,
                     onTap: () => _toggleHabit(context, habit.id),
                     onLongPress: () => _showHabitOptions(context, habit),
+                    useOpenContainer: true,
                   ),
                 )).toList(),
 
@@ -498,6 +499,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             habit: habit,
                             onTap: () => _toggleHabit(context, habit.id),
                             onLongPress: () => _showHabitOptions(context, habit),
+                            useOpenContainer: true,
                           );
                         },
                       )
@@ -512,6 +514,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               habit: habit,
                               onTap: () => _toggleHabit(context, habit.id),
                               onLongPress: () => _showHabitOptions(context, habit),
+                              useOpenContainer: true,
                             ),
                           );
                         },

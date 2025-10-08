@@ -438,7 +438,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       physics: const BouncingScrollPhysics(),
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height - 200,
+          minHeight: MediaQuery.sizeOf(context).height - 200,
         ),
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -580,7 +580,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       physics: const BouncingScrollPhysics(),
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height - 200,
+          minHeight: MediaQuery.sizeOf(context).height - 200,
         ),
         child: Padding(
           padding: const EdgeInsets.all(24.0),

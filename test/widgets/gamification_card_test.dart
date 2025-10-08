@@ -351,6 +351,82 @@ void main() {
     });
   });
 
+  group('GamificationCard - Accessibility (Semantics)', () {
+    testWidgets('should have semantic label with level, points, and achievements', (tester) async {
+      final provider = createMockProvider(
+        totalPoints: 150,
+        unlockedAchievements: [
+          Achievement(
+            id: '1',
+            name: 'Test',
+            description: 'Test',
+            icon: Icons.star,
+            color: Colors.blue,
+            type: AchievementType.milestone,
+            targetValue: 1,
+            points: 10,
+            isUnlocked: true,
+          ),
+        ],
+      );
+
+      await tester.pumpWidget(createTestWidget(provider));
+
+      // Verificar que existe Semantics widget
+      expect(find.byType(Semantics), findsWidgets);
+
+      // Verificar que existe al menos un Semantics con label que contiene información relevante
+      final semantics = tester.getSemantics(find.byType(GamificationCard));
+      expect(semantics.label, contains('Apprentice')); // Level title
+      expect(semantics.label, contains('150')); // Points
+    });
+
+    testWidgets('should be accessible to screen readers', (tester) async {
+      final provider = createMockProvider(totalPoints: 200);
+
+      await tester.pumpWidget(createTestWidget(provider));
+
+      // Verificar que el card es accesible (tiene Semantics)
+      expect(find.byType(Semantics), findsWidgets);
+    });
+
+    testWidgets('should have proper semantic structure for stats', (tester) async {
+      final provider = createMockProvider(
+        totalPoints: 250,
+        unlockedAchievements: [
+          Achievement(
+            id: '1',
+            name: 'First',
+            description: 'First',
+            icon: Icons.star,
+            color: Colors.blue,
+            type: AchievementType.milestone,
+            targetValue: 1,
+            points: 10,
+            isUnlocked: true,
+          ),
+          Achievement(
+            id: '2',
+            name: 'Second',
+            description: 'Second',
+            icon: Icons.star,
+            color: Colors.blue,
+            type: AchievementType.milestone,
+            targetValue: 1,
+            points: 10,
+            isUnlocked: true,
+          ),
+        ],
+      );
+
+      await tester.pumpWidget(createTestWidget(provider));
+
+      // Verificar estructura semántica
+      expect(find.byType(Card), findsOneWidget);
+      expect(find.byType(Semantics), findsWidgets);
+    });
+  });
+
   group('AchievementUnlockedDialog - Interactions', () {
     testWidgets('should close dialog when button tapped', (tester) async {
       final achievement = Achievement(
