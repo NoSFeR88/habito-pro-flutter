@@ -7,7 +7,9 @@ import '../generated/l10n/app_localizations.dart';
 import '../core/design_constants.dart';
 
 class StatsScreen extends StatefulWidget {
-  const StatsScreen({super.key});
+  final String? habitId; // Filtro opcional por hábito específico
+
+  const StatsScreen({super.key, this.habitId});
 
   @override
   State<StatsScreen> createState() => _StatsScreenState();
@@ -31,26 +33,52 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.statistics),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: [
-            Tab(icon: Icon(Icons.today), text: AppLocalizations.of(context)!.today),
-            Tab(icon: Icon(Icons.show_chart), text: AppLocalizations.of(context)!.week),
-            Tab(icon: Icon(Icons.trending_up), text: AppLocalizations.of(context)!.trends),
-          ],
-        ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          _buildTodayTab(),
-          _buildWeeklyTab(),
-          _buildTrendsTab(),
-        ],
-      ),
+    return Consumer<HabitProvider>(
+      builder: (context, habitProvider, child) {
+        // Obtener el nombre del hábito si se está filtrando
+        String title = AppLocalizations.of(context)!.statistics;
+        if (widget.habitId != null) {
+          final habit = habitProvider.habits.firstWhere(
+            (h) => h.id == widget.habitId,
+            orElse: () => habitProvider.habits.first,
+          );
+          title = habit.name;
+        }
+
+        return Scaffold(
+          appBar: AppBar(
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title),
+                if (widget.habitId != null)
+                  Text(
+                    AppLocalizations.of(context)!.statistics,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                    ),
+                  ),
+              ],
+            ),
+            bottom: TabBar(
+              controller: _tabController,
+              tabs: [
+                Tab(icon: Icon(Icons.today), text: AppLocalizations.of(context)!.today),
+                Tab(icon: Icon(Icons.show_chart), text: AppLocalizations.of(context)!.week),
+                Tab(icon: Icon(Icons.trending_up), text: AppLocalizations.of(context)!.trends),
+              ],
+            ),
+          ),
+          body: TabBarView(
+            controller: _tabController,
+            children: [
+              _buildTodayTab(),
+              _buildWeeklyTab(),
+              _buildTrendsTab(),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -58,7 +86,13 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
     return Consumer<HabitProvider>(
       builder: (context, habitProvider, child) {
         final stats = habitProvider.getStats();
-        final habitsToday = habitProvider.habitsForToday;
+        var habitsToday = habitProvider.habitsForToday;
+
+        // Filtrar por habitId si está presente
+        if (widget.habitId != null) {
+          habitsToday = habitsToday.where((h) => h.id == widget.habitId).toList();
+        }
+
         final completedToday = habitsToday.where((h) => h.isCompletedToday).length;
         final totalToday = habitsToday.length;
 
@@ -148,7 +182,15 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget _buildCompletionChart(int completed, int total) {
     final pending = total - completed;
 
+    // Colores con mejor contraste y visibilidad
+    final completedColor = const Color(0xFF4CAF50); // Green 500 - más brillante
+    final pendingColor = const Color(0xFFFF9800); // Orange 500 - más visible que grey
+    final shadowColor = Theme.of(context).brightness == Brightness.dark
+        ? Colors.black.withValues(alpha: 0.3)
+        : Colors.grey.withValues(alpha: 0.15);
+
     return Card(
+      elevation: 2,
       child: Padding(
         padding: const EdgeInsets.all(DesignConstants.cardPadding),
         child: Column(
@@ -162,46 +204,137 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
             ),
             const SizedBox(height: 24),
             SizedBox(
-              height: 140,
+              height: 160,
               child: total > 0 ? PieChart(
                 PieChartData(
                   sections: [
                     PieChartSectionData(
                       value: completed.toDouble(),
                       title: '$completed\n${AppLocalizations.of(context)!.completedCount}',
-                      color: Colors.green,
-                      radius: 55,
+                      color: completedColor,
+                      radius: 60,
                       titleStyle: const TextStyle(
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            offset: Offset(1, 1),
+                            blurRadius: 2,
+                            color: Colors.black38,
+                          ),
+                        ],
                       ),
-                      titlePositionPercentageOffset: 0.55,
+                      titlePositionPercentageOffset: 0.6,
+                      badgeWidget: completed > 0 ? Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: shadowColor,
+                              blurRadius: 4,
+                            ),
+                          ],
+                        ),
+                        child: Icon(
+                          Icons.check_circle,
+                          color: completedColor,
+                          size: 20,
+                        ),
+                      ) : null,
+                      badgePositionPercentageOffset: 0.95,
                     ),
                     PieChartSectionData(
                       value: pending.toDouble(),
                       title: '$pending\n${AppLocalizations.of(context)!.pendingCount}',
-                      color: Colors.grey[400]!,
-                      radius: 55,
+                      color: pendingColor,
+                      radius: 60,
                       titleStyle: const TextStyle(
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            offset: Offset(1, 1),
+                            blurRadius: 2,
+                            color: Colors.black38,
+                          ),
+                        ],
                       ),
-                      titlePositionPercentageOffset: 0.55,
+                      titlePositionPercentageOffset: 0.6,
+                      badgeWidget: pending > 0 ? Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: shadowColor,
+                              blurRadius: 4,
+                            ),
+                          ],
+                        ),
+                        child: Icon(
+                          Icons.pending,
+                          color: pendingColor,
+                          size: 20,
+                        ),
+                      ) : null,
+                      badgePositionPercentageOffset: 0.95,
                     ),
                   ],
-                  sectionsSpace: 2,
-                  centerSpaceRadius: 30,
+                  sectionsSpace: 3,
+                  centerSpaceRadius: 35,
+                  pieTouchData: PieTouchData(
+                    touchCallback: (FlTouchEvent event, pieTouchResponse) {},
+                    enabled: true,
+                  ),
                 ),
               ) : Center(
                 child: Text(AppLocalizations.of(context)!.noHabitsToShow),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
+            // Leyenda mejorada
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildChartLegendItem(completedColor, AppLocalizations.of(context)!.completed),
+                const SizedBox(width: 24),
+                _buildChartLegendItem(pendingColor, AppLocalizations.of(context)!.pending),
+              ],
+            ),
+            const SizedBox(height: 8),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildChartLegendItem(Color color, String label) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 16,
+          height: 16,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(4),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+            color: Theme.of(context).textTheme.bodyMedium?.color,
+          ),
+        ),
+      ],
     );
   }
 
@@ -283,15 +416,29 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget _buildWeeklyTab() {
     return Consumer<HabitProvider>(
       builder: (context, habitProvider, child) {
+        // Filtrar hábitos si habitId está presente
+        var habits = habitProvider.habits;
+
+        if (widget.habitId != null) {
+          habits = habits.where((h) => h.id == widget.habitId).toList();
+        }
+
+        // habitsForWeek es List<Map<String, dynamic>>, usado para la lista semanal
+        // Si hay filtro por habitId, filtramos también habitsForWeek por el ID del habit
+        var habitsForWeek = habitProvider.habitsForWeek;
+        if (widget.habitId != null) {
+          habitsForWeek = habitsForWeek.where((h) => h['id'] == widget.habitId).toList();
+        }
+
         return SingleChildScrollView(
           padding: const EdgeInsets.all(DesignConstants.paddingScreen),
           child: Column(
             children: [
-              _buildWeeklyChart(habitProvider.habits),
+              _buildWeeklyChart(habits),
               const SizedBox(height: DesignConstants.spacingBetweenSections),
-              _buildWeeklyHeatmap(habitProvider.habits),
+              _buildWeeklyHeatmap(habits),
               const SizedBox(height: DesignConstants.spacingBetweenSections),
-              _buildWeeklyHabitsList(habitProvider.habitsForWeek),
+              _buildWeeklyHabitsList(habitsForWeek),
             ],
           ),
         );
@@ -320,7 +467,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
     }
 
     // Calcular interval dinámico
-    final intervalValue = maxYValue - minYValue > 0 ? (maxYValue - minYValue) / 5 : 20;
+    final intervalValue = maxYValue - minYValue > 0 ? (maxYValue - minYValue) / 5 : 20.0;
 
     return Card(
       child: Padding(
@@ -340,7 +487,24 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
               padding: const EdgeInsets.only(bottom: 16, right: 8),
               child: LineChart(
                 LineChartData(
-                  gridData: const FlGridData(show: true),
+                  gridData: FlGridData(
+                    show: true,
+                    drawVerticalLine: true,
+                    horizontalInterval: 25,
+                    verticalInterval: 1,
+                    getDrawingHorizontalLine: (value) {
+                      return FlLine(
+                        color: Theme.of(context).dividerColor.withValues(alpha: 0.3),
+                        strokeWidth: 1,
+                      );
+                    },
+                    getDrawingVerticalLine: (value) {
+                      return FlLine(
+                        color: Theme.of(context).dividerColor.withValues(alpha: 0.2),
+                        strokeWidth: 1,
+                      );
+                    },
+                  ),
                   titlesData: FlTitlesData(
                     leftTitles: AxisTitles(
                       sideTitles: SideTitles(
@@ -351,7 +515,11 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                           if (value != value.toInt()) return const Text('');
                           return Text(
                             '${value.toInt()}%',
-                            style: const TextStyle(fontSize: DesignConstants.chartLabelFontSize),
+                            style: TextStyle(
+                              fontSize: DesignConstants.chartLabelFontSize,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).textTheme.bodySmall?.color,
+                            ),
                           );
                         },
                       ),
@@ -372,7 +540,14 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                             AppLocalizations.of(context)!.dayShortSat,
                             AppLocalizations.of(context)!.dayShortSun,
                           ];
-                          return Text(days[value.toInt() % 7]);
+                          return Text(
+                            days[value.toInt() % 7],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 11,
+                              color: Theme.of(context).textTheme.bodySmall?.color,
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -383,33 +558,81 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       sideTitles: SideTitles(showTitles: false),
                     ),
                   ),
-                  borderData: FlBorderData(show: true),
+                  borderData: FlBorderData(
+                    show: true,
+                    border: Border.all(
+                      color: Theme.of(context).dividerColor.withValues(alpha: 0.5),
+                    ),
+                  ),
                   minY: minYValue,
                   maxY: maxYValue,
                   lineBarsData: [
                     LineChartBarData(
                       spots: weekData,
                       isCurved: true,
-                      color: Theme.of(context).primaryColor,
-                      barWidth: 3,
+                      curveSmoothness: 0.35,
+                      color: const Color(0xFF2196F3), // Blue 500 - consistente y vibrante
+                      barWidth: 4,
                       isStrokeCapRound: true,
                       belowBarData: BarAreaData(
                         show: true,
-                        color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            const Color(0xFF2196F3).withValues(alpha: 0.4),
+                            const Color(0xFF2196F3).withValues(alpha: 0.1),
+                            const Color(0xFF2196F3).withValues(alpha: 0.0),
+                          ],
+                        ),
                       ),
                       dotData: FlDotData(
                         show: true,
                         getDotPainter: (spot, percent, barData, index) {
+                          // Color del dot basado en el valor
+                          final isHigh = spot.y >= 75;
+                          final isMedium = spot.y >= 50 && spot.y < 75;
+                          Color dotColor = isHigh
+                              ? const Color(0xFF4CAF50) // Verde
+                              : isMedium
+                                  ? const Color(0xFFFF9800) // Naranja
+                                  : const Color(0xFFF44336); // Rojo
+
                           return FlDotCirclePainter(
-                            radius: 4,
-                            color: Theme.of(context).primaryColor,
-                            strokeWidth: 2,
+                            radius: 5,
+                            color: dotColor,
+                            strokeWidth: 2.5,
                             strokeColor: Colors.white,
                           );
                         },
                       ),
                     ),
                   ],
+                  lineTouchData: LineTouchData(
+                    touchTooltipData: LineTouchTooltipData(
+                      getTooltipItems: (touchedSpots) {
+                        return touchedSpots.map((spot) {
+                          final days = [
+                            AppLocalizations.of(context)!.dayShortMon,
+                            AppLocalizations.of(context)!.dayShortTue,
+                            AppLocalizations.of(context)!.dayShortWed,
+                            AppLocalizations.of(context)!.dayShortThu,
+                            AppLocalizations.of(context)!.dayShortFri,
+                            AppLocalizations.of(context)!.dayShortSat,
+                            AppLocalizations.of(context)!.dayShortSun,
+                          ];
+                          return LineTooltipItem(
+                            '${days[spot.x.toInt() % 7]}\n${spot.y.toInt()}%',
+                            const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          );
+                        }).toList();
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -653,17 +876,24 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
   Widget _buildTrendsTab() {
     return Consumer<HabitProvider>(
       builder: (context, habitProvider, child) {
+        // Filtrar hábitos si habitId está presente
+        var habits = habitProvider.habits;
+
+        if (widget.habitId != null) {
+          habits = habits.where((h) => h.id == widget.habitId).toList();
+        }
+
         return SingleChildScrollView(
           padding: const EdgeInsets.all(DesignConstants.paddingScreen),
           child: Column(
             children: [
-              _buildMonthlyProgressChart(habitProvider.habits),
+              _buildMonthlyProgressChart(habits),
               const SizedBox(height: DesignConstants.spacingBetweenSections),
-              _buildHabitStreaksChart(habitProvider.habits),
+              _buildHabitStreaksChart(habits),
               const SizedBox(height: DesignConstants.spacingBetweenSections),
-              _buildMonthlyHeatmap(habitProvider.habits),
+              _buildMonthlyHeatmap(habits),
               const SizedBox(height: DesignConstants.spacingBetweenSections),
-              _buildMonthlyStats(habitProvider.habits),
+              _buildMonthlyStats(habits),
             ],
           ),
         );
@@ -723,7 +953,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
     }
 
     // Calcular interval dinámico
-    final intervalValue = maxYValue - minYValue > 0 ? (maxYValue - minYValue) / 5 : 20;
+    final intervalValue = maxYValue - minYValue > 0 ? (maxYValue - minYValue) / 5 : 20.0;
 
     return Card(
       child: Padding(
@@ -743,7 +973,24 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
               padding: const EdgeInsets.only(bottom: 16, right: 8),
               child: LineChart(
                 LineChartData(
-                  gridData: const FlGridData(show: true),
+                  gridData: FlGridData(
+                    show: true,
+                    drawVerticalLine: true,
+                    horizontalInterval: 25,
+                    verticalInterval: 1,
+                    getDrawingHorizontalLine: (value) {
+                      return FlLine(
+                        color: Theme.of(context).dividerColor.withValues(alpha: 0.3),
+                        strokeWidth: 1,
+                      );
+                    },
+                    getDrawingVerticalLine: (value) {
+                      return FlLine(
+                        color: Theme.of(context).dividerColor.withValues(alpha: 0.2),
+                        strokeWidth: 1,
+                      );
+                    },
+                  ),
                   titlesData: FlTitlesData(
                     leftTitles: AxisTitles(
                       sideTitles: SideTitles(
@@ -754,7 +1001,11 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                           if (value != value.toInt()) return const Text('');
                           return Text(
                             '${value.toInt()}%',
-                            style: const TextStyle(fontSize: DesignConstants.chartLabelFontSize),
+                            style: TextStyle(
+                              fontSize: DesignConstants.chartLabelFontSize,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).textTheme.bodySmall?.color,
+                            ),
                           );
                         },
                       ),
@@ -769,7 +1020,14 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                           final weeks = [l10n.week1, l10n.week2, l10n.week3, l10n.week4];
                           final index = value.toInt();
                           if (value != value.toInt()) return const Text('');
-                          return index < weeks.length ? Text(weeks[index], style: const TextStyle(fontSize: 12)) : const Text('');
+                          return index < weeks.length ? Text(
+                            weeks[index],
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).textTheme.bodySmall?.color,
+                            ),
+                          ) : const Text('');
                         },
                       ),
                     ),
@@ -780,33 +1038,74 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       sideTitles: SideTitles(showTitles: false),
                     ),
                   ),
-                  borderData: FlBorderData(show: true),
+                  borderData: FlBorderData(
+                    show: true,
+                    border: Border.all(
+                      color: Theme.of(context).dividerColor.withValues(alpha: 0.5),
+                    ),
+                  ),
                   minY: minYValue,
                   maxY: maxYValue,
                   lineBarsData: [
                     LineChartBarData(
                       spots: monthlyData,
                       isCurved: true,
-                      color: Theme.of(context).primaryColor,
-                      barWidth: 3,
+                      curveSmoothness: 0.35,
+                      color: const Color(0xFF9C27B0), // Purple 500 - distinto del weekly
+                      barWidth: 4,
                       isStrokeCapRound: true,
                       belowBarData: BarAreaData(
                         show: true,
-                        color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            const Color(0xFF9C27B0).withValues(alpha: 0.4),
+                            const Color(0xFF9C27B0).withValues(alpha: 0.1),
+                            const Color(0xFF9C27B0).withValues(alpha: 0.0),
+                          ],
+                        ),
                       ),
                       dotData: FlDotData(
                         show: true,
                         getDotPainter: (spot, percent, barData, index) {
+                          final isHigh = spot.y >= 75;
+                          final isMedium = spot.y >= 50 && spot.y < 75;
+                          Color dotColor = isHigh
+                              ? const Color(0xFF4CAF50)
+                              : isMedium
+                                  ? const Color(0xFFFF9800)
+                                  : const Color(0xFFF44336);
+
                           return FlDotCirclePainter(
-                            radius: 4,
-                            color: Theme.of(context).primaryColor,
-                            strokeWidth: 2,
+                            radius: 5,
+                            color: dotColor,
+                            strokeWidth: 2.5,
                             strokeColor: Colors.white,
                           );
                         },
                       ),
                     ),
                   ],
+                  lineTouchData: LineTouchData(
+                    touchTooltipData: LineTouchTooltipData(
+                      getTooltipItems: (touchedSpots) {
+                        return touchedSpots.map((spot) {
+                          final l10n = AppLocalizations.of(context)!;
+                          final weeks = [l10n.week1, l10n.week2, l10n.week3, l10n.week4];
+                          final index = spot.x.toInt();
+                          return LineTooltipItem(
+                            '${index < weeks.length ? weeks[index] : "W${index + 1}"}\n${spot.y.toInt()}%',
+                            const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          );
+                        }).toList();
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -875,7 +1174,11 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       getTooltipItem: (group, groupIndex, rod, rodIndex) {
                         return BarTooltipItem(
                           '${habits[groupIndex].name}\n${AppLocalizations.of(context)!.streakFormat(rod.toY.round())}',
-                          const TextStyle(color: Colors.white),
+                          const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
                         );
                       },
                     ),
@@ -900,8 +1203,8 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                                 habits[index].name.length > 8
                                   ? '${habits[index].name.substring(0, 8)}...'
                                   : habits[index].name,
-                                style: const TextStyle(
-                                  color: Color(0xff7589a2),
+                                style: TextStyle(
+                                  color: Theme.of(context).textTheme.bodySmall?.color,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 10,
                                 ),
@@ -922,26 +1225,64 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                           if (value != value.toInt()) return const Text('');
                           return Text(
                             value.toInt().toString(),
-                            style: const TextStyle(fontSize: DesignConstants.chartLabelFontSize),
+                            style: TextStyle(
+                              fontSize: DesignConstants.chartLabelFontSize,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).textTheme.bodySmall?.color,
+                            ),
                           );
                         },
                       ),
                     ),
                   ),
-                  borderData: FlBorderData(show: false),
+                  gridData: FlGridData(
+                    show: true,
+                    drawVerticalLine: false,
+                    horizontalInterval: 1,
+                    getDrawingHorizontalLine: (value) {
+                      return FlLine(
+                        color: Theme.of(context).dividerColor.withValues(alpha: 0.3),
+                        strokeWidth: 1,
+                      );
+                    },
+                  ),
+                  borderData: FlBorderData(
+                    show: true,
+                    border: Border.all(
+                      color: Theme.of(context).dividerColor.withValues(alpha: 0.5),
+                    ),
+                  ),
                   barGroups: List.generate(
                     habits.length,
-                    (index) => BarChartGroupData(
-                      x: index,
-                      barRods: [
-                        BarChartRodData(
-                          toY: streakData[index],
-                          color: Color(habits[index].color),
-                          width: 16,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ],
-                    ),
+                    (index) {
+                      final streakValue = streakData[index];
+                      final habitColor = Color(habits[index].color);
+
+                      return BarChartGroupData(
+                        x: index,
+                        barRods: [
+                          BarChartRodData(
+                            toY: streakValue,
+                            color: habitColor,
+                            width: 20,
+                            borderRadius: const BorderRadius.vertical(top: Radius.circular(6)),
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              colors: [
+                                habitColor.withValues(alpha: 0.7),
+                                habitColor,
+                              ],
+                            ),
+                            backDrawRodData: BackgroundBarChartRodData(
+                              show: true,
+                              toY: streakData.map((e) => e.toDouble()).reduce((a, b) => a > b ? a : b) + 2,
+                              color: Theme.of(context).dividerColor.withValues(alpha: 0.15),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
               ),
@@ -1148,7 +1489,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                       boxShadow: isToday
                         ? [
                             BoxShadow(
-                              color: Colors.amber.withOpacity(0.6),
+                              color: Colors.amber.withValues(alpha: 0.6),
                               blurRadius: 6,
                               spreadRadius: 1,
                             ),

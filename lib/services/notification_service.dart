@@ -4,6 +4,7 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import '../models/habit.dart';
 import '../generated/l10n/app_localizations.dart';
+import '../providers/locale_provider.dart';
 
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
@@ -15,31 +16,81 @@ class NotificationService {
   bool _initialized = false;
   BuildContext? _context;
 
-  String _getLocalizedString(String key, [String fallback = '']) {
-    if (_context == null) return fallback;
-    final l10n = AppLocalizations.of(_context!);
-    if (l10n == null) return fallback;
+  // Traducciones estáticas para notificaciones en background (sin BuildContext)
+  static const Map<String, Map<String, String>> _staticTranslations = {
+    'en': {
+      'habitReminders': 'Habit Reminders',
+      'notificationsToRemindHabits': 'Notifications to remind you to complete your daily habits',
+      'habitReminderTicker': 'Habit reminder',
+      'defaultHabitReminder': 'Time to work on your habit!',
+      'testNotificationTitle': '🧪 Test Notification',
+      'testNotificationBody': 'Notification system working correctly!',
+      'scheduledNotificationTitle': '⏰ Scheduled Notification',
+      'scheduledNotificationBody': 'This notification was scheduled 5 seconds ago',
+    },
+    'es': {
+      'habitReminders': 'Recordatorios de Hábitos',
+      'notificationsToRemindHabits': 'Notificaciones para recordarte completar tus hábitos diarios',
+      'habitReminderTicker': 'Recordatorio de hábito',
+      'defaultHabitReminder': '¡Es hora de trabajar en tu hábito!',
+      'testNotificationTitle': '🧪 Notificación de Prueba',
+      'testNotificationBody': '¡Sistema de notificaciones funcionando correctamente!',
+      'scheduledNotificationTitle': '⏰ Notificación Programada',
+      'scheduledNotificationBody': 'Esta notificación fue programada hace 5 segundos',
+    },
+  };
 
-    switch (key) {
-      case 'habitReminders':
-        return l10n.habitReminders;
-      case 'notificationsToRemindHabits':
-        return l10n.notificationsToRemindHabits;
-      case 'habitReminderTicker':
-        return l10n.habitReminderTicker;
-      case 'defaultHabitReminder':
-        return l10n.defaultHabitReminder;
-      case 'testNotificationTitle':
-        return l10n.testNotificationTitle;
-      case 'testNotificationBody':
-        return l10n.testNotificationBody;
-      case 'scheduledNotificationTitle':
-        return l10n.scheduledNotificationTitle;
-      case 'scheduledNotificationBody':
-        return l10n.scheduledNotificationBody;
-      default:
-        return fallback;
+  /// Obtiene string localizado con soporte para background (sin BuildContext)
+  /// Versión síncrona que usa último locale cacheado
+  String _cachedLocale = 'en'; // Cache del último locale conocido
+
+  String _getLocalizedString(String key, [String fallback = '']) {
+    // Intentar primero con context (si está disponible)
+    if (_context != null) {
+      final l10n = AppLocalizations.of(_context!);
+      if (l10n != null) {
+        // Actualizar cache cuando tengamos contexto
+        _cachedLocale = Localizations.localeOf(_context!).languageCode;
+
+        switch (key) {
+          case 'habitReminders':
+            return l10n.habitReminders;
+          case 'notificationsToRemindHabits':
+            return l10n.notificationsToRemindHabits;
+          case 'habitReminderTicker':
+            return l10n.habitReminderTicker;
+          case 'defaultHabitReminder':
+            return l10n.defaultHabitReminder;
+          case 'testNotificationTitle':
+            return l10n.testNotificationTitle;
+          case 'testNotificationBody':
+            return l10n.testNotificationBody;
+          case 'scheduledNotificationTitle':
+            return l10n.scheduledNotificationTitle;
+          case 'scheduledNotificationBody':
+            return l10n.scheduledNotificationBody;
+        }
+      }
     }
+
+    // Fallback: usar traducciones estáticas basadas en locale cacheado
+    final translations = _staticTranslations[_cachedLocale] ?? _staticTranslations['en']!;
+    return translations[key] ?? fallback;
+  }
+
+  /// Actualiza el cache de locale desde SharedPreferences
+  Future<void> _updateLocaleCache() async {
+    _cachedLocale = await LocaleProvider.getSavedLocaleCode();
+    debugPrint('📱 Notification locale cache updated: $_cachedLocale');
+  }
+
+  /// Actualiza el idioma de las notificaciones (llamar al cambiar idioma)
+  Future<void> updateLocale(String languageCode) async {
+    _cachedLocale = languageCode;
+    debugPrint('📱 Notification locale updated to: $languageCode');
+
+    // Recrear canal de notificaciones con nuevo idioma
+    await _createNotificationChannel();
   }
 
   Future<void> initialize([BuildContext? context]) async {
@@ -47,6 +98,9 @@ class NotificationService {
     _context = context;
 
     try {
+      // Actualizar cache de locale antes de inicializar
+      await _updateLocaleCache();
+
       // Inicializar timezone
       tz.initializeTimeZones();
 

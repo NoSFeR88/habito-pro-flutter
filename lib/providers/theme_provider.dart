@@ -220,10 +220,14 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFFFFFFFF),
                 secondary: Color(0xFF2ecc71), // Emerald Green
                 onSecondary: Color(0xFFFFFFFF),
-                surface: Color(0xFFFAFAFA), // Pearl White
-                onSurface: Color(0xFF2c3e50), // Charcoal
-
-
+                // Sophisticated grayscale backgrounds for professional look
+                surface: Color(0xFFFFFFFF), // Pure white cards
+                surfaceContainerLowest: Color(0xFFF8F9FA), // Lightest gray
+                surfaceContainerLow: Color(0xFFF1F3F5), // Light gray
+                surfaceContainer: Color(0xFFE9ECEF), // Medium-light gray
+                surfaceContainerHigh: Color(0xFFDEE2E6), // Medium gray
+                surfaceContainerHighest: Color(0xFFCED4DA), // Elevated gray
+                onSurface: Color(0xFF2c3e50), // Charcoal text
                 error: Color(0xFFe74c3c),
                 onError: Color(0xFFFFFFFF),
               )
@@ -232,7 +236,13 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFF000000),
                 secondary: Color(0xFF2ecc71),
                 onSecondary: Color(0xFF000000),
-                surface: Color(0xFF2c3e50), // Charcoal
+                // Professional dark backgrounds with subtle gradation
+                surface: Color(0xFF2c3e50), // Charcoal base
+                surfaceContainerLowest: Color(0xFF34495e), // Slightly lighter
+                surfaceContainerLow: Color(0xFF3d566e), // Mid-dark
+                surfaceContainer: Color(0xFF475f7b), // Medium elevated
+                surfaceContainerHigh: Color(0xFF516888), // High elevation
+                surfaceContainerHighest: Color(0xFF5a7395), // Highest elevation
                 onSurface: Color(0xFFF8F9FA),
                 error: Color(0xFFe74c3c),
                 onError: Color(0xFFFFFFFF),
@@ -245,7 +255,13 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFF000000),
                 secondary: Color(0xFFff1493), // Neon Pink
                 onSecondary: Color(0xFF000000),
+                // Cyberpunk dark backgrounds with neon glow layers
                 surface: Color(0xFF1a1a1a), // Dark for contrast
+                surfaceContainerLowest: Color(0xFF0f0f0f), // Deep shadow
+                surfaceContainerLow: Color(0xFF1f1f1f), // Dark layer
+                surfaceContainer: Color(0xFF2a2a2a), // Medium dark
+                surfaceContainerHigh: Color(0xFF353535), // Elevated
+                surfaceContainerHighest: Color(0xFF404040), // High contrast
                 onSurface: Color(0xFF00ffff),
                 error: Color(0xFFff073a),
                 onError: Color(0xFFFFFFFF),
@@ -255,7 +271,13 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFF000000),
                 secondary: Color(0xFFff1493), // Neon Pink
                 onSecondary: Color(0xFF000000),
+                // Deep space black with layered neon atmosphere
                 surface: Color(0xFF0a0a0a), // Deep Space Black
+                surfaceContainerLowest: Color(0xFF000000), // Pure black void
+                surfaceContainerLow: Color(0xFF141414), // Shadow layer
+                surfaceContainer: Color(0xFF1e1e1e), // Medium elevation
+                surfaceContainerHigh: Color(0xFF282828), // High elevation
+                surfaceContainerHighest: Color(0xFF323232), // Maximum elevation
                 onSurface: Color(0xFF00ffff),
                 error: Color(0xFFff073a),
                 onError: Color(0xFFFFFFFF),
@@ -268,7 +290,13 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFFFFFFFF),
                 secondary: Color(0xFFff69b4), // Aurora Pink
                 onSecondary: Color(0xFF000000),
+                // Ethereal purple-pink gradient backgrounds
                 surface: Color(0xFFf8f4ff), // Soft Purple Tint
+                surfaceContainerLowest: Color(0xFFfefbff), // Almost white with purple hint
+                surfaceContainerLow: Color(0xFFf5f0ff), // Light lavender
+                surfaceContainer: Color(0xFFede6ff), // Medium lavender
+                surfaceContainerHigh: Color(0xFFe4d9ff), // Rich lavender
+                surfaceContainerHighest: Color(0xFFdaccff), // Deep lavender
                 onSurface: Color(0xFF2e1a4a), // Deep Indigo
                 error: Color(0xFFdc143c),
                 onError: Color(0xFFFFFFFF),
@@ -278,7 +306,13 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFF000000),
                 secondary: Color(0xFFffd700), // Stellar Gold
                 onSecondary: Color(0xFF000000),
+                // Cosmic night sky with aurora layers
                 surface: Color(0xFF2e1a4a), // Deep Indigo
+                surfaceContainerLowest: Color(0xFF1f0f35), // Darkest void
+                surfaceContainerLow: Color(0xFF3a2558), // Dark purple
+                surfaceContainer: Color(0xFF462f66), // Medium purple
+                surfaceContainerHigh: Color(0xFF533a74), // Elevated purple
+                surfaceContainerHighest: Color(0xFF5f4582), // Bright aurora
                 onSurface: Color(0xFFff69b4),
                 error: Color(0xFFdc143c),
                 onError: Color(0xFFFFFFFF),

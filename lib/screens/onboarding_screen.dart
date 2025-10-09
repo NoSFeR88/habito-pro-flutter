@@ -72,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         name: _habitNameController.text.trim(),
         description: '',
         icon: Icons.fitness_center,
-        color: AppColors.primary.value,
+        color: AppColors.primary.value, // Using .value for int conversion (Material color API)
         frequency: frequency,
         reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),

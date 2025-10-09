@@ -1504,13 +1504,25 @@ class AppLocalizationsTl extends AppLocalizations {
   String get soundDefault => 'Default';
 
   @override
+  String get soundDefaultDesc => 'System default sound';
+
+  @override
   String get soundNone => 'None (Silent)';
+
+  @override
+  String get soundNoneDesc => 'No sound';
 
   @override
   String get soundChime => 'Chime';
 
   @override
+  String get soundChimeDesc => 'Soft bell chime';
+
+  @override
   String get soundBell => 'Bell';
+
+  @override
+  String get soundBellDesc => 'Classic bell sound';
 
   @override
   String get loadingHabits => 'Loading your rhythms...';

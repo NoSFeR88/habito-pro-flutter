@@ -249,7 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 icon: const Icon(Icons.add),
-                label: Text(hasActiveHabits ? 'Crear nuevo hábito' : 'Crear mi primer hábito'),
+                label: Text(hasActiveHabits ? AppLocalizations.of(context)!.createNewHabit : AppLocalizations.of(context)!.createFirstHabit),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 ),
@@ -326,7 +326,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const StatsScreen(),
+                      builder: (_) => StatsScreen(habitId: habit.id),
                     ),
                   );
                 },

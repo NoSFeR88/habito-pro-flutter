@@ -650,33 +650,179 @@ class SettingsScreen extends StatelessWidget {
     AppLocalizations l10n,
   ) {
     final sounds = [
-      {'value': 'default', 'label': l10n.soundDefault},
-      {'value': 'none', 'label': l10n.soundNone},
-      {'value': 'chime', 'label': l10n.soundChime},
-      {'value': 'bell', 'label': l10n.soundBell},
+      {
+        'value': 'default',
+        'label': l10n.soundDefault,
+        'icon': Icons.notifications,
+        'description': l10n.soundDefaultDesc,
+      },
+      {
+        'value': 'none',
+        'label': l10n.soundNone,
+        'icon': Icons.notifications_off,
+        'description': l10n.soundNoneDesc,
+      },
+      {
+        'value': 'chime',
+        'label': l10n.soundChime,
+        'icon': Icons.music_note,
+        'description': l10n.soundChimeDesc,
+      },
+      {
+        'value': 'bell',
+        'label': l10n.soundBell,
+        'icon': Icons.notifications_active,
+        'description': l10n.soundBellDesc,
+      },
     ];
 
-    showDialog(
+    showModalBottomSheet(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.reminderSound),
-        content: Column(
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(20),
+          ),
+        ),
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: sounds.map((sound) {
-            final isSelected = notifSettings.reminderSound == sound['value'];
-            return RadioListTile<String>(
-              title: Text(sound['label']!),
-              value: sound['value']!,
-              groupValue: notifSettings.reminderSound,
-              selected: isSelected,
-              onChanged: (value) {
-                if (value != null) {
-                  notifSettings.setReminderSound(value);
-                  Navigator.pop(context);
-                }
+          children: [
+            // Handle bar
+            Container(
+              margin: const EdgeInsets.only(top: 12, bottom: 8),
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Theme.of(context).dividerColor,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+
+            // Header
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.volume_up,
+                    color: Theme.of(context).colorScheme.primary,
+                    size: 28,
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    l10n.reminderSound,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const Divider(height: 1),
+
+            // Sound options
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              itemCount: sounds.length,
+              itemBuilder: (context, index) {
+                final sound = sounds[index];
+                final isSelected = notifSettings.reminderSound == sound['value'];
+
+                return InkWell(
+                  onTap: () {
+                    notifSettings.setReminderSound(sound['value'] as String);
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 16,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.5)
+                          : Colors.transparent,
+                      border: Border(
+                        left: BorderSide(
+                          color: isSelected
+                              ? Theme.of(context).colorScheme.primary
+                              : Colors.transparent,
+                          width: 4,
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        // Icon
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: isSelected
+                                ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.2)
+                                : Theme.of(context).colorScheme.surfaceContainerHighest,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Icon(
+                            sound['icon'] as IconData,
+                            color: isSelected
+                                ? Theme.of(context).colorScheme.primary
+                                : Theme.of(context).iconTheme.color,
+                            size: 24,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+
+                        // Label and description
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                sound['label'] as String,
+                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                  color: isSelected
+                                      ? Theme.of(context).colorScheme.primary
+                                      : null,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                sound['description'] as String,
+                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.7),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // Selected indicator
+                        if (isSelected)
+                          Icon(
+                            Icons.check_circle,
+                            color: Theme.of(context).colorScheme.primary,
+                            size: 28,
+                          ),
+                      ],
+                    ),
+                  ),
+                );
               },
-            );
-          }).toList(),
+            ),
+
+            // Bottom padding
+            SizedBox(height: MediaQuery.of(context).padding.bottom + 16),
+          ],
         ),
       ),
     );

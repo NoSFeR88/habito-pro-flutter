@@ -2865,11 +2865,23 @@ abstract class AppLocalizations {
   /// **'Default'**
   String get soundDefault;
 
+  /// No description provided for @soundDefaultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'System default sound'**
+  String get soundDefaultDesc;
+
   /// No description provided for @soundNone.
   ///
   /// In en, this message translates to:
   /// **'None (Silent)'**
   String get soundNone;
+
+  /// No description provided for @soundNoneDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'No sound'**
+  String get soundNoneDesc;
 
   /// No description provided for @soundChime.
   ///
@@ -2877,11 +2889,23 @@ abstract class AppLocalizations {
   /// **'Chime'**
   String get soundChime;
 
+  /// No description provided for @soundChimeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft bell chime'**
+  String get soundChimeDesc;
+
   /// No description provided for @soundBell.
   ///
   /// In en, this message translates to:
   /// **'Bell'**
   String get soundBell;
+
+  /// No description provided for @soundBellDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic bell sound'**
+  String get soundBellDesc;
 
   /// No description provided for @loadingHabits.
   ///

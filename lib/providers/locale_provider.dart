@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../services/notification_service.dart';
 
 class LocaleProvider extends ChangeNotifier {
   static const String _localeKey = 'selected_locale';
@@ -142,6 +143,10 @@ class LocaleProvider extends ChangeNotifier {
       _locale = newLocale;
       await _saveLocale(newLocale.languageCode, manuallySet: true);
       debugPrint('🔧 User MANUALLY changed locale to: ${newLocale.languageCode}');
+
+      // Actualizar idioma de notificaciones
+      await NotificationService().updateLocale(newLocale.languageCode);
+
       notifyListeners();
     }
   }
@@ -180,4 +185,15 @@ class LocaleProvider extends ChangeNotifier {
 
   /// Get current language display name
   String get currentLanguageName => getLanguageName(currentLanguageCode);
+
+  /// Get saved locale code from SharedPreferences (static method for background use)
+  static Future<String> getSavedLocaleCode() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return prefs.getString(_localeKey) ?? 'en'; // Default to English
+    } catch (e) {
+      debugPrint('❌ Error getting saved locale: $e');
+      return 'en';
+    }
+  }
 }

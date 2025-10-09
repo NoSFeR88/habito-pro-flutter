@@ -12,7 +12,7 @@ import 'providers/theme_provider.dart';
 import 'providers/gamification_provider.dart';
 import 'providers/notification_settings_provider.dart';
 import 'screens/home_screen.dart';
-import 'screens/onboarding_screen.dart';
+import 'screens/onboarding_screen_new.dart';
 import 'services/notification_service.dart';
 import 'generated/l10n/app_localizations.dart';
 
@@ -211,7 +211,7 @@ class _HabitAppState extends State<HabitApp> with WidgetsBindingObserver {
                 }
 
                 return onboardingProvider.isFirstTime
-                  ? const OnboardingScreen()
+                  ? const OnboardingScreenNew()
                   : const HomeScreen();
               },
             ),

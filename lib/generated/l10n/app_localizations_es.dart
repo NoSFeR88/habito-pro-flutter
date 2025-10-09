@@ -1518,13 +1518,25 @@ class AppLocalizationsEs extends AppLocalizations {
   String get soundDefault => 'Predeterminado';
 
   @override
+  String get soundDefaultDesc => 'Sonido del sistema';
+
+  @override
   String get soundNone => 'Ninguno (Silencioso)';
+
+  @override
+  String get soundNoneDesc => 'Sin sonido';
 
   @override
   String get soundChime => 'Campana';
 
   @override
+  String get soundChimeDesc => 'Campana suave';
+
+  @override
   String get soundBell => 'Timbre';
+
+  @override
+  String get soundBellDesc => 'Timbre clásico';
 
   @override
   String get loadingHabits => 'Cargando tus ritmos...';
