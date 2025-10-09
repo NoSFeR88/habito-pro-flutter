@@ -325,7 +325,13 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFF000000),
                 secondary: Color(0xFFff7f50), // Sunset Orange
                 onSecondary: Color(0xFF000000),
+                // Natural stone and bamboo gradients
                 surface: Color(0xFFF5F5DC), // Warm Stone
+                surfaceContainerLowest: Color(0xFFFFFFF5), // Off-white warm
+                surfaceContainerLow: Color(0xFFF8F8E8), // Light cream
+                surfaceContainer: Color(0xFFEFEFD5), // Medium beige
+                surfaceContainerHigh: Color(0xFFE5E5C2), // Elevated sand
+                surfaceContainerHighest: Color(0xFFDBDBAF), // Rich bamboo
                 onSurface: Color(0xFF8b4513), // Earth Brown
                 error: Color(0xFFcd5c5c),
                 onError: Color(0xFFFFFFFF),
@@ -335,7 +341,13 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFF000000),
                 secondary: Color(0xFFff7f50),
                 onSecondary: Color(0xFF000000),
+                // Dark zen garden with moon-lit stones
                 surface: Color(0xFF2f2f1f), // Dark Earth
+                surfaceContainerLowest: Color(0xFF252510), // Deep shadow
+                surfaceContainerLow: Color(0xFF3a3a28), // Dark moss
+                surfaceContainer: Color(0xFF45452f), // Medium earth
+                surfaceContainerHigh: Color(0xFF505036), // Elevated stone
+                surfaceContainerHighest: Color(0xFF5b5b3d), // Light bamboo
                 onSurface: Color(0xFF87ceeb),
                 error: Color(0xFFcd5c5c),
                 onError: Color(0xFFFFFFFF),
@@ -348,7 +360,13 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFFFFFFFF),
                 secondary: Color(0xFF00d4aa), // Vibrant Green
                 onSecondary: Color(0xFF000000),
-                surface: Color(0xFFffffff), // White
+                // Frosted glass with blur effect layers
+                surface: Color(0xFFffffff), // Pure White Glass
+                surfaceContainerLowest: Color(0xFFf0f5ff), // Lightest blue tint
+                surfaceContainerLow: Color(0xFFe6f0ff), // Light frosted
+                surfaceContainer: Color(0xFFd6e8ff), // Medium blur
+                surfaceContainerHigh: Color(0xFFc2deff), // High elevation glass
+                surfaceContainerHighest: Color(0xFFadd4ff), // Deep frosted blue
                 onSurface: Color(0xFF1a1a1a),
                 error: Color(0xFFff4757),
                 onError: Color(0xFFFFFFFF),
@@ -358,7 +376,13 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFFFFFFFF),
                 secondary: Color(0xFF00d4aa),
                 onSecondary: Color(0xFF000000),
-                surface: Color(0xFF1a1a1a), // Dark
+                // Dark glass with neon glow layers
+                surface: Color(0xFF1a1a1a), // Dark Glass Base
+                surfaceContainerLowest: Color(0xFF0d0d0d), // Darkest shadow
+                surfaceContainerLow: Color(0xFF242424), // Dark frosted
+                surfaceContainer: Color(0xFF2e2e2e), // Medium glass
+                surfaceContainerHigh: Color(0xFF383838), // Elevated glow
+                surfaceContainerHighest: Color(0xFF424242), // Bright neon layer
                 onSurface: Color(0xFFffffff),
                 error: Color(0xFFff4757),
                 onError: Color(0xFFFFFFFF),
@@ -371,7 +395,13 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFFFFFFFF),
                 secondary: Color(0xFF764ba2), // Soft Purple
                 onSecondary: Color(0xFFFFFFFF),
+                // Soft 3D shadows with embossed layers
                 surface: Color(0xFFe0e5ec), // Neumorphic Base
+                surfaceContainerLowest: Color(0xFFeff2f7), // Lightest emboss
+                surfaceContainerLow: Color(0xFFe8edf5), // Light shadow
+                surfaceContainer: Color(0xFFdce2ea), // Medium depth
+                surfaceContainerHigh: Color(0xFFd0d7e0), // Deep shadow
+                surfaceContainerHighest: Color(0xFFc4ccd6), // Deepest emboss
                 onSurface: Color(0xFF3d4852),
                 error: Color(0xFFf093fb),
                 onError: Color(0xFF000000),
@@ -381,10 +411,14 @@ class ThemeProvider with ChangeNotifier {
                 onPrimary: Color(0xFFFFFFFF),
                 secondary: Color(0xFF764ba2),
                 onSecondary: Color(0xFFFFFFFF),
-                surface: Color(0xFF2c2c2c), // Dark Neumorphic
+                // Dark soft 3D with subtle depth
+                surface: Color(0xFF2c2c2c), // Dark Neumorphic Base
+                surfaceContainerLowest: Color(0xFF1f1f1f), // Deepest shadow
+                surfaceContainerLow: Color(0xFF2a2a2a), // Dark emboss
+                surfaceContainer: Color(0xFF353535), // Medium elevation
+                surfaceContainerHigh: Color(0xFF3f3f3f), // High soft glow
+                surfaceContainerHighest: Color(0xFF4a4a4a), // Bright emboss
                 onSurface: Color(0xFFffffff),
-
-
                 error: Color(0xFFf093fb),
                 onError: Color(0xFF000000),
               );
