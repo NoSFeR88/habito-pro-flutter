@@ -18,7 +18,7 @@ import 'settings_screen.dart';
 import 'all_habits_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         centerTitle: false,
         titleSpacing: 16,
-        title: DynamicRitmoLogo(
+        title: const DynamicRitmoLogo(
           fontSize: 28,
           animated: true,
           changeInterval: Duration(seconds: 8),
@@ -285,7 +285,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(AppLocalizations.of(context)!.habitUpdatedMessage),
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
       ),
     );
   }
@@ -401,7 +401,7 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 291,
           child: Padding(
             padding: EdgeInsets.fromLTRB(screenPadding.left, 12, screenPadding.right, 0),
-            child: StatsOverview(),
+            child: const StatsOverview(),
           ),
         ),
 
@@ -450,7 +450,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onLongPress: () => _showHabitOptions(context, habit),
                     useOpenContainer: true,
                   ),
-                )).toList(),
+                )),
 
               // Espacio final para FAB
               const SizedBox(height: 100),
@@ -471,13 +471,13 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: screenPadding.copyWith(right: screenPadding.right / 2),
             child: Column(
               children: [
-                Expanded(child: StatsOverview()),
+                const Expanded(child: StatsOverview()),
                 // Título más compacto para landscape
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.today,
                         color: AppColors.primary,
                         size: 24,

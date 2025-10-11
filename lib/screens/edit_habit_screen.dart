@@ -8,9 +8,9 @@ class EditHabitScreen extends StatefulWidget {
   final Habit habit;
 
   const EditHabitScreen({
-    Key? key,
+    super.key,
     required this.habit,
-  }) : super(key: key);
+  });
 
   @override
   State<EditHabitScreen> createState() => _EditHabitScreenState();

@@ -5,7 +5,7 @@ import '../core/theme.dart';
 import '../generated/l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
         const SizedBox(height: 24),
         Text(
           AppLocalizations.of(context)!.loginTitle,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 32,
             fontWeight: FontWeight.bold,
@@ -270,7 +270,7 @@ class _LoginScreenState extends State<LoginScreen> {
         onPressed: () => _showForgotPasswordDialog(authProvider),
         child: Text(
           AppLocalizations.of(context)!.forgotPassword,
-          style: TextStyle(
+          style: const TextStyle(
             color: AppColors.primary,
             fontSize: 12,
           ),
@@ -314,10 +314,10 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         Expanded(child: Divider(color: Colors.grey[300])),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             AppLocalizations.of(context)!.orContinueWith,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.grey,
               fontSize: 12,
             ),

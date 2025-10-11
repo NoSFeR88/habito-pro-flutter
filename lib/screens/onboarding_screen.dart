@@ -7,7 +7,7 @@ import '../providers/onboarding_provider.dart';
 import '../models/habit.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+  const OnboardingScreen({super.key});
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -138,7 +138,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     onPressed: _skipOnboarding,
                     child: Text(
                       l10n.skip,
-                      style: TextStyle(color: AppColors.textSecondaryDark),
+                      style: const TextStyle(color: AppColors.textSecondaryDark),
                     ),
                   ),
                   // Indicador de progreso
@@ -254,7 +254,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           Text(
             l10n.onboardingWelcomeTitle,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
               color: AppColors.textDark,
@@ -266,7 +266,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           Text(
             l10n.onboardingWelcomeSubtitle,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               color: AppColors.textSecondaryDark,
               height: 1.4,
@@ -316,7 +316,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Expanded(
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               color: AppColors.textDark,
             ),
@@ -332,7 +332,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.sentiment_dissatisfied_outlined,
             size: 80,
             color: AppColors.warning,
@@ -342,7 +342,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           Text(
             l10n.onboardingProblemTitle,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
               color: AppColors.textDark,
@@ -364,11 +364,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.close, color: AppColors.error, size: 20),
+                    const Icon(Icons.close, color: AppColors.error, size: 20),
                     const SizedBox(width: 8),
                     Text(
                       l10n.onboardingOtherApps,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         color: AppColors.error,
                       ),
@@ -378,7 +378,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 const SizedBox(height: 8),
                 Text(
                   l10n.onboardingProblemExample,
-                  style: TextStyle(color: AppColors.textSecondaryDark),
+                  style: const TextStyle(color: AppColors.textSecondaryDark),
                 ),
               ],
             ),
@@ -395,10 +395,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             child: Column(
               children: [
-                Row(
+                const Row(
                   children: [
                     Icon(Icons.check, color: AppColors.success, size: 20),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Text(
                       'Ritmo:',
                       style: TextStyle(
@@ -411,7 +411,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 const SizedBox(height: 8),
                 Text(
                   l10n.onboardingSolutionExample,
-                  style: TextStyle(color: AppColors.textSecondaryDark),
+                  style: const TextStyle(color: AppColors.textSecondaryDark),
                 ),
               ],
             ),
@@ -421,7 +421,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           Text(
             l10n.onboardingFlexibilityMessage,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               color: AppColors.primary,
               fontWeight: FontWeight.w500,
@@ -445,7 +445,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-          Icon(
+          const Icon(
             Icons.auto_awesome,
             size: 60,
             color: AppColors.primary,
@@ -455,7 +455,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           Text(
             l10n.onboardingSetupTitle,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: AppColors.textDark,
@@ -477,7 +477,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: [
                 Text(
                   l10n.rhythmNameHint,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textDark,
@@ -486,10 +486,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 const SizedBox(height: 8),
                 TextField(
                   controller: _habitNameController,
-                  style: TextStyle(color: AppColors.textDark),
+                  style: const TextStyle(color: AppColors.textDark),
                   decoration: InputDecoration(
                     hintText: l10n.onboardingExampleHabitName,
-                    hintStyle: TextStyle(color: AppColors.textSecondaryDark),
+                    hintStyle: const TextStyle(color: AppColors.textSecondaryDark),
                     filled: true,
                     fillColor: AppColors.backgroundDark,
                     border: OutlineInputBorder(
@@ -503,7 +503,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
                 Text(
                   l10n.selectDays,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textDark,
@@ -561,7 +561,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           Text(
             l10n.onboardingFlexibilityTip,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               color: AppColors.textSecondaryDark,
               fontStyle: FontStyle.italic,
@@ -609,7 +609,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           Text(
             l10n.onboardingCelebrationTitle,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: AppColors.textDark,
@@ -621,7 +621,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           Text(
             l10n.onboardingCelebrationSubtitle,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               color: AppColors.textSecondaryDark,
               height: 1.3,
@@ -650,7 +650,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         color: AppColors.primary.withValues(alpha:0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.fitness_center,
                         color: AppColors.primary,
                         size: 20,
@@ -665,7 +665,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             _habitNameController.text.isNotEmpty
                               ? _habitNameController.text
                               : l10n.onboardingDefaultHabitName,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               color: AppColors.textDark,
@@ -673,7 +673,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                           Text(
                             _getSelectedDaysText(l10n),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 14,
                               color: AppColors.textSecondaryDark,
                             ),
@@ -709,14 +709,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget _buildBenefitRow(IconData icon, String text) {
     return Row(
       children: [
-        Icon(Icons.check_circle, color: AppColors.success, size: 20),
+        const Icon(Icons.check_circle, color: AppColors.success, size: 20),
         const SizedBox(width: 8),
         Icon(icon, color: AppColors.primary, size: 16),
         const SizedBox(width: 8),
         Expanded(
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               color: AppColors.textDark,
             ),

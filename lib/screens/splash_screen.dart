@@ -5,7 +5,7 @@ import '../widgets/dynamic_ritmo_logo.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -117,7 +117,7 @@ class _SplashScreenState extends State<SplashScreen>
                   opacity: _fadeAnimation,
                   child: Column(
                     children: [
-                      DynamicRitmoLogo(
+                      const DynamicRitmoLogo(
                         fontSize: 38,
                         color: Colors.white,
                         animated: true,

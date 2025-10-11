@@ -12,7 +12,7 @@ void main() {
   testWidgets('Basic widget test', (WidgetTester tester) async {
     // Build a simple widget for testing
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Scaffold(
           body: Text('Test'),
         ),

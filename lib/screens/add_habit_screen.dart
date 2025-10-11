@@ -7,7 +7,7 @@ import '../screens/paywall_screen.dart';
 import '../generated/l10n/app_localizations.dart';
 
 class AddHabitScreen extends StatefulWidget {
-  const AddHabitScreen({Key? key}) : super(key: key);
+  const AddHabitScreen({super.key});
 
   @override
   State<AddHabitScreen> createState() => _AddHabitScreenState();
@@ -96,7 +96,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.habitNameLabel,
                 hintText: AppLocalizations.of(context)!.habitNameHint,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
@@ -115,7 +115,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.descriptionOptional,
                 hintText: AppLocalizations.of(context)!.descriptionHint,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
               maxLines: 3,
               textCapitalization: TextCapitalization.sentences,

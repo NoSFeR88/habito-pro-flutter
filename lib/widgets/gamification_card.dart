@@ -34,7 +34,7 @@ class GamificationCard extends StatelessWidget {
           },
           child: ExcludeSemantics(
             child: Card(
-              margin: EdgeInsets.symmetric(
+              margin: const EdgeInsets.symmetric(
                 horizontal: DesignConstants.paddingScreen,
                 vertical: DesignConstants.spacingBetweenCards / 2,
               ),
@@ -155,7 +155,7 @@ class GamificationCard extends StatelessWidget {
                       ] else ...[
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.emoji_events,
                               color: Colors.amber,
                               size: 20,
@@ -343,7 +343,7 @@ class AchievementUnlockedDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.star,
                   color: Colors.amber,
                   size: 20,
@@ -373,7 +373,7 @@ class AchievementUnlockedDialog extends StatelessWidget {
                 ),
                 child: Text(
                   AppLocalizations.of(context)!.excellent,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             ),

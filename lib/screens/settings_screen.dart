@@ -7,7 +7,7 @@ import '../providers/notification_settings_provider.dart';
 import '../generated/l10n/app_localizations.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +175,7 @@ class SettingsScreen extends StatelessWidget {
                                   ),
                                   child: Text(
                                     l10n.premiumPrice,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold,
@@ -342,7 +342,7 @@ class SettingsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 trailing: isSelected
-                                    ? Icon(
+                                    ? const Icon(
                                         Icons.star,
                                         color: Colors.white,
                                         size: 20,
@@ -422,7 +422,7 @@ class SettingsScreen extends StatelessWidget {
             width: 120,
             child: Text(
               label,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
@@ -431,7 +431,7 @@ class SettingsScreen extends StatelessWidget {
           Expanded(
             child: Text(
               value,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
               ),
             ),

@@ -138,7 +138,7 @@ class AchievementsScreen extends StatelessWidget {
           ),
           Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
             ),
@@ -337,7 +337,7 @@ class AchievementsScreen extends StatelessWidget {
                         ),
                       ),
                       if (isUnlocked)
-                        Icon(
+                        const Icon(
                           Icons.check_circle,
                           color: Colors.green,
                           size: 20,
@@ -355,7 +355,7 @@ class AchievementsScreen extends StatelessWidget {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         size: 16,
                         color: Colors.amber,

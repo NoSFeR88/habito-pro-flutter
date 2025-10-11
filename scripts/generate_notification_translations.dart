@@ -1,5 +1,6 @@
 /// Script para generar traducciones estáticas de notificaciones desde archivos ARB
 /// Uso: dart scripts/generate_notification_translations.dart
+library;
 
 import 'dart:io';
 import 'dart:convert';

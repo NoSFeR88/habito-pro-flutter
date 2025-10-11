@@ -8,7 +8,7 @@ import 'login_screen.dart';
 import 'home_screen.dart';
 
 class AuthWrapper extends StatelessWidget {
-  const AuthWrapper({Key? key}) : super(key: key);
+  const AuthWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class AuthWrapper extends StatelessWidget {
 
 // Versión extendida del AuthWrapper que incluye lógica de onboarding
 class AuthWrapperWithOnboarding extends StatefulWidget {
-  const AuthWrapperWithOnboarding({Key? key}) : super(key: key);
+  const AuthWrapperWithOnboarding({super.key});
 
   @override
   State<AuthWrapperWithOnboarding> createState() => _AuthWrapperWithOnboardingState();
@@ -154,8 +154,8 @@ class _UserAuthenticatedScreenState extends State<_UserAuthenticatedScreen> {
 
     // Mostrar mensaje de bienvenida para usuarios anónimos
     if (widget.authProvider.isAnonymous) {
-      return _AnonymousUserWrapper(
-        child: const HomeScreen(),
+      return const _AnonymousUserWrapper(
+        child: HomeScreen(),
       );
     }
 

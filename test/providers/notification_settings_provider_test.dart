@@ -139,7 +139,7 @@ void main() {
       SharedPreferences.setMockInitialValues({});
       final provider = NotificationSettingsProvider();
 
-      final newTime = TimeOfDay(hour: 14, minute: 30);
+      const newTime = TimeOfDay(hour: 14, minute: 30);
       await provider.setDefaultReminderTime(newTime);
 
       expect(provider.defaultReminderTime.hour, 14);
@@ -154,7 +154,7 @@ void main() {
       SharedPreferences.setMockInitialValues({});
       final provider = NotificationSettingsProvider();
 
-      final midnight = TimeOfDay(hour: 0, minute: 0);
+      const midnight = TimeOfDay(hour: 0, minute: 0);
       await provider.setDefaultReminderTime(midnight);
 
       expect(provider.defaultReminderTime.hour, 0);
@@ -169,7 +169,7 @@ void main() {
       SharedPreferences.setMockInitialValues({});
       final provider = NotificationSettingsProvider();
 
-      final endOfDay = TimeOfDay(hour: 23, minute: 59);
+      const endOfDay = TimeOfDay(hour: 23, minute: 59);
       await provider.setDefaultReminderTime(endOfDay);
 
       expect(provider.defaultReminderTime.hour, 23);
@@ -187,7 +187,7 @@ void main() {
       var notified = false;
       provider.addListener(() => notified = true);
 
-      final newTime = TimeOfDay(hour: 15, minute: 45);
+      const newTime = TimeOfDay(hour: 15, minute: 45);
       await provider.setDefaultReminderTime(newTime);
 
       expect(notified, true);
@@ -197,9 +197,9 @@ void main() {
       SharedPreferences.setMockInitialValues({});
       final provider = NotificationSettingsProvider();
 
-      final time1 = TimeOfDay(hour: 8, minute: 0);
-      final time2 = TimeOfDay(hour: 12, minute: 30);
-      final time3 = TimeOfDay(hour: 18, minute: 0);
+      const time1 = TimeOfDay(hour: 8, minute: 0);
+      const time2 = TimeOfDay(hour: 12, minute: 30);
+      const time3 = TimeOfDay(hour: 18, minute: 0);
 
       await provider.setDefaultReminderTime(time1);
       await provider.setDefaultReminderTime(time2);
@@ -309,7 +309,7 @@ void main() {
 
       // Set all settings
       await provider.setNotificationsEnabled(false);
-      await provider.setDefaultReminderTime(TimeOfDay(hour: 16, minute: 15));
+      await provider.setDefaultReminderTime(const TimeOfDay(hour: 16, minute: 15));
       await provider.setReminderSound('chime');
       await provider.setVibrationEnabled(false);
 
@@ -347,13 +347,13 @@ void main() {
 
       // Change all settings
       await provider.setNotificationsEnabled(false);
-      await provider.setDefaultReminderTime(TimeOfDay(hour: 22, minute: 0));
+      await provider.setDefaultReminderTime(const TimeOfDay(hour: 22, minute: 0));
       await provider.setReminderSound('bell');
       await provider.setVibrationEnabled(false);
 
       // Reset to defaults
       await provider.setNotificationsEnabled(true);
-      await provider.setDefaultReminderTime(TimeOfDay(hour: 9, minute: 0));
+      await provider.setDefaultReminderTime(const TimeOfDay(hour: 9, minute: 0));
       await provider.setReminderSound('default');
       await provider.setVibrationEnabled(true);
 
@@ -408,7 +408,7 @@ void main() {
       SharedPreferences.setMockInitialValues({});
       final provider = NotificationSettingsProvider();
 
-      final specialSound = 'sound_@#\$%_name';
+      const specialSound = 'sound_@#\$%_name';
       await provider.setReminderSound(specialSound);
 
       expect(provider.reminderSound, specialSound);
@@ -438,7 +438,7 @@ void main() {
       provider.addListener(() => notificationCount++);
 
       await provider.setNotificationsEnabled(false);
-      await provider.setDefaultReminderTime(TimeOfDay(hour: 10, minute: 0));
+      await provider.setDefaultReminderTime(const TimeOfDay(hour: 10, minute: 0));
       await provider.setReminderSound('chime');
       await provider.setVibrationEnabled(false);
 

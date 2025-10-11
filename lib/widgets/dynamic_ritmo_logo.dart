@@ -30,35 +30,35 @@ class _DynamicRitmoLogoState extends State<DynamicRitmoLogo>
 
   // 🎨 LOGO DINÁMICO "RITMO VIVO" - 5 variaciones únicas
   final List<LogoStyle> _logoStyles = [
-    LogoStyle(
+    const LogoStyle(
       text: 'RITMO',
       googleFont: GoogleFonts.righteous,
       description: 'Bold Minimalista',
       weight: FontWeight.w700,
       letterSpacing: 3.0,
     ),
-    LogoStyle(
+    const LogoStyle(
       text: 'ℝ𝕀𝕋𝕄𝒪',
       googleFont: GoogleFonts.playfairDisplay,
       description: 'Serif Dramático',
       weight: FontWeight.w800,
       letterSpacing: 2.0,
     ),
-    LogoStyle(
+    const LogoStyle(
       text: 'RITMO',
       googleFont: GoogleFonts.orbitron,
       description: 'Futurista Tech',
       weight: FontWeight.w600,
       letterSpacing: 4.0,
     ),
-    LogoStyle(
+    const LogoStyle(
       text: 'ℛ𝒾𝓉𝓂𝑜',
       googleFont: GoogleFonts.dancingScript,
       description: 'Script Elegante',
       weight: FontWeight.w600,
       letterSpacing: 1.0,
     ),
-    LogoStyle(
+    const LogoStyle(
       text: 'RITMO',
       googleFont: GoogleFonts.russoOne,
       description: 'Impact Bold',

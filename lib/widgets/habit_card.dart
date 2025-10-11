@@ -13,12 +13,12 @@ class HabitCard extends StatelessWidget {
   final bool useOpenContainer;
 
   const HabitCard({
-    Key? key,
+    super.key,
     required this.habit,
     required this.onTap,
     this.onLongPress,
     this.useOpenContainer = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

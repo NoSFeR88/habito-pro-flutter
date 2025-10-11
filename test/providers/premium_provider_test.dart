@@ -38,7 +38,7 @@ void main() {
 
       test('should revoke expired premium subscription on init', () async {
         // Arrange
-        final expiredDate = DateTime.now().subtract(Duration(days: 1));
+        final expiredDate = DateTime.now().subtract(const Duration(days: 1));
         SharedPreferences.setMockInitialValues({
           'is_premium': true,
           'premium_type': 'monthly',
@@ -56,7 +56,7 @@ void main() {
 
       test('should keep valid premium subscription on init', () async {
         // Arrange
-        final futureDate = DateTime.now().add(Duration(days: 30));
+        final futureDate = DateTime.now().add(const Duration(days: 30));
         SharedPreferences.setMockInitialValues({
           'is_premium': true,
           'premium_type': 'monthly',
@@ -133,7 +133,7 @@ void main() {
 
       test('should grant premium with end date', () async {
         // Arrange
-        final endDate = DateTime.now().add(Duration(days: 30));
+        final endDate = DateTime.now().add(const Duration(days: 30));
 
         // Act
         await provider.grantPremium('monthly', endDate: endDate);

@@ -7,10 +7,10 @@ class PaywallScreen extends StatefulWidget {
   final Function()? onPurchaseSuccess;
 
   const PaywallScreen({
-    Key? key,
+    super.key,
     this.featureBlocked,
     this.onPurchaseSuccess,
-  }) : super(key: key);
+  });
 
   @override
   State<PaywallScreen> createState() => _PaywallScreenState();
@@ -113,26 +113,26 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
             backgroundColor: AppColors.surfaceDark,
             title: Row(
               children: [
-                Icon(Icons.info_outline, color: AppColors.primary),
+                const Icon(Icons.info_outline, color: AppColors.primary),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     AppLocalizations.of(context)!.paywallNotImplementedTitle,
-                    style: TextStyle(color: AppColors.textDark),
+                    style: const TextStyle(color: AppColors.textDark),
                   ),
                 ),
               ],
             ),
             content: Text(
               AppLocalizations.of(context)!.paywallNotImplementedMessage,
-              style: TextStyle(color: AppColors.textSecondaryDark),
+              style: const TextStyle(color: AppColors.textSecondaryDark),
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
                 child: Text(
                   AppLocalizations.of(context)!.understood,
-                  style: TextStyle(color: AppColors.primary),
+                  style: const TextStyle(color: AppColors.primary),
                 ),
               ),
             ],
@@ -181,12 +181,12 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                         children: [
                           IconButton(
                             onPressed: () => Navigator.pop(context),
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.close,
                               color: AppColors.textSecondaryDark,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Ritmo PRO',
                             style: TextStyle(
                               fontSize: 18,
@@ -231,7 +231,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                             // Título principal
                             Text(
                               l10n.paywallMainTitle,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.textDark,
@@ -254,7 +254,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                                 ),
                                 child: Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.lock_outline,
                                       color: AppColors.warning,
                                       size: 20,
@@ -263,7 +263,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                                     Expanded(
                                       child: Text(
                                         widget.featureBlocked!,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: AppColors.textDark,
                                           fontSize: 14,
                                         ),
@@ -322,7 +322,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                             // Términos y condiciones
                             Text(
                               l10n.paywallTermsAndConditions,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 12,
                                 color: AppColors.textSecondaryDark,
                               ),
@@ -403,7 +403,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                 children: [
                   Text(
                     feature['title'] as String,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textDark,
@@ -411,7 +411,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                   ),
                   Text(
                     feature['subtitle'] as String,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: AppColors.textSecondaryDark,
                     ),
@@ -419,7 +419,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                 ],
               ),
             ),
-            Icon(
+            const Icon(
               Icons.check_circle,
               color: AppColors.success,
               size: 20,
@@ -436,7 +436,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
     return [
       Text(
         l10n.paywallChoosePlan,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: AppColors.textDark,
@@ -501,7 +501,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                         children: [
                           Text(
                             plan['title'],
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               color: AppColors.textDark,
@@ -549,7 +549,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                   children: [
                     Text(
                       plan['price'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: AppColors.textDark,
@@ -557,7 +557,7 @@ class _PaywallScreenState extends State<PaywallScreen> with TickerProviderStateM
                     ),
                     Text(
                       plan['period'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         color: AppColors.textSecondaryDark,
                       ),

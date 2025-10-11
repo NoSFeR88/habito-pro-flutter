@@ -11,10 +11,10 @@ class AdBannerWidget extends StatefulWidget {
   final EdgeInsets margin;
 
   const AdBannerWidget({
-    Key? key,
+    super.key,
     this.showOnlyIfFree = true,
     this.margin = const EdgeInsets.all(8.0),
-  }) : super(key: key);
+  });
 
   @override
   State<AdBannerWidget> createState() => _AdBannerWidgetState();
@@ -89,7 +89,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
                         ),
                         child: Text(
                           AppLocalizations.of(context)!.removeAds,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
@@ -117,11 +117,11 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
           ),
           title: Row(
             children: [
-              Icon(Icons.block, color: AppColors.primary),
+              const Icon(Icons.block, color: AppColors.primary),
               const SizedBox(width: 8),
               Text(
                 AppLocalizations.of(context)!.removePermanentAds,
-                style: TextStyle(color: AppColors.textDark),
+                style: const TextStyle(color: AppColors.textDark),
               ),
             ],
           ),
@@ -131,7 +131,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
             children: [
               Text(
                 AppLocalizations.of(context)!.enjoyRitmoInterruptions,
-                style: TextStyle(color: AppColors.textSecondaryDark),
+                style: const TextStyle(color: AppColors.textSecondaryDark),
               ),
               const SizedBox(height: 16),
               _buildFeatureRow(Icons.block, AppLocalizations.of(context)!.noAdvertising),
@@ -150,12 +150,12 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.star, color: AppColors.primary, size: 20),
+                    const Icon(Icons.star, color: AppColors.primary, size: 20),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         AppLocalizations.of(context)!.pricingText,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: AppColors.primary,
                           fontWeight: FontWeight.w600,
                           fontSize: 13,
@@ -172,7 +172,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
               onPressed: () => Navigator.of(context).pop(),
               child: Text(
                 AppLocalizations.of(context)!.later,
-                style: TextStyle(color: AppColors.textSecondaryDark),
+                style: const TextStyle(color: AppColors.textSecondaryDark),
               ),
             ),
             ElevatedButton(
@@ -204,7 +204,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
           const SizedBox(width: 8),
           Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.textDark,
               fontSize: 14,
             ),

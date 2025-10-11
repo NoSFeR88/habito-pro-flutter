@@ -63,9 +63,9 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
             bottom: TabBar(
               controller: _tabController,
               tabs: [
-                Tab(icon: Icon(Icons.today), text: AppLocalizations.of(context)!.today),
-                Tab(icon: Icon(Icons.show_chart), text: AppLocalizations.of(context)!.week),
-                Tab(icon: Icon(Icons.trending_up), text: AppLocalizations.of(context)!.trends),
+                Tab(icon: const Icon(Icons.today), text: AppLocalizations.of(context)!.today),
+                Tab(icon: const Icon(Icons.show_chart), text: AppLocalizations.of(context)!.week),
+                Tab(icon: const Icon(Icons.trending_up), text: AppLocalizations.of(context)!.trends),
               ],
             ),
           ),
@@ -183,8 +183,8 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
     final pending = total - completed;
 
     // Colores con mejor contraste y visibilidad
-    final completedColor = const Color(0xFF4CAF50); // Green 500 - más brillante
-    final pendingColor = const Color(0xFFFF9800); // Orange 500 - más visible que grey
+    const completedColor = Color(0xFF4CAF50); // Green 500 - más brillante
+    const pendingColor = Color(0xFFFF9800); // Orange 500 - más visible que grey
     final shadowColor = Theme.of(context).brightness == Brightness.dark
         ? Colors.black.withValues(alpha: 0.3)
         : Colors.grey.withValues(alpha: 0.15);
@@ -238,7 +238,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                             ),
                           ],
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.check_circle,
                           color: completedColor,
                           size: 20,
@@ -276,7 +276,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                             ),
                           ],
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.pending,
                           color: pendingColor,
                           size: 20,
@@ -1515,7 +1515,7 @@ class _StatsScreenState extends State<StatsScreen> with SingleTickerProviderStat
                             child: Container(
                               width: 6,
                               height: 6,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Colors.red,
                                 shape: BoxShape.circle,
                               ),

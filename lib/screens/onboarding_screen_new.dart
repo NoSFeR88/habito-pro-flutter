@@ -9,7 +9,7 @@ import '../providers/onboarding_provider.dart';
 /// - Temas premium únicos
 /// - UX simple y efectiva
 class OnboardingScreenNew extends StatefulWidget {
-  const OnboardingScreenNew({Key? key}) : super(key: key);
+  const OnboardingScreenNew({super.key});
 
   @override
   State<OnboardingScreenNew> createState() => _OnboardingScreenNewState();

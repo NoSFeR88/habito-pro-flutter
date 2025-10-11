@@ -45,7 +45,7 @@ void main() {
       });
 
       final provider = GamificationProvider();
-      await Future.delayed(Duration(milliseconds: 100)); // Wait for async init
+      await Future.delayed(const Duration(milliseconds: 100)); // Wait for async init
 
       expect(provider.totalPoints, 500);
       expect(provider.level, 3);
@@ -96,7 +96,7 @@ void main() {
         'gamification_level': 3,
       });
       final provider = GamificationProvider();
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
       provider.removePoints(300);
       expect(provider.totalPoints, 200);
@@ -127,7 +127,7 @@ void main() {
         'gamification_points': 100,
       });
       final provider = GamificationProvider();
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
       var notified = false;
       provider.addListener(() => notified = true);
@@ -139,10 +139,10 @@ void main() {
     test('should persist points and level after changes', () async {
       SharedPreferences.setMockInitialValues({});
       final provider = GamificationProvider();
-      await Future.delayed(Duration(milliseconds: 100)); // Wait for init
+      await Future.delayed(const Duration(milliseconds: 100)); // Wait for init
 
       provider.addPoints(150);
-      await Future.delayed(Duration(milliseconds: 200)); // Wait for async save
+      await Future.delayed(const Duration(milliseconds: 200)); // Wait for async save
 
       // Verify in-memory state
       expect(provider.totalPoints, 150);
@@ -210,7 +210,7 @@ void main() {
         'gamification_level': 2,
       });
       final provider = GamificationProvider();
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
       final stats = provider.gameStats;
 
@@ -240,7 +240,7 @@ void main() {
         'gamification_level': 10,
       });
       final provider = GamificationProvider();
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
       final stats = provider.gameStats;
       expect(stats.pointsToNextLevel, 0); // At max level
@@ -259,7 +259,7 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: {DateTime.now().toDateString(): true},
       );
@@ -282,7 +282,7 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: {},
       ));
@@ -303,7 +303,7 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: {},
       ));
@@ -318,7 +318,7 @@ void main() {
       final provider = GamificationProvider();
 
       provider.addPoints(1000); // Reach level 5
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
       final newlyUnlocked = provider.checkForNewAchievements([]);
 
@@ -336,7 +336,7 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: {DateTime.now().toDateString(): true},
       );
@@ -363,7 +363,7 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: {DateTime.now().toDateString(): true},
       );
@@ -387,14 +387,14 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: {DateTime.now().toDateString(): true},
       );
 
       provider.checkForNewAchievements([habit]);
 
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       expect(notified, true);
     });
   });
@@ -412,12 +412,12 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
-        createdAt: now.subtract(Duration(days: 3)),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
+        createdAt: now.subtract(const Duration(days: 3)),
         completions: {
           now.toDateString(): true,
-          now.subtract(Duration(days: 1)).toDateString(): true,
-          now.subtract(Duration(days: 2)).toDateString(): true,
+          now.subtract(const Duration(days: 1)).toDateString(): true,
+          now.subtract(const Duration(days: 2)).toDateString(): true,
         },
       );
 
@@ -443,7 +443,7 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: completions,
       );
@@ -470,7 +470,7 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: completions,
       );
@@ -499,7 +499,7 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: completions,
       );
@@ -525,7 +525,7 @@ void main() {
           icon: Icons.star,
           color: Colors.blue.value,
           frequency: [1, 2, 3, 4, 5, 6, 7],
-          reminderTime: TimeOfDay(hour: 9, minute: 0),
+          reminderTime: const TimeOfDay(hour: 9, minute: 0),
           createdAt: DateTime.now(),
           completions: completions,
         );
@@ -569,7 +569,7 @@ void main() {
         'gamification_level': 5,
       });
       final provider = GamificationProvider();
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
       provider.removePoints(800); // Down to 200 points
       expect(provider.level, 2); // Should be level 2
@@ -583,7 +583,7 @@ void main() {
       });
 
       final provider = GamificationProvider();
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
       // Should fall back to defaults
       expect(provider.totalPoints, 0);
@@ -602,13 +602,13 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: {DateTime.now().toDateString(): true},
       );
 
       provider.checkForNewAchievements([habit]);
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
 
       final prefs = await SharedPreferences.getInstance();
       final achievementsJson = prefs.getString('gamification_achievements');
@@ -632,14 +632,14 @@ void main() {
         icon: Icons.star,
         color: Colors.blue.value,
         frequency: [1, 2, 3, 4, 5, 6, 7],
-        reminderTime: TimeOfDay(hour: 9, minute: 0),
+        reminderTime: const TimeOfDay(hour: 9, minute: 0),
         createdAt: DateTime.now(),
         completions: {},
       ));
 
       provider.checkForNewAchievements(habits);
 
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       expect(notificationCount, greaterThan(0));
     });
 

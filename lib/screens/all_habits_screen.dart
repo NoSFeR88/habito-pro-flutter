@@ -9,7 +9,7 @@ import 'add_habit_screen.dart';
 import 'edit_habit_screen.dart';
 
 class AllHabitsScreen extends StatefulWidget {
-  const AllHabitsScreen({Key? key}) : super(key: key);
+  const AllHabitsScreen({super.key});
 
   @override
   State<AllHabitsScreen> createState() => _AllHabitsScreenState();
@@ -258,7 +258,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
               const SizedBox(height: 4),
               Text(
                 habit.description,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                   color: AppColors.textSecondaryDark,
                 ),
@@ -277,14 +277,14 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
           ],
         ),
         trailing: PopupMenuButton<String>(
-          icon: Icon(Icons.more_vert, color: AppColors.textSecondaryDark),
+          icon: const Icon(Icons.more_vert, color: AppColors.textSecondaryDark),
           onSelected: (value) => _handleMenuAction(value, habit, habitProvider, l10n),
           itemBuilder: (context) => [
             PopupMenuItem(
               value: 'edit',
               child: Row(
                 children: [
-                  Icon(Icons.edit, color: AppColors.textDark, size: 20),
+                  const Icon(Icons.edit, color: AppColors.textDark, size: 20),
                   const SizedBox(width: 8),
                   Text(l10n.edit),
                 ],
@@ -308,7 +308,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
               value: 'delete',
               child: Row(
                 children: [
-                  Icon(Icons.delete, color: AppColors.error, size: 20),
+                  const Icon(Icons.delete, color: AppColors.error, size: 20),
                   const SizedBox(width: 8),
                   Text(l10n.delete, style: const TextStyle(color: Colors.red)),
                 ],
@@ -356,7 +356,7 @@ class _AllHabitsScreenState extends State<AllHabitsScreen> with SingleTickerProv
         ),
         child: Text(
           l10n.paused,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
             color: AppColors.textSecondaryDark,
