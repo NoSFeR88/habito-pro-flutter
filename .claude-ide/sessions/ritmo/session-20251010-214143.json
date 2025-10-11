@@ -1,0 +1,35 @@
+{
+  "session_id": "session-20251010-214143",
+  "session_type": "ritmo",
+  "timestamp": "2025-10-10T21:41:46.494510",
+  "project_root": "C:\\Users\\shill\\AppData\\Local\\Android\\Sdk\\Proyectos\\Aplicaciones Play Store\\habito_pro_clean",
+  "context": {
+    "files_open": [],
+    "cursor_positions": {},
+    "last_read_lines": {}
+  },
+  "project_state": {
+    "branch": "master",
+    "last_commit": "f191503 feat(themes): Add dynamic backgrounds to all 6 premium themes",
+    "uncommitted_changes": true,
+    "git_status": "M .claude-ide/sessions/ritmo/session-latest.json\n M .claude/settings.local.json\n?? .claude-ide/sessions/ritmo/session-20251010-205841.json\n?? pr_review.py"
+  },
+  "conversation": {
+    "last_task": "",
+    "pending_tasks": [],
+    "decisions_made": [],
+    "todos": []
+  },
+  "principles_versions": {
+    "CLAUDE_GLOBAL_DEVELOPMENT_PRINCIPLES.md": "FILE_NOT_FOUND",
+    "CLAUDE.md": "0458ad78",
+    "docs\\BILINGUAL_GUIDE.md": "4107c4c8",
+    "docs\\PROJECT_INDEX.md": "c8f838d1",
+    "README.md": "c8e899a4"
+  },
+  "tokens_estimated": 0,
+  "metadata": {
+    "created_by": "Claude IDE System",
+    "version": "1.0.0"
+  }
+}

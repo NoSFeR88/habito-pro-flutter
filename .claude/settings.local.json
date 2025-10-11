@@ -43,7 +43,11 @@
       "Bash(git add:*)",
       "Bash(python:*)",
       "Read(//c/Users/shill/AppData/Local/Android/Sdk/Proyectos/**)",
-      "Read(//c/Users/shill/AppData/Local/Android/Sdk/Proyectos/docs/flutter/**)"
+      "Read(//c/Users/shill/AppData/Local/Android/Sdk/Proyectos/docs/flutter/**)",
+      "Bash(Test-Path \"C:\\Users\\shill\\AppData\\Local\\Android\\Sdk\\Proyectos\\INTELLIGENT_IDE_VISION.md\")",
+      "Bash(Test-Path \"C:\\Users\\shill\\AppData\\Local\\Android\\Sdk\\Proyectos\\IMPLEMENTATION_GUIDE.md\")",
+      "Bash(Test-Path \"C:\\Users\\shill\\AppData\\Local\\Android\\Sdk\\Proyectos\\ROADMAP_26_WEEKS.md\")",
+      "Bash(dir)"
     ],
     "deny": [],
     "ask": []
