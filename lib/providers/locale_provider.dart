@@ -145,7 +145,12 @@ class LocaleProvider extends ChangeNotifier {
       debugPrint('🔧 User MANUALLY changed locale to: ${newLocale.languageCode}');
 
       // Actualizar idioma de notificaciones
-      await NotificationService().updateLocale(newLocale.languageCode);
+      try {
+        await NotificationService().updateLocale(newLocale.languageCode);
+      } catch (e) {
+        // Ignore notification update errors (e.g., in tests without plugin)
+        debugPrint('⚠️ Notification locale update failed: $e');
+      }
 
       notifyListeners();
     }
